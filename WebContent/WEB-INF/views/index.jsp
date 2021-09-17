@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 </head>
 <body>
-<h1> 이건 보이나요? 수정됬나요?!!</h1>
+<h1> 이건 보이나요? 저도 수정했습니다[이주현]</h1>
 
 
 </body>
