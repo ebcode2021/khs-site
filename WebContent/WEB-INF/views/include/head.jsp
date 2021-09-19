@@ -6,5 +6,6 @@
 
 <meta charset = "UTF-8">
 <link rel="stylesheet" href="${contextPath}/resources/css/common/all.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/common/reset.css">
 <script type="text/javascript" src="${contextPath}/resources/js/common/webUtil.js"></script>
 <title></title>
