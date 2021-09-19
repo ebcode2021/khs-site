@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import khs.common.code.ErrorCode;
 import khs.common.exception.HandlableException;
+import khs.common.exception.PageNotFoundException;
 import khs.common.file.FileDTO;
 import khs.common.file.FileUtil;
 import khs.common.file.MultiPartParams;
@@ -48,8 +49,7 @@ public class JoinController extends HttpServlet {
 		case "join-send-Vari-Email" :
 			joinSendVariEmail(request, response);
 			// PageNotFound 404 오류를 던지는 분기점 
-		default: response.setStatus(404);
-			break;
+		default: throw new PageNotFoundException();
 		}
 	}
 
