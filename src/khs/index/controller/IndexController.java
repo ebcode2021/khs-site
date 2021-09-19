@@ -16,6 +16,8 @@ public class IndexController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//index로 재접근하면 로그인부터 다시하게 세션 초기화
+		request.getSession().removeAttribute("authentication");
 		request.getRequestDispatcher("/index").forward(request, response);
 	}
 

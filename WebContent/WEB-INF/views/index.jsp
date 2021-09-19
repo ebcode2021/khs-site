@@ -33,7 +33,7 @@
     </div>
     <div class="last_question"> 
       <div>아직 회원이 아니신가요?</div>
-      <div id = "join"><a href="#">회원가입</a></div>
+      <div id = "join"><a href="${ContextPath}/join">회원가입</a></div>
     </div>
   </main>
   
