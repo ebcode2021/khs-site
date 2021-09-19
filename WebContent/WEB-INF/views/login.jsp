@@ -15,7 +15,7 @@
 
   <main>
     <div class="yellow_border">
-      <form action="${contextPath}/main" method="post">
+      <form action="${contextPath}/login/login-check" method="post">
         <label for="user_name">
         <input type = "text" id="user_name" placeholder="아이디" autofocus><br></label>
       <label for="user_pw">
@@ -25,9 +25,9 @@
     </form>
 
     <div class="find">
-      <div>아이디/비밀번호 찾기</div>
-      <div>네이버로 로그인</div>
-      <div>카카오로 로그인</div>
+      <div><a href="${ContextPath}/find">아이디/비밀번호 찾기</a></div>
+      <div><a href="${ContextPath}/naver">네이버로 로그인</a></div>
+      <div><a href="${ContextPath}/kakao">카카오로 로그인</a></div>
     </div>
       <div id="icon"><i class="far fa-question-circle fa-2x"></i> </div>
     </div>
