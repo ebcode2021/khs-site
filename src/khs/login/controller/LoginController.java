@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import khs.common.exception.PageNotFoundException;
+import khs.login.model.dto.Member;
+import khs.login.model.service.MemberService;
 
 @WebServlet("/login/*")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private MemberService memberService = new MemberService();   
   
     public LoginController() {
         super();
@@ -28,11 +30,21 @@ public class LoginController extends HttpServlet {
 	}
 
 	private void loginCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = request.getParameter("userId");
+		String password = request.getParameter("password");
 		
-		//if(로그인 체크가 안될경우){error메세지 출력해서 main으로 못넘기게 만들어버리기}
-		//정상적으로 로그인이 될 경우 /main 페이지로 이동
-		request.getRequestDispatcher("/main").forward(request, response);
+		Member member = null;
 		
+		member = memberService.memberAuthenticate(userId, password);
+		
+		if(member==null) {
+			System.out.println("로그인이 실패");
+			response.sendRedirect("/login");
+			return;
+		}
+		
+		request.getSession().setAttribute("authentication", member);
+		response.sendRedirect("/main/main");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

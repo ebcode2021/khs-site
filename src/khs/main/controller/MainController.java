@@ -27,25 +27,28 @@ public class MainController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] uriArr = request.getRequestURI().split("/");
-		switch(uriArr[uriArr.length-1]) {
-		case "myPage" :
-			myPage(request,response);
-			break;
-		case "board" :
-			board(request,response);
-			break;
-		case "restaurant" :
-			restaurant(request,response);
-			break;
-		case "study" :
-			study(request,response);
-			break;
-		case "question" :
-			question(request,response);
-			break;
-		default : throw new PageNotFoundException();
-		}
+		
+		request.getRequestDispatcher("/main/main").forward(request, response);
+		
+		//		String[] uriArr = request.getRequestURI().split("/");
+//		switch(uriArr[uriArr.length-1]) {
+//		case "myPage" :
+//			myPage(request,response);
+//			break;
+//		case "board" :
+//			board(request,response);
+//			break;
+//		case "restaurant" :
+//			restaurant(request,response);
+//			break;
+//		case "study" :
+//			study(request,response);
+//			break;
+//		case "question" :
+//			question(request,response);
+//			break;
+//		default : throw new PageNotFoundException();
+//		}
 	}
 
 	private void myPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

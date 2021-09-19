@@ -31,6 +31,7 @@
     </div>
       <div id="icon"><i class="far fa-question-circle fa-2x"></i> </div>
     </div>
+    
     <div class="last_question"> 
       <div>아직 회원이 아니신가요?</div>
       <div id = "join"><a href="${ContextPath}/join">회원가입</a></div>
