@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import khs.common.exception.PageNotFoundException;
+import khs.login.model.dto.Member;
+import khs.login.model.service.MemberService;
 import khs.myPage.model.dto.MyPage;
 import khs.myPage.model.service.MyPageService;
 
@@ -51,7 +53,8 @@ public class MyPageController extends HttpServlet {
 
 
 	private void changePassword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-		String userId = "carinae4717";
+		
+		String userId = myPageService.getLoginMemberId(request);
 		String newPassword = request.getParameter("newPassword");
 		
 		myPageService.changePassword(userId,newPassword);
@@ -64,7 +67,7 @@ public class MyPageController extends HttpServlet {
 
 
 	private void updateDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = "carinae4717";
+		String userId = myPageService.getLoginMemberId(request);
 		String nickName = request.getParameter("nickname");
 		String email = request.getParameter("email");
 		
@@ -86,7 +89,7 @@ public class MyPageController extends HttpServlet {
 
 
 	private void myPageDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = "carinae4717";
+		String userId = myPageService.getLoginMemberId(request);
 		MyPage myPage = myPageService.selectMyPage(userId);
 		request.setAttribute("authentication", myPage);
 		request.getRequestDispatcher("/myPage/myPageDetail").forward(request, response);

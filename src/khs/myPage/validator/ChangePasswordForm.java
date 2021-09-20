@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import khs.login.model.dto.Member;
 import khs.myPage.model.service.MyPageService;
 
 
@@ -27,7 +28,7 @@ public class ChangePasswordForm {
 	}
 	
 	public boolean test() {
-		String userId = "carinae4717";
+		String userId = myPageService.getLoginMemberId(request);
 		boolean res = true;
 		boolean valid = true;
 		boolean valid2 = true;

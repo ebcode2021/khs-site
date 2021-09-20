@@ -2,7 +2,10 @@ package khs.myPage.model.service;
 
 import java.sql.Connection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import khs.common.db.JDBCTemplate;
+import khs.login.model.dto.Member;
 import khs.myPage.model.dao.MyPageDao;
 import khs.myPage.model.dto.MyPage;
 
@@ -65,6 +68,14 @@ public class MyPageService {
 			template.close(conn);
 		}
 		return res;
+	}
+	
+	
+	
+	public String getLoginMemberId(HttpServletRequest request) {
+		Member member = (Member)request.getSession().getAttribute("authentication");
+		String userId = member.getUserId();
+		return userId;
 	}
 
 
