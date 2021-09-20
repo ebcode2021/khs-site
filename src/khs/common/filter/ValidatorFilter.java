@@ -11,6 +11,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import khs.myPage.validator.ChangePasswordForm;
+
 //import khs.common.code.ErrorCode;
 /*import khs.common.exception.HandlableException;
 import khs.common.exception.PageNotFoundException;
@@ -42,6 +44,9 @@ public class ValidatorFilter implements Filter {
 			case "member":
 				redirectUrl = memberValidation(httpRequest,uriArr);
 				break;
+			case "myPage":
+				redirectUrl = myPageValidation(httpRequest,uriArr);
+				break;
 			}
 			
 			if(redirectUrl!=null) {
@@ -61,6 +66,21 @@ public class ValidatorFilter implements Filter {
 		
 			break;
 		}
+		return redirectUrl;
+	}
+	
+	private String myPageValidation(HttpServletRequest httpRequest, String[] uriArr) {
+		String redirectUrl=null;
+		switch(uriArr[2]) {
+
+		case "changePassword" :
+			ChangePasswordForm changePasswordForm = new ChangePasswordForm(httpRequest);
+			if(!changePasswordForm.test()) {
+				redirectUrl = "/myPage/myPageDetail";
+			}
+			break;
+		}
+		
 		return redirectUrl;
 	}
 	
