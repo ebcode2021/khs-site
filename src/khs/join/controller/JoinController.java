@@ -2,6 +2,7 @@ package khs.join.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class JoinController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. URI 분리 작업 //
+		System.out.println("JOIN_Controller 진입");
 		
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
@@ -43,17 +45,25 @@ public class JoinController extends HttpServlet {
 			joinForm(request, response);
 			break; 
 			// join(회원가입) 기능을 수행하는 메서드로 보내는 분기점 
-		case "join-Method" : 
+		case "join-Method" :
 			join(request, response);
 			break; 
 		case "join-send-Vari-Email" :
+			System.out.println("이메일 전송 들어옴");
 			joinSendVariEmail(request, response);
 			// PageNotFound 404 오류를 던지는 분기점 
+			break; 
+		case "join-VariCode" :
+			checkVariCode(request,response);
+			break;
 		default: throw new PageNotFoundException();
 		}
 	}
 
 	
+
+
+
 
 	private void joinForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/join/join-form").forward(request, response);
@@ -113,6 +123,52 @@ public class JoinController extends HttpServlet {
 	
 	private void joinSendVariEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("---이메일 발송 시스템 진입 완료---");
+		
+		
+		
+		java.util.Date date = new java.util.Date();
+		long variTime = date.getTime();
+		
+		// 난수 생성으로 
+		request.getSession().setAttribute("email-code", "777777");
+		request.getSession().setAttribute("email-time", variTime);
+		System.out.println(variTime);
+	}
+	
+	private void checkVariCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		
+		System.out.println("---이메일 인증 시스템 진입 완료---");
+		
+		java.util.Date date = new java.util.Date();
+		long currentTime = date.getTime();
+		
+		//0. 값 검토 
+		if(request.getParameter("variCode") == "") {
+			System.out.println("빈값 처리 : x ");
+			return;
+		}
+		
+		int variCode =  Integer.parseInt(request.getParameter("variCode"));
+		int originCode = Integer.parseInt((String) request.getSession().getAttribute("email-code"));
+		long outTime = (long) request.getSession().getAttribute("email-time") + 10000;
+		// 10초 시험, 5분은 300000
+		
+		//1. 인증 기한 검증 
+		if(currentTime < outTime) {
+			System.out.println("만료되지 않았음 : 10초 ");
+		} else {
+			System.out.println("만료되었음 : 10초 ");
+		}
+		
+		// 2. 코드 검증 
+		if(variCode != originCode) {
+			System.out.println("틀렸음");
+			return;
+		} else {
+			System.out.println("맞았음");
+			return;
+		}
 		
 	}
 	

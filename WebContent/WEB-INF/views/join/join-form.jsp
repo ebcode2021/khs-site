@@ -29,6 +29,7 @@
 			<div class = emailValiWrapper>
 				<input type="text" name='emailVali' id='emailVali' class = "emailVali" placeholder="인증번호를 입력하세요."><span>00 : 00</span>
 			</div>
+			<button class = 'variEmail' type="button">인증하기</button>
 		</div>
 		<div class = 'test'>
 			<h2>03. 이름과 생년월일, 별명을 입력 해 주세요.</h2>
@@ -103,32 +104,46 @@ Google과의 관계가 정의됩니다.
 
 <script type="text/javascript">
 	
-	let confirmId = "";
+	let confirmEmail = "";
 
 	document.querySelector(".sendEmail").addEventListener('click', e=> {
-		alert("버튼이 작동되었습니다.");
+		let email = document.querySelector("#email").value;
+		alert(email);
+		fetch('/join/join-send-Vari-Email?userEmail=' + email)
+		/* .then(response => response.text())
+		.then(text => {
+			if(text == 'available'){
+				document.querySelector("#emailCheck").innerHTML = "이메일 인증이 완료되었습니다.";
+				confirmEmail = email;
+			} else if(text == 'disable'){
+				document.querySelector("#emailCheck").innerHTML = "올바른 인증 코드가 아닙니다.";
+			} else if(text == 'timeout'){
+				document.querySelector("#emailCheck").innerHTML = "인증 시간이 만료되었습니다.";
+			} else{
+				document.querySelector('#emailCheck').innerHTML = "시스템 장애로 회원가입에 실패했습니다.";
+			}
+		}) */
 	})
 	
-	//let id = document.querySelector("#userId").value;
-	
-	
-	/* console.log(id);
-	if(id){
-		fetch('/member/id-check?userId=' + id)
-		.then(response => response.text())
-		.then(text =>{
+	document.querySelector(".variEmail").addEventListener('click', e=> {
+		
+		let variCode = document.querySelector("#emailVali").value;
+		alert(variCode);
+		fetch('/join/join-VariCode?variCode='+ variCode)
+		/* .then(response => response.text())
+		.then(text => {
 			if(text == 'available'){
-				console.log("사용가능한 아이디");
-				document.querySelector("#idCheck").innerHTML = "사용 가능한 아이디입니다.";
-				confirmId = id;
+				document.querySelector("#emailCheck").innerHTML = "이메일 인증이 완료되었습니다.";
+				confirmEmail = email;
 			} else if(text == 'disable'){
-				console.log("사용 불가능한 아이디");
-				document.querySelector("#idCheck").innerHTML = "사용 불가능한 아이디입니다.";
-			} else {
-				document.querySelector('#idCheck').innerHTML = "시스템 장애로 회원가입에 실패했습니다.";
+				document.querySelector("#emailCheck").innerHTML = "올바른 인증 코드가 아닙니다.";
+			} else if(text == 'timeout'){
+				document.querySelector("#emailCheck").innerHTML = "인증 시간이 만료되었습니다.";
+			} else{
+				document.querySelector('#emailCheck').innerHTML = "시스템 장애로 회원가입에 실패했습니다.";
 			}
-		})
-	} */
+		}) */
+	})
 
 
 

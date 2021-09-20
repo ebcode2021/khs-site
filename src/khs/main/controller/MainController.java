@@ -28,27 +28,37 @@ public class MainController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/main/main").forward(request, response);
+		//request.getRequestDispatcher("/main/main").forward(request, response);
 		
-		//		String[] uriArr = request.getRequestURI().split("/");
-//		switch(uriArr[uriArr.length-1]) {
-//		case "myPage" :
-//			myPage(request,response);
-//			break;
-//		case "board" :
-//			board(request,response);
-//			break;
-//		case "restaurant" :
-//			restaurant(request,response);
-//			break;
-//		case "study" :
-//			study(request,response);
-//			break;
-//		case "question" :
-//			question(request,response);
-//			break;
-//		default : throw new PageNotFoundException();
-//		}
+		String[] uriArr = request.getRequestURI().split("/");
+		switch(uriArr[uriArr.length-1]) {
+		case "myPage" :
+			myPage(request,response);
+			break;
+		case "board" :
+			board(request,response);
+			break;
+		case "restaurant" :
+			restaurant(request,response);
+			break;
+		case "study" :
+			study(request,response);
+			break;
+		case "question" :
+			question(request,response);
+			break;
+		case "join" : 
+			join(request,response);
+			break; 
+		default : throw new PageNotFoundException();
+		
+		}
+	}
+
+	//***join sendRedirect 추가 
+	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("/join/join-form");
+		
 	}
 
 	private void myPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

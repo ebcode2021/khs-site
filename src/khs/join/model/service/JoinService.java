@@ -45,18 +45,31 @@ public class JoinService {
 		return IsSuccess;
 	}
 	
-	//----------회원가입 인증 메일 전송 Service--------------- 
+	//----------회원가입 인증 메일 전송 및 코드 확인 Service--------------- 
 	public void sendVarificationEmail(String email) {
 		
+		// 1. 난수 6개 생성
+		
+		// 2. 현재 시간을 저장 
+		
+		// 3. 난수는 Email에 담아서 보냄 
+		
+		// 3. 두 가지를 session에 저장 
 		
 		
 	}
 	
-	//----------회원가입 인증 코드 확인 Service---------------
-	public void VarificationEmailCode(String code, Date time) {
+	public void checkVarificationEmail(String email) {
 		
+		// 인증버튼을 누르면, request객체의 sessionScope에 있는 parameter를 꺼냄 
 		
+		// 인증코드와 날짜를 비교 
 		
+		// 정해진 3 값중 하나를 돌려보냄 ( write로 text에 ) 
+	}
+
+	public Object searchById(String userId) {
+		return null;
 	}
 	
 	
