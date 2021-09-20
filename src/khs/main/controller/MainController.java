@@ -28,10 +28,11 @@ public class MainController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//request.getRequestDispatcher("/main/main").forward(request, response);
-		
 		String[] uriArr = request.getRequestURI().split("/");
 		switch(uriArr[uriArr.length-1]) {
+		case "main" :
+			request.getRequestDispatcher("/main").forward(request, response);
+			break;
 		case "myPage" :
 			myPage(request,response);
 			break;
@@ -47,42 +48,32 @@ public class MainController extends HttpServlet {
 		case "question" :
 			question(request,response);
 			break;
-		case "join" : 
-			join(request,response);
-			break; 
 		default : throw new PageNotFoundException();
-		
 		}
 	}
 
-	//***join sendRedirect 추가 
-	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/join/join-form");
-		
-	}
-
 	private void myPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/myPage");
+		response.sendRedirect("/main/myPage");
 		
 	}
 
 	private void board(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/board");
+		response.sendRedirect("/main/board");
 		
 	}
 
 	private void restaurant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/restaurant");
+		response.sendRedirect("/main/restaurant");
 		
 	}
 
 	private void study(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/study");
+		response.sendRedirect("/main/study");
 		
 	}
 
 	private void question(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/question");
+		response.sendRedirect("/main/question");
 		
 	}
 
