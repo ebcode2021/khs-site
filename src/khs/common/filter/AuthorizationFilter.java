@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import khs.common.code.ErrorCode;
-import khs.common.code.MemberGrade;
 import khs.common.exception.HandlableException;
 //import khs.member.model.dto.Member;
+import khs.login.model.dto.Member;
 
 
 public class AuthorizationFilter implements Filter {
@@ -92,8 +92,40 @@ public class AuthorizationFilter implements Filter {
 		 * HandlableException(ErrorCode.REDIRECT.setURL("/member/login-form")); } break;
 		 * default: break; }
 		 */
+		
+		HttpServletRequest httpRequest = (HttpServletRequest)request;
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		
+		
+		String[] uriArr = httpRequest.getRequestURI().split("/");
+		
+		if(uriArr.length != 0) {
+			
+			switch (uriArr[1]) {
+				case "myPage":
+					myPageAuthorize(httpRequest, httpResponse, uriArr);
+					break;
+				default:
+					break;
+			}
+		
+		}
+		
 		chain.doFilter(request, response);
 
+	}
+
+
+	private void myPageAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
+		
+		if(member == null) {
+			throw new HandlableException(ErrorCode.REDIRECT.setURL("/login"));
+		}
+
+		
+		
 	}
 
 
