@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import khs.common.exception.PageNotFoundException;
 import khs.login.model.dto.Member;
 import khs.login.model.service.MemberService;
+import khs.login.validator.LoginForm;
 
 @WebServlet("/login/*")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private MemberService memberService = new MemberService();   
+ 
   
     public LoginController() {
         super();
@@ -30,21 +32,16 @@ public class LoginController extends HttpServlet {
 	}
 
 	private void loginCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		String password = request.getParameter("password");
 		
-		Member member = null;
+		LoginForm loginForm = new LoginForm(request);
 		
-		member = memberService.memberAuthenticate(userId, password);
-		
-		if(member==null) {
-			System.out.println("로그인이 실패");
+		if(!loginForm.test()) {
+			System.out.println("DB에 계정이 없는 경우");
 			response.sendRedirect("/login");
 			return;
 		}
 		
-		request.getSession().setAttribute("authentication", member);
-		response.sendRedirect("/main/main");
+		response.sendRedirect("/main");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
