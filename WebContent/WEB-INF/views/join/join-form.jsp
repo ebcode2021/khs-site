@@ -158,6 +158,7 @@ Google과의 관계가 정의됩니다.
 			return;
 		}
 		
+		
 		if(whiteSpaceExpr.test(userIdInput.value)){
 			userIdInput.style.border = "3px solid #FF6161";
 			IdCheckFailed.style.display = "block";
