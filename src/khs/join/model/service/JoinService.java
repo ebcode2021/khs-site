@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.Date;
 
 import khs.common.db.JDBCTemplate;
+import khs.common.http.HttpConnector;
+import khs.common.mail.MailSender;
 import khs.join.model.dao.JoinDao;
 import khs.join.model.dto.Member;
 
@@ -46,15 +48,18 @@ public class JoinService {
 	}
 	
 	//----------회원가입 인증 메일 전송 및 코드 확인 Service--------------- 
-	public void sendVarificationEmail(String email) {
+	public void sendVarificationEmail(String email, int randomCode) {
 		
-		// 1. 난수 6개 생성
+		System.out.println("3. 메일 전송 메서드 진입 완료 및 sendEmail 객채생성 ");
+		MailSender mailSender = new MailSender();
 		
-		// 2. 현재 시간을 저장 
+		System.out.println("4. HttpConnector를 불러, bodyMessage 작성");
+		HttpConnector conn = new HttpConnector(); 
+		String response =
+		conn.get("http://localhost:9090/mail?mailTemplate=join-varification-mail&variCode=" + randomCode);
 		
-		// 3. 난수는 Email에 담아서 보냄 
-		
-		// 3. 두 가지를 session에 저장 
+		System.out.println("5. 완성된 url을 통해 Email 발송");
+		mailSender.sendEmail(email, "인증 코드 발송", response);
 		
 		
 	}

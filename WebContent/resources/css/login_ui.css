@@ -84,6 +84,23 @@
 							color:white; 
 							background-color: #FFB751;
 						}
+					.variEmail{
+						display:block;
+						border: 3px solid #FFB751; 
+						background-color: rgba(0,0,0,0);
+						width: 150px;
+						height: 50px;
+						color: #FFB751;
+						padding: 5px;
+						margin-left :170px;
+						border-radius: 15px;
+						font-weight: bolder;
+					}
+						.variEmail:hover{
+							color:white; 
+							background-color: #FFB751;
+						}	
+						
 
 					.emailValiWrapper{
 						display: inline-block;
@@ -214,6 +231,11 @@
 	/* placeholer 간격 두기 및 inputText 간격 두기 	*/
 	input[type="text"]{
 		padding-left: 10px;
+	}
+	
+	/* input Focus 조절하기 (focus outline 없에기 )  */
+	input:focus{
+		outline : none;
 	}
 
 	

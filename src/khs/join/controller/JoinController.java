@@ -36,8 +36,6 @@ public class JoinController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. URI 분리 작업 //
-		System.out.println("JOIN_Controller 진입");
-		
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
 			// join-form으로 reqeustDispatcher를 통해 재지정시키는 분기점
@@ -125,21 +123,31 @@ public class JoinController extends HttpServlet {
 		
 		System.out.println("---이메일 발송 시스템 진입 완료---");
 		
+		//1. Parameter를 통해 Email 가져옴 
+		String email = (String) request.getParameter("userEmail");
+
+		//2. 난수 생성 및 저장 
+		int randomCode = (int) (Math.random()*10000000);
+		System.out.println("1. 생성된 랜덤 코드는 : " + randomCode);
+		request.getSession().setAttribute("email-code", randomCode);
+		System.out.println(" : request 객체에서 다시 꺼냄 " + request.getSession().getAttribute("email-code"));
 		
-		
+		//3. 시간 생성 및 저장 
 		java.util.Date date = new java.util.Date();
 		long variTime = date.getTime();
-		
-		// 난수 생성으로 
-		request.getSession().setAttribute("email-code", "777777");
+		System.out.println("2. 생성된 현재 시각은 : " + variTime);
 		request.getSession().setAttribute("email-time", variTime);
-		System.out.println(variTime);
+		System.out.println(" : request 객체에서 다시 꺼냄 " + request.getSession().getAttribute("email-time"));
+		
+		//4. 이메일 발송 
+		joinService.sendVarificationEmail(email, randomCode);
+		
+
 	}
 	
 	private void checkVariCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		
 		System.out.println("---이메일 인증 시스템 진입 완료---");
-		
 		java.util.Date date = new java.util.Date();
 		long currentTime = date.getTime();
 		
@@ -149,24 +157,29 @@ public class JoinController extends HttpServlet {
 			return;
 		}
 		
-		int variCode =  Integer.parseInt(request.getParameter("variCode"));
-		int originCode = Integer.parseInt((String) request.getSession().getAttribute("email-code"));
-		long outTime = (long) request.getSession().getAttribute("email-time") + 10000;
+		int variCode =  (int) Integer.parseInt(request.getParameter("variCode").trim());
+		int originCode = (int) request.getSession().getAttribute("email-code");
+		long outTime = (long) request.getSession().getAttribute("email-time") + 300000;
 		// 10초 시험, 5분은 300000
 		
 		//1. 인증 기한 검증 
-		if(currentTime < outTime) {
-			System.out.println("만료되지 않았음 : 10초 ");
-		} else {
+		//	if 만료되었다면 fetch의 then 결과로 outTime 전달 
+		if(currentTime > outTime) {
 			System.out.println("만료되었음 : 10초 ");
-		}
+			response.getWriter().print("timeout");
+			return;
+		} 
 		
 		// 2. 코드 검증 
-		if(variCode != originCode) {
-			System.out.println("틀렸음");
+		// if 성공했다면 fetch의 then 결과로 valid 전달 
+		// if 실패했다면 fetch의 then 결과로 invalid 전달 
+		if(variCode == originCode) {
+			System.out.println("맞았음");
+			response.getWriter().print("valid");
 			return;
 		} else {
-			System.out.println("맞았음");
+			System.out.println("틀렸음");	
+			response.getWriter().print("invalid");
 			return;
 		}
 		

@@ -23,7 +23,7 @@ public class ValidatorFilter implements Filter {
 
 	
     public ValidatorFilter() {
-        System.out.println("1. validatorFilter 작동");
+    	
     }
 
 	public void destroy() {
@@ -31,8 +31,6 @@ public class ValidatorFilter implements Filter {
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-		System.out.println("2. validatorFilter doFilter 작동");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		
@@ -46,7 +44,6 @@ public class ValidatorFilter implements Filter {
 				redirectUrl = memberValidation(httpRequest,uriArr);
 				break;
 			case "join":
-				System.out.println("3. join-루트로 들어옴");
 				redirectUrl = memberValidation(httpRequest,uriArr);
 				break;	
 			}
@@ -65,7 +62,6 @@ public class ValidatorFilter implements Filter {
 		
 		switch(uriArr[2]) { //여기에 계속 추가
 		case "join-Method" :
-			System.out.println("4. join-method 루트로 들어옴");
 			JoinForm joinform = new JoinForm(httpRequest);
 			if(!joinform.test()) {
 				redirectUrl = "/member/join-form";

@@ -25,6 +25,7 @@
 		<div class = 'test'>
 			<h2>02. 이메일을 입력하고 인증번호를 확인하세요.</h2>
 			<input type="text" name='email' id='email' placeholder="이메일(인증 번호를 받을 수 있는 이메일을 입력하세요.)"><br>
+			<span id = "emailCheck" class = "validMsg"></span>
 			<button class = 'sendEmail' type="button">인증번호 전송</button>
 			<div class = emailValiWrapper>
 				<input type="text" name='emailVali' id='emailVali' class = "emailVali" placeholder="인증번호를 입력하세요."><span>00 : 00</span>
@@ -108,41 +109,32 @@ Google과의 관계가 정의됩니다.
 
 	document.querySelector(".sendEmail").addEventListener('click', e=> {
 		let email = document.querySelector("#email").value;
-		alert(email);
+		alert(email + "로 인증메일이 발송되었습니다.");
 		fetch('/join/join-send-Vari-Email?userEmail=' + email)
-		/* .then(response => response.text())
-		.then(text => {
-			if(text == 'available'){
-				document.querySelector("#emailCheck").innerHTML = "이메일 인증이 완료되었습니다.";
-				confirmEmail = email;
-			} else if(text == 'disable'){
-				document.querySelector("#emailCheck").innerHTML = "올바른 인증 코드가 아닙니다.";
-			} else if(text == 'timeout'){
-				document.querySelector("#emailCheck").innerHTML = "인증 시간이 만료되었습니다.";
-			} else{
-				document.querySelector('#emailCheck').innerHTML = "시스템 장애로 회원가입에 실패했습니다.";
-			}
-		}) */
 	})
+	
 	
 	document.querySelector(".variEmail").addEventListener('click', e=> {
 		
 		let variCode = document.querySelector("#emailVali").value;
 		alert(variCode);
 		fetch('/join/join-VariCode?variCode='+ variCode)
-		/* .then(response => response.text())
+		.then(response => response.text())
 		.then(text => {
-			if(text == 'available'){
+			if(text == 'valid'){
 				document.querySelector("#emailCheck").innerHTML = "이메일 인증이 완료되었습니다.";
-				confirmEmail = email;
-			} else if(text == 'disable'){
+				
+			} else if(text == 'invalid'){
 				document.querySelector("#emailCheck").innerHTML = "올바른 인증 코드가 아닙니다.";
+				document.querySelector("#email").style.border = "3px solid #FF6161";
+				//border: 3px solid #D5D5D5;
 			} else if(text == 'timeout'){
-				document.querySelector("#emailCheck").innerHTML = "인증 시간이 만료되었습니다.";
+				document.querySelector("#emailCheck").innerHTML = "인증 시간이 만료되었습니다. 인증번호를 다시 전송하세요";
+				document.querySelector("#email").style.border = "3px solid #FF6161";
 			} else{
 				document.querySelector('#emailCheck').innerHTML = "시스템 장애로 회원가입에 실패했습니다.";
 			}
-		}) */
+		})
 	})
 
 
