@@ -123,7 +123,6 @@ Google과의 관계가 정의됩니다.
 		.then(text => {
 			if(text == 'valid'){
 				document.querySelector("#emailCheck").innerHTML = "이메일 인증이 완료되었습니다.";
-				
 			} else if(text == 'invalid'){
 				document.querySelector("#emailCheck").innerHTML = "올바른 인증 코드가 아닙니다.";
 				document.querySelector("#email").style.border = "3px solid #FF6161";
