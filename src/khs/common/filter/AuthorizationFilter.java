@@ -102,6 +102,9 @@ public class AuthorizationFilter implements Filter {
 		if(uriArr.length != 0) {
 			
 			switch (uriArr[1]) {
+//				case "login" :
+//					loginAuthorize(httpRequest,httpResponse,uriArr);
+//					break;
 				case "myPage":
 					myPageAuthorize(httpRequest, httpResponse, uriArr);
 					break;
@@ -114,6 +117,21 @@ public class AuthorizationFilter implements Filter {
 		chain.doFilter(request, response);
 
 	}
+
+
+//	private void loginAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+//		HttpSession session = httpRequest.getSession();
+//		Member member = (Member)session.getAttribute("authentication");
+//		
+//		switch(uriArr[2]) {
+//			case "login-check" :
+//				//차단된 사용자인지 아닌지에 따라서 접근권한 막는 코드 작성하기
+//				break;
+//			default :
+//				break;
+//		}
+//		
+//	}
 
 
 	private void myPageAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
