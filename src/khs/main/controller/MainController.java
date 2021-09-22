@@ -31,7 +31,7 @@ public class MainController extends HttpServlet {
 		String[] uriArr = request.getRequestURI().split("/");
 		switch(uriArr[uriArr.length-1]) {
 		case "main" :
-			request.getRequestDispatcher("/main").forward(request, response);
+			request.getRequestDispatcher("/main/main").forward(request, response);
 			break;
 		case "myPage" :
 			myPage(request,response);
@@ -53,27 +53,27 @@ public class MainController extends HttpServlet {
 	}
 
 	private void myPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/main/myPage");
+		response.sendRedirect("/myPage");
 		
 	}
 
 	private void board(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/main/board");
+		response.sendRedirect("/board");
 		
 	}
 
 	private void restaurant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/main/restaurant");
+		response.sendRedirect("/restaurant");
 		
 	}
 
 	private void study(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/main/study");
+		response.sendRedirect("/study");
 		
 	}
 
 	private void question(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/main/question");
+		response.sendRedirect("/question");
 		
 	}
 
