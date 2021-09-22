@@ -32,7 +32,7 @@ public class MainController extends HttpServlet {
 		switch(uriArr[uriArr.length-1]) {
 		case "main" :
 			request.getRequestDispatcher("/main/main").forward(request, response);
-			System.out.println("coccco");
+			System.out.println("cocccoco");
 			break;
 		case "myPage" :
 			myPage(request,response);
