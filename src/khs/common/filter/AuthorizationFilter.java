@@ -108,7 +108,7 @@ public class AuthorizationFilter implements Filter {
 				case "myPage":
 					myPageAuthorize(httpRequest, httpResponse, uriArr);
 					break;
-				default:
+				default: 
 					break;
 			}
 		

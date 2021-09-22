@@ -14,7 +14,7 @@ public class MemberDao {
 
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
-	public Member memberAuthenticate(String userId, String password,Connection conn) {
+	public Member memberAuthenticate(String userId, String password, Connection conn) {
 		Member member = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
