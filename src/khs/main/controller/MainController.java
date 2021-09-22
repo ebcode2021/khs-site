@@ -33,6 +33,7 @@ public class MainController extends HttpServlet {
 		case "main" :
 			request.getRequestDispatcher("/main/main").forward(request, response);
 			System.out.println("cococo");
+
 			break;
 		case "myPage" :
 			myPage(request,response);
