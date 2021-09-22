@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" type="text/css" rel="stylesheet">
 </head>
@@ -289,5 +290,12 @@
     </section>
     <div class="copyright"> @copyright 1s4j 2021-</div>
   </footer>
+=======
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> 하이하이하이 에이치아이~</h1>
+>>>>>>> refs/remotes/origin/main
 </body>
 </html>
