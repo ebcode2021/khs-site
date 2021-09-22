@@ -51,7 +51,7 @@ public class MyPageController extends HttpServlet {
 		
 	}
 	
-	//ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹㄴㅇㄹㅇㄴㅁㄻㄴㅇㄻㅇㄴㄻㄴㅇ
+	//ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹㄴㅇㄹㅇㄴㅁㄻㄴㅇㄻㅇㄴㄻㄴㅇfefefefefe
 
 
 	private void changePassword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
