@@ -88,10 +88,7 @@
       padding-bottom : 2%;
     }
 
-    /* .nav_1>div, .nav_2>div{
-      float:left; 
-    } */
-
+  
     
     /* section_2부분 */
  
