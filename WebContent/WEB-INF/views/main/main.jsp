@@ -4,6 +4,7 @@
 <html>
 <head>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" type="text/css" rel="stylesheet">
 </head>
@@ -297,5 +298,12 @@
 <body>
 <h1> 하이하이하이 에이치아이~</h1>
 >>>>>>> refs/remotes/origin/main
+=======
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> 하이하이하이 에이치아이~</h1>
+>>>>>>> branch 'main' of https://github.com/ebcode2021/khs-site
 </body>
 </html>
