@@ -27,7 +27,7 @@ public class LoginController extends HttpServlet {
 		if(uriArr[uriArr.length-1].equals("login-check")) {
 			loginCheck(request,response);
 		}else {
-		request.getRequestDispatcher("/login/login").forward(request, response);
+			request.getRequestDispatcher("/login/login").forward(request, response);
 		}
 	}
 
