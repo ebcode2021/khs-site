@@ -224,7 +224,7 @@
       
       <div class="nav">
         <div class="nav_1">
-          <div id="mypage"><a href="/myPage">마이페이지</a></div>
+          <div id="mypage"><a href="/myPage/myPageMain">마이페이지</a></div>
           <div id="board"><a href="/board">게시판</a></div>
           <div id="restaurant"><a href="/restaurant">맛집 정보</a></div>
          </div>
