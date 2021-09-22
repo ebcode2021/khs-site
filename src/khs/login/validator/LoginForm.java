@@ -41,13 +41,30 @@ public class LoginForm {
 		//DB에 멤버가 있는지?
 		Member member = null;
 		member = memberService.memberAuthenticate(userId, password);
+
 		if(member==null) {
 			res = false;
 		}else {
-		request.getSession().setAttribute("authentication", member);
+			request.getSession().setAttribute("authentication", member);
 		}
 		//db에 존재하지 않는 아이디인 경우
 		return res;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
