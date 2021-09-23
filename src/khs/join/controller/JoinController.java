@@ -54,13 +54,12 @@ public class JoinController extends HttpServlet {
 		case "join-VariCode" :
 			checkVariCode(request,response);
 			break;
+		case "join-VariNickName" : 
+			checkNickName(request,response);
+			break; 
 		default: throw new PageNotFoundException();
 		}
 	}
-
-	
-
-
 
 
 	private void joinForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -94,9 +93,6 @@ public class JoinController extends HttpServlet {
 		 // ********* 기존 기능 주석처리 *********
 		 //String selectKH = (String) multiPart.get("selectKH").get(0);
 		 
-		 System.out.println("아이디 : " + userId);
-		 System.out.println("비밀번호 : " + password);
-		 
 		 //3. 넘어온 file 역시 FileDTO에 넣는다. 
 		 // ( file DTO에 대해서는 프로젝트에서 아직 확실하게 TABLE 용도가 정해지지 않음, 일단 )
 		 // ( INSERT 문을 사용하는 것은 보류 )
@@ -113,15 +109,12 @@ public class JoinController extends HttpServlet {
 		 newMember.setBirthDate(birth);
 		 newMember.setKhCenter(selectKH);
 		 
-		 System.out.println(newMember);
 		 //5. Service 단으로 만든 newMember DTO 인스턴스를 보낸다. 
 		 joinService.insertMember(newMember);
 		 	
 	}
 	
 	private void joinSendVariEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("---이메일 발송 시스템 진입 완료---");
 		
 		//1. Parameter를 통해 Email 가져옴 
 		String email = (String) request.getParameter("userEmail");
@@ -147,17 +140,23 @@ public class JoinController extends HttpServlet {
 	
 	private void checkVariCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		
-		System.out.println("---이메일 인증 시스템 진입 완료---");
 		java.util.Date date = new java.util.Date();
 		long currentTime = date.getTime();
 		
 		//0. 값 검토 
 		if(request.getParameter("variCode") == "") {
 			System.out.println("빈값 처리 : x ");
+			response.getWriter().print("invalid");
+			return;
+		}
+		if(request.getSession().getAttribute("email-code") == null) {
+			System.out.println("null 처리 : x ");
+			response.getWriter().print("invalid");
 			return;
 		}
 		
 		int variCode =  (int) Integer.parseInt(request.getParameter("variCode").trim());
+		// 여기 null값처리 안되어있음 
 		int originCode = (int) request.getSession().getAttribute("email-code");
 		long outTime = (long) request.getSession().getAttribute("email-time") + 300000;
 		// 10초 시험, 5분은 300000
@@ -174,16 +173,37 @@ public class JoinController extends HttpServlet {
 		// if 성공했다면 fetch의 then 결과로 valid 전달 
 		// if 실패했다면 fetch의 then 결과로 invalid 전달 
 		if(variCode == originCode) {
-			System.out.println("맞았음");
 			response.getWriter().print("valid");
 			return;
-		} else {
-			System.out.println("틀렸음");	
+		} else {	
 			response.getWriter().print("invalid");
 			return;
 		}
 		
 	}
+	
+	
+	private void checkNickName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		  String nickName = request.getParameter("nickName");
+		  System.out.println(nickName); 
+		  String result = joinService.checkNickName(nickName); 
+		  
+		  if(result != null) {
+		  System.out.println("통과 못함"); 
+		  response.getWriter().print("invalid"); 
+		  return; 
+		  }
+		  else { 
+		  System.out.println("통과함"); 
+		  response.getWriter().print("valid"); 
+		  return; 
+		  }
+		 
+		
+	}
+	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

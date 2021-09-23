@@ -47,6 +47,25 @@ public class JoinService {
 		return IsSuccess;
 	}
 	
+	public String checkNickName(String nickName) {
+		
+		String result = null;
+		
+		Connection conn = template.getConnection();
+		
+		try {
+			result = joinDao.checkNickName(nickName, conn);
+			template.commit(conn);
+		} catch(Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return result;
+	}
+	
+	
 	//----------회원가입 인증 메일 전송 및 코드 확인 Service--------------- 
 	public void sendVarificationEmail(String email, int randomCode) {
 		
@@ -75,9 +94,8 @@ public class JoinService {
 	}
 
 	public Object searchById(String userId) {
+		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	
+	}	
 	
 }

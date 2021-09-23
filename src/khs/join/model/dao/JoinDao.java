@@ -2,6 +2,7 @@ package khs.join.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import khs.common.db.JDBCTemplate;
@@ -23,9 +24,6 @@ public class JoinDao {
 				// 1. JDBC 드라이버 연결 
 				// 2. Connection 생성, 오라클과 연결 
 				// 3. Statement, 쿼리 실행 객채 생성
-
-				System.out.println("1. 회원가입 Dao 진입확인");
-				
 				String query = "INSERT INTO MEMBER (USER_ID, PASSWORD, EMAIL, NAME, "
 						+ "NICKNAME, BIRTH_DATE, KH_CENTER)"
 						+ " VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -53,6 +51,40 @@ public class JoinDao {
 				template.close(pstm);
 			}
 			return resultInt;
+		}
+
+
+		public String checkNickName(String nickName, Connection conn) {
+			
+			PreparedStatement pstm = null; 
+			String result = null;
+			ResultSet rset = null; 
+				
+			try {
+				// 1. JDBC 드라이버 연결 
+				// 2. Connection 생성, 오라클과 연결 
+				// 3. Statement, 쿼리 실행 객채 생성
+				String query = "SELECT NICKNAME FROM MEMBER WHERE NICKNAME = ?";
+			
+				System.out.println(query);
+				
+				pstm = conn.prepareStatement(query);
+				pstm.setString(1, nickName);
+				
+				//4. DQL을 통해 성공여부를 반환받음, 성공시 값 반환 
+				rset = pstm.executeQuery();
+				
+				while(rset.next()) {
+					result = rset.getString(1);
+				}
+				
+			} catch (SQLException e) {
+				//5. 예외 던지기 
+				throw new DataAccessException(e);
+			} finally {
+				template.close(pstm);
+			}
+			return result;
 		}
 	
 	

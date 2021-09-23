@@ -109,11 +109,11 @@ Google과의 관계가 정의됩니다.
 
 </pre>
 		<h3 class = "agreeTitle">(필수)약관에 동의 하십니까?</h3>
-		 	<input type="radio" name='agreeLogin' id="agreeLogin" class="agreeLogin" checked>
+		 	<input type="radio" name='agreeLogin' id="agreeLogin" class="agreeLogin">
 	  		<label class = "agreeLabel" for="agreeLogin">동의</label>
 	  		<input type="radio" name='agreeLogin' id="disagreeLogin" class="agreeLogin">
 	  		<label class = "agreeLabel" for="disagreeLogin">비동의</label>
-		<button class = "commitButton">뒤로</button><button class = "commitButton" type="submit" disabled="disabled">회원가입</button>
+		<button class = "commitButton" id = 'backButton'>뒤로</button><button class = "commitButton" id='joinButton' type="submit" style="pointer-events: none;">회원가입</button>
 </div> 
 	</form>
 </div>
@@ -126,10 +126,10 @@ Google과의 관계가 정의됩니다.
 	let confirmEmail = false; 
 	let confirmCode = false; 
 	let confirmName = false; 
-	let confirmBirth = false; 
-	let confirmNickname = false; 
+	let confirmBirth = false;
+	let confirmNickname = false;
 	let confirmImgFile = false; 
-	let confirmAgree = false; 
+	let confirmAgree = true; 
 	
 	/* 비밀번호 중복 확인용 객체 */
 	let firstPw = null; 
@@ -155,15 +155,16 @@ Google과의 관계가 정의됩니다.
 			userIdInput.style.border = "3px solid #D5D5D5";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.style.display = "none";
+			confirmId = false;
 			return;
 		}
-		
 		
 		if(whiteSpaceExpr.test(userIdInput.value)){
 			userIdInput.style.border = "3px solid #FF6161";
 			IdCheckFailed.style.display = "block";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp아이디에 공백을 포함할 수 없습니다';
+			confirmId = false;
 			return;
 		}
 		//특수문자 검증
@@ -172,6 +173,7 @@ Google과의 관계가 정의됩니다.
 			IdCheckFailed.style.display = "block";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp아이디에 특수문자를 사용하실 수 없습니다';
+			confirmId = false;
 			return;
 		}
 		//아이디조건 검증
@@ -180,6 +182,7 @@ Google과의 관계가 정의됩니다.
 			IdCheckFailed.style.display = "block";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp영문으로 시작하며 4-12글자의 영숫자 조합이어야 합니다';
+			confirmId = false;
 			return;
 		} 
 		//일치 시 태두리 green 
@@ -199,6 +202,17 @@ Google과의 관계가 정의됩니다.
 		let dom = document.querySelector('#password');
 		let passed = document.querySelector('#userPwPassed');
 		let failed = document.querySelector('#userPwFailed');
+		
+		// 비밀번호에 변경이 가해질 경우 중복검사를 초기화 
+		let domCheckPw = document.querySelector('#passwordCheck');
+		let passedCheckPw = document.querySelector('#passwordAgainPassed');
+		let failedCheckPw = document.querySelector('#passwordAgainFailed');
+		
+		domCheckPw.style.border = "3px solid #D5D5D5";
+		passedCheckPw.style.display = "none";
+		failedCheckPw.style.display = "none";
+		domCheckPw.value = "";
+		
 		// 1. 정규표현식 검증
 		
 		// 정규표현식 검증을 위한 객체 생성
@@ -212,6 +226,9 @@ Google과의 관계가 정의됩니다.
 			dom.style.border = "3px solid #D5D5D5";
 			passed.style.display = "none";
 			failed.style.display = "none";
+			
+			confirmPasswordCheck = false;
+			firstPw = null;
 			return;
 		}
 		
@@ -220,6 +237,9 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp비밀번호에 공백을 포함할 수 없습니다';
+			
+			confirmPasswordCheck = false;
+			firstPw = null;
 			return;
 		}
 		//비밀번호 조건 검증
@@ -228,6 +248,9 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp8-12자 이내, 영문,숫자, 특수기호가 필요합니다';
+			
+			confirmPasswordCheck = false;
+			firstPw = null;
 			return;
 		} 
 		//일치 시 태두리 green 
@@ -236,6 +259,8 @@ Google과의 관계가 정의됩니다.
 			passed.style.display = "block";
 			failed.style.display = "none";
 			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 비밀번호 입니다';
+			
+			
 			firstPw = dom.value;
 		}
 		
@@ -252,6 +277,7 @@ Google과의 관계가 정의됩니다.
 			dom.style.border = "3px solid #D5D5D5";
 			passed.style.display = "none";
 			failed.style.display = "none";
+			confirmPasswordCheck = false;
 			return;
 		}
 		
@@ -260,6 +286,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp첫 번째 비밀번호를 먼저 입력하세요';
+			confirmPasswordCheck = false;
 			return;
 		}
 		
@@ -268,6 +295,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp일치하지 않는 비밀번호입니다';
+			confirmPasswordCheck = false;
 			return;
 		}
 		
@@ -301,6 +329,7 @@ Google과의 관계가 정의됩니다.
 			dom.style.border = "3px solid #D5D5D5";
 			passed.style.display = "none";
 			failed.style.display = "none";
+			confirmEmail = false;
 			return;
 		}
 		if(whiteSpaceExpr.test(dom.value)){
@@ -308,6 +337,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp이메일에 공백을 포함할 수 없습니다';
+			confirmEmail = false;
 			return;
 		}
 		//이메일 조건 검증
@@ -316,6 +346,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp올바르지 않은 이메일 주소입니다';
+			confirmEmail = false;
 			return;
 		} 
 		//일치 시 태두리 green 
@@ -354,16 +385,15 @@ Google과의 관계가 정의됩니다.
 		let passed = document.querySelector('#emailValiPassed');
 		let failed = document.querySelector('#emailValiFailed');
 		
-		alert(dom.value);
 		fetch('/join/join-VariCode?variCode='+ dom.value)
 		.then(response => response.text())
 		.then(text => {
-			if(text == 'valid'){
-				document.querySelector("#emailCheck").innerHTML = "이메일 인증이 완료되었습니다.";
-			} else if(text == 'invalid'){
-				document.querySelector("#emailCheck").innerHTML = "올바른 인증 코드가 아닙니다.";
-				document.querySelector("#email").style.border = "3px solid #FF6161";
-				//border: 3px solid #D5D5D5;
+			if(text == 'invalid'){
+				dom.style.border = "3px solid #FF6161";
+				failed.style.display = "block";
+				passed.style.display = "none";
+				failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp올바르지 않은 인증 코드입니다';
+				confirmCode = false; 
 				return;
 			}
 			if(text == 'timeout'){
@@ -371,6 +401,7 @@ Google과의 관계가 정의됩니다.
 				failed.style.display = "block";
 				passed.style.display = "none";
 				failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp이메일 인증이 만료되었습니다. 다시 시도하세요';
+				confirmCode = false; 
 				return;
 			} 
 			if(text == 'valid'){
@@ -405,6 +436,7 @@ Google과의 관계가 정의됩니다.
 			dom.style.border = "3px solid #D5D5D5";
 			passed.style.display = "none";
 			failed.style.display = "none";
+			confirmName = false;
 			return;
 		}
 		if(whiteSpaceExpr.test(dom.value)){
@@ -412,6 +444,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp이름에 공백을 포함할 수 없습니다';
+			confirmName = false;
 			return;
 		}
 		//특수문자 검증
@@ -420,6 +453,7 @@ Google과의 관계가 정의됩니다.
 			IdCheckFailed.style.display = "block";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp이름에 특수문자를 사용하실 수 없습니다';
+			confirmName = false;
 			return;
 		}
 		//이름 조건 검증
@@ -428,6 +462,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp올바르지 않은 이름입니다';
+			confirmName = false;
 			return;
 		} 
 		//일치 시 태두리 green 
@@ -472,6 +507,7 @@ Google과의 관계가 정의됩니다.
 			dom.style.border = "3px solid #D5D5D5";
 			passed.style.display = "none";
 			failed.style.display = "none";
+			confirmNickname = false;
 			return;
 		}
 		if(whiteSpaceExpr.test(dom.value)){
@@ -479,6 +515,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp별명에 공백을 포함할 수 없습니다';
+			confirmNickname = false;
 			return;
 		}
 		if(specialExpr.test(dom.value)){
@@ -486,6 +523,7 @@ Google과의 관계가 정의됩니다.
 			IdCheckFailed.style.display = "block";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp별명에 특수문자를 사용하실 수 없습니다';
+			confirmNickname = false;
 			return;
 		}
 		//별명 조건 검증
@@ -494,6 +532,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp사용 불가능한 별명입니다';
+			confirmNickname = false;
 			return;
 		} 
 		//일치 시 태두리 green 
@@ -503,6 +542,7 @@ Google과의 관계가 정의됩니다.
 			passed.style.display = "block";
 			failed.style.display = "none";
 			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp별명 중복검사를 진행하세요';
+			confirmNickname = false;
 			confirmName = true;
 		}
 		
@@ -515,9 +555,30 @@ Google과의 관계가 정의됩니다.
 		let passed = document.querySelector('#nickNamePassed');
 		let failed = document.querySelector('#nickNameFailed');
 		
-		alert('버튼 작동');
-		/* fetch를 통해 dom.value 전송, server 단에서 중복검사 실행, 결과값 param으로 다시전송 */
 		
+		/* fetch를 통해 dom.value 전송, server 단에서 중복검사 실행, 결과값 param으로 다시전송 */
+		fetch('/join/join-VariNickName?nickName='+ dom.value)
+		.then(response => response.text())
+		.then(text => {
+			console.log(text);
+			if(text == 'invalid'){
+				console.log(text);
+				dom.style.border = "3px solid #FF6161";
+				failed.style.display = "block";
+				passed.style.display = "none";
+				failed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp' + dom.value +'은(는) 중복된 별명입니다.';
+				confirmNickname = false;
+				return;
+			}
+			if(text == 'valid'){
+				console.log(text);
+				dom.style.border = "3px solid #6ED000";
+				passed.style.display = "block";
+				failed.style.display = "none";
+				passed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp' + dom.value +'은(는) 사용 가능한 별명입니다.';
+				confirmNickname = true; 
+			}	
+		})
 		
 	})
 	
@@ -530,6 +591,7 @@ Google과의 관계가 정의됩니다.
 		dom.style.border = "3px solid #6ED000";
 		passed.style.display = "block";
 		passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp학원 지점이 정상적으로 선택되었습니다';
+		confirmBirth = true;
 	}) 
 	
 	//****12. Front 파일 아이콘으로 이름 드러내기 기능****
@@ -543,9 +605,53 @@ Google과의 관계가 정의됩니다.
 		passed.style.display = "block";
 		passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp이미지 파일이 정상적으로 첨부되었습니다';
 		uploadName.value = dom.value; 
+		confirmImgFile = true; 
 	})
 	
+	//****13. 약관 동의 / 비동의 버튼 검증 및 input 전체 검증을 위한 blur처리  ****
+	document.querySelector('#agreeLogin').addEventListener('input', e => {
+		alert('동의 선택 성공');
+		confirmAgree = true; 
+		document.querySelector('#agreeLogin').blur(); 
+	})
+	// ** 두번째 
+	document.querySelector('#disagreeLogin').addEventListener('input', e => {
+		alert(' 비동의 선택 성공');
+		confirmAgree = false; 
+		document.querySelector('#disagreeLogin').blur(); 
+	})
 	
+	let allInput = document.querySelectorAll('input');
+	
+	
+	//****14. 최종, 회원가입 버튼 활성화  ****
+	allInput.forEach( item => {
+		
+		let dom = document.querySelector('#joinButton');
+		
+		item.addEventListener('blur', event => {
+			if(confirmId&
+ 			confirmPasswordCheck&
+			confirmEmail&
+			confirmCode&
+			confirmName&
+			confirmNickname&
+			confirmBirth&
+			confirmImgFile& 
+			confirmAgree  
+			){
+				// 모든 조건들이 올바르게 input 되었을 시 pointer-events 해제 
+				dom.style.setProperty('background-color', 'white');
+				dom.style.setProperty("pointer-events", "auto");
+			} else {
+				// 조건 중 하나가 미흡하게 변경되었을 시 다시 backgroundColor 되돌리고 event none 변경
+				dom.style.backgroundColor = 'lightgray';
+				dom.style.setProperty("pointer-events", "none");
+			}
+				
+			
+		})
+	});
 	
 	
 </script>
