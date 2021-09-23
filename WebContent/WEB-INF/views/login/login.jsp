@@ -25,9 +25,9 @@
     </form>
 
     <div class="find">
-      <div><a href="${ContextPath}/find">아이디/비밀번호 찾기</a></div>
-      <div><a href="${ContextPath}/naver">네이버로 로그인</a></div>
-      <div><a href="${ContextPath}/kakao">카카오로 로그인</a></div>
+      <div><a href="${ContextPath}/join/find">아이디/비밀번호 찾기</a></div>
+      <div><a href="${ContextPath}/sns/naver">네이버로 로그인</a></div>
+      <div><a href="${ContextPath}/sns/kakao">카카오로 로그인</a></div>
     </div>
       <div id="icon"><i class="far fa-question-circle fa-2x"></i> </div>
     </div>

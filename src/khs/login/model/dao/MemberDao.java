@@ -43,14 +43,14 @@ public class MemberDao {
 		Member member = new Member();
 		member.setUserId(rset.getString("user_Id"));
 		member.setPassword(rset.getString("password"));
-		member.setEmail(rset.getString("email"));
-		member.setGrade(rset.getString("grade"));
-		member.setRegDate(rset.getDate("reg_date"));
-		member.setName(rset.getString("name"));
-		member.setNickname(rset.getString("nickname"));
-		member.setBirthDate(rset.getDate("birth_date"));
-		member.setKhCenter(rset.getString("kh_center"));
-		member.setIsLeave(rset.getInt("is_leave"));
+//		member.setEmail(rset.getString("email"));
+//		member.setGrade(rset.getString("grade"));
+//		member.setRegDate(rset.getDate("reg_date"));
+//		member.setName(rset.getString("name"));
+//		member.setNickname(rset.getString("nickname"));
+//		member.setBirthDate(rset.getDate("birth_date"));
+//		member.setKhCenter(rset.getString("kh_center"));
+//		member.setIsLeave(rset.getInt("is_leave"));
 		return member;
 	}
 

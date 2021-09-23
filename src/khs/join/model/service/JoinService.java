@@ -58,6 +58,7 @@ public class JoinService {
 		String response =
 		conn.get("http://localhost:9090/mail?mailTemplate=join-varification-mail&variCode=" + randomCode);
 		
+		
 		System.out.println("5. 완성된 url을 통해 Email 발송");
 		mailSender.sendEmail(email, "인증 코드 발송", response);
 		
