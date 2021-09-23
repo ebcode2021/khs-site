@@ -32,11 +32,11 @@ public class MainController extends HttpServlet {
 		switch(uriArr[uriArr.length-1]) {
 		case "main" :
 			request.getRequestDispatcher("/main/main").forward(request, response);
-			System.out.println("cococo");
 			break;
 		default : throw new PageNotFoundException();
 		}
 	}
+
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
