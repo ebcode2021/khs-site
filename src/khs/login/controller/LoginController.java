@@ -29,6 +29,8 @@ public class LoginController extends HttpServlet {
 		}else {
 			request.getRequestDispatcher("/login/login").forward(request, response);
 		}
+		
+	
 	}
 
 	private void loginCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -33,51 +33,11 @@ public class MainController extends HttpServlet {
 		case "main" :
 			request.getRequestDispatcher("/main/main").forward(request, response);
 			System.out.println("cococo");
-
-			break;
-		case "myPage" :
-			myPage(request,response);
-			break;
-		case "board" :
-			board(request,response);
-			break;
-		case "restaurant" :
-			restaurant(request,response);
-			break;
-		case "study" :
-			study(request,response);
-			break;
-		case "question" :
-			question(request,response);
 			break;
 		default : throw new PageNotFoundException();
 		}
 	}
 
-	private void myPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/myPage");
-		
-	}
-
-	private void board(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/board");
-		
-	}
-
-	private void restaurant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/restaurant");
-		
-	}
-
-	private void study(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/study");
-		
-	}
-
-	private void question(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.sendRedirect("/question");
-		
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
