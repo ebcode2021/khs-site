@@ -49,6 +49,7 @@ public class ChangeMypageForm {
 		
 		
 		
+		
 		if(!res) {
 			failedMypageAttr.put("duplicated", newNickname);
 			failedMypageAttr.put("invalidEmail", newEmail);
