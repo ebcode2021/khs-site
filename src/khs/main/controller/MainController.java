@@ -32,19 +32,6 @@ public class MainController extends HttpServlet {
 		switch(uriArr[uriArr.length-1]) {
 		case "main" :
 			request.getRequestDispatcher("/main/main").forward(request, response);
-			System.out.println("cococococo1");
-			System.out.println("수정?");
-			System.out.println("수정?");
-			System.out.println("수정?");
-			System.out.println("수정?");
-			System.out.println("수정?");
-			System.out.println("수정?");
-			System.out.println("cococococo1");
-			System.out.println("cococococo1");
-			System.out.println("cococococo1");
-			System.out.println("cococococo1");
-			
-			
 			break;
 		default : throw new PageNotFoundException();
 		}
