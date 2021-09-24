@@ -51,7 +51,6 @@ public class MyPageController extends HttpServlet {
 		
 	}
 	
-	//ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹㄴㅇㄹㅇㄴㅁㄻㄴㅇㄻㅇㄴㄻㄴㅇfefefefefe
 
 
 	private void changePassword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
@@ -70,8 +69,8 @@ public class MyPageController extends HttpServlet {
 
 	private void updateDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = myPageService.getLoginMemberId(request);
-		String nickName = request.getParameter("nickname");
-		String email = request.getParameter("email");
+		String nickName = request.getParameter("newNickname");
+		String email = request.getParameter("newEmail");
 		
 		MyPage myPage = new MyPage();
 		

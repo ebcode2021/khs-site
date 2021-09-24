@@ -256,10 +256,6 @@ html, body{
 }
 
 
-
-
-
-
 .footer{
 	display: flex;
 	justify-content: center;
@@ -270,6 +266,10 @@ html, body{
 }
 
 
+
+tr,td{
+	padding: 15px;
+}
 
 
 
@@ -321,28 +321,137 @@ html, body{
 				<div class="profile_table" border="solid">
 					<div>${authentication.name}</div>
 					<div>${authentication.khCenter}</div>
-					<div>하명도 강사</div>
+					<div>${authentication.instrName} 강사</div>
 				</div>
 				
 				
  			</div>
  			<div class='mypage_wrapper'>
  				<form id='mypage_detail' action="/myPage/updateDetail">
-	 				<div>
-	 					닉네임 : <input type="text" name="nickname" minlength="3" placeholder="${authentication.nickName}">
-	 				</div>
-	 				<div>
-	 					이메일 : <input type = "email" multiple name = "email" placeholder="${authentication.email}">
-	 				</div>
-	 				<div>
-	 					가입한 날짜 : ${authentication.regDate}
-	 				</div>
-	 				<div>
-	 					회원등급 : ${authentication.grade}
-	 				</div>
-	 				<div>
-	 					학원지점 : ${authentication.khCenter}
-	 				</div>
+ 				
+			 		<table border = "1">
+						<tr>
+							<td>닉네임 : </td>
+							<td>
+							<div>
+			 					<input type="text" name="newNickname" placeholder="${authentication.nickName}" 
+			 					<c:if test="${not empty changeMypageFailed.Duplicated}">
+			           	  			value = "${changeMypageFailed.Duplicated}"
+			           	 		</c:if>
+			 					required/>
+			 					<span id = "nickNameCheck" class = "valid-msg">
+			           	 		 	<c:if test="${not empty changeMypageFailed.DuplicatedMsg}">
+			           	  				${changeMypageFailed.DuplicatedMsg}
+			           				</c:if>
+			           	 		</span>
+		 					</div>
+		 				</td>
+					</tr>
+					
+					
+					<tr>
+						<td>
+						이메일 : 
+						</td>
+						
+						<td>
+							<div>
+		 					<input type = "text" multiple name = "newEmail" placeholder="${authentication.email}"
+		 					<c:if test="${not empty changeMypageFailed.invalidEmail}">
+		           	  			value = "${changeMypageFailed.invalidEmail}"
+		           	 		</c:if>
+		 					required/>
+		 					<span id = "emailCheck" class = "valid-msg">
+		           	 		 	<c:if test="${not empty changeMypageFailed.invalidEmailMsg}">
+		           	  				${changeMypageFailed.invalidEmailMsg}
+		           				</c:if>
+		           	 		</span>
+		 					</div>
+						</td>
+					</tr>
+					
+					
+					
+					<tr>
+						<td>회원등급 : </td>
+						<td>
+							<div>
+	 							${authentication.grade}
+	 						</div>
+	 					</td>
+					</tr>
+					
+					
+					<tr>
+						<td>학원지점 : </td>
+						<td>
+							<div>
+	 							${authentication.khCenter}
+	 						</div>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td>가입한 날짜 : </td>
+						<td>
+							<div>
+	 							${authentication.regDate}
+	 						</div>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td>생년월일 : </td>
+						<td>
+							<div>
+	 							${authentication.birthDate}
+	 						</div>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td>수업이름 : </td>
+						<td>
+							<div>
+	 							${authentication.className}
+	 						</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>강사이름 : </td>
+						<td>
+							<div>
+	 							${authentication.instrName}
+	 						</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>개강날짜 : </td>
+						<td>
+							<div>
+	 							${authentication.startDate}
+	 						</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>종강날짜 : </td>
+						<td>
+							<div>
+	 							${authentication.finalDate}
+	 						</div>
+	 					</td>
+					</tr>
+					
+				</table>
+				
+	 				
+	 				<button id='detail'>수정하기</button>
 	 				<button id='detail_submit'>저장하기</button>
  				</form>
  			</div>
@@ -350,54 +459,99 @@ html, body{
  			
  			<div class='password_wrapper'>
  				<form id='change_password' action="/myPage/changePassword">
-	 				<div>
+ 				<table>
+ 				<tr>
+ 				
+ 					<td>
+ 						<div>
 	 					비밀번호 변경 
-	 				</div>
-	 				<div>
-	 					현재 비밀번호 : <input type = "password" name = "password"
-	 					<c:if test="${not empty changePasswordFailed.password}">
-	           	  			value = "${changePasswordForm.password}"
-	           	 		 </c:if>
-	           	 	required/>
-	           	 		<span id = "pwcheck" class = "valid-msg">
-	           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg1}">
-	           	  				${changePasswordFailed.errorMsg1}
-	           				</c:if>
-	           	 		 </span>
-	 				</div>
-	 				<div>
-	 					변경할 비밀번호 : <input type = "password" name = "newPassword"  
-	 					<c:if test="${not empty changePasswordFailed.password}">
-	           	  			value = "${changePasswordForm.newPassword}"
-	           	 		 </c:if>
-	           	 		 required/>
-	 				</div>
-	 				<div>
-	 					변경할 비밀번호  재입력 : <input type = "password" name = "newPassword2" 
-	 					<c:if test="${not empty changePasswordFailed.newPassword2}">
-	           	  			value = "${changePasswordForm.newPassword2}"
-	           	 		 </c:if>
-	           	 		  required/>
-	 				</div>
-	 				 	<span id = "pwcheck" class = "valid-msg">
-	           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg2}">
-	           	  				${changePasswordFailed.errorMsg2}
-	           				</c:if>
-	           	 		 </span>
-	           	 		 <br>
-	           			<span id = "pwcheck" class = "valid-msg">
-	           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg3}">
-	           	  				${changePasswordFailed.errorMsg3}
-	           				</c:if>
-	           	 		 </span>
-	           	 		 <br>
-	           			<span id = "pwcheck" class = "valid-msg">
-	           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg4}">
-	           	  				${changePasswordFailed.errorMsg4}
-	           				</c:if>
-	           	 		</span>
-	           	 		 
-	           	 		 
+	 					</div>
+ 					</td>
+ 					
+ 					<td>
+ 					
+ 					</td>
+ 					
+ 				</tr>
+ 				
+ 				<tr>
+ 				
+ 					<td>
+ 					현재 비밀번호 : 
+ 					</td>
+ 					
+ 					<td>
+	 					<div>
+		 					<input type = "password" name = "password"
+		 					<c:if test="${not empty changePasswordFailed.password}">
+		           	  			value = "${changePasswordForm.password}"
+		           	 		 </c:if>
+		           	 	required/>
+		           	 		<span id = "pwcheck" class = "valid-msg">
+		           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg1}">
+		           	  				${changePasswordFailed.errorMsg1}
+		           				</c:if>
+		           	 		 </span>
+		 				</div>
+ 					</td>
+ 					
+ 				</tr>
+ 				
+ 				<tr>
+ 				
+ 					<td>
+ 						변경할 비밀번호 : 
+ 					</td>
+ 					
+ 					<td>
+	 					<div>
+		 					<input type = "password" name = "newPassword"  
+		 					<c:if test="${not empty changePasswordFailed.password}">
+		           	  			value = "${changePasswordForm.newPassword}"
+		           	 		 </c:if>
+		           	 		 required/>
+		 				</div>
+ 					</td>
+ 					
+ 				</tr>
+ 				
+ 				<tr>
+ 				
+ 					<td>
+ 						변경할 비밀번호  재입력 : 
+ 					</td>
+ 					
+ 					<td>
+	 					<div>
+		 					<input type = "password" name = "newPassword2" 
+		 					<c:if test="${not empty changePasswordFailed.newPassword2}">
+		           	  			value = "${changePasswordForm.newPassword2}"
+		           	 		 </c:if>
+		           	 		  required/>
+		 				</div>
+		 				 	<span id = "pwcheck" class = "valid-msg">
+		           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg2}">
+		           	  				${changePasswordFailed.errorMsg2}
+		           				</c:if>
+		           	 		 </span>
+		           	 		 <br>
+		           			<span id = "pwcheck" class = "valid-msg">
+		           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg3}">
+		           	  				${changePasswordFailed.errorMsg3}
+		           				</c:if>
+		           	 		 </span>
+		           	 		 <br>
+		           			<span id = "pwcheck" class = "valid-msg">
+		           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg4}">
+		           	  				${changePasswordFailed.errorMsg4}
+		           				</c:if>
+		           	 		</span>
+ 					</td>
+ 					
+ 				</tr>
+ 				
+ 				</table>
+	 				
 	 				
  					<button id='password_submit'>변경하기</button>
  				</form>
@@ -415,6 +569,7 @@ html, body{
  	
  	
 	<div class="footer">Copyright © 1998-2021 KH Information Educational Institute All Right Reserved</div>
+	
 	
 	
 	

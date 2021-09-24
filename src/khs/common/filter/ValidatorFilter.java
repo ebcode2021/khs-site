@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import khs.join.validator.JoinForm;
-
+import khs.myPage.validator.ChangeMypageForm;
 import khs.myPage.validator.ChangePasswordForm;
 
 //import khs.common.code.ErrorCode;
@@ -83,6 +83,13 @@ public class ValidatorFilter implements Filter {
 		case "changePassword" :
 			ChangePasswordForm changePasswordForm = new ChangePasswordForm(httpRequest);
 			if(!changePasswordForm.test()) {
+				redirectUrl = "/myPage/myPageDetail";
+			}
+			break;
+			
+		case "updateDetail" :
+			ChangeMypageForm changeMypageForm = new ChangeMypageForm(httpRequest);
+			if(!changeMypageForm.test()) {
 				redirectUrl = "/myPage/myPageDetail";
 			}
 			break;

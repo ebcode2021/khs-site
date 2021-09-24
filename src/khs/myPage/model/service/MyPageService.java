@@ -72,6 +72,23 @@ public class MyPageService {
 	
 	
 	
+	
+	public MyPage nicknameDuplicatedTest(String newNickname) {
+		Connection conn = template.getConnection();
+		MyPage myPage = null;
+		
+		try {
+			myPage = myPageDao.nicknameDuplicatedTest(conn, newNickname);
+		} finally {
+			template.close(conn);
+		}
+		
+		return myPage;
+		
+	}
+	
+	
+	
 	public String getLoginMemberId(HttpServletRequest request) {
 		Member member = (Member)request.getSession().getAttribute("authentication");
 		String userId = member.getUserId();
