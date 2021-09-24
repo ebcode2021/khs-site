@@ -8,11 +8,22 @@
 
 
 @font-face {
+      src : url("../fonts/NotoSansCJKkr-Regular.otf"); 
+      font-family: "han_sans_kr_medium";
+}
+
+@font-face {
+      src : url("../fonts/NotoSansCJKkr-Light.otf"); 
+      font-family: "han_sans_kr_Light";
+}
+
+@font-face {
     font-family: 'SDSamliphopangche_Outline';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
+
 html, body{
 	width: 100%;
 	height: 100%;.
@@ -84,7 +95,7 @@ html, body{
 	background-color: #fecf92;
 	border-radius: 20px 20px 20px 20px;
 	z-index: 999;
-	font-family: 'SDSamliphopangche_Outline';
+	font-family: 'han_sans_kr_Medium';
 }
 #mypage{
 	border-radius: 20px 20px 0 0;
@@ -194,6 +205,12 @@ html, body{
 	flex-direction: column;
 }
 
+.profile_table> div{
+	font-size : 20px;
+	font-family: 'han_sans_kr_Light';
+	color: gray;
+}
+
 
 
 .mypage_wrapper{
@@ -204,6 +221,7 @@ html, body{
 	background-color: #FFF5EE;
 	border-radius: 20px;
 }
+
 
 #mypage_detail>div {
 	height: 98%;
@@ -271,7 +289,17 @@ tr,td{
 	padding: 15px;
 }
 
+td, td> div{
+	font-size : 17px;
+	font-family: 'SDSamliphopangche_Outline';
+	color: gray;
+}	
 
+.inputParam {
+	font-size : 15px;
+	font-family: 'SDSamliphopangche_Outline';
+	color: gray;
+}
 
 
 
@@ -329,12 +357,12 @@ tr,td{
  			<div class='mypage_wrapper'>
  				<form id='mypage_detail' action="/myPage/updateDetail">
  				
-			 		<table border = "1">
+			 		<table>
 						<tr>
 							<td>닉네임 : </td>
 							<td>
 							<div>
-			 					<input type="text" name="newNickname" placeholder="${authentication.nickName}" 
+			 					<input type="text" name="newNickname" class="inputParam" placeholder="${authentication.nickName}" 
 			 					<c:if test="${not empty changeMypageFailed.Duplicated}">
 			           	  			value = "${changeMypageFailed.Duplicated}"
 			           	 		</c:if>
@@ -356,7 +384,7 @@ tr,td{
 						
 						<td>
 							<div>
-		 					<input type = "text" multiple name = "newEmail" placeholder="${authentication.email}"
+		 					<input type = "text" class="inputParam" multiple name = "newEmail" placeholder="${authentication.email}"
 		 					<c:if test="${not empty changeMypageFailed.invalidEmail}">
 		           	  			value = "${changeMypageFailed.invalidEmail}"
 		           	 		</c:if>
@@ -482,7 +510,7 @@ tr,td{
  					
  					<td>
 	 					<div>
-		 					<input type = "password" name = "password"
+		 					<input type = "password" class="inputParam" name = "password"
 		 					<c:if test="${not empty changePasswordFailed.password}">
 		           	  			value = "${changePasswordForm.password}"
 		           	 		 </c:if>
@@ -505,7 +533,7 @@ tr,td{
  					
  					<td>
 	 					<div>
-		 					<input type = "password" name = "newPassword"  
+		 					<input type = "password" class="inputParam" name = "newPassword"  
 		 					<c:if test="${not empty changePasswordFailed.password}">
 		           	  			value = "${changePasswordForm.newPassword}"
 		           	 		 </c:if>
@@ -523,7 +551,7 @@ tr,td{
  					
  					<td>
 	 					<div>
-		 					<input type = "password" name = "newPassword2" 
+		 					<input type = "password" class="inputParam" name = "newPassword2" 
 		 					<c:if test="${not empty changePasswordFailed.newPassword2}">
 		           	  			value = "${changePasswordForm.newPassword2}"
 		           	 		 </c:if>

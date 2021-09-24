@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import khs.common.exception.PageNotFoundException;
 import khs.login.model.dto.Member;
@@ -43,6 +44,10 @@ public class LoginController extends HttpServlet {
 			return;
 		}
 		
+		HttpSession session = request.getSession();
+		String userId = request.getParameter("userId");
+		response.setHeader("set-cookie", "JSESSIONID=" + session.getId() + ";");
+		session.setAttribute("memberId", userId);
 		response.sendRedirect("/main");
 	}
 

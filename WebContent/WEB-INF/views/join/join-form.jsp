@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="../resources/css/common/all.css" rel="stylesheet">
-<link rel="stylesheet" href="../resources/css/login_ui.css">
+<link rel="stylesheet" href="../resources/css/join_ui.css">
 </head>
 <body>
 <header class = 'header'>

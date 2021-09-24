@@ -30,6 +30,8 @@ public class ChangeMypageForm {
 		validEmail = Pattern.matches(emailRegEx, newEmail);
 		MyPage myPage = myPageService.nicknameDuplicatedTest(newNickname);
 		
+		
+		
 		if(!validEmail) {
 			msg = "이메일 형식이 잘못되었습니다.";
 			failedMypageAttr.put("invalidEmailMsg", msg);
@@ -42,6 +44,7 @@ public class ChangeMypageForm {
 			failedMypageAttr.put("DuplicatedMsg", msg);
 			res = false;
 		}
+		
 		
 		
 		

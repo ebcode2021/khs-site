@@ -98,9 +98,13 @@ public class MyPageDao {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, newNickname);
 			rset = pstm.executeQuery();
+			
+			// rset.next를 지우면, rset.next를 호출하지 않았다고 오류남
 			if(rset.next()) {
-				myPage = convertAllToMyPage(rset);
+				myPage = new MyPage();
+				myPage.setNickName(rset.getString("nickname"));
 			}
+			
 			
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
@@ -114,7 +118,7 @@ public class MyPageDao {
 
 	
 
-	
+	//쿼리문으로 받아오는 속성 수 보다 아래 함수에서 저장하는 속성들이 더 많아지면, 오류남
 	private MyPage convertAllToMyPage(ResultSet rset) throws SQLException {
 		MyPage myPage = new MyPage();
 		myPage.setUserId(rset.getString("user_id"));

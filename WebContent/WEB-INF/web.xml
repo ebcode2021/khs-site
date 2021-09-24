@@ -46,6 +46,10 @@
     	<url-pattern>/file/*</url-pattern>
     </filter-mapping>
     
+    <listener>
+    	<listener-class>khs.common.visit.VisitListener</listener-class>
+    </listener> 
+    
    <!--  어플리케이션 내부에서 발생한 예외나 응답 상태코드에 따라 원하는 에러페이지를 지정
     	ex) 응답 상태코드가 404일 경우 사용자에게 보여줄 페이지 지정
     		PageNotFoundException이 발생할 경우 사용자에게 보여줄 페이지 지정 -->
