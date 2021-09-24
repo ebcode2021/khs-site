@@ -34,6 +34,17 @@ public class MainController extends HttpServlet {
 			request.getRequestDispatcher("/main/main").forward(request, response);
 			System.out.println("cococococo1");
 			System.out.println("수정?");
+			System.out.println("수정?");
+			System.out.println("수정?");
+			System.out.println("수정?");
+			System.out.println("수정?");
+			System.out.println("수정?");
+			System.out.println("cococococo1");
+			System.out.println("cococococo1");
+			System.out.println("cococococo1");
+			System.out.println("cococococo1");
+			
+			
 			break;
 		default : throw new PageNotFoundException();
 		}
