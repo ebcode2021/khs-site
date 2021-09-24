@@ -126,8 +126,8 @@ Google과의 관계가 정의됩니다.
 	let confirmEmail = false; 
 	let confirmCode = false; 
 	let confirmName = false; 
-	let confirmBirth = false;
-	let confirmNickname = false;
+	let confirmBirth = false; 
+	let confirmNickname = false; 
 	let confirmImgFile = false; 
 	let confirmAgree = true; 
 	

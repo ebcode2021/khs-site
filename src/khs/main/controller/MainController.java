@@ -31,6 +31,8 @@ public class MainController extends HttpServlet {
 		switch(uriArr[uriArr.length-1]) {
 		case "main" :
 			System.out.println("cococo");
+			System.out.println("cococococo");
+			System.out.println("cococococo12");
 			break;
 
 		default : throw new PageNotFoundException();
