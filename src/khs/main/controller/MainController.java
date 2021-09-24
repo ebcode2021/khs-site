@@ -27,14 +27,13 @@ public class MainController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String[] uriArr = request.getRequestURI().split("/");
 		switch(uriArr[uriArr.length-1]) {
 		case "main" :
-			System.out.println("cococo");
-			System.out.println("cococococo");
-			System.out.println("cococococo12");
+			request.getRequestDispatcher("/main/main").forward(request, response);
+			System.out.println("cococococo1");
 			break;
-
 		default : throw new PageNotFoundException();
 		}
 	}
