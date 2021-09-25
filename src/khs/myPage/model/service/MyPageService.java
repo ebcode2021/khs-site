@@ -1,5 +1,6 @@
 package khs.myPage.model.service;
 
+import java.security.MessageDigest;
 import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,7 +95,8 @@ public class MyPageService {
 		String userId = member.getUserId();
 		return userId;
 	}
-
+	
+	
 
 	
 	

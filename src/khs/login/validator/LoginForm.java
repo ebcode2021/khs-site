@@ -2,6 +2,7 @@ package khs.login.validator;
 
 import javax.servlet.http.HttpServletRequest;
 
+import khs.common.encrypt.Encrypter;
 import khs.login.model.dto.Member;
 import khs.login.model.service.MemberService;
 
@@ -16,7 +17,7 @@ public class LoginForm {
 	public LoginForm(HttpServletRequest request) {
 		this.request = request;
 		this.userId = request.getParameter("userId");
-		this.password = request.getParameter("password");
+		this.password = Encrypter.convertToSHA256(request.getParameter("password"));
 	}
 	
 	public boolean test() {

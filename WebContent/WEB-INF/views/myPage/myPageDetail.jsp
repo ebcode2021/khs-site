@@ -8,12 +8,12 @@
 
 
 @font-face {
-      src : url("../fonts/NotoSansCJKkr-Regular.otf"); 
+      src : url("/resources/css/NotoSansCJKkr-hinted/NotoSansCJKkr-Regular.otf"); 
       font-family: "han_sans_kr_medium";
 }
 
 @font-face {
-      src : url("../fonts/NotoSansCJKkr-Light.otf"); 
+      src : url("/resources/css/NotoSansCJKkr-hinted/NotoSansCJKkr-Light.otf"); 
       font-family: "han_sans_kr_Light";
 }
 
@@ -207,7 +207,7 @@ html, body{
 
 .profile_table> div{
 	font-size : 20px;
-	font-family: 'han_sans_kr_Light';
+	font-family: "han_sans_kr_medium";
 	color: gray;
 }
 
@@ -269,8 +269,8 @@ html, body{
 }
 
 .valid-msg {
-	font-size : 10px;
-	color: red;
+	font-size : 15px;
+	color: #B22222;
 }
 
 
@@ -291,13 +291,13 @@ tr,td{
 
 td, td> div{
 	font-size : 17px;
-	font-family: 'SDSamliphopangche_Outline';
+	font-family: "han_sans_kr_medium";
 	color: gray;
 }	
 
 .inputParam {
 	font-size : 15px;
-	font-family: 'SDSamliphopangche_Outline';
+	font-family: "han_sans_kr_medium";
 	color: gray;
 }
 
@@ -315,7 +315,7 @@ td, td> div{
  	<div class="header">
  		<div class = "wrap_header">
  			<div class='site_tit'>K H S</div>
- 			<div class='logout'><button><a>로그아웃</a></button></div>
+ 			<div class='logout'><button><a href = "/myPage/logout">로그아웃</a></button></div>
  		</div>
  		
  	</div>
@@ -362,7 +362,7 @@ td, td> div{
 							<td>닉네임 : </td>
 							<td>
 							<div>
-			 					<input type="text" name="newNickname" class="inputParam" placeholder="${authentication.nickName}" 
+			 					<input type="text" name="newNickname" id="newNicknameInput"class="inputParam" placeholder="${authentication.nickName}" 
 			 					<c:if test="${not empty changeMypageFailed.Duplicated}">
 			           	  			value = "${changeMypageFailed.Duplicated}"
 			           	 		</c:if>
@@ -478,8 +478,6 @@ td, td> div{
 					
 				</table>
 				
-	 				
-	 				<button id='detail'>수정하기</button>
 	 				<button id='detail_submit'>저장하기</button>
  				</form>
  			</div>
@@ -618,6 +616,33 @@ td, td> div{
 			document.querySelector(".hotplace").style.backgroundColor = "#fecf92";	
 		})
 	})();
+	
+/* 	
+	let confirmNickname = '';	
+	document.querySelector("#detail_submit").addEventListener('click', e=>{
+		let newNickname = document.querySelector("#newNicknameInput").value;
+		if(newNickname){
+			fetch('/myPage/check-nickname?newNickname=' + newNickname)
+			.then(response => response.text())
+			.then(text => {
+				if(text == 'available'){
+					document.querySelector('#nickNameCheck').innerHTML = '사용 가능한 닉네임 입니다.';
+					confirmNickname = newNickname;
+				}else{
+					document.querySelector('#idCheck').innerHTML = '사용 불가능한 닉네임 입니다.';
+				}
+			})
+		}
+	})
+	
+	document.querySelector('#detail_submit').addEventListener('submit', e=>{
+		if(confirmNickname != document.querySelector("#newNicknameInput").value){
+			e.preventDefault();
+			document.querySelector('#nickNameCheck').innerHTML = "중복검사를 진행하지 않았습니다."
+		}
+	})
+	
+	 */
 		
 	</script>
 
