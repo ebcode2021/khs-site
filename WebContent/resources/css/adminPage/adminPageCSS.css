@@ -1,0 +1,111 @@
+/* [통합] adminPage CSS --- full frame */
+.ap_All{
+	margin: 25px 10px 0 25px;
+}
+.ap_Tit{
+	color: #444444c7;
+    font-weight: bold;
+    font-size: 25pt;
+    display: inline-block;
+}
+.ap_hr{ 
+	margin: 25px 0 25px 0; 
+	size: 20px;
+}
+.ad_Logo{
+	width: 35px;
+	height: 30px;
+}
+
+
+/* [통합] adminPage CSS --- button */
+.ap_button01 {
+    color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+    margin-right: 10px;
+}
+.ap_button01:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333333;
+    background: #F7F7F7;
+}
+.ap_button01:active {
+    box-shadow: inset 1px 1px 1px #DFDFDF;   
+}
+
+
+
+/* [통합] adminPage CSS --- Table */
+.ap_session_base {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+  line-height: 1.5;
+  margin: 20px 10px;
+  width: 850px;
+}
+.ap_session_base th {
+  width: 155px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #fff;
+  background: #B7B2AB;
+}
+.ap_session_base td {
+  width: 155px;
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #eee;
+}
+
+
+
+/* adminPage_index CSS */
+.ap_indexTit{
+	display: inline-block;
+	margin-left: 15px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: #444444c7;
+	font-size: 20px;
+}
+.ap_indexText{
+	font-size: 14px;	
+	color: #62523c;
+	margin-left: 25px;
+	margin-bottom: 3px;
+}
+#ap_indexBtn{
+	margin: 10px 0 0 20px;
+}
+.ap_indexHr{
+	margin: 25px 0 25px 0; 
+	width: 250px;
+}
+
+/* adminPage_accountInfo CSS */
+
+/* adminPage_memberBlock CSS */
+#ap_banTable{
+	width: 450px;
+}
+#ap_banTable_id{
+	padding-left: 70px;
+    padding-right: 70px;
+}
+
+/* adminPage_freeChart CSS */
+#freeChart_title{
+	padding-left: 230px;
+    padding-right: 230px;
+}
+
