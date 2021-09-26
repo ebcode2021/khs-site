@@ -1,5 +1,6 @@
 package khs.common.db;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -142,6 +143,17 @@ public class JDBCTemplate {
 		}
 	}
 	
+	public void close(CallableStatement cstm) {
+		try {
+			if(cstm != null && !cstm.isClosed()) {
+				cstm.close();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void close(Statement stmt, Connection conn) {
 		close(stmt);
@@ -157,6 +169,10 @@ public class JDBCTemplate {
 		close(rset);
 		close(stmt);
 		close(conn);
+	}
+	public void close(CallableStatement cstm, Connection conn) {
+		close(conn);
+		close(cstm);
 	}
 	
 	

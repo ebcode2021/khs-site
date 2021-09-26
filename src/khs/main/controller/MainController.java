@@ -33,8 +33,17 @@ public class MainController extends HttpServlet {
 		case "main" :
 			request.getRequestDispatcher("/main/main").forward(request, response);
 			break;
+		case "logout" :
+			logout(request,response);
+			break;
 		default : throw new PageNotFoundException();
 		}
+	}
+
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().removeAttribute("authentication");
+		response.sendRedirect("/login");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

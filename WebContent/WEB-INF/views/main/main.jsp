@@ -30,9 +30,17 @@
     
     #exclamation{
       padding-top : 10px;
-      padding-right : 10px;
+      padding-right : 30px;
+      display: flex;
+     
     }
 
+    #logout{
+      font-size: 1em;
+      padding-top : 10px;
+      padding-right : 15px;
+
+    }
     /* 메인 */
     main{
       min-height : 75%;
@@ -212,7 +220,7 @@
   <header>
   <div></div>
    <div><a href='/main'>KHS</a></div>
-   <div id="exclamation"><i class="fas fa-exclamation-circle fa-2x"></i></div>
+   <div id="exclamation"><a id="logout" href="/main/logout">logout</a><i class="fas fa-exclamation-circle fa-2x"></i></div>
   </header>
 
   <main>
@@ -279,8 +287,8 @@
   <footer>
     <section class="section_4">
       <div class="visited"> 
-        <div>오늘 방문자 수 : ${memberCnt}</div>
-        <div>누적 방문자 수 : ${memberAccumulateCnt}</div>
+        <div>현재 접속자 수 : ${todayCnt}</div>
+        <div>누적 방문자 수 : ${totalCnt}</div>
       </div>
       <div class="slide"> slick으로 슬라이드</div>
       <div class="qrcode">
