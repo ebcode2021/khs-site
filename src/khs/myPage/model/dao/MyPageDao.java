@@ -88,31 +88,28 @@ public class MyPageDao {
 	}
 	
 	
-	public MyPage nicknameDuplicatedTest(Connection conn, String newNickname) {
-		MyPage myPage= null;
-		PreparedStatement pstm = null;
-		ResultSet rset = null;
-		String query = "select * from member where nickname = ?";
-		
+	public String nicknameDuplicatedTest(Connection conn, String newNickname) {
+		PreparedStatement pstm = null; 
+		String result = null;
+		ResultSet rset = null; 
+			
 		try {
+			String query = "SELECT NICKNAME FROM MEMBER WHERE NICKNAME = ?";
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, newNickname);
+			
 			rset = pstm.executeQuery();
 			
-			// rset.next를 지우면, rset.next를 호출하지 않았다고 오류남
-			if(rset.next()) {
-				myPage = new MyPage();
-				myPage.setNickName(rset.getString("nickname"));
+			while(rset.next()) {
+				result = rset.getString(1);
 			}
-			
 			
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
 		} finally {
-			template.close(rset, pstm);
+			template.close(pstm);
 		}
-		
-		return myPage;
+		return result;
 	}
 
 

@@ -43,8 +43,6 @@ public class MyPageController extends HttpServlet {
 		case "changePassword":
 			changePassword(request,response);
 			break;
-		case "check-nickname":
-			checkNickname(request, response);
 		case "logout":
 			logout(request,response);
 			break;
@@ -56,18 +54,6 @@ public class MyPageController extends HttpServlet {
 	}
 	
 	
-
-	private void checkNickname(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String newNickName = request.getParameter("newNickname");
-		MyPage myPage = myPageService.nicknameDuplicatedTest(newNickName);
-		if(myPage == null) {
-			response.getWriter().print("available");
-		} else {
-			response.getWriter().print("disable");
-		}
-	}
-
-
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().getAttribute("authentication");

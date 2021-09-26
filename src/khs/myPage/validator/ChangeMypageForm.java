@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
-import khs.myPage.model.dto.MyPage;
 import khs.myPage.model.service.MyPageService;
 
 public class ChangeMypageForm {
@@ -28,10 +27,9 @@ public class ChangeMypageForm {
 		
 		String emailRegEx = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
 		validEmail = Pattern.matches(emailRegEx, newEmail);
-		MyPage myPage = myPageService.nicknameDuplicatedTest(newNickname);
-		
-		
-		
+//		validEmail = Pattern.compile("^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$\\s").matcher(newEmail).matches();
+		String duplicatedResult = myPageService.nicknameDuplicatedTest(newNickname);
+
 		if(!validEmail) {
 			msg = "이메일 형식이 잘못되었습니다.";
 			failedMypageAttr.put("invalidEmailMsg", msg);
@@ -39,7 +37,7 @@ public class ChangeMypageForm {
 		}
 		
 		
-		if(myPage != null) {
+		if(duplicatedResult != null) {
 			msg = "중복된 닉네임입니다.";
 			failedMypageAttr.put("DuplicatedMsg", msg);
 			res = false;

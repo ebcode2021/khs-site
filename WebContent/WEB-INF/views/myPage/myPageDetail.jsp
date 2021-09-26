@@ -86,6 +86,7 @@ html, body{
 	background-color: #F0F8FF;
 	border-radius: 20px 20px 20px 20px;
 	min-width: 600px;
+	min-height: 1100px;
 }
 .sidemenu{
 	position: absolute;
@@ -184,12 +185,14 @@ html, body{
 }
 
 .profile_image {
-	border-style: solid;
 	position: absolute;
 	height: 155px;
 	width: 155px;
 	left: 3%;
 	top: 20px;
+	border-radius: 100%;
+	background-image: url("resources/image/고양이1.jpg");
+	z-index: 999;
 }
 
 
@@ -270,7 +273,7 @@ html, body{
 
 .valid-msg {
 	font-size : 15px;
-	color: #B22222;
+	color: red;
 }
 
 
@@ -367,6 +370,8 @@ td, td> div{
 			           	  			value = "${changeMypageFailed.Duplicated}"
 			           	 		</c:if>
 			 					required/>
+			 					<input type="button" id="nickNameCheckButton"value="중복 확인"/>
+			 					<br>
 			 					<span id = "nickNameCheck" class = "valid-msg">
 			           	 		 	<c:if test="${not empty changeMypageFailed.DuplicatedMsg}">
 			           	  				${changeMypageFailed.DuplicatedMsg}
@@ -384,11 +389,12 @@ td, td> div{
 						
 						<td>
 							<div>
-		 					<input type = "text" class="inputParam" multiple name = "newEmail" placeholder="${authentication.email}"
+		 					<input type = "text" class="inputParam" id="emailInput" multiple name = "newEmail" placeholder="${authentication.email}"
 		 					<c:if test="${not empty changeMypageFailed.invalidEmail}">
 		           	  			value = "${changeMypageFailed.invalidEmail}"
 		           	 		</c:if>
 		 					required/>
+		 					<br>
 		 					<span id = "emailCheck" class = "valid-msg">
 		           	 		 	<c:if test="${not empty changeMypageFailed.invalidEmailMsg}">
 		           	  				${changeMypageFailed.invalidEmailMsg}
@@ -508,11 +514,12 @@ td, td> div{
  					
  					<td>
 	 					<div>
-		 					<input type = "password" class="inputParam" name = "password"
+		 					<input type = "password" id = "passwordInput" class="inputParam" name = "password"
 		 					<c:if test="${not empty changePasswordFailed.password}">
 		           	  			value = "${changePasswordForm.password}"
 		           	 		 </c:if>
 		           	 	required/>
+		           	 	<br>
 		           	 		<span id = "pwcheck" class = "valid-msg">
 		           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg1}">
 		           	  				${changePasswordFailed.errorMsg1}
@@ -531,11 +538,13 @@ td, td> div{
  					
  					<td>
 	 					<div>
-		 					<input type = "password" class="inputParam" name = "newPassword"  
+		 					<input type = "password" id = "newpasswordInput"  class="inputParam" name = "newPassword"  
 		 					<c:if test="${not empty changePasswordFailed.password}">
 		           	  			value = "${changePasswordForm.newPassword}"
 		           	 		 </c:if>
 		           	 		 required/>
+		           	 		 <br>
+		           	 		 <span id="newpasswordCheck" class = "valid-msg"></span>
 		 				</div>
  					</td>
  					
@@ -549,25 +558,27 @@ td, td> div{
  					
  					<td>
 	 					<div>
-		 					<input type = "password" class="inputParam" name = "newPassword2" 
+		 					<input type = "password" id = "newpasswordInput2"  class="inputParam" name = "newPassword2" 
 		 					<c:if test="${not empty changePasswordFailed.newPassword2}">
 		           	  			value = "${changePasswordForm.newPassword2}"
 		           	 		 </c:if>
 		           	 		  required/>
+		           	 		  <br>
+		           	 		  <span id="newpasswordCheck2" class = "valid-msg"></span>
 		 				</div>
-		 				 	<span id = "pwcheck" class = "valid-msg">
+		 				 	<span id = "pwcheck2" class = "valid-msg">
 		           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg2}">
 		           	  				${changePasswordFailed.errorMsg2}
 		           				</c:if>
 		           	 		 </span>
 		           	 		 <br>
-		           			<span id = "pwcheck" class = "valid-msg">
+		           			<span id = "pwcheck3" class = "valid-msg">
 		           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg3}">
 		           	  				${changePasswordFailed.errorMsg3}
 		           				</c:if>
 		           	 		 </span>
 		           	 		 <br>
-		           			<span id = "pwcheck" class = "valid-msg">
+		           			<span id = "pwcheck4" class = "valid-msg">
 		           	 		 	<c:if test="${not empty changePasswordFailed.errorMsg4}">
 		           	  				${changePasswordFailed.errorMsg4}
 		           				</c:if>
@@ -577,8 +588,7 @@ td, td> div{
  				</tr>
  				
  				</table>
-	 				
-	 				
+
  					<button id='password_submit'>변경하기</button>
  				</form>
  			</div>
@@ -604,6 +614,7 @@ td, td> div{
 	
 	<script type="text/javascript">
 	
+	//사이드메뉴 호버
 	(function hotplaceSlide() {
 		document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
 			document.querySelector(".hotplace").style.transitionDuration = '0.1s';
@@ -617,32 +628,185 @@ td, td> div{
 		})
 	})();
 	
-/* 	
-	let confirmNickname = '';	
-	document.querySelector("#detail_submit").addEventListener('click', e=>{
+	
+	//닉네임 중복확인
+	let confirmNickname;
+	document.querySelector("#nickNameCheckButton").addEventListener('click', e=>{
 		let newNickname = document.querySelector("#newNicknameInput").value;
 		if(newNickname){
-			fetch('/myPage/check-nickname?newNickname=' + newNickname)
-			.then(response => response.text())
-			.then(text => {
-				if(text == 'available'){
-					document.querySelector('#nickNameCheck').innerHTML = '사용 가능한 닉네임 입니다.';
+			fetch('/join/join-VariNickName?nickName=' + newNickname)
+			.then(response=>response.text())
+			.then(text=>{
+				if(text=='valid'){
+					document.querySelector('#nickNameCheck').innerHTML = '사용 가능한 닉네임입니다.';
+					document.querySelector('#nickNameCheck').style.color='green';
 					confirmNickname = newNickname;
 				}else{
-					document.querySelector('#idCheck').innerHTML = '사용 불가능한 닉네임 입니다.';
+					document.querySelector('#nickNameCheck').innerHTML = '이미 존재하는 닉네임입니다.';
+					document.querySelector('#nickNameCheck').style.color='red';
 				}
 			})
 		}
 	})
 	
-	document.querySelector('#detail_submit').addEventListener('submit', e=>{
+	// 이메일 검증
+	let confirmEmail = false;
+	
+	document.querySelector("#emailInput").addEventListener('input', e => {
+		
+		let dom = document.querySelector('#emailInput');
+		let regRes = document.querySelector('#emailCheck');
+		// 1. 정규표현식 검증
+		
+		// 정규표현식 검증을 위한 객체 생성
+		// 공백 / 특수문자 / 제외한 첫 글자가 알파벳인 3에서 12자리 이내의 영문+숫자 조합 아이디 
+		/* ?=.의 검색의 경우 RegExp 객체로 생성하면 올바르게 작동하지 않음  */
+		let testExpr = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		let whiteSpaceExpr = new RegExp('\\s');
+		
+		//빈 칸으로 되돌아갔을 시 원상복귀 
+		if(dom.value == "") {
+			regRes.innerHTML = '';
+			confirmEmail = false;
+			return;
+		}
+		if(whiteSpaceExpr.test(dom.value)){
+			regRes.innerHTML = '이메일에 공백을 포함할 수 없습니다';
+			regRes.style.color = 'red';
+			confirmEmail = false;
+			return;
+		}
+
+		if(!testExpr.test(dom.value)) {
+			regRes.innerHTML = '올바르지 않은 이메일 주소입니다';
+			regRes.style.color = 'red';
+			confirmEmail = false;
+			return;
+		} 
+
+		if(testExpr.test(dom.value)) {
+			regRes.innerHTML = '올바른 이메일 주소입니다';
+			regRes.style.color = 'green';
+			confirmEmail = true;
+		}
+		
+	})
+	
+	
+	
+	document.querySelector('#detail_submit').addEventListener('click', e=>{
 		if(confirmNickname != document.querySelector("#newNicknameInput").value){
 			e.preventDefault();
+			document.querySelector('#nickNameCheck').style.color = 'red';
 			document.querySelector('#nickNameCheck').innerHTML = "중복검사를 진행하지 않았습니다."
+		}
+		if(!confirmEmail){
+			e.preventDefault();
+			document.querySelector('#emailCheck').style.color = 'red';
+			document.querySelector('#emailCheck').innerHTML = '올바른 이메일 주소를 입력해주세요';
 		}
 	})
 	
-	 */
+	
+	
+	document.querySelector("#passwordInput").addEventListener('input', e=>{
+		document.querySelector('#pwcheck').innerHTML = null;
+	})
+	
+	
+	
+	let confirmPasswordCheck = false;
+	let firstPw = '';
+	document.querySelector("#newpasswordInput").addEventListener('input', e => {
+		
+		let newpassword = document.querySelector('#newpasswordInput').value;
+		let res = document.querySelector('#newpasswordCheck');
+		document.querySelector('#newpasswordInput2').value = null;
+		document.querySelector('#newpasswordCheck2').innerHTML = null;
+		
+		
+		
+		
+		// 1. 정규표현식 검증
+		
+		// 정규표현식 검증을 위한 객체 생성
+		/* ?=.의 검색의 경우 RegExp 객체로 생성하면 올바르게 작동하지 않음  */
+		var pwExpr = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(?=.{8,})/;
+		let whiteSpaceExpr = new RegExp('\\s');
+		
+		//빈 칸으로 되돌아갔을 시 원상복귀 
+		if(newpassword == "") {
+			confirmPasswordCheck = false;
+			res.innerHTML = '';
+			firstPw = null;
+			return;
+		}
+		
+		if(whiteSpaceExpr.test(newpassword)){
+			res.innerHTML = '비밀번호에 공백을 포함할 수 없습니다';
+			res.style.color = 'red';
+			confirmPasswordCheck = false;
+			firstPw = null;
+			return;
+		}
+		//비밀번호 조건 검증
+		if(!pwExpr.test(newpassword)) {
+			res.innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8자리 이상 문자열입니다.';
+			res.style.color = 'red';
+			confirmPasswordCheck = false;
+			firstPw = null;
+			return;
+		} 
+		
+		if(pwExpr.test(newpassword)) {
+			res.innerHTML = '사용 가능한 비밀번호 입니다';
+			res.style.color = 'green';
+			firstPw = newpassword;
+		}
+
+		
+	})
+	
+	
+	
+	
+	
+	//비밀번호 일치 검사
+	document.querySelector("#newpasswordInput2").addEventListener('input', e => {
+		
+		let newpassword = document.querySelector('#newpasswordInput').value;
+		let newpassword2 = document.querySelector('#newpasswordInput2').value;
+		let res = document.querySelector('#newpasswordCheck2');
+		if(newpassword2 == "") {
+			res.innerHTML = '';
+			confirmPasswordCheck = false;
+			return;
+		}
+
+		if(firstPw != newpassword2){
+			res.innerHTML = '일치하지 않는 비밀번호입니다';
+			res.style.color = 'red';
+			confirmPasswordCheck = false;
+			return;
+		}
+		
+		if(firstPw == newpassword2){
+			res.innerHTML = '두 비밀번호가 일치합니다.';
+			res.style.color = 'green';
+			confirmPasswordCheck = true;
+		}
+		
+	})
+	
+	document.querySelector('#password_submit').addEventListener('click', e=>{
+		if(!confirmPasswordCheck){
+			e.preventDefault();
+		}
+		
+	})
+	
+	
+
 		
 	</script>
 

@@ -74,17 +74,17 @@ public class MyPageService {
 	
 	
 	
-	public MyPage nicknameDuplicatedTest(String newNickname) {
+	public String nicknameDuplicatedTest(String newNickname) {
 		Connection conn = template.getConnection();
-		MyPage myPage = null;
+		String result = null;
 		
 		try {
-			myPage = myPageDao.nicknameDuplicatedTest(conn, newNickname);
+			result = myPageDao.nicknameDuplicatedTest(conn, newNickname);
 		} finally {
 			template.close(conn);
 		}
 		
-		return myPage;
+		return result;
 		
 	}
 	
