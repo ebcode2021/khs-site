@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link href="../resources/css/common/all.css" rel="stylesheet">
-<link rel="stylesheet" href="../resources/css/login_ui.css">
+<link rel="stylesheet" href="../resources/css/join_ui.css">
 </head>
 <body>
 <header class = 'header'>
@@ -15,27 +16,58 @@
 	<div class = 'test' id = 'wrapImg'>
 		<i class="fas fa-user-circle"></i>
 	</div>
+	
 	<form action="${context}/join/join-Method" enctype="multipart/form-data" method="post" autocomplete="off">
 		<div class = 'test'>
 			<h2>01. 아이디와 비밀번호를 입력 해 주세요.</h2>
-			<input type="text" name="userId" id='userId' placeholder="아이디 (4-12자 이내, 영문, 숫자 모두 사용 가능합니다.)"><br>
+			<input type="text" name="userId" id='userId'placeholder="아이디 (4-12자 이내, 영문, 숫자 모두 사용 가능합니다.)"
+            <c:choose>
+            	<c:when test = "${empty joinFailed.userId}">
+            		value="${joinForm.userId}";
+            	</c:when>
+            	<c:otherwise>
+            		value="${joinFailed.userId}";
+            	</c:otherwise>
+            </c:choose>
+			>
+			<br>
 				<div class = "validCheckPassed" id = "userIdPassed"></div>
 				<div class = "validCheckFailed" id = "userIdFailed"></div>
-			<input type="text" name="password" id='password' placeholder="비밀번호 (8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)"><br>
+			<button class = 'checkID' id='checkID'  type="button">아이디 중복검사</button>	
+			<input type="text" name="password" id='password' placeholder="비밀번호 (8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)"
+			<c:choose>
+            	<c:when test = "${empty joinFailed.password}">
+            		value="${joinForm.password}";
+            	</c:when>
+            	<c:otherwise>
+            		value="${joinFailed.password}";
+            	</c:otherwise>
+            </c:choose>
+			><br>
 				<div class = "validCheckPassed" id = "userPwPassed" ></div>
 				<div class = "validCheckFailed" id = "userPwFailed"></div>
-			<input type="text" name="passwordCheck" id='passwordCheck' placeholder="비밀번호 확인(8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)"><br>
+			<input type="text" name="passwordCheck" id='passwordCheck' placeholder="비밀번호 확인(8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)">
+			<br>
 				<div class = "validCheckPassed" id = "passwordAgainPassed"></div>
 				<div class = "validCheckFailed" id = "passwordAgainFailed"></div>
 		</div>
 		<div class = 'test'>
-			<h2>02. 이메일을 입력하고 인증번호를 확인하세요.</h2>
-			<input type="text" name='email' id='email' placeholder="이메일(인증 번호를 받을 수 있는 이메일을 입력하세요.)"><br>
+			<h2>02. 이메일을 입력하고 인증을 완료하세요.</h2>
+			<input type="text" name='email' id='email' placeholder="이메일(인증 번호를 받을 수 있는 이메일을 입력하세요.)"
+			<c:choose>
+            	<c:when test = "${empty joinFailed.email}">
+            		value="${joinForm.email}";
+            	</c:when>
+            	<c:otherwise>
+            		value="${joinFailed.email}";
+            	</c:otherwise>
+            </c:choose>
+			><br>
 				<div class = "validCheckPassed" id = "emailPassed"></div>
 				<div class = "validCheckFailed" id = "emailFailed"></div>
 			<button class = 'sendEmail' type="button">인증번호 전송</button>
 		<div class = emailValiWrapper>
-			<input type="text" name='emailVali' id='emailVali' class = "emailVali" placeholder="인증번호를 입력하세요."><span>00 : 00</span>
+			<input type="text" name='emailVali' id='emailVali' class = "emailVali" maxlength="7" placeholder="인증번호를 입력하세요."><span>00 : 00</span>
 		</div>
 			<div class = "validCheckPassed" id = "emailValiPassed"></div>
 			<div class = "validCheckFailed" id = "emailValiFailed"></div>
@@ -44,14 +76,32 @@
 		<div class = 'test'>
 			<h2>03. 이름과 생년월일, 별명을 입력 해 주세요.</h2>
 			<h3>*별명은 커뮤니티 활동에서 ID와 이름 대신 사용합니다.</h3>
-			<input type="text" name='name' id='name' placeholder="이름(2-4자의 한글이름)"><br>
+			<input type="text" name='name' id='name' placeholder="이름(2-4자의 한글이름)"
+			<c:choose>
+            	<c:when test = "${empty joinFailed.name}">
+            		value="${joinForm.name}";
+            	</c:when>
+            	<c:otherwise>
+            		value="${joinFailed.name}";
+            	</c:otherwise>
+            </c:choose>
+			><br>
 				<div class = "validCheckPassed" id = "namePassed"></div>
 				<div class = "validCheckFailed" id = "nameFailed"></div>
 			<input type="text" name='birth' id='birth' placeholder="생년월일" onfocus="(this.type='date')" onblur="(this.type='text')">
 			<div class = "validCheckPassed" id = "birthPassed"></div>
 			<br>
 			<div class = "NickNameWrapper"> 
-				<input type="text" name='nickName' id='nickName' class = "nickName" placeholder="별명(4-8자리 이내 특수문자 제외한 한영숫자 조합)">
+				<input type="text" name='nickName' id='nickName' class = "nickName" placeholder="별명(4-8자리 이내 특수문자 제외한 한영숫자 조합)"
+				<c:choose>
+            	<c:when test = "${empty joinFailed.nickName}">
+            		value="${joinForm.nickName}";
+            	</c:when>
+            	<c:otherwise>
+            		value="${joinFailed.nickName}";
+            	</c:otherwise>
+            </c:choose>
+			>
 				<button class = 'checkNickName' id = 'checkNickName' type="button">중복 검사</button>
 			</div>
 			<div class = "validCheckPassed" id = "nickNamePassed"></div>
@@ -63,7 +113,7 @@
 				</h2>
 				<div class = "selectKHWrapper">
 				<select name='selectKH' id='selectKH' class="selectKH">
-					<option value="" disabled selected>현재 다니시는 학원 지점을 선택하세요</option>
+					<option disabled selected>현재 다니시는 학원 지점을 선택하세요</option>
 					<option value="gangnam">강남 지점</option>
 					<option value="itewon">이태원 지점</option>
 				</select><br>
@@ -121,6 +171,8 @@ Google과의 관계가 정의됩니다.
 
 <script type="text/javascript">
 	
+	
+	
 	let confirmId = false; 
 	let confirmPasswordCheck = false;
 	let confirmEmail = false; 
@@ -131,13 +183,16 @@ Google과의 관계가 정의됩니다.
 	let confirmImgFile = false; 
 	let confirmAgree = true; 
 	
+	/* 아이디 중복 확인용 객체 */
+	let firstId = null; 
 	/* 비밀번호 중복 확인용 객체 */
 	let firstPw = null; 
 	/* 별명 정규표현식 확인용 객체 */
 	let nicNameCheck = null;
 	
+
 	//****1. Front 아이디 정규표현식 검증 ****
-	document.querySelector("#userId").addEventListener('input', e => {
+	let idReg = document.querySelector("#userId").addEventListener('input', e => {
 		
 		let userIdInput = document.querySelector('#userId');
 		let IdCheckPassed = document.querySelector('#userIdPassed');
@@ -155,7 +210,7 @@ Google과의 관계가 정의됩니다.
 			userIdInput.style.border = "3px solid #D5D5D5";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.style.display = "none";
-			confirmId = false;
+			firstId = false;
 			return;
 		}
 		
@@ -164,7 +219,7 @@ Google과의 관계가 정의됩니다.
 			IdCheckFailed.style.display = "block";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp아이디에 공백을 포함할 수 없습니다';
-			confirmId = false;
+			firstId = false;
 			return;
 		}
 		//특수문자 검증
@@ -173,7 +228,7 @@ Google과의 관계가 정의됩니다.
 			IdCheckFailed.style.display = "block";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp아이디에 특수문자를 사용하실 수 없습니다';
-			confirmId = false;
+			firstId = false;
 			return;
 		}
 		//아이디조건 검증
@@ -182,19 +237,59 @@ Google과의 관계가 정의됩니다.
 			IdCheckFailed.style.display = "block";
 			IdCheckPassed.style.display = "none";
 			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp영문으로 시작하며 4-12글자의 영숫자 조합이어야 합니다';
-			confirmId = false;
+			firstId = false;
 			return;
 		} 
 		//일치 시 태두리 green 
 		if(idExpr.test(userIdInput.value)) {
-			userIdInput.style.border = "3px solid #6ED000";
+			userIdInput.style.border = "3px solid #D5D5D5";
 			IdCheckPassed.style.display = "block";
 			IdCheckFailed.style.display = "none";
-			IdCheckPassed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 아이디입니다';
-			confirmId = true;
+			IdCheckPassed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp아이디 중복 검사를 진행하세요';
+			firstId = true;
 		}
 		
 	})
+	
+	
+	
+	//****1-2. 아이디 중복검사 버튼 기능 ****
+	document.querySelector('#checkID').addEventListener('click', e => {
+		
+		let dom = document.querySelector('#userId');
+		let passed = document.querySelector('#userIdPassed');
+		let failed = document.querySelector('#userIdFailed');
+		
+		if(firstId != true){
+			dom.style.border = "3px solid #FF6161";
+			failed.style.display = "block";
+			passed.style.display = "none";
+			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp입력 조건에 맞는 아이디를 다시 입력하세요';
+			confirmCode = false; 
+			return;
+		}
+		
+		fetch('/join/join-checkId?checkId='+ dom.value)
+		.then(response => response.text())
+		.then(text => {
+			if(text == 'invalid'){
+				dom.style.border = "3px solid #FF6161";
+				failed.style.display = "block";
+				passed.style.display = "none";
+				failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp중복된 아이디입니다';
+				confirmCode = false; 
+				return;
+			}
+			if(text == 'valid'){
+				dom.style.border = "3px solid #6ED000";
+				passed.style.display = "block";
+				failed.style.display = "none";
+				passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 아이디입니다';
+				confirmCode = true; 
+			}	
+		})
+	})
+	
 	
 	//****2. Front 비밀번호 정규표현식 검증 ****
 	document.querySelector("#password").addEventListener('input', e => {
@@ -255,10 +350,10 @@ Google과의 관계가 정의됩니다.
 		} 
 		//일치 시 태두리 green 
 		if(pwExpr.test(dom.value)) {
-			dom.style.border = "3px solid #6ED000";
+			dom.style.border = "3px solid #D5D5D5";
 			passed.style.display = "block";
 			failed.style.display = "none";
-			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 비밀번호 입니다';
+			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 비밀번호 입니다. 비밀번호 확인을 입력하세요';
 			
 			
 			firstPw = dom.value;
@@ -269,6 +364,10 @@ Google과의 관계가 정의됩니다.
 	//****3. Front 비밀번호 중복 검증 ****
 	document.querySelector("#passwordCheck").addEventListener('input', e => {
 		
+		let pwDom = document.querySelector('#password');
+		let pwPassed = document.querySelector('#userPwPassed');
+		let pwFailed = document.querySelector('#userPwFailed');
+	
 		let dom = document.querySelector('#passwordCheck');
 		let passed = document.querySelector('#passwordAgainPassed');
 		let failed = document.querySelector('#passwordAgainFailed');
@@ -304,6 +403,11 @@ Google과의 관계가 정의됩니다.
 			passed.style.display = "block";
 			failed.style.display = "none";
 			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp비밀번호 중복 검사가 완료되었습니다';
+			
+			pwDom.style.border = "3px solid #6ED000";
+			pwPassed.style.display = "block";
+			failed.style.display = "none";
+			pwPassed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 비밀번호입니다';
 			confirmPasswordCheck = true;
 		}
 		
@@ -351,10 +455,10 @@ Google과의 관계가 정의됩니다.
 		} 
 		//일치 시 태두리 green 
 		if(testExpr.test(dom.value)) {
-			dom.style.border = "3px solid #6ED000";
+			dom.style.border = "3px solid #D5D5D5";
 			passed.style.display = "block";
 			failed.style.display = "none";
-			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp올바른 이메일 주소입니다';
+			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 이메일입니다. 인증번호를 전송하세요';
 			confirmEmail = true;
 		}
 		
@@ -363,13 +467,39 @@ Google과의 관계가 정의됩니다.
 	//****5. Front 이메일 발송 ****
 	document.querySelector(".sendEmail").addEventListener('click', e=> {
 		
+		// 테스트용 추가구문 
+		//confirmEmail == true
 		let dom = document.querySelector('#email');
 		let passed = document.querySelector('#emailPassed');
 		let failed = document.querySelector('#emailFailed');
 		
-		if(confirmEmail == true){
-			alert(dom.value + "로 인증메일이 발송되었습니다.");
+		if(true
+				){
 			fetch('/join/join-send-Vari-Email?userEmail=' + dom.value)
+			.then(response => response.text())
+			.then(text => {
+				if(text == "mailSendFailed"){
+					dom.style.border = "3px solid #FF6161";
+					failed.style.display = "block";
+					passed.style.display = "none";
+					failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp부적절한 메일 주소입니다. 메일 주소를 다시 확인하세요';
+				} else if (text == "mailExist") {
+					dom.style.border = "3px solid #FF6161";
+					failed.style.display = "block";
+					passed.style.display = "none";
+					failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp중복된 이메일입니다';
+				} else if (text == "mailSendSuccess"){
+					dom.style.border = "3px solid #6ED000";
+					passed.style.display = "block";
+					failed.style.display = "none";
+					passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp인증 메일이 발송되었습니다';
+				} else {
+					alert("시스템 오류로 메일 발송이 실패하였습니다. 다시 시도하세요");
+				}
+			})
+			
+			
+			
 		} else {
 			dom.style.border = "3px solid #FF6161";
 			failed.style.display = "block";
@@ -380,6 +510,10 @@ Google과의 관계가 정의됩니다.
 	
 	//****6. Front 이메일 인증 ****
 	document.querySelector(".variEmail").addEventListener('click', e => {
+		
+		let Emaildom = document.querySelector('#email');
+		let Emailpassed = document.querySelector('#emailPassed');
+		let Emailfailed = document.querySelector('#emailFailed');
 		
 		let dom = document.querySelector('#emailVali');
 		let passed = document.querySelector('#emailValiPassed');
@@ -405,6 +539,12 @@ Google과의 관계가 정의됩니다.
 				return;
 			} 
 			if(text == 'valid'){
+				
+				Emaildom.style.border = "3px solid #6ED000";
+				Emailpassed.style.display = "block";
+				Emailfailed.style.display = "none";
+				Emailpassed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp이메일 인증이 완료되었습니다.';
+				
 				dom.style.border = "3px solid #6ED000";
 				passed.style.display = "block";
 				failed.style.display = "none";
@@ -449,10 +589,10 @@ Google과의 관계가 정의됩니다.
 		}
 		//특수문자 검증
 		if(specialExpr.test(dom.value)){
-			userIdInput.style.border = "3px solid #FF6161";
-			IdCheckFailed.style.display = "block";
-			IdCheckPassed.style.display = "none";
-			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp이름에 특수문자를 사용하실 수 없습니다';
+			dom.style.border = "3px solid #FF6161";
+			failed.style.display = "block";
+			passed.style.display = "none";
+			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp이름에 특수문자를 사용하실 수 없습니다';
 			confirmName = false;
 			return;
 		}
@@ -476,7 +616,7 @@ Google과의 관계가 정의됩니다.
 		
 	})
 	
-	//****8. Front 달력 정규표현식 검증 ****
+	//****8. Front 달력 검증 ****
 	document.querySelector('#birth').addEventListener('input', e => {
 		let dom = document.querySelector('#birth');
 		let passed = document.querySelector('#birthPassed');
@@ -519,10 +659,10 @@ Google과의 관계가 정의됩니다.
 			return;
 		}
 		if(specialExpr.test(dom.value)){
-			userIdInput.style.border = "3px solid #FF6161";
-			IdCheckFailed.style.display = "block";
-			IdCheckPassed.style.display = "none";
-			IdCheckFailed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp별명에 특수문자를 사용하실 수 없습니다';
+			dom.style.border = "3px solid #FF6161";
+			failed.style.display = "block";
+			passed.style.display = "none";
+			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp별명에 특수문자를 사용하실 수 없습니다';
 			confirmNickname = false;
 			return;
 		}
@@ -591,6 +731,7 @@ Google과의 관계가 정의됩니다.
 		dom.style.border = "3px solid #6ED000";
 		passed.style.display = "block";
 		passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp학원 지점이 정상적으로 선택되었습니다';
+		document.querySelector('#selectKH').blur();
 		confirmBirth = true;
 	}) 
 	
@@ -604,19 +745,17 @@ Google과의 관계가 정의됩니다.
 		uploadName.style.border = "3px solid #6ED000";
 		passed.style.display = "block";
 		passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp이미지 파일이 정상적으로 첨부되었습니다';
-		uploadName.value = dom.value; 
+		uploadName.value = dom.value;
 		confirmImgFile = true; 
 	})
 	
 	//****13. 약관 동의 / 비동의 버튼 검증 및 input 전체 검증을 위한 blur처리  ****
 	document.querySelector('#agreeLogin').addEventListener('input', e => {
-		alert('동의 선택 성공');
 		confirmAgree = true; 
 		document.querySelector('#agreeLogin').blur(); 
 	})
 	// ** 두번째 
 	document.querySelector('#disagreeLogin').addEventListener('input', e => {
-		alert(' 비동의 선택 성공');
 		confirmAgree = false; 
 		document.querySelector('#disagreeLogin').blur(); 
 	})
@@ -630,7 +769,9 @@ Google과의 관계가 정의됩니다.
 		let dom = document.querySelector('#joinButton');
 		
 		item.addEventListener('blur', event => {
-			if(confirmId&
+			if(
+					true
+					/* confirmId&
  			confirmPasswordCheck&
 			confirmEmail&
 			confirmCode&
@@ -638,7 +779,7 @@ Google과의 관계가 정의됩니다.
 			confirmNickname&
 			confirmBirth&
 			confirmImgFile& 
-			confirmAgree  
+			confirmAgree  */ 
 			){
 				// 모든 조건들이 올바르게 input 되었을 시 pointer-events 해제 
 				dom.style.setProperty('background-color', 'white');
@@ -653,8 +794,17 @@ Google과의 관계가 정의됩니다.
 		})
 	});
 	
+	var event = new Event('input', {
+	    'bubbles': true,
+	    'cancelable': true
+	});
 	
-	
+	// 모든 태그에 대해서 inputEvent를 발생시키면 end
+	document.querySelector("#userId").dispatchEvent(event);
+	document.querySelector("#password").dispatchEvent(event);
+	document.querySelector("#email").dispatchEvent(event);
+	document.querySelector("#name").dispatchEvent(event);
+	document.querySelector("#nickName").dispatchEvent(event);
 </script>
 
 

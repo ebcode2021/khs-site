@@ -32,11 +32,18 @@ public class MainController extends HttpServlet {
 		switch(uriArr[uriArr.length-1]) {
 		case "main" :
 			request.getRequestDispatcher("/main/main").forward(request, response);
-			System.out.println("cococococo1");
-			System.out.println("수정?");
+			break;
+		case "logout" :
+			logout(request,response);
 			break;
 		default : throw new PageNotFoundException();
 		}
+	}
+
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().removeAttribute("authentication");
+		response.sendRedirect("/login");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

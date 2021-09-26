@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import khs.common.exception.PageNotFoundException;
 import khs.login.model.dto.Member;
@@ -25,6 +26,7 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] uriArr = request.getRequestURI().split("/");
 		if(uriArr[uriArr.length-1].equals("login-check")) {
+			
 			loginCheck(request,response);
 		}else {
 			request.getRequestDispatcher("/login/login").forward(request, response);
@@ -38,11 +40,12 @@ public class LoginController extends HttpServlet {
 		LoginForm loginForm = new LoginForm(request);
 		
 		if(!loginForm.test()) {
-			System.out.println("DB에 계정이 없는 경우");
 			response.sendRedirect("/login");
 			return;
 		}
 		
+		HttpSession session = request.getSession();
+		response.setHeader("set-cookie", "JSESSIONID=" + session.getId() + ";");
 		response.sendRedirect("/main");
 	}
 

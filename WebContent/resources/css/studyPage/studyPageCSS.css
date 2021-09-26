@@ -1,0 +1,88 @@
+/* studyPage 전체 프레임 잡기 CSS */
+.sp_all{
+	margin: 20px 0 15px 15px;
+}
+
+/* studyPage section 프레임 잡기 CSS */
+.sp_section{
+	
+}
+
+/* studyPage section 개별 데이터 CSS */
+.sp_introduce01{
+	font-size: 28px;
+	color: #000000;
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+.sp_introduce02{
+	font-size: 15px;
+	color: #757575;
+	margin-bottom: 5px;
+}
+.sp_dataBox{
+	display: inline-block;
+	margin: 5px 3px 5px 3px;
+	width: 230px;
+}
+.sp_dummyImage{
+	width: 231.188px;
+	height: 150.500px;
+	border-radius: 30px 0px 22px 0px; 
+}
+.sp_dataTitle{
+	margin: 5px;
+	color: #000000;
+	font-weight: 700;
+}
+.sp_dataInstruction{
+	margin: 5px 5px 5px 5px;
+	color: #757575;
+	font-size: 13px;
+}
+
+/* 사이트, 중요, 추천 CSS */
+.sp_dataPlus{
+	width: 230px;
+	height: 30px;
+	font-size: 11px;
+	font-weight: 900;
+	color: #757575;
+	margin-left: 10px;
+}
+.sp_dataPlus01{
+	display: inline-block;
+	background-color: #1dc07838;
+	padding: 4px 10px 4px 10px;
+	border-radius: 24px; 
+}
+.sp_dataPlus02{
+	display: inline-block;
+	background-color: #ffc8c78c;
+	padding: 4px 10px 4px 10px;
+	border-radius: 24px; 
+}
+.sp_dataPlus03{
+	display: inline-block;
+	background-color: #f6d5ea7a;
+	padding: 4px 10px 4px 10px;
+	border-radius: 24px;  
+}
+.sp_dataPlus04{
+	display: inline-block;
+	background-color: #9bba5a91;
+	padding: 4px 10px 4px 10px;
+	border-radius: 24px;  
+}
+.sp_dataPlus05{
+	display: inline-block;
+	background-color: #f29d2a7a;
+	padding: 4px 10px 4px 10px;
+	border-radius: 24px;  
+}
+
+/* 구분선 CSS */
+hr{
+	margin: 25px 0 25px 0; 
+	size: 20px;
+}

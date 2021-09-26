@@ -8,11 +8,22 @@
 
 
 @font-face {
+      src : url("/resources/css/NotoSansCJKkr-hinted/NotoSansCJKkr-Regular.otf"); 
+      font-family: "han_sans_kr_medium";
+}
+
+@font-face {
+      src : url("/resources/css/NotoSansCJKkr-hinted/NotoSansCJKkr-Light.otf"); 
+      font-family: "han_sans_kr_Light";
+}
+
+@font-face {
     font-family: 'SDSamliphopangche_Outline';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
+
 html, body{
 	width: 100%;
 	height: 100%;.
@@ -244,7 +255,7 @@ html, body{
  	<div class="header">
  		<div class = "wrap_header">
  			<div class='site_tit'>K H S</div>
- 			<div class='logout'><button><a>로그아웃</a></button></div>
+ 			<div class='logout'><button><a href = "/myPage/logout">로그아웃</a></button></div>
  		</div>
  		
  	</div>
@@ -278,7 +289,7 @@ html, body{
 				<div class="profile_table" border="solid">
 					<div>${authentication.name}</div>
 					<div>${authentication.khCenter}</div>
-					<div>하명도 강사</div>
+					<div>${authentication.instrName} 강사</div>
 					<div><a href="/myPage/myPageDetail">회원 상세정보 페이지로 이동</a></div>
 				</div>
 				

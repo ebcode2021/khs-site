@@ -7,9 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import khs.common.encrypt.Encrypter;
 import khs.common.exception.PageNotFoundException;
-import khs.login.model.dto.Member;
-import khs.login.model.service.MemberService;
 import khs.myPage.model.dto.MyPage;
 import khs.myPage.model.service.MyPageService;
 
@@ -44,6 +43,9 @@ public class MyPageController extends HttpServlet {
 		case "changePassword":
 			changePassword(request,response);
 			break;
+		case "logout":
+			logout(request,response);
+			break;
 		default: throw new PageNotFoundException();
 		
 		}
@@ -51,15 +53,26 @@ public class MyPageController extends HttpServlet {
 		
 	}
 	
-	//ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹㄴㅇㄹㅇㄴㅁㄻㄴㅇㄻㅇㄴㄻㄴㅇfefefefefe
+	
+
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().getAttribute("authentication");
+		request.getSession().removeAttribute("authentication");
+		request.setAttribute("msg", "로그아웃 되었습니다.");
+		request.setAttribute("url", "/login");
+		request.getRequestDispatcher("/error/result").forward(request, response);
+	}
 
 
-	private void changePassword(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+
+	private void changePassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userId = myPageService.getLoginMemberId(request);
 		String newPassword = request.getParameter("newPassword");
-		
-		myPageService.changePassword(userId,newPassword);
+
+		String SHA256Pwd = Encrypter.convertToSHA256(newPassword);
+
+		myPageService.changePassword(userId,SHA256Pwd);
 		
 		request.setAttribute("msg", "비밀번호 변경이 완료되었습니다.");
 		request.setAttribute("url", "/myPage/myPageDetail");
@@ -70,8 +83,8 @@ public class MyPageController extends HttpServlet {
 
 	private void updateDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = myPageService.getLoginMemberId(request);
-		String nickName = request.getParameter("nickname");
-		String email = request.getParameter("email");
+		String nickName = request.getParameter("newNickname");
+		String email = request.getParameter("newEmail");
 		
 		MyPage myPage = new MyPage();
 		
@@ -101,6 +114,9 @@ public class MyPageController extends HttpServlet {
 
 
 	private void myPageMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = myPageService.getLoginMemberId(request);
+		MyPage myPage = myPageService.selectMyPage(userId);
+		request.setAttribute("authentication", myPage);
 		request.getRequestDispatcher("/myPage/myPageMain").forward(request, response);
 		
 	}

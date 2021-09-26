@@ -22,13 +22,15 @@ import com.oreilly.servlet.multipart.Part;
 
 public class FileUtil {
    
-   private final int MAX_SIZE = 1024*1024*10;
+   
    
    //FileDTO, MultipartRequest를 담고 있는 Map을 반환
    public MultiPartParams fileUpload(HttpServletRequest request){
       
       List<FileDTO> fileDtoList = new ArrayList<FileDTO>();
       Map<String,List> paramMap = new HashMap<String, List>();
+      
+      final int MAX_SIZE = 1024*1024*10;
       
       try {
          //3. 경로와 파일이름으로 파일을 저장, MultipartParser 생성
@@ -42,10 +44,7 @@ public class FileUtil {
             	// SQLIntegrityConstraintViolationException
             	// MultiPartParser는 form 태그에 input[type=file]이 존재하면, 사용자가 파일을 첨부하지 않더라도
             	// 빈 FilePart 객체를 생성해서 MultipartParser 객체에 넘겨준다.
-            	// 사용자가 파일을 첨부하지 않은 경웅는 getFileName 메서드의 결과가 null이 반환된다.
-            	
-            
-            	
+            	// 사용자가 파일을 첨부하지 않은 경우는 getFileName 메서드의 결과가 null이 반환된다.
                FilePart filePart = (FilePart) part;
                if(filePart.getFileName()!=null) {
             	   FileDTO fileDTO = createFileDTO(filePart);
@@ -54,7 +53,6 @@ public class FileUtil {
                }
                
             }else {
-               
                ParamPart paramPart = (ParamPart) part;
                setParameterMap(paramPart,paramMap);
             }
@@ -115,7 +113,7 @@ public class FileUtil {
       //    파라미터명으로 기존에 저장된 데이터가 없다.
       //    새로운 List를 생성해서 파라미터 value를 저장
       if(!paramMap.containsKey(paramPart.getName())) {
-         List<String> params = new ArrayList<String>();
+    	  List<String> params = new ArrayList<String>();
          params.add(paramPart.getStringValue());
          paramMap.put(paramPart.getName(), params);
       }else {

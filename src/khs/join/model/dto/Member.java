@@ -15,6 +15,8 @@ public class Member {
 	private String khCenter; 
 	private int isLeave; 
 	private int isBan;
+	private String variFile;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -81,11 +83,20 @@ public class Member {
 	public void setIsBan(int isBan) {
 		this.isBan = isBan;
 	}
+	public String getVariFile() {
+		return variFile;
+	}
+	public void setVariFile(String variFile) {
+		this.variFile = variFile;
+	}
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", grade=" + grade
 				+ ", regDate=" + regDate + ", name=" + name + ", nickname=" + nickname + ", birthDate=" + birthDate
-				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + ", isBan=" + isBan + "]";
+				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + ", isBan=" + isBan + ", variFile=" + variFile
+				+ "]";
 	} 
+	
+	
 	
 }

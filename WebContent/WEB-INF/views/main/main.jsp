@@ -21,18 +21,26 @@
       justify-content : space-between;
     }
 
-    header>div>p{
+    header>div>a:link, header>div>a:visited{
       font-size: 4em;
       font-weight: bold;
       color :rgba(255, 157, 0, 0.5);   
       padding-left : 30%;   
     }
-
+    
     #exclamation{
       padding-top : 10px;
-      padding-right : 10px;
+      padding-right : 30px;
+      display: flex;
+     
     }
 
+    #logout{
+      font-size: 1em;
+      padding-top : 10px;
+      padding-right : 15px;
+
+    }
     /* 메인 */
     main{
       min-height : 75%;
@@ -65,11 +73,11 @@
       color:gray;
     }
     
-
-    a:link{
-      color:white;
+ 	a:link, a:visited{
+      color: white;
       font-size:20px;
     }
+   
 
     .nav{
       background-color: rgba(255, 157, 0, 0.3);
@@ -202,20 +210,23 @@
       margin-top : 5%;
       text-align: center;
     }
+    
+    
+    
   </style>
 </head>
 
 <body>
   <header>
   <div></div>
-   <div><p>KHS</p></div>
-   <div id="exclamation"><i class="fas fa-exclamation-circle fa-2x"></i></div>
+   <div><a href='/main'>KHS</a></div>
+   <div id="exclamation"><a id="logout" href="/main/logout">logout</a><i class="fas fa-exclamation-circle fa-2x"></i></div>
   </header>
 
   <main>
     <section class="section_1">
       <div class="hello"> 
-        <p id="hello_first">반갑습니다.</p>
+        <p id="hello_first">반갑습니다..</p>
         <p>퇴실체크 <br> 했나요?</p>
       </div>
       
@@ -276,8 +287,8 @@
   <footer>
     <section class="section_4">
       <div class="visited"> 
-        <div>현재 방문자 수 : ㅇㅇ명</div>
-        <div>누적 방문자 수 : ㅇㅇ명</div>
+        <div>현재 접속자 수 : ${todayCnt}</div>
+        <div>누적 방문자 수 : ${totalCnt}</div>
       </div>
       <div class="slide"> slick으로 슬라이드</div>
       <div class="qrcode">

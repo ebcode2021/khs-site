@@ -33,4 +33,12 @@ private Map<String,List> params;
    public List<FileDTO> getFilesInfo(){
       return params.get("khs.files");
    }
+   
+   public boolean isEmpty(String key) {
+	  
+	   boolean result = params.containsKey(key);
+	   return !(result); 
+   }
+   
+   
 }

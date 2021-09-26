@@ -1,5 +1,6 @@
 package khs.myPage.model.service;
 
+import java.security.MessageDigest;
 import java.sql.Connection;
 
 import javax.servlet.http.HttpServletRequest;
@@ -72,12 +73,30 @@ public class MyPageService {
 	
 	
 	
+	
+	public String nicknameDuplicatedTest(String newNickname) {
+		Connection conn = template.getConnection();
+		String result = null;
+		
+		try {
+			result = myPageDao.nicknameDuplicatedTest(conn, newNickname);
+		} finally {
+			template.close(conn);
+		}
+		
+		return result;
+		
+	}
+	
+	
+	
 	public String getLoginMemberId(HttpServletRequest request) {
 		Member member = (Member)request.getSession().getAttribute("authentication");
 		String userId = member.getUserId();
 		return userId;
 	}
-
+	
+	
 
 	
 	

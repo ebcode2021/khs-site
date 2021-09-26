@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
-import khs.login.model.dto.Member;
+import khs.common.encrypt.Encrypter;
 import khs.myPage.model.service.MyPageService;
 
 
@@ -42,7 +42,7 @@ public class ChangePasswordForm {
 		
 		
 		
-		if(!(password.equals(originPassword))){
+		if(!(Encrypter.convertToSHA256(password).equals(originPassword))){
 			msg = "비밀번호를 잘 못 입력하셨습니다.";
 			failedAttribute.put("errorMsg1", msg);
 			res = false;
@@ -68,7 +68,6 @@ public class ChangePasswordForm {
 			failedAttribute.put("errorMsg4", msg);
 			res = false;
 		}
-		
 		
 		
 		if(!res) {
