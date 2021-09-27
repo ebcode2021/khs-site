@@ -34,7 +34,7 @@ public class adminPageController extends HttpServlet {
 		case "freeChart":
 			freeChart(request,response);
 			break;
-		default: 
+		default: response.setStatus(404);
 			break;
 		}
 	}
