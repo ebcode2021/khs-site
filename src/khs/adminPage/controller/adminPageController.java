@@ -18,7 +18,7 @@ public class adminPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
-		//1. 메인페이지에서 회원정보 조회 페이지로 들어갈 경우!!!
+		//1. 메인페이지에서 회원정보 조회 페이지로 들어갈 경우!
 		case "adminPage": 
 			adminPage(request,response);
 			break;
