@@ -16,7 +16,20 @@ public class adminPageController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String[] uriArr = request.getRequestURI().split("/");
+		switch (uriArr[uriArr.length-1]) {
+		//1. 메인페이지에서 회원정보 조회 페이지로 들어갈 경우
+		case "accountInfo":
+			break;
+		//2. 메인페이지에서 차단된 회원관리 페이지로 들어갈 경우
+		case "memberBlock":
+			break;
+		//3. 메인페이지에서 자유게시판 관리 페이지로 들어갈 경우
+		case "freeChart":
+			break;
+		default:
+			break;
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
