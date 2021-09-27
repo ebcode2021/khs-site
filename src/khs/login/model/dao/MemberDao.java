@@ -51,7 +51,7 @@ public class MemberDao {
 		member.setNickname(rset.getString("nickname"));
 		member.setBirthDate(rset.getDate("birth_date"));
 		member.setIsLeave(rset.getInt("is_leave"));
-		member.setFinalDate(rset.getDate("start_date"));
+		member.setFinalDate(rset.getDate("final_date"));
 		member.setStartDate(rset.getDate("start_date"));
 		return member;
 	}
