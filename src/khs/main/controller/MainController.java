@@ -31,7 +31,7 @@ public class MainController extends HttpServlet {
 		String[] uriArr = request.getRequestURI().split("/");
 		switch(uriArr[uriArr.length-1]) {
 		case "main" :
-			request.getRequestDispatcher("/main/main").forward(request, response);
+			main(request,response);
 			break;
 		case "logout" :
 			logout(request,response);
@@ -39,6 +39,14 @@ public class MainController extends HttpServlet {
 		default : throw new PageNotFoundException();
 		}
 	}
+
+	private void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("/main/main").forward(request, response);
+		
+	}
+
+	
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.getSession().removeAttribute("authentication");
