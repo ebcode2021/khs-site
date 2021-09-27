@@ -17,7 +17,7 @@
     <div class="yellow_border">
       <form action="${contextPath}/login/login-check" method="post">
         <label for="user_name">
-        <input type = "password" id="user_name" name="userId" placeholder="아이디" autofocus><br></label>
+        <input type = "text" id="user_name" name="userId" placeholder="아이디" autofocus><br></label>
       <label for="user_pw">
         <input type = "password" id="user_pw" name="password" placeholder="비밀번호"><br>
       </label>
