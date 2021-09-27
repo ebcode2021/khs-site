@@ -1,17 +1,19 @@
 package khs.myPage.model.service;
 
-import java.security.MessageDigest;
 import java.sql.Connection;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import khs.common.db.JDBCTemplate;
 import khs.login.model.dto.Member;
+import khs.myPage.model.dao.BoardDao;
 import khs.myPage.model.dao.MyPageDao;
+import khs.myPage.model.dto.Board;
 import khs.myPage.model.dto.MyPage;
 
 public class MyPageService {
-	
+	private BoardDao boardDao = new BoardDao();
 	private MyPageDao myPageDao = new MyPageDao();
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
@@ -90,11 +92,41 @@ public class MyPageService {
 	
 	
 	
+	
+	
+	public List<Board> selectMyPosting(String userId) {
+		Connection conn = template.getConnection();
+		List<Board> boardList = null;
+		
+		try {
+			boardList = boardDao.selectMyPosting(conn, userId);
+		} finally {
+			template.close(conn);
+		}
+
+		return boardList;
+	}
+	
+
+	
+	
+	
 	public String getLoginMemberId(HttpServletRequest request) {
 		Member member = (Member)request.getSession().getAttribute("authentication");
 		String userId = member.getUserId();
 		return userId;
 	}
+
+
+
+
+
+	
+
+
+
+
+
 	
 	
 

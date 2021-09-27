@@ -345,14 +345,23 @@ td, td> div{
  		<div class= 'main_banner'>
  			<div class='userInfo'>
 				
-				<div class="profile_image">
-					image
+				<div class="profile_image" style="background-color:blue;">
+				
 				</div>
+				
+				
 				
 				<div class="profile_table" border="solid">
 					<div>${authentication.name}</div>
 					<div>${authentication.khCenter}</div>
 					<div>${authentication.instrName} 강사</div>
+					<div>
+						<form action="/myPage/profile-image-upload">
+					    <input type="file" name="file" class = 'khFile' id="khFile" accept="image/*,.pdf"/>
+					    <br>
+						<button>프로필 사진 업로드</button>
+						</form>
+					</div>
 				</div>
 				
 				
