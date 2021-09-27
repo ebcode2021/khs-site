@@ -24,6 +24,7 @@ public class adminPageController extends HttpServlet {
 			break;
 		//2. 메인페이지에서 차단된 회원관리 페이지로 들어갈 경우
 		case "memberBlock":
+			memberBlock(request,response);
 			break;
 		//3. 메인페이지에서 자유게시판 관리 페이지로 들어갈 경우
 		case "freeChart":
@@ -31,6 +32,10 @@ public class adminPageController extends HttpServlet {
 		default:
 			break;
 		}
+	}
+
+	private void memberBlock(HttpServletRequest request, HttpServletResponse response) {
+		
 	}
 
 	private void adminPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
