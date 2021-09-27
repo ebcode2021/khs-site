@@ -4,7 +4,27 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+<!--폰트어썸  -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" type="text/css" rel="stylesheet">
+
+<!--slick -->
+<link href="/resources/css/slick/slick-theme.css"  rel="stylesheet" type="text/css">
+<link href="/resources/css/slick/slick.css"  rel="stylesheet" type="text/css">
+<link href="/resources/js/common/jquery.js" rel="stylesheet" type="text/css"> 
+<script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+<!-- <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script> -->
+
+<!-- 카카오페이 결제 시스템 -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<script type="text/javascript">
+      $.noConflict();
+</script>
+<!--여기 경로만 잡으면 끝 slick완성-->
+<!-- <link href="/resources/js/common/jquery.js" rel="stylesheet" type="text/css"> -->
+
+
+
 </head>
   <style>
     html,body{
@@ -44,7 +64,7 @@
     /* 메인 */
     main{
       min-height : 75%;
-      background-color: bisque;
+      /* background-color: bisque; */
     }
 
     section{
@@ -80,7 +100,7 @@
    
 
     .nav{
-      background-color: rgba(255, 157, 0, 0.3);
+      background-color: rgba(255, 157, 0, 0.5);
       font-weight: bolder;
       width : 70%;
       display : flex;
@@ -114,7 +134,7 @@
     }
 
     .list>li{
-      margin-left: 5%;
+      margin-left: 7%;
       font-size : 20px;
       list-style-type: disc;
       color:lightsalmon;
@@ -139,16 +159,22 @@
     /* section_3부분 */
     .section_3{
       margin : 1%;
-      background-color: gray;
+      background-color : rgba(255, 157, 0, 0.3);
+    
     }
 
+	.section_3>.game {
+	  
+	}
     .game_news{
      width : 100%;
+     
     }
 
     .game_news_list{
       display : flex;
       flex-direction: column;
+      
     }
 
     .game_news_list>li{
@@ -181,8 +207,49 @@
       float:left;
       align-items: center;
       background-color: lightcoral;
+      border-radius: 80%;
+      overflow: hidden;
       padding-bottom:25%;
     }
+    
+    .game>.game1{
+      background-image : url("../resources/image/main/dino.png");
+      background-size : contain;
+      background-position : center;
+      cursor:pointer;
+    }
+    .game>.game2,.game3{
+      background-image : url("../resources/image/main/ready.png");
+      background-size : cover;
+      background-position : center;
+     
+    }
+    
+    .news>.news1,.news2,.news3{
+    	cursor : pointer;
+    }
+    
+    .news>.news1{
+      background-image : url("../resources/image/main/news1.jpg");
+      background-size : cover;
+      background-position : 80% center;
+    }
+    
+    .news>.news2{
+      background-image : url("../resources/image/main/news5.png");
+      background-size : cover;
+      background-repeat : no-repeat;
+      background-position : center;
+      overflow : hidden;
+    }
+    
+    .news>.news3{
+     background-image : url("../resources/image/main/news6.jpg");
+      background-size : cover;
+      background-repeat : no-repeat;
+      background-position : center;
+    }
+    
 
 
     /* footer 부분 */
@@ -199,6 +266,20 @@
 
     .visited{
       padding-left : 3%;
+    }
+
+   
+    
+    .slide{
+       background-color:lightyellow;
+       position:relative;
+       width:50vw;
+    }
+    
+    .slide img{
+    	display : block;
+    	width : 50vw;
+    	height : 25vw;
     }
 
     .qrcode{
@@ -227,7 +308,7 @@
     <section class="section_1">
       <div class="hello"> 
         <p id="hello_first">반갑습니다..</p>
-        <p>퇴실체크 <br> 했나요?</p>
+        <p id="hello_second">퇴실체크 <br> 했나요?</p>
       </div>
       
       <div class="nav">
@@ -247,7 +328,7 @@
 
     <section class="section_2">
       <div class="cal">
-        캘린더 api 들어갈 곳
+        
       </div>
       <div class="main_show">
         <ol class="list">
@@ -266,17 +347,17 @@
       <div class="game_news">
        <ol class="game_news_list">
         <li> <span>게임</span></li>
-         <div>
-           <div>coming soon</div>
-           <div>coming soon</div>
-           <div>coming soon</div>
+         <div class="game">
+           <div class="game1" onclick="window.open('#')"></div>
+           <div class="game2"></div>
+           <div class="game3"></div>
         </div>
         <br>
-        <li> <span>관련 뉴스</span></li>
-         <div>
-           <div>coming soon</div>
-           <div>coming soon</div>
-           <div>coming soon</div>
+        <li> <span>관련 사이트</span></li>
+         <div class="news">
+           <div class="news1" onclick ="window.open('https://www.iei.or.kr/main/main.kh')"></div>
+           <div class="news2" onclick ="window.open('https://www.hrd.go.kr/hrdp/ma/pmmao/indexNew.do')"></div>
+           <div class="news3" onclick ="window.open('https://www.work.go.kr/kua/index.do')"></div>
         </div>
       </ol>
      </div>
@@ -290,7 +371,12 @@
         <div>현재 접속자 수 : ${todayCnt}</div>
         <div>누적 방문자 수 : ${totalCnt}</div>
       </div>
-      <div class="slide"> slick으로 슬라이드</div>
+      <div class="slide" id="slide_slick">
+        <div><img src="../resources/image/main/slide/slide01.jpg"/></div>
+        <div><img src="../resources/image/main/slide/slide03.png"/></div>
+        <div><img src="../resources/image/main/slide/slide04.jpg"/></div>
+        <div><img src="../resources/image/main/slide/slide05.png"/></div>
+      </div>
       <div class="qrcode">
         <div>[개발자에게 기부하기]</div>
         <div>
@@ -300,6 +386,37 @@
     </section>
     <div class="copyright"> @copyright 1s4j 2021-</div>
   </footer>
+  
+<script src="/resources/js/main/slick.js"  type="text/javascript"></script>
+<script type="text/javascript">
+   let click_count=0;
+    document.querySelector('.hello').addEventListener('click', ()=>{
+      click_count++;
+      const element1 = document.getElementById('hello_first');
+      const element2 = document.getElementById('hello_second');
 
+      if(click_count%2!=0){
+        element1.innerHTML =  "${authentication.name} 님의";
+        element2.innerHTML =  "종강일은 ${authentication.finalDate}" + "<br>"+  "입니다.";
+        
+      }else{
+        element1.innerHTML ="반갑습니다";
+        element2.innerHTML = "퇴실체크" + "<br>"+"했나요?";
+      }
+
+    })
+
+     jQuery(document).ready(function(){
+    	 jQuery('#slide_slick').slick({
+    		infinite : true,
+    		dots: true,
+    		autoplay : true,
+    		autoplaySpeed : 5000,
+    		vertical : true,
+    	});
+    }); 
+
+
+  </script>
 </body>
 </html>

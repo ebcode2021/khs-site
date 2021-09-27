@@ -13,7 +13,25 @@ public class Member {
 	private Date BirthDate;
 	private String khCenter;
 	private int isLeave;
+	private Date startDate;
+	private Date finalDate;
 	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getFinalDate() {
+		return finalDate;
+	}
+
+	public void setFinalDate(Date finalDate) {
+		this.finalDate = finalDate;
+	}
+
 	public Member() {
 	}
 
@@ -101,8 +119,11 @@ public class Member {
 	public String toString() {
 		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", grade=" + grade
 				+ ", regDate=" + regDate + ", name=" + name + ", nickname=" + nickname + ", BirthDate=" + BirthDate
-				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + "]";
+				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + ", startDate=" + startDate + ", finalDate="
+				+ finalDate + "]";
 	}
+
+	
 	
 	
 }

@@ -26,7 +26,6 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] uriArr = request.getRequestURI().split("/");
 		if(uriArr[uriArr.length-1].equals("login-check")) {
-			
 			loginCheck(request,response);
 		}else {
 			request.getRequestDispatcher("/login/login").forward(request, response);

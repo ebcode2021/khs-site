@@ -17,6 +17,7 @@ public class VisitService {
 		
 		try {
 			res = visitDao.getTodayVisitCnt(conn);
+			
 		}finally {
 			template.close(conn);
 		}

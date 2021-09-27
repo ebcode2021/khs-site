@@ -34,7 +34,7 @@
 				<div class = "validCheckPassed" id = "userIdPassed"></div>
 				<div class = "validCheckFailed" id = "userIdFailed"></div>
 			<button class = 'checkID' id='checkID'  type="button">아이디 중복검사</button>	
-			<input type="text" name="password" id='password' placeholder="비밀번호 (8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)"
+			<input type="password" name="password" id='password' placeholder="비밀번호 (8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)"
 			<c:choose>
             	<c:when test = "${empty joinFailed.password}">
             		value="${joinForm.password}";
@@ -46,7 +46,7 @@
 			><br>
 				<div class = "validCheckPassed" id = "userPwPassed" ></div>
 				<div class = "validCheckFailed" id = "userPwFailed"></div>
-			<input type="text" name="passwordCheck" id='passwordCheck' placeholder="비밀번호 확인(8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)">
+			<input type="password" name="passwordCheck" id='passwordCheck' placeholder="비밀번호 확인(8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)">
 			<br>
 				<div class = "validCheckPassed" id = "passwordAgainPassed"></div>
 				<div class = "validCheckFailed" id = "passwordAgainFailed"></div>
@@ -163,7 +163,7 @@ Google과의 관계가 정의됩니다.
 	  		<label class = "agreeLabel" for="agreeLogin">동의</label>
 	  		<input type="radio" name='agreeLogin' id="disagreeLogin" class="agreeLogin">
 	  		<label class = "agreeLabel" for="disagreeLogin">비동의</label>
-		<button class = "commitButton" id = 'backButton'>뒤로</button><button class = "commitButton" id='joinButton' type="submit" style="pointer-events: none;">회원가입</button>
+		<button class = "commitButton" id = 'backButton' type="button">뒤로</button><button class = "commitButton" id='joinButton' type="submit" style="pointer-events: none;">회원가입</button>
 </div> 
 	</form>
 </div>
@@ -265,7 +265,7 @@ Google과의 관계가 정의됩니다.
 			failed.style.display = "block";
 			passed.style.display = "none";
 			failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp입력 조건에 맞는 아이디를 다시 입력하세요';
-			confirmCode = false; 
+			confirmId = false; 
 			return;
 		}
 		
@@ -277,7 +277,7 @@ Google과의 관계가 정의됩니다.
 				failed.style.display = "block";
 				passed.style.display = "none";
 				failed.innerHTML = '<i class="fas fa-times-circle"></i>&nbsp중복된 아이디입니다';
-				confirmCode = false; 
+				confirmId = false; 
 				return;
 			}
 			if(text == 'valid'){
@@ -285,7 +285,7 @@ Google과의 관계가 정의됩니다.
 				passed.style.display = "block";
 				failed.style.display = "none";
 				passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 아이디입니다';
-				confirmCode = true; 
+				confirmId = true; 
 			}	
 		})
 	})
@@ -354,8 +354,6 @@ Google과의 관계가 정의됩니다.
 			passed.style.display = "block";
 			failed.style.display = "none";
 			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp사용 가능한 비밀번호 입니다. 비밀번호 확인을 입력하세요';
-			
-			
 			firstPw = dom.value;
 		}
 		
@@ -497,9 +495,6 @@ Google과의 관계가 정의됩니다.
 					alert("시스템 오류로 메일 발송이 실패하였습니다. 다시 시도하세요");
 				}
 			})
-			
-			
-			
 		} else {
 			dom.style.border = "3px solid #FF6161";
 			failed.style.display = "block";
@@ -682,8 +677,6 @@ Google과의 관계가 정의됩니다.
 			passed.style.display = "block";
 			failed.style.display = "none";
 			passed.innerHTML = '<i class="fas fa-check-circle"></i>&nbsp별명 중복검사를 진행하세요';
-			confirmNickname = false;
-			confirmName = true;
 		}
 		
 	})
@@ -769,9 +762,7 @@ Google과의 관계가 정의됩니다.
 		let dom = document.querySelector('#joinButton');
 		
 		item.addEventListener('blur', event => {
-			if(
-					true
-					/* confirmId&
+			if(confirmId&
  			confirmPasswordCheck&
 			confirmEmail&
 			confirmCode&
@@ -779,7 +770,7 @@ Google과의 관계가 정의됩니다.
 			confirmNickname&
 			confirmBirth&
 			confirmImgFile& 
-			confirmAgree  */ 
+			confirmAgree 
 			){
 				// 모든 조건들이 올바르게 input 되었을 시 pointer-events 해제 
 				dom.style.setProperty('background-color', 'white');
@@ -793,6 +784,11 @@ Google과의 관계가 정의됩니다.
 			
 		})
 	});
+	
+	document.querySelector('#backButton').addEventListener('click', e => {
+		location.href = '/login';
+	})
+	
 	
 	var event = new Event('input', {
 	    'bubbles': true,

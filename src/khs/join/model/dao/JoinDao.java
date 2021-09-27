@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import khs.common.db.JDBCTemplate;
+import khs.common.encrypt.Encrypter;
 import khs.common.exception.DataAccessException;
 import khs.join.model.dto.Member;
 
@@ -13,18 +14,20 @@ public class JoinDao {
 
 	// 템플릿 불러오기, 코드 및 연결절차 간소화
 	JDBCTemplate template = JDBCTemplate.getInstance();
+	Encrypter encrypter = new Encrypter();
 
 	public int insertMember(Member newMember, Connection conn) {
 
 		PreparedStatement pstm = null;
 		int resultInt = 0;
-
+		
+		
 		try {
 			String query = "INSERT INTO MEMBER (USER_ID, PASSWORD, EMAIL, NAME, " + "NICKNAME, BIRTH_DATE, KH_CODE, VARI_FILE)"
 					+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, newMember.getUserId());
-			pstm.setString(2, newMember.getPassword());
+			pstm.setString(2, Encrypter.convertToSHA256(newMember.getPassword()));
 			pstm.setString(3, newMember.getEmail());
 
 			pstm.setString(4, newMember.getName());

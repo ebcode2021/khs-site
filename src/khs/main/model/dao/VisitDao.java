@@ -17,12 +17,13 @@ public class VisitDao {
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
 	public int getTodayVisitCnt(Connection conn) {
+		//오늘 날짜 구하기
 		Calendar cal = new GregorianCalendar();
 		Date date = new Date(cal.getTimeInMillis());
 		
 		PreparedStatement pstm = null;
 		int res = 0;
-		
+		// 테이블 명 : visited 칼럼이름 : visit_date, visit_count
 		int todayCnt = 0;
 		String query = "select visit_count from visited where substr(to_char(visit_date),1,9)=to_date(?,'yy/MM/dd')";
 		

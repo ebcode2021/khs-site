@@ -18,6 +18,8 @@ import khs.common.exception.PageNotFoundException;
 import khs.common.file.FileDTO;
 import khs.common.file.FileUtil;
 import khs.common.file.MultiPartParams;
+import khs.common.http.HttpConnector;
+import khs.common.mail.MailSender;
 import khs.join.model.dto.Member;
 import khs.join.model.service.JoinService;
 
@@ -73,47 +75,27 @@ public class JoinController extends HttpServlet {
 	}
 	
 	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
-		 System.out.println("3. joinMethod 진입 ( joinController)");
-		
+		 	 
+		 //filter에서 완성한 MemberDTO 추출 
 		 Member member = new Member();
 		 member = (Member) request.getAttribute("joinCompleteMember");
-		 
-//		 // 1. FileUtil을 통해 Multipart 파싱, MultipartParams로 재구성 
-//		 FileUtil fileUtil = new FileUtil();
-//		 MultiPartParams multiPartParams = fileUtil.fileUpload(request);
-//		 
-//		 System.out.println("4. FileUtil 업로드 ( joinController)");
-//		 
-//		 //2. 파싱된 데이터 중 파일이 아닌 데이터 추출 
-//		 String userId = multiPartParams.getParameterValues("userId")[0];	 
-//		 String password = multiPartParams.getParameterValues("password")[0];
-//		 String email = multiPartParams.getParameterValues("email")[0];
-//		 String name = multiPartParams.getParameterValues("name")[0];
-//		 String birth = multiPartParams.getParameterValues("birth")[0];
-//		 String nickname = multiPartParams.getParameterValues("nickName")[0];
-//		 String selectKH = multiPartParams.getParameterValues("selectKH")[0];
-//		 
-//		 
-//		 
-//		 System.out.println("파일의 경로는 : " + variFile); 
-//		 System.out.println("sqlDate 변환 결과는 : " + sqlDate);
-//		 
-//		
-//		 //4. 모든 Parameter 값을 memeberDTO에 삽입 
-//		 Member newMember = new Member();
-//		 newMember.setUserId(userId);
-//		 newMember.setPassword(password);
-//		 newMember.setEmail(email);
-//		 newMember.setName(name);
-//		 newMember.setNickname(nickname);
-//		 newMember.setBirthDate(sqlDate);
-//		 newMember.setKhCenter(selectKH);
-//		 newMember.setVariFile(variFile);
-		 
-		 System.out.println("memberDTO의 결과는 : " + member);
-		 //5. Service 단으로 전송, insert 실행  
+		  
+		 //join
 		 joinService.insertMember(member);
+		 
+		 //이메일 발송
+		 MailSender mailSender = new MailSender();
+		 HttpConnector conn = new HttpConnector();
+		 String Emailresponse = conn.get("http://localhost:9090/mail?mailTemplate=welcome-mail");
+		 mailSender.sendEmail(member.getEmail(), "가입 축하 메일 발송", Emailresponse);
+		 
+		 //가입 축하메일 발송에 관한 알람이 필요 
+		 
+		 //로그인 페이지로 redirect 
+		 response.setContentType("text/html; charset=UTF-8"); 
+		 response.getWriter().println("<script>alert('회원 가입이 완료되어 가입 축하 메일이 전송되었습니다'); location.href='"+ "/login" +"';</script>"); 
+		 response.getWriter().close();
+		 
 	}
 	
 	private void checkId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

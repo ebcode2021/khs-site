@@ -69,6 +69,23 @@
 					border: 3px solid #D5D5D5;
 					
 				}
+				
+					#checkID{
+						display:block;
+						border: 3px solid #FFB751; 
+						background-color: rgba(0,0,0,0);
+						width: 150px;
+						height: 50px;
+						color: #FFB751;
+						padding: 5px;
+						margin-left :170px;
+						border-radius: 15px;
+						font-weight: bolder;
+					}
+						#checkID:hover{
+							color:white; 
+							background-color: #FFB751;
+						}
 					.sendEmail{
 						display:block;
 						border: 3px solid #FFB751; 
@@ -245,6 +262,9 @@
 		height : 37px;
 		color: #dddddd;
 	}
+	input[type="password"]{
+		padding-left: 10px;
+	}
 
 	/* input Focus 조절하기 (focus outline 없에기 )  */
 	input:focus{
@@ -280,7 +300,12 @@
 	#emailValiFailed{
 		padding-bottom: 30px;
 	}
-
+	#userIdPassed{
+		padding-bottom: 30px;
+	}
+	#userIdFailed{
+		padding-bottom: 30px;
+	}
 /* select tag의 css를 input과 일치시켜 통일 */
 	#selectKH {
 		width: 450px;
