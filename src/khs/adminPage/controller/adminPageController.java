@@ -18,30 +18,51 @@ public class adminPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
-		//1. 메인페이지에서 회원정보 조회 페이지로 들어갈 경우!(수정)
-		case "adminPage": 
-			adminPage(request,response);
+		// 관리자 메인 페이지로 접속
+		case "index": 
+			index(request,response);
 			break;
-		//2. 메인페이지에서 차단된 회원관리 페이지로 들어갈 경우
+		// 회원정보조회 페이지로 접속
+		case "accountInfo": 
+			accountInfo(request,response);
+			break;
+		// 차단된 회원 관리 페이지로 접속
 		case "memberBlock":
 			memberBlock(request,response);
 			break;
-		//3. 메인페이지에서 자유게시판 관리 페이지로 들어갈 경우
+		// 자유게시판 관리 페이지로 접속
 		case "freeChart":
+			freeChart(request,response);
 			break;
-		default:
+		default: 
 			break;
 		}
 	}
 
-	private void memberBlock(HttpServletRequest request, HttpServletResponse response) {
-		
-	}
-
-	private void adminPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// 관리자 메인 페이지로 접속
+	private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/adminPage/adminPage-index").forward(request, response);
 	}
 
+	// 회원정보조회 페이지로 접속
+	private void accountInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/adminPage/adminPage-accountInfo").forward(request, response);
+	}
+
+	// 차단된 회원 관리 페이지로 접속
+	protected void memberBlock(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
+	}
+	
+	// 자유게시판 관리 페이지로 접속
+	protected void freeChart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/adminPage/adminPage-freeChart").forward(request, response);
+	}
+	
+	
+	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
