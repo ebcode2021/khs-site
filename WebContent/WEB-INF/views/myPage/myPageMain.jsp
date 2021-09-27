@@ -212,6 +212,18 @@ html, body{
 	height: 200px;
 }
 
+.history_post_table {
+	border : solid;
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+}
+.history_post_table> tr{
+	height:30;
+}
+
+
+
 .history_comments {
 	height : 200px;
 }
@@ -295,10 +307,122 @@ html, body{
 				
 				
  			</div>
- 			<div class='history_post'>내 게시글</div>
+ 			<div class='history_post'>
+ 				
+				<%--  <table class="history_post_table">
+					<tr>
+						<th>선택</th>
+						<th>게시글번호</th>
+						<th id="freeChart_title">글제목</th>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>${myPosting.boardList[0].title}</td>
+						<td>${myPosting.boardList[0].content}</td>
+			
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>${myPosting.boardList[1].title}</td>
+						<td>${myPosting.boardList[1].content}</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>${myPosting.boardList[2].title}</td>
+						<td>${myPosting.boardList[2].content}</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>${myPosting.boardList[3].title}</td>
+						<td>${myPosting.boardList[3].content}</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>001</td>
+						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>001</td>
+						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>001</td>
+						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>001</td>
+						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
+					</tr>
+				</table> --%>
+	 			
+	 				
+ 			
+ 			
+ 			</div>
  			
 
- 			<div class='history_comments'>내 댓글</div>
+ 			<div class='history_comments'>
+ 			
+				 <table class="history_post_table">
+					<tr>
+						<th>선택</th>
+						<th>게시글번호</th>
+						<th id="freeChart_title">글제목</th>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>005</td>
+						<td></td>
+			
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>004</td>
+						<td>해킹/보안 블로그 글업 스터디 모집합니다.</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>003</td>
+						<td>신입 PHP 추천 책 있을까요?</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>002</td>
+						<td>학부생 질문드리고 싶은게 있습니다!</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>001</td>
+						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>001</td>
+						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>001</td>
+						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
+						<td>001</td>
+						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
+					</tr>
+				</table>
+ 			
+ 			</div>
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
  			
  			<div class='calendar'>캘린더</div>
  		</div>

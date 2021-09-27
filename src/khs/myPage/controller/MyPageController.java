@@ -1,6 +1,8 @@
 package khs.myPage.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import khs.common.encrypt.Encrypter;
 import khs.common.exception.PageNotFoundException;
+import khs.myPage.model.dto.Board;
 import khs.myPage.model.dto.MyPage;
 import khs.myPage.model.service.MyPageService;
 
@@ -46,6 +49,7 @@ public class MyPageController extends HttpServlet {
 		case "logout":
 			logout(request,response);
 			break;
+			
 		default: throw new PageNotFoundException();
 		
 		}
@@ -54,6 +58,7 @@ public class MyPageController extends HttpServlet {
 	}
 	
 	
+
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().getAttribute("authentication");
@@ -116,7 +121,12 @@ public class MyPageController extends HttpServlet {
 	private void myPageMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = myPageService.getLoginMemberId(request);
 		MyPage myPage = myPageService.selectMyPage(userId);
+		List<Board> boardList = myPageService.selectMyPosting(userId);
+		
+		System.out.println(boardList);
+		
 		request.setAttribute("authentication", myPage);
+		request.setAttribute("myPosting", boardList);
 		request.getRequestDispatcher("/myPage/myPageMain").forward(request, response);
 		
 	}
