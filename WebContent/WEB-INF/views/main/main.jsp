@@ -7,6 +7,7 @@
 <!--폰트어썸  -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" type="text/css" rel="stylesheet">
 
+
 <!--slick -->
 <link href="/resources/slick/slick-theme.css"  rel="stylesheet" type="text/css">
 <link href="/resources/slick/slick.css"  rel="stylesheet" type="text/css">
