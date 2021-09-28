@@ -19,26 +19,26 @@ public class studyPageController extends HttpServlet {
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
 		// 학습게시판으로 접속
-		case "studyPage": 
-			studyPage(request,response);
+		case "index": 
+			index(request,response);
 			break;
 		default: response.setStatus(404);
 			break;
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-
-	private void studyPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/studyPage/studyPage").forward(request, response);
 		
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
