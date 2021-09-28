@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import khs.common.encrypt.Encrypter;
 import khs.common.exception.PageNotFoundException;
 import khs.myPage.model.dto.Board;
@@ -46,6 +47,9 @@ public class MyPageController extends HttpServlet {
 		case "changePassword":
 			changePassword(request,response);
 			break;
+		case "delete-post":
+			deletePost(request,response);
+			break;
 		case "logout":
 			logout(request,response);
 			break;
@@ -58,6 +62,20 @@ public class MyPageController extends HttpServlet {
 	}
 	
 	
+
+
+	private void deletePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = myPageService.getLoginMemberId(request);
+		String bdIdx[] = request.getParameterValues("chk_num");
+		
+		myPageService.deleteMyPost(userId, bdIdx);
+		
+		request.setAttribute("msg", "선택한 게시글이 삭제되었습니다.");
+		request.setAttribute("url", "/myPage/myPageMain");
+		request.getRequestDispatcher("/error/result").forward(request, response);
+		//response.sendRedirect("/myPage/myPageMain");
+	}
+
 
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -121,12 +139,10 @@ public class MyPageController extends HttpServlet {
 	private void myPageMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = myPageService.getLoginMemberId(request);
 		MyPage myPage = myPageService.selectMyPage(userId);
-		List<Board> boardList = myPageService.selectMyPosting(userId);
-		
-		System.out.println(boardList);
+		List<Board> boardList = myPageService.selectMyPost(userId);
 		
 		request.setAttribute("authentication", myPage);
-		request.setAttribute("myPosting", boardList);
+		request.setAttribute("boardList", boardList);
 		request.getRequestDispatcher("/myPage/myPageMain").forward(request, response);
 		
 	}

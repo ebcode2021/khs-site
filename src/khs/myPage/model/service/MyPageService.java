@@ -94,19 +94,36 @@ public class MyPageService {
 	
 	
 	
-	public List<Board> selectMyPosting(String userId) {
+	public List<Board> selectMyPost(String userId) {
 		Connection conn = template.getConnection();
 		List<Board> boardList = null;
 		
 		try {
-			boardList = boardDao.selectMyPosting(conn, userId);
+			boardList = boardDao.selectMyPost(conn, userId);
 		} finally {
 			template.close(conn);
 		}
 
 		return boardList;
 	}
+
 	
+	
+	public int deleteMyPost(String userId, String[] bdIdx) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		
+		try {
+			res = boardDao.deleteMyPost(conn, userId, bdIdx);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
 
 	
 	
@@ -116,6 +133,11 @@ public class MyPageService {
 		String userId = member.getUserId();
 		return userId;
 	}
+
+
+
+
+
 
 
 
