@@ -50,8 +50,11 @@ html, body{
 	margin-bottom: 0.5%;
 	font-weight: bolder;
 	font-size: 3.2vw;
+}
+.site_tit> a{
 	color: #f29d2a;
 }
+
 
 .logout{
 	display: flex;
@@ -86,6 +89,8 @@ html, body{
 	background-color: #F0F8FF;
 	border-radius: 20px 20px 20px 20px;
 	min-width: 600px;
+	display: flex;
+    flex-direction: column;
 }
 .sidemenu{
 	position: absolute;
@@ -202,6 +207,7 @@ html, body{
 	align-items: flex-start;
 	justify-content: space-around;
 	flex-direction: column;
+	font-family: 'han_sans_kr_Medium';
 }
 
 
@@ -214,7 +220,8 @@ html, body{
 }
 
 #history_table_title{
-	font-size: 1.2vw;
+	font-size: 1.2rem;
+	font-family: 'han_sans_kr_Medium';
 	margin-bottom: 0.8vw;
 }
 
@@ -224,6 +231,22 @@ html, body{
 	background-color: #FFF5EE;
 	font-size: 0.8vw;
 }
+
+#history_comment_title{
+	font-size: 1.2rem;
+	font-family: 'han_sans_kr_Medium';
+	margin-bottom: 0.8vw;
+}
+
+.history_comment_table{
+	width: 100%;
+	text-align: center;
+	background-color: #FFF5EE;
+	font-size: 0.8vw;
+	
+}
+
+
 
 
 #post_table_header> th{
@@ -240,17 +263,38 @@ html, body{
 
 
 .history_comments {
+	margin-top: 30px;
 	margin-left: 20px;
 	margin-right: 20px;
 	height : 300px;
 	
 }
 
-.calendar {
-	height : 200px;
+
+
+#delete-account {
+	margin-top: 30px;
+	height: 100px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
+#delete-account-submit{
+	width: 100%;
+	height: 70%;
+	text-align: center;
+	background-color: #FFF5EE;
+	font-size: 0.8vw;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
+#delete_account_title {
+	font-size: 1.2rem;
+	font-family: 'han_sans_kr_Medium';
+	margin-bottom: 0.8vw;
+}
 
 
 
@@ -284,8 +328,8 @@ html, body{
 
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'>K H S</div>
- 			<div class='logout'><button><a href = "/myPage/logout">로그아웃</a></button></div>
+ 			<div class='site_tit'><a href="/main">K H S</a></div>
+ 			<div class='logout'><button><a href="/myPage/logout">로그아웃</a></button></div>
  		</div>
  		
  	</div>
@@ -297,7 +341,7 @@ html, body{
  	
  	<div class="section">
  		<div class='sidemenu'>
- 		 	<div id="mypage"><a>나의 현황</a></div>
+ 		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
  			<div><a>학습 자료실</a></div>
  			<div id="wrap_hotplace"><a>맛집 정보</a>
 	 			<div class="hotplace">
@@ -325,6 +369,7 @@ html, body{
 				
 				
  			</div>
+ 			
  			<div class='history_post'>
  				<form action="/myPage/delete-post" id="delete-post-submit">
 				 <table class="history_post_table">
@@ -336,17 +381,24 @@ html, body{
 						<th>작성일자</th>
 						<th>게시판</th>
 					</tr>
+					<c:if test="${not empty boardList}">
 					<!-- https://zelkun.tistory.com/entry/JSTL%EB%AC%B8%EB%B2%95-cforEach-ctag%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%B6%9C%EB%A0%A5 -->
-					<c:forEach items="${boardList}" var="board" varStatus="i">
-						<tr height = "25">
-							<td><input type="checkbox" class = "chk_num" name="chk_num" value="${board.bdIdx}"></td>
-							<td>${board.bdIdx}</td>
-							<td>${board.title}</td>
-							<td>${board.regDate}</td>
-							<td>${board.bdSection}</td>
-							
-						</tr>
-					</c:forEach>
+						<c:forEach items="${boardList}" var="board" varStatus="i">
+							<tr height = "25">
+								<td><input type="checkbox" class = "chk_num" name="chk_num" value="${board.bdIdx}"></td>
+								<td>${board.bdIdx}</td>
+								<td>${board.title}</td>
+								<td>${board.regDate}</td>
+								<td>${board.bdSection}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					
+					<c:if test="${empty boardList}">
+					<tr>
+						<td>작성한 게시글이 없습니다.<td>
+					</tr>
+					</c:if>
 					
 				</table>
 				<button id="history_post_delete_button">체크한 게시글 삭제하기</button>
@@ -358,59 +410,59 @@ html, body{
 
 			<div class='history_comments'>
  			
-				 <table class="history_post_table">
-					<tr>
+				<form action="/myPage/delete-comment" id="delete-post-submit">
+				 <table class="history_comment_table">
+					<div id=history_comment_title>작성한 댓글</div>
+					<tr id="post_table_header">
 						<th>선택</th>
-						<th>게시글번호</th>
-						<th id="freeChart_title">글제목</th>
+						<th>댓글번호</th>
+						<th>댓글 단 글 제목</th>
+						<th>댓글 내용</th>
+						<th>댓글 작성 날짜</th>
+						<th>작성 게시판</th>
 					</tr>
+					<c:if test="${not empty commentList}">
+					<!-- https://zelkun.tistory.com/entry/JSTL%EB%AC%B8%EB%B2%95-cforEach-ctag%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%B6%9C%EB%A0%A5 -->
+						<c:forEach items="${commentList}" var="board" varStatus="i">
+							<tr height = "25">
+								<td><input type="checkbox" class = "chk_cmt_num" name="chk_cmt_num" value="${board.cmtIdx}"></td>
+								<td>${board.cmtIdx}</td>
+								<td>${board.title}</td>
+								<td>${board.cmtContent}</td>
+								<td>${board.cmtRegDate}</td>
+								<td>${board.bdSection}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					
+					<c:if test="${empty commentList}">
 					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>005</td>
-						<td></td>
-			
+						<td>작성한 게시글이 없습니다.<td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>004</td>
-						<td>해킹/보안 블로그 글업 스터디 모집합니다.</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>003</td>
-						<td>신입 PHP 추천 책 있을까요?</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>002</td>
-						<td>학부생 질문드리고 싶은게 있습니다!</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>001</td>
-						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>001</td>
-						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>001</td>
-						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>001</td>
-						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-					</tr>
+					</c:if>
+					
 				</table>
+				<button id="history_post_delete_button">체크한 게시글 삭제하기</button>
+				<span id="check-error-msg"></span>
+ 				</form>
  			
  			</div>
  			
  			
- 			<div class='calendar'>캘린더</div>
+ 			
+ 			<div id='delete-account'>
+ 			<div id=delete_account_title>회원 탈퇴하기</div>
+				<form action="/myPage/delete-account" id="delete-account-submit">
+				<div>
+				회원 탈퇴 시 작성한 게시글/댓글은 자동으로 지워지지 않습니다. 탈퇴를 진행하시겠습니까?
+				</div>
+				<button>회원 탈퇴</button>								
+ 				</form>
+ 			
+ 			</div>
+ 			
+ 			
+ 			
  		</div>
  	</div>
  	
@@ -438,7 +490,21 @@ html, body{
 	})();
 	
 	
-
+/* 	document.querySelector("#history_post_delete_button").addEventListener('click',()=>{
+		let check = document.getElementsByName('chk_num')
+		
+		check.forEach((e)=>{
+			if(e.checked)
+		})
+		
+		if(check.checked === false){
+			e.preventDefault();
+			document.querySelector("#check-error-msg").style.color = 'red';
+			document.querySelector("#check-error-msg").innerHTML = '체크한 항목이 없습니다.';
+		}
+		
+	}) */
+	
 
 	
 	

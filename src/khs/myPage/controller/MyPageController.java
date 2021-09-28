@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import khs.board.model.dto.Board;
 import khs.common.encrypt.Encrypter;
 import khs.common.exception.PageNotFoundException;
-import khs.myPage.model.dto.Board;
 import khs.myPage.model.dto.MyPage;
 import khs.myPage.model.service.MyPageService;
 
@@ -50,6 +49,12 @@ public class MyPageController extends HttpServlet {
 		case "delete-post":
 			deletePost(request,response);
 			break;
+		case "delete-comment":
+			deleteComment(request,response);
+			break;
+		case "delete-account":
+			deleteAccount(request,response);
+			break;
 		case "logout":
 			logout(request,response);
 			break;
@@ -62,6 +67,33 @@ public class MyPageController extends HttpServlet {
 	}
 	
 	
+
+
+	private void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = myPageService.getLoginMemberId(request);
+		myPageService.deleteAccount(userId);
+		
+		request.setAttribute("msg","회원 탈퇴가 완료되었습니다.");
+		request.setAttribute("url", "/login");
+		request.getSession().removeAttribute("authentication");
+		request.getRequestDispatcher("/error/result").forward(request, response);
+
+	}
+
+
+
+	private void deleteComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = myPageService.getLoginMemberId(request);
+		String cmtIdx[] = request.getParameterValues("chk_cmt_num");
+		
+		myPageService.deleteMyComment(userId, cmtIdx);
+		
+		request.setAttribute("msg", "선택한 댓글이 삭제되었습니다.");
+		request.setAttribute("url", "/myPage/myPageMain");
+		request.getRequestDispatcher("/error/result").forward(request, response);
+		//response.sendRedirect("/myPage/myPageMain");
+	}
+
 
 
 	private void deletePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -140,9 +172,12 @@ public class MyPageController extends HttpServlet {
 		String userId = myPageService.getLoginMemberId(request);
 		MyPage myPage = myPageService.selectMyPage(userId);
 		List<Board> boardList = myPageService.selectMyPost(userId);
+		List<Board> commentList = myPageService.selectMyComment(userId);
+		
 		
 		request.setAttribute("authentication", myPage);
 		request.setAttribute("boardList", boardList);
+		request.setAttribute("commentList", commentList);
 		request.getRequestDispatcher("/myPage/myPageMain").forward(request, response);
 		
 	}
