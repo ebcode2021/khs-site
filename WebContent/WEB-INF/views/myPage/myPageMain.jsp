@@ -95,7 +95,7 @@ html, body{
 	background-color: #fecf92;
 	border-radius: 20px 20px 20px 20px;
 	z-index: 999;
-	font-family: 'SDSamliphopangche_Outline';
+	font-family: 'han_sans_kr_Medium';
 }
 #mypage{
 	border-radius: 20px 20px 0 0;
@@ -172,7 +172,6 @@ html, body{
 
 
 .main_banner>  div{
-	border-style: solid;
 	margin-bottom: 15px;
 }
 
@@ -185,7 +184,6 @@ html, body{
 }
 
 .profile_image {
-	border-style: solid;
 	position: absolute;
 	height: 155px;
 	width: 155px;
@@ -209,23 +207,43 @@ html, body{
 
 
 .history_post{
-	height: 200px;
+	height: 350px;
+	margin-left: 20px;
+	margin-right: 20px;
+	
+}
+
+#history_table_title{
+	font-size: 1.2vw;
+	margin-bottom: 0.8vw;
 }
 
 .history_post_table {
-	border : solid;
 	width: 100%;
 	text-align: center;
-	font-size: 20px;
+	background-color: #FFF5EE;
+	font-size: 0.8vw;
 }
-.history_post_table> tr{
-	height:30;
+
+
+#post_table_header> th{
+	height: 35px;
+	text-align: center;
+}
+
+
+#history_post_delete_button {
+	font-size: 1.0vw;
+	margin-top: 0.8vw;
 }
 
 
 
 .history_comments {
-	height : 200px;
+	margin-left: 20px;
+	margin-right: 20px;
+	height : 300px;
+	
 }
 
 .calendar {
@@ -308,63 +326,37 @@ html, body{
 				
  			</div>
  			<div class='history_post'>
- 				
-				<%--  <table class="history_post_table">
-					<tr>
+ 				<form action="/myPage/delete-post" id="delete-post-submit">
+				 <table class="history_post_table">
+					<div id=history_table_title>작성한 게시글</div>
+					<tr id="post_table_header">
 						<th>선택</th>
 						<th>게시글번호</th>
-						<th id="freeChart_title">글제목</th>
+						<th>글제목</th>
+						<th>작성일자</th>
+						<th>게시판</th>
 					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>${myPosting.boardList[0].title}</td>
-						<td>${myPosting.boardList[0].content}</td>
-			
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>${myPosting.boardList[1].title}</td>
-						<td>${myPosting.boardList[1].content}</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>${myPosting.boardList[2].title}</td>
-						<td>${myPosting.boardList[2].content}</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>${myPosting.boardList[3].title}</td>
-						<td>${myPosting.boardList[3].content}</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>001</td>
-						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>001</td>
-						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>001</td>
-						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="chk_info" value="공지글등록"></td>
-						<td>001</td>
-						<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-					</tr>
-				</table> --%>
-	 			
-	 				
- 			
- 			
+					<!-- https://zelkun.tistory.com/entry/JSTL%EB%AC%B8%EB%B2%95-cforEach-ctag%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%B6%9C%EB%A0%A5 -->
+					<c:forEach items="${boardList}" var="board" varStatus="i">
+						<tr height = "25">
+							<td><input type="checkbox" class = "chk_num" name="chk_num" value="${board.bdIdx}"></td>
+							<td>${board.bdIdx}</td>
+							<td>${board.title}</td>
+							<td>${board.regDate}</td>
+							<td>${board.bdSection}</td>
+							
+						</tr>
+					</c:forEach>
+					
+				</table>
+				<button id="history_post_delete_button">체크한 게시글 삭제하기</button>
+				<span id="check-error-msg"></span>
+ 				</form>
  			</div>
  			
+ 			
 
- 			<div class='history_comments'>
+			<div class='history_comments'>
  			
 				 <table class="history_post_table">
 					<tr>
@@ -418,12 +410,6 @@ html, body{
  			</div>
  			
  			
- 			
- 			
- 			
- 			
- 			
- 			
  			<div class='calendar'>캘린더</div>
  		</div>
  	</div>
@@ -450,7 +436,12 @@ html, body{
 			document.querySelector(".hotplace").style.backgroundColor = "#fecf92";	
 		})
 	})();
-		
+	
+	
+
+
+	
+	
 	</script>
 
 	

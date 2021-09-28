@@ -113,6 +113,9 @@ public class MyPageDao {
 
 
 	
+	
+
+	
 
 	//쿼리문으로 받아오는 속성 수 보다 아래 함수에서 저장하는 속성들이 더 많아지면, 오류남
 	private MyPage convertAllToMyPage(ResultSet rset) throws SQLException {
@@ -138,6 +141,8 @@ public class MyPageDao {
 
 		return myPage;
 	}
+
+
 
 
 
