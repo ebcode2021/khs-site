@@ -180,13 +180,13 @@ html, body{
  	<div class="section">
  		<div class='sidemenu'>
  		
-		 	<div id="wrap_myStatus"><a href="/semi/adminPage_index.html" target="_self">나의 현황</a>
+		 	<div id="wrap_myStatus"><a href="/adminPage/index" target="_self">나의 현황</a>
 	 			<div class="myStatus">
-	 				<a href="/semi/adminPage_accountInfo.html" target="_self">회원 정보 조회</a>
-	 				<a href="/semi/adminPage_memberBlock.html" target="_self">차단된 회원 관리</a>
-	 				<a href="/semi/adminPage_freeChart.html" target="_self">자유게시판 관리</a>
+	 				<a href="/adminPage/accountInfo" target="_self">회원 정보 조회</a>
+	 				<a href="/adminPage/memberBlock" target="_self">차단된 회원 관리</a>
+	 				<a href="/adminPage/freeChart" target="_self">자유게시판 관리</a>
 	 			</div>
- 			</div>	
+ 			</div>
  			
  			<div><a>학습 자료실</a></div>
  			
