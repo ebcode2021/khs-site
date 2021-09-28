@@ -339,7 +339,7 @@
          <div class="nav_2">
            <div id="study"><a href="/study">학습 자료실</a></div>
            <div id="question"><a href="/question">문의사항</a></div>
-           <div id="admin"><a href="/adminPage">관리자</a></div>
+           <div id="admin"><a href="/adminPage/index">관리자</a></div>
          </div>
       </div> 
 
