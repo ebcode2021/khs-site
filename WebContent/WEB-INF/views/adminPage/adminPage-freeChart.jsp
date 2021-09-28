@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="resources/css/adminPageCSS.css" type="text/css" rel="stylesheet" >
+<link rel="stylesheet" href="/resources/css/adminPage/adminPageCSS.css"/>
 <style type="text/css">
 
 @font-face {
@@ -228,7 +228,7 @@ html, body{
  		
 <div class="ap_All">
 
-	<img class="ad_Logo" src="resources/adminPageImage/adminLogo.JPG">
+	<img class="ad_Logo" src="/resources/image/adminPage/adminLogo.JPG">
 	
 	<div class="ap_Tit">자유게시판 관리</div>
 

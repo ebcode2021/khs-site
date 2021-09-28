@@ -338,7 +338,7 @@
           <div id="restaurant"><a href="/restaurant">맛집 정보</a></div>
          </div>
          <div class="nav_2">
-           <div id="study"><a href="/study">학습 자료실</a></div>
+           <div id="study"><a href="/studyPage/index">학습 자료실</a></div>
            <div id="question"><a href="/question">문의사항</a></div>
            <div id="admin"><a href="/adminPage/index">관리자</a></div>
          </div>

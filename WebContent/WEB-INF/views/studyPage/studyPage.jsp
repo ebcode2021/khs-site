@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="resources/css/studyPageCSS.css" type="text/css" rel="stylesheet" ><!-- 경로 다시 설정해야함 -->
+<link rel="stylesheet" href="/resources/css/studyPage/studyPageCSS.css"/>
 <style type="text/css">
 
 
