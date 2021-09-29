@@ -6,7 +6,6 @@
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link rel="stylesheet" href="/resources/css/adminPage/adminPageCSS.css"/>
 <style type="text/css">
-
 @font-face {
     font-family: 'SDSamliphopangche_Outline';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
@@ -124,13 +123,11 @@ html, body{
 	border-radius: 20px 0 0 20px;
 	background-color: #FFAF7A;
 }
-
 #wrap_myStatus:hover {
 	transition-duration: 0.1s;
 	border-radius: 20px 0 0 20px;
 	background-color: #FFAF7A;
 }
-
 .sidemenu>div:hover {
 	transition-duration: 0.25s;
 	border-radius: 20px 20px 20px 20px;
@@ -146,7 +143,6 @@ html, body{
 	text-align: center;
 	color: white;
 }
-
 .footer{
 	display: flex;
 	justify-content: center;
@@ -167,8 +163,8 @@ html, body{
 <!-- [BaseCode]header 영역 -->
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'>K H S</div>
- 			<div class='logout'><button><a>로그아웃</a></button></div>
+ 			<div class='site_tit'><a href = "/main">K H S</a></div>
+ 			<div class='logout'><button><a href="/adminPage/logout">로그아웃</a></button></div>
  		</div>
  	</div>
  	

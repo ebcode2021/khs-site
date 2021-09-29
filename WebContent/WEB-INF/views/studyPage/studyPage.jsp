@@ -150,7 +150,7 @@ html, body{
 <!-- [BaseCode]header 영역 -->
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'>K H S</div>
+ 			<div class='site_tit'><a href = "/main">K H S</a></div>
  			<div class='logout'><button><a>로그아웃</a></button></div>
  		</div>
  	</div>

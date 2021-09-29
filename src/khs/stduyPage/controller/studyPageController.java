@@ -18,15 +18,24 @@ public class studyPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
-		// 학습게시판으로 접속
-		case "index": 
+		case "index": 			//학습게시판 페이지로 접속
 			index(request,response);
 			break;
+		case "studyData": 		//학습자료를 저장
+			studyData(request,response);
+			break;				
 		default: response.setStatus(404);
 			break;
 		}
 	}
-	
+
+
+	// 학습자료를 저장하는 메서드
+	private void studyData(HttpServletRequest request, HttpServletResponse response) {
+
+		
+	}
+
 	private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/studyPage/studyPage").forward(request, response);
 		

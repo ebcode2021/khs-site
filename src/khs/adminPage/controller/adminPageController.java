@@ -34,6 +34,9 @@ public class adminPageController extends HttpServlet {
 		case "freeChart":
 			freeChart(request,response);
 			break;
+		case "logout":
+			logout(request,response);
+			break;
 		default: response.setStatus(404);
 			break;
 		}
@@ -58,6 +61,15 @@ public class adminPageController extends HttpServlet {
 	protected void freeChart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/adminPage/adminPage-freeChart").forward(request, response);
 	}
+	
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().getAttribute("authentication");
+		request.getSession().removeAttribute("authentication");
+		request.setAttribute("msg", "로그아웃 되었습니다.");
+		request.setAttribute("url", "/login");
+		request.getRequestDispatcher("/error/result").forward(request, response);
+	}
+	
 	
 	
 	
