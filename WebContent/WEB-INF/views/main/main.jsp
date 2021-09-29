@@ -7,7 +7,6 @@
 <!--폰트어썸  -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" type="text/css" rel="stylesheet">
 
-
 <!--slick -->
 <link href="/resources/slick/slick-theme.css"  rel="stylesheet" type="text/css">
 <link href="/resources/slick/slick.css"  rel="stylesheet" type="text/css">
@@ -261,7 +260,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-       position:relative;
+      position:relative;
+      background-color:rgba(255, 157, 0, 0.5); 
+      padding-bottom : 20px;
+      font-weight : bolder;
     }
 
     .visited{
@@ -269,7 +271,7 @@
     }
 
     .slide{
-       background-color:white;
+       background-color:rgba(255, 157, 0, 0.5); 
        position:relative;
        width:50vw;
     }
@@ -304,6 +306,7 @@
 		height : 4vw;
 		margin-top : 2vw;
 		background-color: none;
+		cursor:pointer;
     
 	}
     .copyright{
@@ -400,7 +403,7 @@
       </div>
       <div class="qrcode">
         <div id="literal">개발자에게 <br> 돈 보내기 <br></div>
-        	<div id="kakaopay"></div>
+        	<div id="kakaopay" onclick="kakaoPay()"></div>
       </div>
     </section>
     <div class="copyright"> Copyright © 2021 - KH Students All Right Reserved-</div>
@@ -437,6 +440,32 @@
     }); 
 
 
+    jQuery('#kakaopay').click(function(){
+    	var IMP = window.IMP;
+    	IMP.init('imp28553074');
+    	
+    	IMP.request_pay({
+    		pg : 'kakao',
+    		pay_method : 'card',
+    		merchant_uid : 'merchant_' + new Date().getTime(),
+    		name : 'KHS 개발자를 위해 까까 사주기',
+    		amount : '10',
+    		buyer_email :'',
+    		buyer_tell :'',
+    		buyer_addr : '',
+    		buyer_postcode :'123-456',
+    	},function(rsp){
+    		console.log(rsp);
+    		if(rsp.success){
+    			var msg = '결제가 성공적으로 완료되었습니다.';
+    			msg += '결제 금액 : ' + rsp.paid_amount;
+    		}else{
+    			var msg = '결제에 실패하였습니다.';
+    			msg += '에러내용 :' + rsp.error_msg;
+    		}
+    		alert(msg);
+    	});
+    });
   </script>
 </body>
 </html>
