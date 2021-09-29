@@ -18,7 +18,7 @@ public class adminPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] uriArr = request.getRequestURI().split("/");
 		switch (uriArr[uriArr.length-1]) {
-		// 관리자 메인 페이지로 접속
+		// 관리자 메인 페이지로 접속 (테스트)
 		case "index": 
 			index(request,response);
 			break;
