@@ -43,9 +43,9 @@ public class VisitDao {
 			System.out.println("todayCnt의 값은" + todayCnt);
 			return (todayCnt+1);
 		}else {//검색된 결과가 있다면 그대로 넘겨주기
-			setTodayVisitCnt(conn);
+			res = setTodayVisitCnt(conn);
 			System.out.println("검색된 결과가 있습니다.");
-			return (todayCnt+1);
+			return res;
 		}
 	}
 	
@@ -53,16 +53,21 @@ public class VisitDao {
 		int res =0;
 		CallableStatement cstm = null;
 	
-		String pro = "{call VISIT_TODAY(to_date(sysdate,'yy/MM/dd'))}";
+		String pro = "{call VISIT_TODAY_CREATE}";
 		
 		try {
 			cstm = conn.prepareCall(pro);
-			res = cstm.executeUpdate();
+			cstm.executeUpdate();
+			template.commit(conn);
 		}catch (SQLException e) {
+			template.rollback(conn);
 			throw new DataAccessException(e);
 		}finally {
 			template.close(cstm);
 		}
+		
+		res = getAllTodayCnt(conn);
+		System.out.println("res의 값은? " + res);
 		return res;
 	}
 	
@@ -73,12 +78,35 @@ public class VisitDao {
 		try {
 			cstm = conn.prepareCall(query);
 			cstm.execute();
-			
+			template.commit(conn);
 		}catch (SQLException e) {
+			template.rollback(conn);
 			throw new DataAccessException(e);
 		}finally {
 			template.close(cstm);
 		}
+	}
+	
+	public int getAllTodayCnt(Connection conn) {
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		int res = 0;
+		String query ="select count(*) from visited where to_date(visit_date, 'yy/MM/dd') = to_date(sysdate, 'yy/MM/dd')";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			rset = pstm.executeQuery();
+			while(rset.next()) {
+				res+= rset.getInt(1);
+			}
+			template.commit(conn);
+		}catch (SQLException e) {
+			template.rollback(conn);
+			throw new DataAccessException(e);
+		}finally {
+			template.close(rset,pstm);
+		}
+		return res;
 	}
 	
 	public int getAllVisitCnt(Connection conn) {
@@ -93,7 +121,9 @@ public class VisitDao {
 			while(rset.next()) {
 				res+= rset.getInt(1);
 			}
+			template.commit(conn);
 		}catch (SQLException e) {
+			template.rollback(conn);
 			throw new DataAccessException(e);
 		}finally {
 			template.close(rset,pstm);

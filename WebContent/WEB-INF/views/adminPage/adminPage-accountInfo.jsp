@@ -260,26 +260,6 @@ html, body{
 			<td>강남</td>
 			<td>210304</td>
 		</tr>
-		<tr>
-			<td>이지은</td>
-			<td>아이유</td>
-			<td>iu1122</td>
-			<td>930105</td>
-			<td>iu1122@naver.com</td>
-			<td>LV01</td>
-			<td>강남</td>
-			<td>210501</td>
-		</tr>
-		<tr>
-			<td>스티븐</td>
-			<td>애플</td>
-			<td>app1122</td>
-			<td>730105</td>
-			<td>app1122@naver.com</td>
-			<td>LV01</td>
-			<td>종로</td>
-			<td>910501</td>
-		</tr>
 	</table>
 	</form>
 	

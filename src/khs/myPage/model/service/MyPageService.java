@@ -5,11 +5,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import khs.board.model.dao.BoardDao;
+import khs.board.model.dto.Board;
 import khs.common.db.JDBCTemplate;
 import khs.login.model.dto.Member;
-import khs.myPage.model.dao.BoardDao;
 import khs.myPage.model.dao.MyPageDao;
-import khs.myPage.model.dto.Board;
 import khs.myPage.model.dto.MyPage;
 
 public class MyPageService {
@@ -124,6 +124,61 @@ public class MyPageService {
 		}
 		return res;
 	}
+	
+	
+	
+	public List<Board> selectMyComment(String userId) {
+		Connection conn = template.getConnection();
+		List<Board> commentList = null;
+		
+		try {
+			commentList = boardDao.selectMyComment(conn, userId);
+		} finally {
+			template.close(conn);
+		}
+
+		return commentList;
+	}
+	
+	
+	
+	
+	public int deleteMyComment(String userId, String[] cmtIdx) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		
+		try {
+			res = boardDao.deleteMyComment(conn, userId, cmtIdx);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+
+	
+	
+	public int deleteAccount(String userId) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		
+		try {
+			res = myPageDao.deleteAccount(conn, userId);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		
+		return res;
+		
+	}
+
 
 	
 	
@@ -133,6 +188,15 @@ public class MyPageService {
 		String userId = member.getUserId();
 		return userId;
 	}
+
+
+
+
+
+	
+
+
+
 
 
 

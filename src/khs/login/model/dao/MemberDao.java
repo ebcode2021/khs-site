@@ -19,7 +19,7 @@ public class MemberDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		String query = "select * from member inner join lecture using(kh_code)"+
-						" where user_id =? and password = ?";
+						" where user_id =? and password = ? and is_leave=0";
 		
 		try {
 			pstm = conn.prepareStatement(query);

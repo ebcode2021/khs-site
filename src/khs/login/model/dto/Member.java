@@ -1,6 +1,8 @@
 package khs.login.model.dto;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class Member {
 	private String userId;
@@ -114,16 +116,9 @@ public class Member {
 	public void setIsLeave(int isLeave) {
 		this.isLeave = isLeave;
 	}
-
-	@Override
-	public String toString() {
-		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", grade=" + grade
-				+ ", regDate=" + regDate + ", name=" + name + ", nickname=" + nickname + ", BirthDate=" + BirthDate
-				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + ", startDate=" + startDate + ", finalDate="
-				+ finalDate + "]";
-	}
-
 	
+
+
 	
 	
 }
