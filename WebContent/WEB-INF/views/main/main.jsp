@@ -419,7 +419,7 @@
 
       if(click_count%2!=0){
         element1.innerHTML =  "${authentication.name} 님의";
-        element2.innerHTML =  "종강일은 ${authentication.finalDate}" + "<br>"+  "입니다.";
+        element2.innerHTML =  "종강까지" + "<br>" + "${remainder}일" + "<br>"+  "남았네요!";
         
       }else{
         element1.innerHTML ="반갑습니다";
