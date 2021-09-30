@@ -240,47 +240,23 @@ html, body{
 	<hr class="ap_hr">
 	
 	<form action="">
-	
-	<input type="text" minlength="1" size="25" placeholder="검색할 내용을 입력하시오">
-	<input class="ap_button01" type="submit" value="게시글 검색하기">
-	<input class="ap_button01" type="submit" value="전체 게시글 조회하기">
-		
-		
-	<table class="ap_session_base">
-		<tr>
-			<th>선택</th>
-			<th>게시글번호</th> <!-- BOARD.BD_IDX -->
-			<th id="freeChart_title">글제목</th> <!-- BOARD.TITLE -->
-		</tr>
-		<tr>
-			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td>005</td>
-			<td>인프런 김영한님 스프링완전정복로드맵 다 따라간다음엔 뭐할까요??</td>
-
-		</tr>
-		<tr>
-			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td>004</td>
-			<td>해킹/보안 블로그 글업 스터디 모집합니다.</td>
-		</tr>
-		<tr>
-			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td>003</td>
-			<td>신입 PHP 추천 책 있을까요?</td>
-		</tr>
-		<tr>
-			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td>002</td>
-			<td>학부생 질문드리고 싶은게 있습니다!</td>
-		</tr>
-		<tr>
-			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td>001</td>
-			<td>spring 웹 과외(강의) 추가 인원 모집 합니다.</td>
-		</tr>
-	</table>
-
-	<input class="ap_button01" type="submit" value="선택한 글을 삭제">
+		<input type="text" minlength="1" size="25" placeholder="검색할 내용을 입력하시오">
+		<input class="ap_button01" type="submit" value="게시글 검색하기">
+		<input class="ap_button01" type="submit" value="전체 게시글 조회하기">
+			
+		<table class="ap_session_base">
+			<tr>
+				<th>선택</th>
+				<th>게시글번호</th> <!-- BOARD.BD_IDX -->
+				<th id="freeChart_title">글제목</th> <!-- BOARD.TITLE -->
+			</tr>
+			<tr>
+				<td><input type="radio" name="chk_info" value="공지글등록"></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		<input class="ap_button01" type="submit" value="선택한 글을 삭제">
 	</form>
 	
 	

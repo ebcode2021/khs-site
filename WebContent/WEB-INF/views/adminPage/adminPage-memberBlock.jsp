@@ -248,18 +248,8 @@ html, body{
 		</tr>
 		<tr>
 			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td>honggil123</td>
-			<td>정지해제</td>
-		</tr>
-		<tr>
-			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td>iu0405</td>
-			<td>정지해제</td>
-		</tr>
-		<tr>
-			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td>app1144</td>
-			<td>7일정지</td>
+			<td></td>
+			<td></td>
 		</tr>
 	</table>
 	<input class="ap_button01" type="submit" value="선택한 사용자를 1일정지" style="margin-left: 30px;">

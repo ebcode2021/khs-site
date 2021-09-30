@@ -243,18 +243,16 @@ html, body{
 			<th>생년월일</th> <!-- MEMBER.BIRTH_DATE -->
 			<th>E-mail</th> <!-- MEMBER.EMAIL -->
 			<th>등급</th> <!-- MEMBER.GRADE -->
-			<th>학원지점</th> <!-- MEMBER.KH_CENTER -->
 			<th>등록일</th> <!-- MEMBER.REG_DATE -->
 		</tr>
 		<tr>
-			<td>홍길동</td>
-			<td>홍길동</td>
-			<td>hong4545</td>
-			<td>950105</td>
-			<td>hong4545@naver.com</td>
-			<td>LV01</td>
-			<td>강남</td>
-			<td>210304</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
 		</tr>
 	</table>
 	</form>

@@ -1,5 +1,5 @@
 package khs.adminPage.model.dao;
 
-public class adminPageDao {
+public class AdminPageDao {
 
 }
