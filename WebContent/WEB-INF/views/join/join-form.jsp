@@ -803,7 +803,5 @@ Google과의 관계가 정의됩니다.
 	document.querySelector("#nickName").dispatchEvent(event);
 </script>
 
-
-
 </body>
 </html>

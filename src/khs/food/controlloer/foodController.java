@@ -11,24 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import khs.common.exception.PageNotFoundException;
 
-/**
- * Servlet implementation class foodController
- */
 @WebServlet("/food/*")
 public class foodController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	
     public foodController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. URI 분리 작업 
 				String[] uriArr = request.getRequestURI().split("/");
@@ -49,21 +40,15 @@ public class foodController extends HttpServlet {
 	}
 
 	private void foodMethod(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
-		// TODO Auto-generated method stub
 		System.out.println("2. 진입 확인 (Session객체를 바꾸는 용)");
 	}
 
 	private void food(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			System.out.println("2. 진입 확인 (food) ");
-			// 1. session에 dataDTO를 넣는다. 
-			request.getRequestDispatcher("/foodPage/food-form").forward(request, response);
+			request.getRequestDispatcher("/food/food-form").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
