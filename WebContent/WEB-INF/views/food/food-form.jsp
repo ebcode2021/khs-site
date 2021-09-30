@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 공통헤더, EL-JSTL과  all.css, reset.css 있음 -->
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <!--kakaoMap  -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63cb0ea3f8a404fbd7be7a34d1fcff14"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63cb0ea3f8a404fbd7be7a34d1fcff14&libraries=LIBRARY"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63cb0ea3f8a404fbd7be7a34d1fcff14&libraries=services,clusterer,drawing"></script>
 <!-- CSS -->
-<link href="../resources/css/common/all.css"  rel="stylesheet" type="text/css">
 <link href="/resources/css/food/food-form.css"  rel="stylesheet" type="text/css">
 <link href="/resources/slick/slick-theme.css"  rel="stylesheet" type="text/css">
 <link href="/resources/slick/slick.css"  rel="stylesheet" type="text/css">
@@ -18,6 +18,7 @@
 <script type="text/javascript" src="/resources/slick/slick.min.js"></script>
 <script type="text/css" ></script>
 </head>
+
 <body>
  	<div class="header">
  		<div class = "wrap_header">
@@ -103,9 +104,6 @@
 		  prevArrow: $('#prev'), 
 		  nextArrow: $('#next')
 	});
-	
-	
-	
 	</script>
 </body>
 </html>

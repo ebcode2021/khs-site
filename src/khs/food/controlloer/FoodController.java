@@ -1,7 +1,9 @@
 package khs.food.controlloer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import khs.common.exception.PageNotFoundException;
+import khs.food.model.dto.Food;
 import khs.food.model.service.FoodService;
 
 @WebServlet("/food/*")
@@ -17,10 +20,12 @@ public class FoodController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private FoodService foodService = new FoodService(); 
+	private List<Food> foodList = new ArrayList<>();
 	
     public FoodController() {
         super();
         // TODO Auto-generated constructor stub
+        System.out.println("컨트롤러 생성자 진입");
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,19 +53,14 @@ public class FoodController extends HttpServlet {
 
 	private void food(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	System.out.println("1. food진입(FoodController)");
-			// 0. dummyData로 String을 받는다. 
-			String dummy = "field"; 
-			// 1. foodService를 통해서 dataBase의 foodDTO를 받아온다. 
-			// ***** 1) 리스트로 꺼내 올 것인가? 어떤 방법이 반복문으로 jsp에서 attribute를 꺼낼때 
-			// 더 간편하고 쉬운가? 
-			// ***** 2) Map으로 꺼내올 것인가? 
-			String isNull = foodService.searchFood(dummy); 
-			if(isNull == null) {
-				System.out.println("결과값 : null(joinController)");
-			} else {
-				System.out.println("결과값 : 있음(joinController)");
-			}
-			// 2. foodDTO를 SESSION 객체로 저장, 꺼낼 준비 
+
+			String khCenter = "강남"; 
+
+			foodList = foodService.searchFood(khCenter); 
+			Object[] foodArr = foodList.toArray(); 
+			for (Object object : foodArr) {
+				System.out.println(object);
+			} 
 			request.getRequestDispatcher("/food/food-form").forward(request, response);
 	}
 

@@ -1,22 +1,27 @@
 package khs.food.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+
 import khs.common.db.JDBCTemplate;
 import khs.food.model.dao.FoodDao;
+import khs.food.model.dto.Food;
 
 
 public class FoodService {
 
 	private FoodDao foodDao = new FoodDao();
 	private JDBCTemplate template = JDBCTemplate.getInstance(); 
+	private List<Food> foodList = new ArrayList<>();
 	
-	public String searchFood(String khCenter) {
+	public List<Food> searchFood(String khCenter) {
 		
 		String result = null;
 		Connection conn = template.getConnection();
 
 		try {
-			result = foodDao.checkNickName(khCenter, conn);
+			foodList = foodDao.checkNickName(khCenter, conn);
 			template.commit(conn);
 		} catch (Exception e) {
 			template.rollback(conn);
@@ -24,7 +29,7 @@ public class FoodService {
 		} finally {
 			template.close(conn);
 		}
-		return result;
+		return foodList;
 		
 	}
 	
