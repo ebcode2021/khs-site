@@ -26,7 +26,7 @@ public class FoodController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
         System.out.println("컨트롤러 생성자 진입");
-    }
+    } 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. URI 분리 작업 
