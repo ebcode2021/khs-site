@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import khs.join.validator.JoinForm;
 import khs.myPage.validator.ChangeMypageForm;
 import khs.myPage.validator.ChangePasswordForm;
+import khs.myPage.validator.DeleteCommentForm;
+import khs.myPage.validator.DeletePostForm;
 
 //import khs.common.code.ErrorCode;
 /*import khs.common.exception.HandlableException;
@@ -91,6 +93,18 @@ public class ValidatorFilter implements Filter {
 			ChangeMypageForm changeMypageForm = new ChangeMypageForm(httpRequest);
 			if(!changeMypageForm.test()) {
 				redirectUrl = "/myPage/myPageDetail";
+			}
+			break;
+		case "delete-post" :
+			DeletePostForm deletePostForm = new DeletePostForm(httpRequest);
+			if(!deletePostForm.test()) {
+				redirectUrl = "/myPage/myPageMain";
+			}
+			break;
+		case "delete-comment" :
+			DeleteCommentForm deleteCommentForm = new DeleteCommentForm(httpRequest);
+			if(!deleteCommentForm.test()) {
+				redirectUrl = "/myPage/myPageMain";
 			}
 			break;
 		}

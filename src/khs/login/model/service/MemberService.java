@@ -22,6 +22,18 @@ public class MemberService {
 		}
 		return member;
 	}
+
+	public Member memberIsCode(String kakaoCode) {
+		Connection conn = template.getConnection();
+		Member member = null;
+		try {
+			member = memberDao.memberIsCode(kakaoCode,conn);
+		}finally {
+			template.close(conn);
+		}
+		return member;
+	
+	}
 	
 	
 

@@ -1,3 +1,4 @@
+//member
 package khs.login.model.dto;
 
 import java.sql.Date;
@@ -17,7 +18,9 @@ public class Member {
 	private int isLeave;
 	private Date startDate;
 	private Date finalDate;
+	private String kakaoCode;
 	
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -116,6 +119,8 @@ public class Member {
 	public void setIsLeave(int isLeave) {
 		this.isLeave = isLeave;
 	}
+
+
 	
 
 

@@ -250,54 +250,37 @@ padding:8px 0 9px;border-bottom:solid 1p #d2d2d2;text-align:center;line-height:1
        <div class= 'main_banner'>
        <!-- 게시판 인덱스 시작 -->
        <h1>자유게시판</h1>
-          <table class="border_list" border="0" cellspacing="50">
-          <colgroup>
-          <col>
-          <col width="110">
-          <col width="110">
-          <col width="80">
-          </colgroup>
-          <!-- 머라고 해야하지..? -->
-            <thead>
-                <tr> 
-                    <th>글번호</th>
-                    <th>작성자이름</th>
-                    <th>글제목</th>
-                    <th>작성날짜</th>
-                </tr>
-            </thead>
-            <!-- 인덱스 내용 -->
-            <tbody>
-                <tr>
-                    <td>123</td>
-                    <td>유저1</td>
-                    <td>내용</td>
-                    <td>날짜</td>
-                    
-                </tr>
-                <tr>
-                    <td>12351</td>
-                    <td>유저2</td>
-                    <td>내용3</td>
-                    <td>날짜4</td>
-                    
-                </tr>
-                <tr>
-                    <td>123511</td>
-                    <td>유저3</td>
-                    <td>내용3</td>
-                    <td>날짜3</td>
-                    
-                </tr>
-                <tr>
-                    <td>1235111</td>
-                    <td>유저4</td>
-                    <td>내용4</td>
-                    <td>날짜4</td>
-                    
-                </tr>
-            </tbody>
-        </table>
+          <table class="history_post_table">
+					<div id=history_table_title>자 유 게 시 판</div>
+					<tr id="post_table_header">
+						<th>게시글번호</th>
+						<th>작성자</th>
+						<th>글 제목</th>
+						<th>작성일자</th>
+					</tr>
+					<tr>
+						<td>
+						${boardDetailList.bdIdx}
+						</td>
+						<td>
+						${boardDetailList.nickName}
+						</td>
+						<td>
+						${boardDetailList.title}
+						</td>
+						<td>
+						${boardDetailList.regDate}
+						</td>
+					</tr>
+
+					<tr>
+						<td colspan=4>
+							${boardDetailList.content}
+						</td>
+					</tr>
+
+
+				</table>
        
        <pre>
        </pre>

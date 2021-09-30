@@ -1,3 +1,4 @@
+//memberDao
 package khs.login.model.dao;
 
 import java.sql.Connection;
@@ -39,6 +40,31 @@ public class MemberDao {
 		return member;
 		
 	}
+	
+	public Member memberIsCode(String kakaoCode, Connection conn) {
+		Member member = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		String query = "select * from member where kakao_token = ? and is_leave=0";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, kakaoCode);
+			rset = pstm.executeQuery();
+			
+			if(rset.next()) {
+				member = convertAllToMember(rset);
+			}
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(rset,pstm);
+		}
+		
+		return member;
+		
+	}
+	
 
 	private Member convertAllToMember(ResultSet rset) throws SQLException {
 		Member member = new Member();
@@ -55,6 +81,8 @@ public class MemberDao {
 		member.setStartDate(rset.getDate("start_date"));
 		return member;
 	}
+
+	
 
 	
 

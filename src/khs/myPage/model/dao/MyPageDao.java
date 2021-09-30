@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import khs.common.code.MemberGrade;
 import khs.common.db.JDBCTemplate;
 import khs.common.exception.DataAccessException;
 import khs.myPage.model.dto.MyPage;
@@ -144,7 +145,7 @@ public class MyPageDao {
 		myPage.setBanGrade(rset.getString("ban_grade"));
 		myPage.setPassword(rset.getString("password"));
 		myPage.setEmail(rset.getString("email"));
-		myPage.setGrade(rset.getString("grade"));
+		myPage.setGrade(MemberGrade.valueOf(rset.getString("grade")).GRADE);
 		myPage.setRegDate(rset.getDate("reg_date"));
 		myPage.setName(rset.getString("name"));
 		myPage.setNickName(rset.getString("nickname"));

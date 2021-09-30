@@ -2,7 +2,7 @@ package khs.stduyPage.model.dao;
 
 import khs.common.db.JDBCTemplate;
 
-public class studyPageDao {
+public class StudyPageDao {
 
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	

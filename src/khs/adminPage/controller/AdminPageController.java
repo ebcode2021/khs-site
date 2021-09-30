@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/adminPage/*")
-public class adminPageController extends HttpServlet {
+public class AdminPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public adminPageController() {
+    public AdminPageController() {
         super();
     }
 

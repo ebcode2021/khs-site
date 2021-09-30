@@ -341,7 +341,7 @@ td, td> div{
 	 				<a>당산지원</a>
 	 			</div>
  			</div>
- 			<div><a>게시판</a></div>
+ 			<div><a href="/board/free-board-main">게시판</a></div>
  			<div><a>문의하기</a></div>
  		</div>
  		<div class= 'main_banner'>

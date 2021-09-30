@@ -4,14 +4,26 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link rel="stylesheet" href="/resources/css/adminPage/adminPageCSS.css"/>
 <style type="text/css">
+
+
+@font-face {
+      src : url("/resources/css/NotoSansCJKkr-hinted/NotoSansCJKkr-Regular.otf"); 
+      font-family: "han_sans_kr_medium";
+}
+
+@font-face {
+      src : url("/resources/css/NotoSansCJKkr-hinted/NotoSansCJKkr-Light.otf"); 
+      font-family: "han_sans_kr_Light";
+}
+
 @font-face {
     font-family: 'SDSamliphopangche_Outline';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
+
 html, body{
 	width: 100%;
 	height: 100%;.
@@ -21,6 +33,7 @@ html, body{
 	justify-content: space-around;
 	height: 10%;
 }
+
 .wrap_header{
 	display: flex;
 	justify-content: space-between;
@@ -29,6 +42,7 @@ html, body{
 	margin-left: 13%;
 	margin-right: 13%;
 }
+
 .site_tit{
 	display: flex;
 	align-items: flex-end;
@@ -36,8 +50,12 @@ html, body{
 	margin-bottom: 0.5%;
 	font-weight: bolder;
 	font-size: 3.2vw;
+}
+.site_tit> a{
 	color: #f29d2a;
 }
+
+
 .logout{
 	display: flex;
 	align-items: flex-end;
@@ -45,9 +63,17 @@ html, body{
 	margin-bottom: 0.5%;
 	right: 25%;
 }
+
+
+
+
 /*네비게이션바? 더미로 놔뒀습니다 나중에 뭐 추가할 때 쓰면 될듯*/
 .nav{
+
 }
+
+
+
 .section{
 	position: relative;
 	display: flex;
@@ -62,6 +88,9 @@ html, body{
 	width: 100%;
 	background-color: #F0F8FF;
 	border-radius: 20px 20px 20px 20px;
+	min-width: 600px;
+	display: flex;
+    flex-direction: column;
 }
 .sidemenu{
 	position: absolute;
@@ -71,7 +100,7 @@ html, body{
 	background-color: #fecf92;
 	border-radius: 20px 20px 20px 20px;
 	z-index: 999;
-	font-family: 'SDSamliphopangche_Outline';
+	font-family: 'han_sans_kr_Medium';
 }
 #mypage{
 	border-radius: 20px 20px 0 0;
@@ -88,10 +117,15 @@ html, body{
 	height: 100px;
 	color: white;
 }
-#wrap_hotplace, #wrap_myStatus{
+
+
+
+
+
+#wrap_hotplace{
 	position: relative;
 }
-.hotplace, .myStatus{
+.hotplace{
 	display: flex;
 	position: absolute;
 	justify-content: space-around;
@@ -100,7 +134,7 @@ html, body{
 	width: 100%;
 	height: 100%;
 	background-color: #fecf92;
-	border-radius: 20px 20px 20px 0;
+	border-radius: 0 20px 20px 0;
 	z-index: -1;
 }
 .hotplace>a{
@@ -108,12 +142,13 @@ html, body{
 	font-size: 1.3vw;
 	color: #fecf92;
 }
-.myStatus>a{
-	text-align: center;
-	font-size: 1.3vw;
-	color: #fecf92;
-}
- #mypage:hover{
+
+
+
+
+
+
+#mypage:hover{
 	transition-duration: 0.25s;
 	border-radius: 20px 20px 20px 20px;
 	background-color: #FFAF7A;
@@ -123,26 +158,148 @@ html, body{
 	border-radius: 20px 0 0 20px;
 	background-color: #FFAF7A;
 }
-#wrap_myStatus:hover {
-	transition-duration: 0.1s;
-	border-radius: 20px 0 0 20px;
-	background-color: #FFAF7A;
-}
 .sidemenu>div:hover {
 	transition-duration: 0.25s;
 	border-radius: 20px 20px 20px 20px;
 	background-color: #FFAF7A;
 }
+
 #wrap_hotplace:hover .hotplace>a{
 	transition-duration: 0.25s;
 	text-align: center;
 	color: white;
 }
-#wrap_myStatus:hover .myStatus>a{
-	transition-duration: 0.25s;
-	text-align: center;
-	color: white;
+
+
+
+
+
+
+
+.main_banner>  div{
+	margin-bottom: 15px;
 }
+
+
+.userInfo {
+	height: 200px;
+	min-height: 200px;
+	position: relative;
+	display: flex;
+}
+
+.profile_image {
+	position: absolute;
+	height: 155px;
+	width: 155px;
+	left: 3%;
+	top: 20px;
+}
+
+
+.profile_table {
+	margin-left: 220px;
+	position: relative;
+	top: 20px;
+	height: 155px;
+	width: 400px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-around;
+	flex-direction: column;
+	font-family: 'han_sans_kr_Medium';
+}
+
+
+
+.history_post{
+	height: 350px;
+	margin-left: 20px;
+	margin-right: 20px;
+	
+}
+
+#history_table_title{
+	font-size: 1.2rem;
+	font-family: 'han_sans_kr_Medium';
+	margin-bottom: 0.8vw;
+}
+
+.history_post_table {
+	width: 100%;
+	text-align: center;
+	background-color: #FFF5EE;
+	font-size: 0.8vw;
+}
+
+#history_comment_title{
+	font-size: 1.2rem;
+	font-family: 'han_sans_kr_Medium';
+	margin-bottom: 0.8vw;
+}
+
+.history_comment_table{
+	width: 100%;
+	text-align: center;
+	background-color: #FFF5EE;
+	font-size: 0.8vw;
+	
+}
+
+
+
+
+#post_table_header> th{
+	height: 35px;
+	text-align: center;
+}
+
+
+#history_post_delete_button {
+	font-size: 1.0vw;
+	margin-top: 0.8vw;
+}
+
+
+
+.history_comments {
+	margin-top: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
+	height : 300px;
+	
+}
+
+
+
+#delete-account {
+	margin-top: 30px;
+	height: 100px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#delete-account-submit{
+	width: 100%;
+	height: 70%;
+	text-align: center;
+	background-color: #FFF5EE;
+	font-size: 0.8vw;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#delete_account_title {
+	font-size: 1.2rem;
+	font-family: 'han_sans_kr_Medium';
+	margin-bottom: 0.8vw;
+}
+
+
+
+
+
 .footer{
 	display: flex;
 	justify-content: center;
@@ -151,41 +308,41 @@ html, body{
 	background-color: white;
 	color: gray;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
+
+
 </head>
-
-
-
-
-
-
 <body>
-<!-- [BaseCode]header 영역 -->
+
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'><a href = "/main">K H S</a></div>
- 			<div class='logout'><button><a href="/adminPage/logout">로그아웃</a></button></div>
+ 			<div class='site_tit'><a href="/main">K H S</a></div>
+ 			<div class='logout'><button><a href="/myPage/logout">로그아웃</a></button></div>
  		</div>
+ 		
  	</div>
  	
-<!-- [BaseCode]nav 영역 --> 	
+ 	
  	<div class="nav">
  	</div>
  	
-<!-- [BaseCode]section 영역 -->
+ 	
  	<div class="section">
  		<div class='sidemenu'>
- 		
-		 	<div id="wrap_myStatus"><a href="/adminPage/index" target="_self">나의 현황</a>
-	 			<div class="myStatus">
-	 				<a href="/adminPage/accountInfo" target="_self">회원 정보 조회</a>
-	 				<a href="/adminPage/memberBlock" target="_self">차단된 회원 관리</a>
-	 				<a href="/adminPage/freeChart" target="_self">자유게시판 관리</a>
-	 			</div>
- 			</div> 
- 			
+ 		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
  			<div><a>학습 자료실</a></div>
- 			
  			<div id="wrap_hotplace"><a>맛집 정보</a>
 	 			<div class="hotplace">
 	 				<a>강남지원</a>
@@ -193,81 +350,57 @@ html, body{
 	 				<a>당산지원</a>
 	 			</div>
  			</div>
- 			
  			<div><a>게시판</a></div>
- 			
  			<div><a>문의하기</a></div>
+ 		</div>
+ 		<div class= 'main_banner'>
+ 			
+ 			<div class='history_post'>
+				 <table class="history_post_table">
+					<div id=history_table_title>자 유 게 시 판</div>
+					<tr id="post_table_header">
+						<th>게시글번호</th>
+						<th>작성자</th>
+						<th>글 제목</th>
+						<th>작성일자</th>
+					</tr>
+					<c:if test="${not empty boardList}">
+					<!-- https://zelkun.tistory.com/entry/JSTL%EB%AC%B8%EB%B2%95-cforEach-ctag%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%B6%9C%EB%A0%A5 -->
+						<c:forEach items="${boardList}" var="board" varStatus="i">
+							<tr height = "25">
+								<td>${board.bdIdx}</td>
+								<td>${board.nickName}</td>
+								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
+								<td>${board.regDate}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					
+					<c:if test="${empty boardList}">
+					<tr>
+						<td>작성된 게시글이 없습니다.<td>
+					</tr>
+					</c:if>
+
+				</table>
+				<span id="check-error-msg"></span>
+ 			</div>
+ 			
+ 			
  			
  		</div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-<!-- [배석진]관리자게시판 회원정보조회 수정영역 -->
- 		<div class= 'main_banner'>
- 		
- 		
-<div class="ap_All">
-
-	<img class="ad_Logo" src="/resources/image/adminPage/adminLogo.JPG">
-	
-	<div class="ap_Tit">회원 정보 조회</div>
-
-	<br><br>
-	
-	<div class="ap_indexText">KHS 사이트에  가입되어 있는 회원들의 정보를 볼 수 있습니다.</div>
-	<div class="ap_indexText">조회 가능한 정보는 이름/닉네임/ID/생년월일/E-mail/등급/학원지점/등록일/상태가 있습니다.</div>
-	
-	<hr class="ap_hr">
-	
-	<form action="">	
-	<table class="ap_session_base">
-		<tr>
-			<th>이름</th> <!-- MEMBER.NAME -->
-			<th>닉네임</th> <!-- MEMBER.NICKNAME -->
-			<th>ID</th> <!-- MEMBER.USER_ID -->
-			<th>생년월일</th> <!-- MEMBER.BIRTH_DATE -->
-			<th>E-mail</th> <!-- MEMBER.EMAIL -->
-			<th>등급</th> <!-- MEMBER.GRADE -->
-			<th>등록일</th> <!-- MEMBER.REG_DATE -->
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	</form>
-	
-	
-</div>
- 		</div>
-
  	</div>
  	
-<!-- [BaseCode]footer 영역 -->
+ 	
 	<div class="footer">Copyright © 1998-2021 KH Information Educational Institute All Right Reserved</div>
 	
-<!-- [BaseCode]스크립트 코드  -->
+	
+	
+	
+	
+	
 	<script type="text/javascript">
+	
 	(function hotplaceSlide() {
 		document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
 			document.querySelector(".hotplace").style.transitionDuration = '0.1s';
@@ -282,20 +415,16 @@ html, body{
 	})();
 	
 	
-	(function hotplaceSlide() {
-		document.querySelector("#wrap_myStatus").addEventListener('mouseover',()=>{
-			document.querySelector(".myStatus").style.transitionDuration = '0.1s';
-			document.querySelector(".myStatus").style.transform=`translate(99.7% , -100.2%)`;
-			document.querySelector(".myStatus").style.backgroundColor = "#FFAF7A";
-		})
-		document.querySelector("#wrap_myStatus").addEventListener('mouseleave',()=>{	
-			document.querySelector(".myStatus").style.transitionDuration = "0.1s";
-			document.querySelector(".myStatus").style.transform=`translateY(-100%)`;
-			document.querySelector(".myStatus").style.backgroundColor = "#fecf92";	
-		})
-	})();
-	
+
 	
 	</script>
+
+	
+	
 </body>
 </html>
+
+
+
+
+

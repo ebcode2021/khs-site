@@ -1,5 +1,5 @@
 package khs.adminPage.validator;
 
-public class adminPageForm {
+public class AdminPageForm {
 
 }
