@@ -255,6 +255,15 @@ html, body{
 				<td></td>
 				<td></td>
 			</tr>
+			<c:if test="${not empty boardList}">
+				<c:forEach items="${boardList}" var="board" varStatus="i">
+					<tr>
+						<td><input type="radio" name="chk_info" value="공지글등록"></td>
+						<td>${board.bdIdx}</td>
+						<td>${board.title}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</table>
 		<input class="ap_button01" type="submit" value="선택한 글을 삭제">
 	</form>
