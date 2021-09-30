@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import khs.board.model.dto.Board;
 import khs.board.model.service.BoardService;
 import khs.common.exception.PageNotFoundException;
+import khs.myPage.model.service.MyPageService;
 
 /**
  * Servlet implementation class BoardController
@@ -21,6 +22,7 @@ public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	BoardService boardService = new BoardService();
+	MyPageService myPageService = new MyPageService();
 	
     public BoardController() {
         super();
@@ -43,6 +45,9 @@ public class BoardController extends HttpServlet {
 		case "free-board-detail":
 			boardDetail(request,response);
 			break;
+		case "free-board-comment-input":
+			commentInput(request,response);
+			break;
 		default: throw new PageNotFoundException();
 		}
 		
@@ -50,8 +55,20 @@ public class BoardController extends HttpServlet {
 
 
 
-    private void boardDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void commentInput(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Board board = new Board();
+		String userId = myPageService.getLoginMemberId(request);
+		String bdIdx = request.getParameter("bdIdx");
+		String content = request.getParameter("comment-content");
 		
+		System.out.println(bdIdx + content + userId);
+		
+		request.getRequestDispatcher("/board/free-board-detail").forward(request, response);
+	}
+
+
+	private void boardDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     	String bdIdx = request.getParameter("bd_idx");
     	Board board = boardService.freeBoardDetail(bdIdx);
     	List<Board> boardCommentList = boardService.freeBoardDetailComment(bdIdx);
@@ -81,9 +98,12 @@ public class BoardController extends HttpServlet {
 		
 		request.setAttribute("boardList", boardList);
 		
+		
 		request.getRequestDispatcher("/board/free-board-main").forward(request, response);;
 	}
 
+	
+	
 	
 	
 	

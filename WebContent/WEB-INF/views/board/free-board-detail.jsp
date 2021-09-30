@@ -376,8 +376,6 @@ html, body{
 									<br>
 								</td>
 							</tr>
-							<br>
-							<br>
 						</c:forEach>
 					</c:if>
 					
@@ -388,6 +386,23 @@ html, body{
 					</tr>
 					</c:if>
 				</table>
+ 			</div>
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			
+ 			<div class='board-detail-wrapper'>
+ 				<div id="board-comment-title">댓 글 작 성</div>
+ 				<form action="/board/board-detail-comment-input?bdIdx=${board.bdIdx}"  method="post">
+				 <table class="board-detail-table">
+					<div class="cmt_input">
+						<textarea name="comment-content" required="required"></textarea>
+					</div>
+					<button>전송</button>
+				</table>
+				</form>
  			</div>
  			
  			
