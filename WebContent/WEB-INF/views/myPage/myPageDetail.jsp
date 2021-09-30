@@ -50,6 +50,8 @@ html, body{
 	margin-bottom: 0.5%;
 	font-weight: bolder;
 	font-size: 3.2vw;
+}
+.site_tit> a{
 	color: #f29d2a;
 }
 
@@ -317,8 +319,8 @@ td, td> div{
 
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'>K H S</div>
- 			<div class='logout'><button><a href = "/myPage/logout">로그아웃</a></button></div>
+ 			<div class='site_tit'><a href = "/main">K H S</a></div>
+ 			<div class='logout'><button><a href="/myPage/logout">로그아웃</a></button></div>
  		</div>
  		
  	</div>
@@ -330,7 +332,7 @@ td, td> div{
  	
  	<div class="section">
  		<div class='sidemenu'>
- 		 	<div id="mypage"><a>나의 현황</a></div>
+ 		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
  			<div><a>학습 자료실</a></div>
  			<div id="wrap_hotplace"><a>맛집 정보</a>
 	 			<div class="hotplace">
@@ -345,14 +347,23 @@ td, td> div{
  		<div class= 'main_banner'>
  			<div class='userInfo'>
 				
-				<div class="profile_image">
-					image
+				<div class="profile_image" style="background-color:blue;">
+				
 				</div>
+				
+				
 				
 				<div class="profile_table" border="solid">
 					<div>${authentication.name}</div>
 					<div>${authentication.khCenter}</div>
 					<div>${authentication.instrName} 강사</div>
+					<div>
+						<form action="/myPage/profile-image-upload">
+					    <input type="file" name="file" class = 'khFile' id="khFile" accept="image/*,.pdf"/>
+					    <br>
+						<button>프로필 사진 업로드</button>
+						</form>
+					</div>
 				</div>
 				
 				

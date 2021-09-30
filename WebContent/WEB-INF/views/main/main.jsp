@@ -8,10 +8,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" type="text/css" rel="stylesheet">
 
 <!--slick -->
-<link href="/resources/css/slick/slick-theme.css"  rel="stylesheet" type="text/css">
-<link href="/resources/css/slick/slick.css"  rel="stylesheet" type="text/css">
+<link href="/resources/slick/slick-theme.css"  rel="stylesheet" type="text/css">
+<link href="/resources/slick/slick.css"  rel="stylesheet" type="text/css">
 <link href="/resources/js/common/jquery.js" rel="stylesheet" type="text/css"> 
-<script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script> -->
 
 <!-- 카카오페이 결제 시스템 -->
@@ -251,27 +251,27 @@
     }
     
 
-
     /* footer 부분 */
     footer{
       min-height : 25%;
-      background-color: cornflowerblue;
     }
 
     .section_4{
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position:relative;
+      background-color:rgba(255, 157, 0, 0.5); 
+      padding-bottom : 20px;
+      font-weight : bolder;
     }
 
     .visited{
-      padding-left : 3%;
+      padding-left : 5%;
     }
 
-   
-    
     .slide{
-       background-color:lightyellow;
+       background-color:rgba(255, 157, 0, 0.5); 
        position:relative;
        width:50vw;
     }
@@ -281,14 +281,37 @@
     	width : 50vw;
     	height : 25vw;
     }
-
+    
     .qrcode{
-      padding-right : 3%;
+      padding-right : 5%; 
       vertical-align: center;
+      margin-top : 1vw;
+      font-size : 1.5em;
     }
-
+	
+	.qrcode>div{
+	  text-align : center;
+      display : flex;
+      flex-direction: column;
+      align-items:center;
+      overflow: hidden;
+	}
+	.qrcode>#literal{
+		background-color:rgba(255, 157, 0, 0.5); 
+	}
+	#kakaopay{
+		background-image : url('../resources/image/main/kakaopay.png');
+		background-repeat: no-repeat; 
+		background-size : contain;
+		height : 4vw;
+		margin-top : 2vw;
+		background-color: none;
+		cursor:pointer;
+    
+	}
     .copyright{
       margin-top : 5%;
+      padding-bottom : 15px;
       text-align: center;
     }
     
@@ -318,8 +341,9 @@
           <div id="restaurant"><a href="/restaurant">맛집 정보</a></div>
          </div>
          <div class="nav_2">
-           <div id="study"><a href="/study">학습 자료실</a></div>
+           <div id="study"><a href="/studyPage/index">학습 자료실</a></div>
            <div id="question"><a href="/question">문의사항</a></div>
+           <div id="admin"><a href="/adminPage/index">관리자</a></div>
          </div>
       </div> 
 
@@ -368,7 +392,7 @@
   <footer>
     <section class="section_4">
       <div class="visited"> 
-        <div>현재 접속자 수 : ${todayCnt}</div>
+        <div>오늘 방문자 수 : ${todayCnt}</div>
         <div>누적 방문자 수 : ${totalCnt}</div>
       </div>
       <div class="slide" id="slide_slick">
@@ -378,13 +402,11 @@
         <div><img src="../resources/image/main/slide/slide05.png"/></div>
       </div>
       <div class="qrcode">
-        <div>[개발자에게 기부하기]</div>
-        <div>
-          여긴 qr코드
-        </div>
+        <div id="literal">개발자에게 <br> 돈 보내기 <br></div>
+        	<div id="kakaopay" onclick="kakaoPay()"></div>
       </div>
     </section>
-    <div class="copyright"> @copyright 1s4j 2021-</div>
+    <div class="copyright"> Copyright © 2021 - KH Students All Right Reserved-</div>
   </footer>
   
 <script src="/resources/js/main/slick.js"  type="text/javascript"></script>
@@ -397,7 +419,7 @@
 
       if(click_count%2!=0){
         element1.innerHTML =  "${authentication.name} 님의";
-        element2.innerHTML =  "종강일은 ${authentication.finalDate}" + "<br>"+  "입니다.";
+        element2.innerHTML =  "종강까지" + "<br>" + "${remainder}일" + "<br>"+  "남았네요!";
         
       }else{
         element1.innerHTML ="반갑습니다";
@@ -408,15 +430,42 @@
 
      jQuery(document).ready(function(){
     	 jQuery('#slide_slick').slick({
+    		dots : false,
+    		arrows: false,
     		infinite : true,
-    		dots: true,
     		autoplay : true,
-    		autoplaySpeed : 5000,
-    		vertical : true,
+    		autoplaySpeed : 4000,
+    	
     	});
     }); 
 
 
+    jQuery('#kakaopay').click(function(){
+    	var IMP = window.IMP;
+    	IMP.init('imp28553074');
+    	
+    	IMP.request_pay({
+    		pg : 'kakao',
+    		pay_method : 'card',
+    		merchant_uid : 'merchant_' + new Date().getTime(),
+    		name : 'KHS 개발자를 위해 까까 사주기',
+    		amount : '10',
+    		buyer_email :'',
+    		buyer_tell :'',
+    		buyer_addr : '',
+    		buyer_postcode :'123-456',
+    	},function(rsp){
+    		console.log(rsp);
+    		if(rsp.success){
+    			var msg = '결제가 성공적으로 완료되었습니다.';
+    			msg += '결제 금액 : ' + rsp.paid_amount;
+    		}else{
+    			var msg = '결제에 실패하였습니다.';
+    			msg += '에러내용 :' + rsp.error_msg;
+    		}
+    		alert(msg);
+    	});
+    });
   </script>
 </body>
 </html>

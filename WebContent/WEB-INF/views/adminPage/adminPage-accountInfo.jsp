@@ -4,9 +4,8 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="resources/css/adminPageCSS.css" type="text/css" rel="stylesheet" >
+<link rel="stylesheet" href="/resources/css/adminPage/adminPageCSS.css"/>
 <style type="text/css">
-
 @font-face {
     font-family: 'SDSamliphopangche_Outline';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
@@ -124,13 +123,11 @@ html, body{
 	border-radius: 20px 0 0 20px;
 	background-color: #FFAF7A;
 }
-
 #wrap_myStatus:hover {
 	transition-duration: 0.1s;
 	border-radius: 20px 0 0 20px;
 	background-color: #FFAF7A;
 }
-
 .sidemenu>div:hover {
 	transition-duration: 0.25s;
 	border-radius: 20px 20px 20px 20px;
@@ -146,7 +143,6 @@ html, body{
 	text-align: center;
 	color: white;
 }
-
 .footer{
 	display: flex;
 	justify-content: center;
@@ -167,8 +163,8 @@ html, body{
 <!-- [BaseCode]header 영역 -->
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'>K H S</div>
- 			<div class='logout'><button><a>로그아웃</a></button></div>
+ 			<div class='site_tit'><a href = "/main">K H S</a></div>
+ 			<div class='logout'><button><a href="/adminPage/logout">로그아웃</a></button></div>
  		</div>
  	</div>
  	
@@ -180,13 +176,13 @@ html, body{
  	<div class="section">
  		<div class='sidemenu'>
  		
-		 	<div id="wrap_myStatus"><a href="/semi/adminPage_index.html" target="_self">나의 현황</a>
+		 	<div id="wrap_myStatus"><a href="/adminPage/index" target="_self">나의 현황</a>
 	 			<div class="myStatus">
-	 				<a href="/semi/adminPage_accountInfo.html" target="_self">회원 정보 조회</a>
-	 				<a href="/semi/adminPage_memberBlock.html" target="_self">차단된 회원 관리</a>
-	 				<a href="/semi/adminPage_freeChart.html" target="_self">자유게시판 관리</a>
+	 				<a href="/adminPage/accountInfo" target="_self">회원 정보 조회</a>
+	 				<a href="/adminPage/memberBlock" target="_self">차단된 회원 관리</a>
+	 				<a href="/adminPage/freeChart" target="_self">자유게시판 관리</a>
 	 			</div>
- 			</div>	 
+ 			</div> 
  			
  			<div><a>학습 자료실</a></div>
  			
@@ -227,7 +223,7 @@ html, body{
  		
 <div class="ap_All">
 
-	<img class="ad_Logo" src="resources/adminPageImage/adminLogo.JPG">
+	<img class="ad_Logo" src="/resources/image/adminPage/adminLogo.JPG">
 	
 	<div class="ap_Tit">회원 정보 조회</div>
 
@@ -259,26 +255,6 @@ html, body{
 			<td>LV01</td>
 			<td>강남</td>
 			<td>210304</td>
-		</tr>
-		<tr>
-			<td>이지은</td>
-			<td>아이유</td>
-			<td>iu1122</td>
-			<td>930105</td>
-			<td>iu1122@naver.com</td>
-			<td>LV01</td>
-			<td>강남</td>
-			<td>210501</td>
-		</tr>
-		<tr>
-			<td>스티븐</td>
-			<td>애플</td>
-			<td>app1122</td>
-			<td>730105</td>
-			<td>app1122@naver.com</td>
-			<td>LV01</td>
-			<td>종로</td>
-			<td>910501</td>
 		</tr>
 	</table>
 	</form>

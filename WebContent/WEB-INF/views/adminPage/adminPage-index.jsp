@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link href="resources/css/adminPageCSS.css" type="text/css" rel="stylesheet" >
+<link rel="stylesheet" href="/resources/css/adminPage/adminPageCSS.css"/>
 <style type="text/css">
 
 
@@ -168,8 +168,8 @@ html, body{
 <!-- [BaseCode]header 영역 -->
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'>K H S</div>
- 			<div class='logout'><button><a>로그아웃</a></button></div>
+ 			<div class='site_tit'><a href = "/main">K H S</a></div>
+ 			<div class='logout'><button><a href="/adminPage/logout">로그아웃</a></button></div>
  		</div>
  	</div>
  	
@@ -181,11 +181,11 @@ html, body{
  	<div class="section">
  		<div class='sidemenu'>
  		
-		 	<div id="wrap_myStatus"><a href="/semi/adminPage_index.html" target="_self">나의 현황</a>
+		 	<div id="wrap_myStatus"><a href="/adminPage/index" target="_self">나의 현황</a>
 	 			<div class="myStatus">
-	 				<a href="/semi/adminPage_accountInfo.html" target="_self">회원 정보 조회</a>
-	 				<a href="/semi/adminPage_memberBlock.html" target="_self">차단된 회원 관리</a>
-	 				<a href="/semi/adminPage_freeChart.html" target="_self">자유게시판 관리</a>
+	 				<a href="/adminPage/accountInfo" target="_self">회원 정보 조회</a>
+	 				<a href="/adminPage/memberBlock" target="_self">차단된 회원 관리</a>
+	 				<a href="/adminPage/freeChart" target="_self">자유게시판 관리</a>
 	 			</div>
  			</div>	 
  			
@@ -228,7 +228,7 @@ html, body{
  		
 <div class="ap_All">
 
-	<img class="ad_Logo" src="resources/adminPageImage/adminLogo.JPG">
+	<img class="ad_Logo" src="/resources/image/adminPage/adminLogo.JPG">
 	
 	<div class="ap_Tit">Admin Main Page</div>
 	
@@ -237,7 +237,7 @@ html, body{
 	<div class="ap_indexTit">회원 정보 조회</div>
 	<div class="ap_indexText">KHS 사이트에  가입되어 있는 회원들의 정보를 볼 수 있습니다.</div>
 	<div class="ap_indexText">조회 가능한 정보는 이름/닉네임/ID/생년월일/E-mail/등급/학원지점/등록일/상태가 있습니다.</div>
-	<button id="ap_indexBtn" class="ap_button01" type="button" onclick="location.href='/semi/adminPage_accountInfo.html';">바로가기</button>
+	<button id="ap_indexBtn" class="ap_button01" type="button" onclick="location.href='/adminPage/accountInfo';">바로가기</button>
 	
 	<hr class="ap_indexHr">
 	
@@ -245,14 +245,14 @@ html, body{
 	<div class="ap_indexText">KHS 회원들의 차단 유무를 확인할 수 있는 페이지입니다.</div>
 	<div class="ap_indexText">관리자는 선택한 회원을 차단할 수 있으며 차단일은 1일/7일/영구 차단이 가능합니다.</div>
 	<div class="ap_indexText">또한 차단된 회원을 해제하는 것도 이 페이지에서 할 수 있습니다.</div>
-	<button id="ap_indexBtn" class="ap_button01" type="button" onclick="location.href='/semi/adminPage_memberBlock.html';">바로가기</button>
+	<button id="ap_indexBtn" class="ap_button01" type="button" onclick="location.href='/adminPage/memberBlock';">바로가기</button>
 	
 	<hr class="ap_indexHr">
 		
 	<div class="ap_indexTit">자유게시판 관리</div>
 	<div class="ap_indexText">KHS 회원들이 이용하는 자유게시판 페이지를 관리할 수 있습니다.</div>
 	<div class="ap_indexText">게시글을 선택하면, 선택된 게시글을 회원들이 볼 수 없도록 관리가 가능합니다.</div>
-	<button id="ap_indexBtn" class="ap_button01" type="button" onclick="location.href='/semi/adminPage_freeChart.html';">바로가기</button>
+	<button id="ap_indexBtn" class="ap_button01" type="button" onclick="location.href='/adminPage/freeChart';">바로가기</button>
 
 </div>
 

@@ -38,10 +38,7 @@ public class LoginController extends HttpServlet {
 		
 		LoginForm loginForm = new LoginForm(request);
 		
-		if(!loginForm.test()) {
-			response.sendRedirect("/login");
-			return;
-		}
+		loginForm.test();
 		
 		HttpSession session = request.getSession();
 		response.setHeader("set-cookie", "JSESSIONID=" + session.getId() + ";");

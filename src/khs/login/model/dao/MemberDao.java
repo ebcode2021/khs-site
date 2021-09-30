@@ -19,7 +19,7 @@ public class MemberDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		String query = "select * from member inner join lecture using(kh_code)"+
-						" where user_id =? and password = ?";
+						" where user_id =? and password = ? and is_leave=0";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -51,7 +51,7 @@ public class MemberDao {
 		member.setNickname(rset.getString("nickname"));
 		member.setBirthDate(rset.getDate("birth_date"));
 		member.setIsLeave(rset.getInt("is_leave"));
-		member.setFinalDate(rset.getDate("start_date"));
+		member.setFinalDate(rset.getDate("final_date"));
 		member.setStartDate(rset.getDate("start_date"));
 		return member;
 	}

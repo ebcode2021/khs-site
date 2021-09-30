@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 import khs.common.db.JDBCTemplate;
 import khs.common.exception.DataAccessException;
@@ -114,6 +113,28 @@ public class MyPageDao {
 
 
 	
+	public int deleteAccount(Connection conn, String userId) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update member set is_leave=1 where user_id = ?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+			
+		}catch (SQLException e){
+			throw new DataAccessException(e);
+		} finally {
+			template.close(pstm);
+		}
+	
+		return res;
+	}
+
+	
+
+	
 
 	//쿼리문으로 받아오는 속성 수 보다 아래 함수에서 저장하는 속성들이 더 많아지면, 오류남
 	private MyPage convertAllToMyPage(ResultSet rset) throws SQLException {
@@ -139,6 +160,11 @@ public class MyPageDao {
 
 		return myPage;
 	}
+
+
+
+
+
 
 
 

@@ -9,14 +9,16 @@ public enum ErrorCode {
 	UNAUTHORIZED_PAGE_ERROR("접근 권한이 없는 페이지 입니다."),
 	FAILED_FILE_UPLOAD_ERROR("파일업로드에 실패하였습니다."),
 	REDIRECT(""),
-	LOGIN_NOT_VALIDATOR_ERROR("아이디나 비밀번호를 다시 확인해주세요.");
+	LOGIN_NOT_VALIDATOR_ERROR("아이디나 비밀번호를 다시 확인해주세요."),
+	MEMBER_ISLEAVE("탈퇴한 아이디입니다."),
+	BAN_USER("");
 	
 	public final String MESSAGE;
 	public String URL;
 	
 	private ErrorCode(String msg) {
 		this.MESSAGE=msg;
-		this.URL = "/index";
+		this.URL = "/login";
 	}
 	
 	private ErrorCode(String msg, String url) {
