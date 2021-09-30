@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import khs.common.exception.PageNotFoundException;
 
 @WebServlet("/food/*")
-public class foodController extends HttpServlet {
+public class FoodController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    public foodController() {
+    public FoodController() {
         super();
         // TODO Auto-generated constructor stub
     }
