@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import khs.board.model.dto.Board;
+import khs.common.code.BoardSection;
 import khs.common.db.JDBCTemplate;
 import khs.common.exception.DataAccessException;
 
@@ -219,7 +220,7 @@ public class BoardDao {
 		board.setTitle(rset.getString("TITLE"));
 		board.setContent(rset.getString("CONTENT"));
 		board.setBdIsDel(rset.getInt("BD_IS_DEL"));
-		board.setBdSection(rset.getString("BD_SECTION"));
+		board.setBdSection(BoardSection.valueOf(rset.getString("BD_SECTION")).section);
 		board.setBdIsBlind(rset.getInt("BD_IS_BLIND"));
 
 		return board;
@@ -234,7 +235,7 @@ public class BoardDao {
 		board.setTitle(rset.getString("title"));
 		board.setCmtContent(rset.getString("cmt_content"));
 		board.setCmtRegDate(rset.getDate("cmt_reg_date"));
-		board.setBdSection(rset.getString("bd_section"));
+		board.setBdSection(BoardSection.valueOf(rset.getString("BD_SECTION")).section);
 		board.setCmtIsDel(rset.getInt("cmt_is_del"));
 		return board;
 	}

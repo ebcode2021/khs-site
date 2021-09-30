@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import khs.board.model.dto.Board;
+import khs.common.code.ErrorCode;
 import khs.common.encrypt.Encrypter;
+import khs.common.exception.HandlableException;
 import khs.common.exception.PageNotFoundException;
 import khs.myPage.model.dto.MyPage;
 import khs.myPage.model.service.MyPageService;
@@ -84,8 +86,8 @@ public class MyPageController extends HttpServlet {
 
 	private void deleteComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = myPageService.getLoginMemberId(request);
-		String cmtIdx[] = request.getParameterValues("chk_cmt_num");
-		
+		String[] cmtIdx = request.getParameterValues("chk_cmt_num");
+	
 		myPageService.deleteMyComment(userId, cmtIdx);
 		
 		request.setAttribute("msg", "선택한 댓글이 삭제되었습니다.");
@@ -98,8 +100,8 @@ public class MyPageController extends HttpServlet {
 
 	private void deletePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = myPageService.getLoginMemberId(request);
-		String bdIdx[] = request.getParameterValues("chk_num");
-		
+		String[] bdIdx = request.getParameterValues("chk_num");
+	
 		myPageService.deleteMyPost(userId, bdIdx);
 		
 		request.setAttribute("msg", "선택한 게시글이 삭제되었습니다.");

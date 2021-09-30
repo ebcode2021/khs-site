@@ -401,7 +401,7 @@ html, body{
 					
 				</table>
 				<button id="history_post_delete_button">체크한 게시글 삭제하기</button>
-				<span id="check-error-msg"></span>
+				<span id="check-error-msg">${myPageFailed.invalidCheckBoxMsg1}</span>
  				</form>
  			</div>
  			
@@ -441,8 +441,8 @@ html, body{
 					</c:if>
 					
 				</table>
-				<button id="history_post_delete_button">체크한 게시글 삭제하기</button>
-				<span id="check-error-msg"></span>
+				<button id="history_post_delete_button">체크한 댓글 삭제하기</button>
+				<span id="check-error-msg">${myPageFailed.invalidCheckBoxMsg2}</span>
  				</form>
  			
  			</div>
