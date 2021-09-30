@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 	}
 	
 	private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("카카오 로그인 서블릿으로 넘어왔다!!!!");
+		System.out.println("카카오 로그인 서블릿으로 넘어왔다!!");
 		String kakaoCode = request.getParameter("kakaoCode");
 		
 		LoginForm loginForm = new LoginForm(request);
