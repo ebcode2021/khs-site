@@ -1,16 +1,25 @@
 package khs.stduyPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import khs.stduyPage.model.dto.BoardStudy;
+import khs.stduyPage.model.service.StudyPageService;
+
 @WebServlet("/studyPage/*")
 public class StudyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private StudyPageService studyPageService = new StudyPageService();
+	
+	
     public StudyPageController() {
         super();
     }
@@ -37,6 +46,22 @@ public class StudyPageController extends HttpServlet {
 	}
 
 	private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//먼저 보내기위해 윗줄
+		List<BoardStudy> list = new ArrayList<>();
+		list = studyPageService.checkNickName();
+		
+		/*
+		 * for (BoardStudy boardStudy : list) {
+		 * System.out.println(boardStudy.toString()); }
+		 */
+		
+		BoardStudy boardStudy = new BoardStudy();
+		boardStudy = list.get(3);
+		System.out.println(boardStudy);
+		
+		request.getSession().setAttribute("boardStudy", boardStudy);
+		//Arrays.toString()
+		
 		request.getRequestDispatcher("/studyPage/studyPage").forward(request, response);
 		
 	}
