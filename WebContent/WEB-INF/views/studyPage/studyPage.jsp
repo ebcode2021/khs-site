@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link rel="stylesheet" href="/resources/css/studyPage/studyPageCSS.css"/>
@@ -207,8 +207,8 @@ html, body{
 			<a href="https://www.naver.com/" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/001.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" ></div>
+			<div class="sp_dataInstruction" ></div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -221,8 +221,8 @@ html, body{
 			<a href="https://www.naver.com/" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/002.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy.stIdx}</div>
+			<div class="sp_dataInstruction" >${boardStudy.stIdx}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
