@@ -15,6 +15,91 @@ import khs.common.exception.DataAccessException;
 public class BoardDao {
 	
 	private JDBCTemplate template = JDBCTemplate.getInstance();
+	
+	
+	public List<Board> freeBoardMain(Connection conn) {
+		List<Board> boardList = new ArrayList<Board>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+
+		String query = "select * from board inner join member using(user_id) where bd_is_del=0 order by to_number(bd_idx) desc";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			rset = pstm.executeQuery();
+
+			while(rset.next()) {
+				Board board = convertAllToFreeBoardMain(rset);
+				boardList.add(board);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return boardList;
+	}
+	
+	
+	public Board freeBoardDetail(Connection conn, String bdIdx) {
+		Board board = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+
+		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_idx=?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, bdIdx);
+			rset = pstm.executeQuery();
+			
+			if(rset.next()) {
+				board = convertAllToFreeBoardDetail(rset);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return board;
+	}
+	
+	
+	
+	
+	public List<Board> freeBoardDetailComment(Connection conn, String bdIdx) {
+		List<Board> boardList = new ArrayList<Board>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+
+		String query = "select * from board_comment inner join member using(user_id) where cmt_is_del=0 AND bd_idx=?";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, bdIdx);
+			rset = pstm.executeQuery();
+			
+			if(rset.next()) {
+				Board board = convertAllToFreeBoardDetailComment(rset);
+				boardList.add(board);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return boardList;
+	}
+	
+	
+	
+	
 
 	public List<Board> selectMyPost(Connection conn, String userId) {
 		List<Board> boardList = new ArrayList<Board>();
@@ -121,9 +206,9 @@ public class BoardDao {
 		return res;
 	}
 
-
 	
 	
+	//쿼리문으로 받아오는 속성 수 보다 아래 함수에서 저장하는 속성들이 더 많아지면, 오류남
 	
 	private Board convertAllToBoard(ResultSet rset) throws SQLException {
 		Board board = new Board();
@@ -151,12 +236,48 @@ public class BoardDao {
 		board.setCmtRegDate(rset.getDate("cmt_reg_date"));
 		board.setBdSection(rset.getString("bd_section"));
 		board.setCmtIsDel(rset.getInt("cmt_is_del"));
+		return board;
+	}
+	
+	
+	private Board convertAllToFreeBoardMain(ResultSet rset) throws SQLException {
+		Board board = new Board();
 		
+		board.setBdIdx(rset.getString("BD_IDX"));
+		board.setNickName(rset.getString("nickname"));
+		board.setUserId(rset.getString("USER_ID"));
+		board.setRegDate(rset.getDate("REG_DATE"));
+		board.setTitle(rset.getString("TITLE"));
 
 		return board;
 	}
+	
 
+	private Board convertAllToFreeBoardDetail(ResultSet rset) throws SQLException {
+		Board board = new Board();
+		
+		board.setBdIdx(rset.getString("BD_IDX"));
+		board.setNickName(rset.getString("nickname"));
+		board.setUserId(rset.getString("USER_ID"));
+		board.setRegDate(rset.getDate("REG_DATE"));
+		board.setTitle(rset.getString("TITLE"));
+		board.setContent(rset.getString("content"));
 
+		return board;
+	}
+	
+	
+	private Board convertAllToFreeBoardDetailComment(ResultSet rset) throws SQLException {
+		Board board = new Board();
+		board.setCmtIdx(rset.getString("cmt_idx"));
+		board.setBdIdx(rset.getString("bd_idx"));
+		board.setUserId(rset.getString("user_id"));
+		board.setNickName(rset.getString("nickname"));
+		board.setCmtContent(rset.getString("cmt_content"));
+		board.setCmtRegDate(rset.getDate("cmt_reg_date"));
+		return board;
+	}
+	
 
 
 

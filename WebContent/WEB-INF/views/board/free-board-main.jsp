@@ -350,114 +350,40 @@ html, body{
 	 				<a>당산지원</a>
 	 			</div>
  			</div>
- 			<div><a href="/board/free-board-main">게시판</a></div>
+ 			<div><a>게시판</a></div>
  			<div><a>문의하기</a></div>
  		</div>
  		<div class= 'main_banner'>
- 			<div class='userInfo'>
-				
-				<div class="profile_image">
-					image
-				</div>
-				
-				<div class="profile_table" border="solid">
-					<div>${authentication.name}</div>
-					<div>${authentication.khCenter}</div>
-					<div>${authentication.instrName} 강사</div>
-					<div><a href="/myPage/myPageDetail">회원 상세정보 페이지로 이동</a></div>
-				</div>
-				
-				
- 			</div>
  			
  			<div class='history_post'>
- 				<form action="/myPage/delete-post" id="delete-post-submit">
 				 <table class="history_post_table">
-					<div id=history_table_title>작성한 게시글</div>
+					<div id=history_table_title>자 유 게 시 판</div>
 					<tr id="post_table_header">
-						<th>선택</th>
 						<th>게시글번호</th>
-						<th>글제목</th>
+						<th>작성자</th>
+						<th>글 제목</th>
 						<th>작성일자</th>
-						<th>게시판</th>
 					</tr>
 					<c:if test="${not empty boardList}">
+					<!-- https://zelkun.tistory.com/entry/JSTL%EB%AC%B8%EB%B2%95-cforEach-ctag%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%B6%9C%EB%A0%A5 -->
 						<c:forEach items="${boardList}" var="board" varStatus="i">
 							<tr height = "25">
-								<td><input type="checkbox" class = "chk_num" name="chk_num" value="${board.bdIdx}"></td>
 								<td>${board.bdIdx}</td>
+								<td>${board.nickName}</td>
 								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
 								<td>${board.regDate}</td>
-								<td>${board.bdSection}</td>
 							</tr>
 						</c:forEach>
 					</c:if>
 					
 					<c:if test="${empty boardList}">
 					<tr>
-						<td>작성한 게시글이 없습니다.<td>
+						<td>작성된 게시글이 없습니다.<td>
 					</tr>
 					</c:if>
-					
-				</table>
-				<button id="history_post_delete_button">체크한 게시글 삭제하기</button>
-				<span id="check-error-msg"></span>
- 				</form>
- 			</div>
- 			
- 			
 
-			<div class='history_comments'>
- 			
-				<form action="/myPage/delete-comment" id="delete-post-submit">
-				 <table class="history_comment_table">
-					<div id=history_comment_title>작성한 댓글</div>
-					<tr id="post_table_header">
-						<th>선택</th>
-						<th>댓글번호</th>
-						<th>댓글 단 글 제목</th>
-						<th>댓글 내용</th>
-						<th>댓글 작성 날짜</th>
-						<th>작성 게시판</th>
-					</tr>
-					<c:if test="${not empty commentList}">
-					<!-- https://zelkun.tistory.com/entry/JSTL%EB%AC%B8%EB%B2%95-cforEach-ctag%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%B6%9C%EB%A0%A5 -->
-						<c:forEach items="${commentList}" var="board" varStatus="i">
-							<tr height = "25">
-								<td><input type="checkbox" class = "chk_cmt_num" name="chk_cmt_num" value="${board.cmtIdx}"></td>
-								<td>${board.cmtIdx}</td>
-								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
-								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.cmtContent}}</a></td>
-								<td>${board.cmtRegDate}</td>
-								<td>${board.bdSection}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-					
-					<c:if test="${empty commentList}">
-					<tr>
-						<td>작성한 게시글이 없습니다.<td>
-					</tr>
-					</c:if>
-					
 				</table>
-				<button id="history_post_delete_button">체크한 게시글 삭제하기</button>
 				<span id="check-error-msg"></span>
- 				</form>
- 			
- 			</div>
- 			
- 			
- 			
- 			<div id='delete-account'>
- 			<div id=delete_account_title>회원 탈퇴하기</div>
-				<form action="/myPage/delete-account" id="delete-account-submit">
-				<div>
-				회원 탈퇴 시 작성한 게시글/댓글은 자동으로 지워지지 않습니다. 탈퇴를 진행하시겠습니까?
-				</div>
-				<button>회원 탈퇴</button>								
- 				</form>
- 			
  			</div>
  			
  			
@@ -489,23 +415,7 @@ html, body{
 	})();
 	
 	
-/* 	document.querySelector("#history_post_delete_button").addEventListener('click',()=>{
-		let check = document.getElementsByName('chk_num')
-		
-		check.forEach((e)=>{
-			if(e.checked)
-		})
-		
-		if(check.checked === false){
-			e.preventDefault();
-			document.querySelector("#check-error-msg").style.color = 'red';
-			document.querySelector("#check-error-msg").innerHTML = '체크한 항목이 없습니다.';
-		}
-		
-	}) */
-	
 
-	
 	
 	</script>
 
