@@ -65,7 +65,7 @@
 	 			<div class="bigSlide">
 	 				<span></span>
 	 				<span></span>
-	 				<span></span>	
+	 				<span></span>
 	 			</div>
 	 		</div>
 	 		<div class="buttonDiv" id="buttonDiv">
