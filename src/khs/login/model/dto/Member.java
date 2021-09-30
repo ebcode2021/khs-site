@@ -17,7 +17,16 @@ public class Member {
 	private int isLeave;
 	private Date startDate;
 	private Date finalDate;
+	private String kakaoCode;
 	
+	public String getKakaoCode() {
+		return kakaoCode;
+	}
+
+	public void setKakaoCode(String kakaoCode) {
+		this.kakaoCode = kakaoCode;
+	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -115,6 +124,14 @@ public class Member {
 
 	public void setIsLeave(int isLeave) {
 		this.isLeave = isLeave;
+	}
+
+	@Override
+	public String toString() {
+		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", grade=" + grade
+				+ ", regDate=" + regDate + ", name=" + name + ", nickname=" + nickname + ", BirthDate=" + BirthDate
+				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + ", startDate=" + startDate + ", finalDate="
+				+ finalDate + ", kakaoCode=" + kakaoCode + "]";
 	}
 	
 

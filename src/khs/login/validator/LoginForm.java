@@ -43,6 +43,29 @@ public class LoginForm {
 		request.getSession().setAttribute("remainder", remainder);
 	}
 
+	public boolean testKakao(String kakaoCode) {
+		boolean res=true;
+		
+		Member member = null;
+		member = memberService.memberIsCode(kakaoCode);
+		
+		if(member==null) {
+			return false;
+		}
+		
+		request.getSession().setAttribute("authentication", member);
+		long remainder = (member.getFinalDate().getTime()-date.getTime())/(24*60*60*1000);
+		request.getSession().setAttribute("remainder", remainder);
+		
+		// member에서 kakao_token 값이 있는지. 확인. 
+		// 있다면 바로 일치하는 member 정보를 불러오고, main 페이지로 redirect
+		// 없다면 토큰 값을 포함해서 회원가입 페이지로 넘겨주기.
+		
+		// 이후에 로그인 할 때는, 토큰 값 일치여부만 확인해서 한 번에 로그인 가능하게.
+		// main 페이지로 보내주자
+		return res;
+	}
+	
 	
 	public String getUserId() {
 		return userId;
@@ -59,6 +82,7 @@ public class LoginForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	
 	
 	

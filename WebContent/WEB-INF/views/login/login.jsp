@@ -6,6 +6,7 @@
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/css/index/index.css"/>
+<script type="text/javascript" src="/resources/js/common/jquery.js"></script>
 </head>
 
 <body>
@@ -26,8 +27,9 @@
 
     <div class="find">
       <div><a href="${ContextPath}/join/find">아이디/비밀번호 찾기</a></div>
-      <div><a href="${ContextPath}/sns/naver">네이버로 로그인</a></div>
-      <div><a href="${ContextPath}/sns/kakao">카카오로 로그인</a></div>
+      <form name="kakao" action="${ContextPath}/login/kakaoLogin" method="post">
+      <div><a href="javascript:kakaoLogin()">카카오로 회원가입/로그인</a></div>
+   	  </form>
     </div>
       <div id="icon"><i class="far fa-question-circle fa-2x"></i> </div>
     </div>
@@ -38,5 +40,48 @@
     </div>
   </main>
   
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script type="text/javascript">
+  //jQuery 작동하는지 유무판단
+ 	 if(typeof jQuery =='undefined'){
+		  alert('없음');
+  	}else{
+		  alert("있다!");
+  	}
+  
+	  $('#far fa-question-circle fa-2x').on('hover', ()=>{
+		  $(this).append($("<div> 보이나요? </div>"));
+		  
+	  }, ()=>{
+		  $(this).empty();
+	  });
+	  
+	  window.Kakao.init("381fa90ea846cba4a5527f77c034f477");
+	    console.log(Kakao.isInitialized()); //카카오가 잘 연동이 되었는지
+	   
+	    function kakaoLogin(){
+	    
+	      window.Kakao.Auth.login({ 
+	        scope : 'profile_nickname, account_email, gender',
+	        success: function(response){
+	          window.Kakao.API.request({
+	            url : '/v2/user/me',
+	            success : function(response) {
+	      			  let kakao = document.kakao;
+		        	  
+		        	  $.ajax({
+		        		  url : "login/kakaoLogin",
+		        		  type : "POST",
+		        		  data : {kakaoCode : JSON.stringify(response.id)},
+		        		  
+		        	  })	        	 
+	              //여기서 비동기통신으로 다시 컨트롤러 단으로? ajax사용..
+	            }
+	          });
+	        }
+	      });
+	    };
+	  
+  </script>
 </body>
 </html>
