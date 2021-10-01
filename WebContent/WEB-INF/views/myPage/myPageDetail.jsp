@@ -647,6 +647,7 @@ td, td> div{
 	
 	//사이드메뉴 호버
 
+	(function hotplaceSlide() {
 		document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
 			document.querySelector(".hotplace").style.transitionDuration = '0.1s';
 			document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
@@ -658,6 +659,7 @@ td, td> div{
 			document.querySelector(".hotplace").style.backgroundColor = "#fecf92";	
 		})
 
+	})();
 
 
 		window.onload = ()=>{
@@ -680,13 +682,12 @@ td, td> div{
 		}
 
 
-
 		let file = document.querySelector("#khFile");
-		file.addEventListener('input',e=>{
-			document.querySelector("#upload-name").value = file.value;
-		})
-
-
+		if(file) {
+			file.addEventListener('input',e=>{
+				document.querySelector("#upload-name").value = file.value;
+			})
+		}
 
 		//닉네임 중복확인
 		let confirmNickname;
@@ -707,7 +708,7 @@ td, td> div{
 				})
 			}
 		})
-		
+			
 		// 이메일 검증
 		let confirmEmail = false;
 		
@@ -863,6 +864,8 @@ td, td> div{
 			}
 			
 		})
+		
+		
 
 	
 	

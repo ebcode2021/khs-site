@@ -74,6 +74,7 @@ public class BoardController extends HttpServlet {
 				
 		request.setAttribute("board", board);
 		request.setAttribute("boardCommentList", boardCommentList);
+		System.out.println(boardCommentList.toString());
 		
 		request.getRequestDispatcher("/board/free-board-detail").forward(request, response);
 		

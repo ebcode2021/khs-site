@@ -2,7 +2,6 @@ package khs.myPage.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import khs.board.model.dto.Board;
-import khs.common.code.ErrorCode;
 import khs.common.encrypt.Encrypter;
-import khs.common.exception.HandlableException;
 import khs.common.exception.PageNotFoundException;
 import khs.common.file.FileDTO;
 import khs.common.file.FileUtil;

@@ -431,7 +431,7 @@ html, body{
 								<td><input type="checkbox" class = "chk_cmt_num" name="chk_cmt_num" value="${board.cmtIdx}"></td>
 								<td>${board.cmtIdx}</td>
 								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
-								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.cmtContent}}</a></td>
+								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.cmtContent}</a></td>
 								<td>${board.cmtRegDate}</td>
 								<td>${board.bdSection}</td>
 							</tr>

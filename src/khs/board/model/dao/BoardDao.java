@@ -22,7 +22,7 @@ public class BoardDao {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-
+		Board board = null;
 		String query = "select * from board inner join member using(user_id) where bd_is_del=0 order by to_number(bd_idx) desc";
 		
 		try {
@@ -30,7 +30,7 @@ public class BoardDao {
 			rset = pstm.executeQuery();
 
 			while(rset.next()) {
-				Board board = convertAllToFreeBoardMain(rset);
+				board = convertAllToFreeBoardMain(rset);
 				boardList.add(board);
 			}
 
@@ -76,7 +76,7 @@ public class BoardDao {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-
+		Board board = null;
 		String query = "select * from board_comment inner join member using(user_id) where cmt_is_del=0 AND bd_idx=?";
 		
 		try {
@@ -84,8 +84,8 @@ public class BoardDao {
 			pstm.setString(1, bdIdx);
 			rset = pstm.executeQuery();
 			
-			if(rset.next()) {
-				Board board = convertAllToFreeBoardDetailComment(rset);
+			while(rset.next()) {
+				board = convertAllToFreeBoardDetailComment(rset);
 				boardList.add(board);
 			}
 
@@ -106,7 +106,7 @@ public class BoardDao {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-
+		Board board = null;
 		String query = "select * from board where user_id = ? AND bd_is_del=0 AND bd_is_blind=0 order by to_number(bd_idx) desc";
 		
 		try {
@@ -115,7 +115,7 @@ public class BoardDao {
 			rset = pstm.executeQuery();
 
 			while(rset.next()) {
-				Board board = convertAllToBoard(rset);
+				board = convertAllToBoard(rset);
 				boardList.add(board);
 			}
 
@@ -158,7 +158,7 @@ public class BoardDao {
 		List<Board> commentList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		
+		Board board = null;
 		String query = "select cmt_idx, bd_idx, C.user_id, title, cmt_content, cmt_reg_date, bd_section, cmt_is_del"
 				+ " from board B inner join board_comment C using(bd_idx) where C.user_id = ?"
 				+ " AND cmt_is_del=0 order by to_number(cmt_idx) desc";
@@ -170,7 +170,7 @@ public class BoardDao {
 			rset.toString();
 
 			while(rset.next()) {
-				Board board = convertAllToComment(rset);
+				board = convertAllToComment(rset);
 				commentList.add(board);
 			}
 			

@@ -248,7 +248,7 @@ html, body{
 	margin-bottom: 0.8vw;
 }
 
-.comment-contnet {
+.comment-content {
 	text-align: left;
 }
 
@@ -352,10 +352,10 @@ html, body{
  			
  			
  			<div class='board-detail-wrapper'>
-				 <table class="board-detail-table">
-					<div id="board-comment-title">댓 글</div>
-					
-					<c:if test="${not empty boardCommentList}">
+ 				<div id="board-comment-title">댓 글</div>
+ 				
+ 				<c:if test="${not empty boardCommentList}">
+					 <table class="board-detail-table">
 						<c:forEach items="${boardCommentList}" var="board" varStatus="i">
 							<tr id="post_table_header">
 								<th>댓글번호</th>
@@ -368,7 +368,7 @@ html, body{
 								<td>${board.cmtRegDate}</td>
 							</tr>
 							<tr>
-								<td colspan = 3 class="comment-contnet">
+								<td colspan = 3 class="comment-content">
 									<br>
 									<br>
 									${board.cmtContent}
@@ -376,16 +376,18 @@ html, body{
 									<br>
 								</td>
 							</tr>
-						</c:forEach>
-					</c:if>
-					
-					
-					<c:if test="${empty boardCommentList}">
-					<tr>
-						<td>작성된 댓글이 없습니다.<td>
-					</tr>
-					</c:if>
-				</table>
+						</c:forEach>					
+					</table>
+				</c:if>
+				
+				<c:if test="${empty boardCommentList}">
+					<table class="board-detail-table">
+						<tr>
+							<td>작성된 댓글이 없습니다.<td>
+						</tr>
+					</table>
+				</c:if>
+				
  			</div>
  			
  			
