@@ -13,6 +13,7 @@ import javax.xml.ws.RequestWrapper;
 import khs.common.exception.PageNotFoundException;
 import khs.login.model.dto.Member;
 import khs.login.model.service.MemberService;
+import khs.login.validator.KakaoForm;
 import khs.login.validator.LoginForm;
 
 @WebServlet("/login/*")
@@ -46,11 +47,11 @@ public class LoginController extends HttpServlet {
 		System.out.println("카카오 로그인 서블릿으로 넘어왔다!!!!");
 		String kakaoCode = request.getParameter("kakaoCode");
 		System.out.println(kakaoCode);
-		LoginForm loginForm = new LoginForm(request);
 		
+		KakaoForm kakaoForm = new KakaoForm(request);
 		//member에 kakaoCode가 없다면 회원가입
-		if(!loginForm.testKakao(kakaoCode)) {
-			request.getRequestDispatcher("/join/join-form").forward(request, response);
+		if(!kakaoForm.testKakao(kakaoCode)) {
+			System.out.println("?");
 		};
 		
 		//member에 kakaoCode가 있다면 그대로 로그인
