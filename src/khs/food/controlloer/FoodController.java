@@ -61,6 +61,7 @@ public class FoodController extends HttpServlet {
 			for (Object object : foodArr) {
 				System.out.println(object);
 			} 
+			
 			request.getRequestDispatcher("/food/food-form").forward(request, response);
 	}
 
