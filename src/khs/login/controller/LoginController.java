@@ -51,11 +51,15 @@ public class LoginController extends HttpServlet {
 		KakaoForm kakaoForm = new KakaoForm(request);
 		//member에 kakaoCode가 없다면 회원가입
 		if(!kakaoForm.testKakao(kakaoCode)) {
-			System.out.println("?");
+			System.out.println("kakaocODE가 없다고 넘어오겠지");
+			response.sendRedirect("/join/join-form");
+			//request.getRequestDispatcher("/join/join-form").forward(request, response);
+		}else{
+			//member에 kakaoCode가 있다면 그대로 로그인
+			System.out.println("카카오코드는 이미 있어");
+			response.sendRedirect("/main");
 		};
 		
-		//member에 kakaoCode가 있다면 그대로 로그인
-		response.sendRedirect("/main");
 		
 		
 		
