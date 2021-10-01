@@ -1,4 +1,3 @@
-//memberDao
 package khs.login.model.dao;
 
 import java.sql.Connection;
@@ -80,7 +79,9 @@ public class MemberDao {
 		member.setFinalDate(rset.getDate("final_date"));
 		member.setStartDate(rset.getDate("start_date"));
 		member.setBanGrade(rset.getString("ban_grade"));
-		//member.setKakaoCode(rset.getString("kakaoCode"));
+		member.setKhCenter(rset.getString("kh_code"));
+		member.setKakaoCode(rset.getString("kakaoCode"));
+		member.setBanDate(rset.getDate("ban_date"));
 		return member;
 	}
 

@@ -18,7 +18,18 @@ public class Member {
 	private Date finalDate;
 	private String kakaoCode;
 	private String banGrade;
+	private Date banDate;
 	
+	
+	
+
+	public Date getBanDate() {
+		return banDate;
+	}
+
+	public void setBanDate(Date banDate) {
+		this.banDate = banDate;
+	}
 
 	public String getKakaoCode() {
 		return kakaoCode;
@@ -142,8 +153,10 @@ public class Member {
 		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", grade=" + grade
 				+ ", regDate=" + regDate + ", name=" + name + ", nickname=" + nickname + ", BirthDate=" + BirthDate
 				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + ", startDate=" + startDate + ", finalDate="
-				+ finalDate + ", kakaoCode=" + kakaoCode + ", banGrade=" + banGrade + "]";
+				+ finalDate + ", kakaoCode=" + kakaoCode + ", banGrade=" + banGrade + ", banDate=" + banDate + "]";
 	}
+
+
 
 	
 

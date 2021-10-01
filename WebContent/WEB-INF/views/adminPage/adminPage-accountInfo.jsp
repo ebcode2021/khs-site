@@ -184,7 +184,7 @@ html, body{
 	 			</div>
  			</div> 
  			
- 			<div><a>학습 자료실</a></div>
+ 			<div><a href="/studyPage/index">학습 자료실</a></div>
  			
  			<div id="wrap_hotplace"><a>맛집 정보</a>
 	 			<div class="hotplace">
@@ -194,7 +194,7 @@ html, body{
 	 			</div>
  			</div>
  			
- 			<div><a>게시판</a></div>
+ 			<div><a href="/board/free-board-main">게시판</a></div>
  			
  			<div><a>문의하기</a></div>
  			

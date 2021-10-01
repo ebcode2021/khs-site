@@ -53,19 +53,41 @@
 	 		</div>
 	 		<div class="slideDiv" id="slideDiv">
 	 			<div class="bigSlide" id ="bigSlide">
-	 				<span></span>
-	 				<span></span>
-	 				<span></span>		
+	 				<span class="smallSlide" id= "smallSlide">
+	 					<img id = "hpImg">
+	 					<span>
+	 						stName<br>
+	 						stMenu<br>
+	 						stDescription
+	 					</span>
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg">
+	 					<span>12354</span>
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg">
+	 					<span>12354</span>
+	 				</span>		
 	 			</div>
 	 			<div class="bigSlide">
-	 				<span></span>
-	 				<span></span>
-	 				<span></span>	
+	 				<span class="smallSlide" id= "smallSlide">
+	 					<img id = "hpImg2">
+	 					<span>12354</span>
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg2">
+	 					<span>12354</span>
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg2">
+	 					<span>12354</span>
+	 				</span>	
 	 			</div>
 	 			<div class="bigSlide">
-	 				<span></span>
-	 				<span></span>
-	 				<span></span>
+	 				<span class="smallSlide"></span>
+	 				<span class="smallSlide"></span>
+	 				<span class="smallSlide"></span>
 	 			</div>
 	 		</div>
 	 		<div class="buttonDiv" id="buttonDiv">
@@ -98,6 +120,7 @@
 	var map = new kakao.maps.Map(container, options);
 	
 	$('#slideDiv').slick({
+			
 		  infinite: true,
 		  speed: 300,
 		  slidesToShow: 1,
