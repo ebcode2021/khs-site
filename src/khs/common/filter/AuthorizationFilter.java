@@ -1,6 +1,8 @@
-package khs.common.filter;
+ package khs.common.filter;
 
 import java.io.IOException;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -21,12 +23,10 @@ public class AuthorizationFilter implements Filter {
 
   
     public AuthorizationFilter() {
-        // TODO Auto-generated constructor stub
     }
 
 	
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -40,11 +40,11 @@ public class AuthorizationFilter implements Filter {
 		if(uriArr.length != 0) {
 			
 			switch (uriArr[1]) {
-//				case "login" :
-//					loginAuthorize(httpRequest,httpResponse,uriArr);
-//					break;
 				case "myPage":
 					myPageAuthorize(httpRequest, httpResponse, uriArr);
+					break;
+				case "main" :
+					mainAuthorize(httpRequest, httpResponse, uriArr);
 					break;
 				default: 
 					break;
@@ -55,22 +55,6 @@ public class AuthorizationFilter implements Filter {
 		chain.doFilter(request, response);
 
 	}
-
-
-//	private void loginAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
-//		HttpSession session = httpRequest.getSession();
-//		Member member = (Member)session.getAttribute("authentication");
-//		
-//		switch(uriArr[2]) {
-//			case "login-check" :
-//				//차단된 사용자인지 아닌지에 따라서 접근권한 막는 코드 작성하기
-//				break;
-//			default :
-//				break;
-//		}
-//		
-//	}
-
 
 	private void myPageAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
 		HttpSession session = httpRequest.getSession();
@@ -85,6 +69,37 @@ public class AuthorizationFilter implements Filter {
 	}
 
 
+	private void mainAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) throws ServletException, IOException {
+		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
+		
+		/*
+		 * //로그인 없이 접근할 경우 if(member==null) { throw new
+		 * HandlableException(ErrorCode.NEED_LOGIN.setURL("/login")); }
+		 */
+		//차단회원인 경우
+				if(!member.getBanGrade().equals("B01")) {
+					switch(member.getBanGrade()) {
+						case "B02" :
+							throw new HandlableException(ErrorCode.BAN_USER2);
+						case "B03" :
+							throw new HandlableException(ErrorCode.BAN_USER3);
+						case "B04" :
+							throw new HandlableException(ErrorCode.BAN_USER4);
+					}
+					
+				}
+				
+		//탈퇴회원인 경우
+		if(member.getIsLeave()==1) {
+			throw new HandlableException(ErrorCode.MEMBER_ISLEAVE.setURL("/login"));
+		}
+		
+		
+	
+		
+	}
+	
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}

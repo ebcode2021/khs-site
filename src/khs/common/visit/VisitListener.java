@@ -37,8 +37,6 @@ public class VisitListener implements ServletContextListener, HttpSessionAttribu
     		VisitService visitService = new VisitService();
     		Integer todayCnt = (Integer)visitService.getTodayVisitCnt();
     		Integer totalCnt = (Integer)visitService.getTotalVisitCnt();
-    		System.out.println("리스너에서 todayCnt?" + todayCnt);
-    		System.out.println("리스너에서 totalCnt?" + totalCnt);
     		
     		HttpSession session = event.getSession();
     		session.setAttribute("todayCnt", todayCnt);
