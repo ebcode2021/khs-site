@@ -56,11 +56,16 @@ public class StudyPageController extends HttpServlet {
 		 */
 		
 		BoardStudy boardStudy = new BoardStudy();
-		boardStudy = list.get(3);
-		System.out.println(boardStudy);
 		
-		request.getSession().setAttribute("boardStudy", boardStudy);
-		//Arrays.toString()
+		
+		for (int i=0; i<30; i++) {
+			boardStudy = list.get(i);
+			request.getSession().setAttribute("boardStudy"+(i), boardStudy);
+		}
+		
+		
+		
+		
 		
 		request.getRequestDispatcher("/studyPage/studyPage").forward(request, response);
 		
