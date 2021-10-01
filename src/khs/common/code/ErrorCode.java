@@ -11,10 +11,14 @@ public enum ErrorCode {
 	REDIRECT(""),
 	LOGIN_NOT_VALIDATOR_ERROR("아이디나 비밀번호를 다시 확인해주세요."),
 	MEMBER_ISLEAVE("탈퇴한 아이디입니다."),
-	BAN_USER("");
+	BAN_USER2("차단된 사용자 입니다.\n차단 기간 : 1일 차단\n차단 사유:커뮤니티 규정 위반"),
+	BAN_USER3("차단된 사용자 입니다.\n차단 기간 : 7일 차단\n차단 사유:커뮤니티 규정 위반"),
+	BAN_USER4("차단된 사용자 입니다.\n차단 기간 : 영구 차단\n차단 사유:커뮤니티 규정 위반"),
+	NEED_LOGIN("로그인을 해주세요.");
 	
 	public final String MESSAGE;
 	public String URL;
+	
 	
 	private ErrorCode(String msg) {
 		this.MESSAGE=msg;
@@ -30,4 +34,6 @@ public enum ErrorCode {
 		URL = uRL;
 		return this;
 	}
+	
+	
 }

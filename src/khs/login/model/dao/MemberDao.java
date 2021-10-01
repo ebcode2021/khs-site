@@ -79,6 +79,8 @@ public class MemberDao {
 		member.setIsLeave(rset.getInt("is_leave"));
 		member.setFinalDate(rset.getDate("final_date"));
 		member.setStartDate(rset.getDate("start_date"));
+		member.setBanGrade(rset.getString("ban_grade"));
+		//member.setKakaoCode(rset.getString("kakaoCode"));
 		return member;
 	}
 

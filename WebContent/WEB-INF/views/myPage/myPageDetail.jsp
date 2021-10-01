@@ -193,8 +193,8 @@ html, body{
 	left: 3%;
 	top: 20px;
 	border-radius: 100%;
-	background-image: url("resources/image/고양이1.jpg");
 	z-index: 999;
+	overflow: hidden;
 }
 
 
@@ -306,7 +306,10 @@ td, td> div{
 	color: gray;
 }
 
-
+#upload-name {
+	visibility: hidden;
+	display:none;
+}
 
 
 
@@ -347,8 +350,10 @@ td, td> div{
  		<div class= 'main_banner'>
  			<div class='userInfo'>
 				
-				<div class="profile_image" style="background-color:blue;">
-				
+				<div class="profile_image">
+					
+				<img src="/file/${profileImage.savePath}${profileImage.renameFileName}?originFileName=${profileImage.originFileName}" id="profile-image">
+					
 				</div>
 				
 				
@@ -358,10 +363,17 @@ td, td> div{
 					<div>${authentication.khCenter}</div>
 					<div>${authentication.instrName} 강사</div>
 					<div>
-						<form action="/myPage/profile-image-upload">
-					    <input type="file" name="file" class = 'khFile' id="khFile" accept="image/*,.pdf"/>
+						<!-- enctype은 파입 업로드에서 무조건 사용되어야한다 -->
+						<form action="/myPage/profile-image-upload" method="post" enctype="multipart/form-data">
+					    <input class="upload-name" id = "upload-name"> 
+					    <input type="file" name="file" class = 'khFile' id="khFile" accept="image/*"/>
 					    <br>
-						<button>프로필 사진 업로드</button>
+					    <c:if test="${empty profileImage.originFileName}">
+							<button>프로필 사진 업로드</button>
+						</c:if>
+						<c:if test="${not empty profileImage.originFileName}">
+							<button>프로필 사진 변경</button>
+						</c:if>
 						</form>
 					</div>
 				</div>
@@ -626,7 +638,7 @@ td, td> div{
 	<script type="text/javascript">
 	
 	//사이드메뉴 호버
-	(function hotplaceSlide() {
+	(()=>{
 		document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
 			document.querySelector(".hotplace").style.transitionDuration = '0.1s';
 			document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
@@ -639,186 +651,216 @@ td, td> div{
 		})
 	})();
 	
-	
-	//닉네임 중복확인
-	let confirmNickname;
-	document.querySelector("#nickNameCheckButton").addEventListener('click', e=>{
-		let newNickname = document.querySelector("#newNicknameInput").value;
-		if(newNickname){
-			fetch('/join/join-VariNickName?nickName=' + newNickname)
-			.then(response=>response.text())
-			.then(text=>{
-				if(text=='valid'){
-					document.querySelector('#nickNameCheck').innerHTML = '사용 가능한 닉네임입니다.';
-					document.querySelector('#nickNameCheck').style.color='green';
-					confirmNickname = newNickname;
-				}else{
-					document.querySelector('#nickNameCheck').innerHTML = '이미 존재하는 닉네임입니다.';
-					document.querySelector('#nickNameCheck').style.color='red';
-				}
-			})
-		}
-	})
-	
-	// 이메일 검증
-	let confirmEmail = false;
-	
-	document.querySelector("#emailInput").addEventListener('input', e => {
-		
-		let dom = document.querySelector('#emailInput');
-		let regRes = document.querySelector('#emailCheck');
-		// 1. 정규표현식 검증
-		
-		// 정규표현식 검증을 위한 객체 생성
-		// 공백 / 특수문자 / 제외한 첫 글자가 알파벳인 3에서 12자리 이내의 영문+숫자 조합 아이디 
-		/* ?=.의 검색의 경우 RegExp 객체로 생성하면 올바르게 작동하지 않음  */
-		let testExpr = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		let whiteSpaceExpr = new RegExp('\\s');
-		
-		//빈 칸으로 되돌아갔을 시 원상복귀 
-		if(dom.value == "") {
-			regRes.innerHTML = '';
-			confirmEmail = false;
-			return;
-		}
-		if(whiteSpaceExpr.test(dom.value)){
-			regRes.innerHTML = '이메일에 공백을 포함할 수 없습니다';
-			regRes.style.color = 'red';
-			confirmEmail = false;
-			return;
-		}
+	(()=>{
+		let div = document.querySelector(".profile_image");
+		let img = document.querySelector("#profile-image") // 이미지
+		let divAspect = 155 / 155;
+		let imgAspect = img.height / img.width;
 
-		if(!testExpr.test(dom.value)) {
-			regRes.innerHTML = '올바르지 않은 이메일 주소입니다';
-			regRes.style.color = 'red';
-			confirmEmail = false;
-			return;
-		} 
+		if (imgAspect <= divAspect) {
+		    // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
+		    let imgWidthActual = div.offsetHeight / imgAspect;
+		    let imgWidthToBe = div.offsetHeight / divAspect;
+		    let marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
+		    img.style.cssText = 'width: auto; height: 100%; margin-left: '
+		                      + marginLeft + 'px;'
+		} else {
+		    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
+		    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+		}
+	})();
+	
+	
+	(()=>{
+		let file = document.querySelector("#khFile");
+		file.addEventListener('input',e=>{
+			document.querySelector("#upload-name").value = file.value;
+		})
+	})
+	
+	
+	(()=>{
 
-		if(testExpr.test(dom.value)) {
-			regRes.innerHTML = '올바른 이메일 주소입니다';
-			regRes.style.color = 'green';
-			confirmEmail = true;
-		}
+		//닉네임 중복확인
+		let confirmNickname;
+		document.querySelector("#nickNameCheckButton").addEventListener('click', e=>{
+			let newNickname = document.querySelector("#newNicknameInput").value;
+			if(newNickname){
+				fetch('/join/join-VariNickName?nickName=' + newNickname)
+				.then(response=>response.text())
+				.then(text=>{
+					if(text=='valid'){
+						document.querySelector('#nickNameCheck').innerHTML = '사용 가능한 닉네임입니다.';
+						document.querySelector('#nickNameCheck').style.color='green';
+						confirmNickname = newNickname;
+					}else{
+						document.querySelector('#nickNameCheck').innerHTML = '이미 존재하는 닉네임입니다.';
+						document.querySelector('#nickNameCheck').style.color='red';
+					}
+				})
+			}
+		})
 		
-	})
-	
-	
-	
-	document.querySelector('#detail_submit').addEventListener('click', e=>{
-		if(confirmNickname != document.querySelector("#newNicknameInput").value){
-			e.preventDefault();
-			document.querySelector('#nickNameCheck').style.color = 'red';
-			document.querySelector('#nickNameCheck').innerHTML = "중복검사를 진행하지 않았습니다."
-		}
-		if(!confirmEmail){
-			e.preventDefault();
-			document.querySelector('#emailCheck').style.color = 'red';
-			document.querySelector('#emailCheck').innerHTML = '올바른 이메일 주소를 입력해주세요';
-		}
-	})
-	
-	
-	
-	document.querySelector("#passwordInput").addEventListener('input', e=>{
-		document.querySelector('#pwcheck').innerHTML = null;
-	})
-	
-	
-	
-	let confirmPasswordCheck = false;
-	let firstPw = '';
-	document.querySelector("#newpasswordInput").addEventListener('input', e => {
+		// 이메일 검증
+		let confirmEmail = false;
 		
-		let newpassword = document.querySelector('#newpasswordInput').value;
-		let res = document.querySelector('#newpasswordCheck');
-		document.querySelector('#newpasswordInput2').value = null;
-		document.querySelector('#newpasswordCheck2').innerHTML = null;
-		
-		
-		
-		
-		// 1. 정규표현식 검증
-		
-		// 정규표현식 검증을 위한 객체 생성
-		/* ?=.의 검색의 경우 RegExp 객체로 생성하면 올바르게 작동하지 않음  */
-		var pwExpr = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(?=.{8,})/;
-		let whiteSpaceExpr = new RegExp('\\s');
-		
-		//빈 칸으로 되돌아갔을 시 원상복귀 
-		if(newpassword == "") {
-			confirmPasswordCheck = false;
-			res.innerHTML = '';
-			firstPw = null;
-			return;
-		}
-		
-		if(whiteSpaceExpr.test(newpassword)){
-			res.innerHTML = '비밀번호에 공백을 포함할 수 없습니다';
-			res.style.color = 'red';
-			confirmPasswordCheck = false;
-			firstPw = null;
-			return;
-		}
-		//비밀번호 조건 검증
-		if(!pwExpr.test(newpassword)) {
-			res.innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8자리 이상 문자열입니다.';
-			res.style.color = 'red';
-			confirmPasswordCheck = false;
-			firstPw = null;
-			return;
-		} 
-		
-		if(pwExpr.test(newpassword)) {
-			res.innerHTML = '사용 가능한 비밀번호 입니다';
-			res.style.color = 'green';
-			firstPw = newpassword;
-		}
+		document.querySelector("#emailInput").addEventListener('input', e => {
+			
+			let dom = document.querySelector('#emailInput');
+			let regRes = document.querySelector('#emailCheck');
+			// 1. 정규표현식 검증
+			
+			// 정규표현식 검증을 위한 객체 생성
+			// 공백 / 특수문자 / 제외한 첫 글자가 알파벳인 3에서 12자리 이내의 영문+숫자 조합 아이디 
+			/* ?=.의 검색의 경우 RegExp 객체로 생성하면 올바르게 작동하지 않음  */
+			let testExpr = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			let whiteSpaceExpr = new RegExp('\\s');
+			
+			//빈 칸으로 되돌아갔을 시 원상복귀 
+			if(dom.value == "") {
+				regRes.innerHTML = '';
+				confirmEmail = false;
+				return;
+			}
+			if(whiteSpaceExpr.test(dom.value)){
+				regRes.innerHTML = '이메일에 공백을 포함할 수 없습니다';
+				regRes.style.color = 'red';
+				confirmEmail = false;
+				return;
+			}
 
-		
-	})
-	
-	
-	
-	
-	
-	//비밀번호 일치 검사
-	document.querySelector("#newpasswordInput2").addEventListener('input', e => {
-		
-		let newpassword = document.querySelector('#newpasswordInput').value;
-		let newpassword2 = document.querySelector('#newpasswordInput2').value;
-		let res = document.querySelector('#newpasswordCheck2');
-		if(newpassword2 == "") {
-			res.innerHTML = '';
-			confirmPasswordCheck = false;
-			return;
-		}
+			if(!testExpr.test(dom.value)) {
+				regRes.innerHTML = '올바르지 않은 이메일 주소입니다';
+				regRes.style.color = 'red';
+				confirmEmail = false;
+				return;
+			} 
 
-		if(firstPw != newpassword2){
-			res.innerHTML = '일치하지 않는 비밀번호입니다';
-			res.style.color = 'red';
-			confirmPasswordCheck = false;
-			return;
-		}
+			if(testExpr.test(dom.value)) {
+				regRes.innerHTML = '올바른 이메일 주소입니다';
+				regRes.style.color = 'green';
+				confirmEmail = true;
+			}
+			
+		})
 		
-		if(firstPw == newpassword2){
-			res.innerHTML = '두 비밀번호가 일치합니다.';
-			res.style.color = 'green';
-			confirmPasswordCheck = true;
-		}
 		
-	})
-	
-	document.querySelector('#password_submit').addEventListener('click', e=>{
-		if(!confirmPasswordCheck){
-			e.preventDefault();
-		}
 		
-	})
-	
-	
+		document.querySelector('#detail_submit').addEventListener('click', e=>{
+			if(confirmNickname != document.querySelector("#newNicknameInput").value){
+				e.preventDefault();
+				document.querySelector('#nickNameCheck').style.color = 'red';
+				document.querySelector('#nickNameCheck').innerHTML = "중복검사를 진행하지 않았습니다."
+			}
+			if(!confirmEmail){
+				e.preventDefault();
+				document.querySelector('#emailCheck').style.color = 'red';
+				document.querySelector('#emailCheck').innerHTML = '올바른 이메일 주소를 입력해주세요';
+			}
+		})
+		
+		
+		
+		document.querySelector("#passwordInput").addEventListener('input', e=>{
+			document.querySelector('#pwcheck').innerHTML = null;
+		})
+		
+		
+		
+		let confirmPasswordCheck = false;
+		let firstPw = '';
+		document.querySelector("#newpasswordInput").addEventListener('input', e => {
+			
+			let newpassword = document.querySelector('#newpasswordInput').value;
+			let res = document.querySelector('#newpasswordCheck');
+			document.querySelector('#newpasswordInput2').value = null;
+			document.querySelector('#newpasswordCheck2').innerHTML = null;
+			
+			
+			
+			
+			// 1. 정규표현식 검증
+			
+			// 정규표현식 검증을 위한 객체 생성
+			/* ?=.의 검색의 경우 RegExp 객체로 생성하면 올바르게 작동하지 않음  */
+			var pwExpr = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Zㄱ-힣0-9])(?=.{8,})/;
+			let whiteSpaceExpr = new RegExp('\\s');
+			
+			//빈 칸으로 되돌아갔을 시 원상복귀 
+			if(newpassword == "") {
+				confirmPasswordCheck = false;
+				res.innerHTML = '';
+				firstPw = null;
+				return;
+			}
+			
+			if(whiteSpaceExpr.test(newpassword)){
+				res.innerHTML = '비밀번호에 공백을 포함할 수 없습니다';
+				res.style.color = 'red';
+				confirmPasswordCheck = false;
+				firstPw = null;
+				return;
+			}
+			//비밀번호 조건 검증
+			if(!pwExpr.test(newpassword)) {
+				res.innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8자리 이상 문자열입니다.';
+				res.style.color = 'red';
+				confirmPasswordCheck = false;
+				firstPw = null;
+				return;
+			} 
+			
+			if(pwExpr.test(newpassword)) {
+				res.innerHTML = '사용 가능한 비밀번호 입니다';
+				res.style.color = 'green';
+				firstPw = newpassword;
+			}
 
+			
+		})
 		
+		
+		
+		
+		
+		//비밀번호 일치 검사
+		document.querySelector("#newpasswordInput2").addEventListener('input', e => {
+			
+			let newpassword = document.querySelector('#newpasswordInput').value;
+			let newpassword2 = document.querySelector('#newpasswordInput2').value;
+			let res = document.querySelector('#newpasswordCheck2');
+			if(newpassword2 == "") {
+				res.innerHTML = '';
+				confirmPasswordCheck = false;
+				return;
+			}
+
+			if(firstPw != newpassword2){
+				res.innerHTML = '일치하지 않는 비밀번호입니다';
+				res.style.color = 'red';
+				confirmPasswordCheck = false;
+				return;
+			}
+			
+			if(firstPw == newpassword2){
+				res.innerHTML = '두 비밀번호가 일치합니다.';
+				res.style.color = 'green';
+				confirmPasswordCheck = true;
+			}
+			
+		})
+		
+		document.querySelector('#password_submit').addEventListener('click', e=>{
+			if(!confirmPasswordCheck){
+				e.preventDefault();
+			}
+			
+		})
+	})();
+	
+	
+	
+	
 	</script>
 
 	
