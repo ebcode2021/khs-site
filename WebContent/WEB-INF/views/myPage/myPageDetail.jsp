@@ -193,8 +193,9 @@ html, body{
 	left: 3%;
 	top: 20px;
 	border-radius: 100%;
-	z-index: 999;
 	overflow: hidden;
+	background-image: url(/resources/image/mypage/default-profile-image.png);
+	background-size: cover;
 }
 
 
@@ -308,6 +309,7 @@ td, td> div{
 
 #upload-name {
 	visibility: hidden;
+	float: right;
 	display:none;
 }
 
@@ -363,18 +365,24 @@ td, td> div{
 					<div>${authentication.khCenter}</div>
 					<div>${authentication.instrName} 강사</div>
 					<div>
+						
 						<!-- enctype은 파입 업로드에서 무조건 사용되어야한다 -->
 						<form action="/myPage/profile-image-upload" method="post" enctype="multipart/form-data">
 					    <input class="upload-name" id = "upload-name"> 
+					    <c:if test="${empty profileImage.originFileName}">
 					    <input type="file" name="file" class = 'khFile' id="khFile" accept="image/*"/>
+					    </c:if>
 					    <br>
 					    <c:if test="${empty profileImage.originFileName}">
 							<button>프로필 사진 업로드</button>
 						</c:if>
-						<c:if test="${not empty profileImage.originFileName}">
-							<button>프로필 사진 변경</button>
-						</c:if>
 						</form>
+
+						<c:if test="${not empty profileImage.originFileName}">
+							<form action="/myPage/profile-image-delete">
+								<button>프로필 사진 삭제</button>
+							</form>
+						</c:if>
 					</div>
 				</div>
 				
@@ -638,7 +646,7 @@ td, td> div{
 	<script type="text/javascript">
 	
 	//사이드메뉴 호버
-	(()=>{
+
 		document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
 			document.querySelector(".hotplace").style.transitionDuration = '0.1s';
 			document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
@@ -649,37 +657,36 @@ td, td> div{
 			document.querySelector(".hotplace").style.transform=`translateY(-100%)`;
 			document.querySelector(".hotplace").style.backgroundColor = "#fecf92";	
 		})
-	})();
-	
-	(()=>{
-		let div = document.querySelector(".profile_image");
-		let img = document.querySelector("#profile-image") // 이미지
-		let divAspect = 155 / 155;
-		let imgAspect = img.height / img.width;
 
-		if (imgAspect <= divAspect) {
-		    // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
-		    let imgWidthActual = div.offsetHeight / imgAspect;
-		    let imgWidthToBe = div.offsetHeight / divAspect;
-		    let marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
-		    img.style.cssText = 'width: auto; height: 100%; margin-left: '
-		                      + marginLeft + 'px;'
-		} else {
-		    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
-		    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+
+
+		window.onload = ()=>{
+			let div = document.querySelector(".profile_image");
+			let img = document.querySelector("#profile-image") // 이미지
+			let divAspect = 155 / 155;
+			let imgAspect = img.height / img.width;
+		
+			if (imgAspect <= divAspect) {
+			    // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
+			    let imgWidthActual = div.offsetHeight / imgAspect;
+			    let imgWidthToBe = div.offsetHeight / divAspect;
+			    let marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
+			    img.style.cssText = 'width: auto; height: 100%; margin-left: '
+			                      + marginLeft + 'px;'
+			} else {
+			    // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
+			    img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+			}
 		}
-	})();
-	
-	
-	(()=>{
+
+
+
 		let file = document.querySelector("#khFile");
 		file.addEventListener('input',e=>{
 			document.querySelector("#upload-name").value = file.value;
 		})
-	})
-	
-	
-	(()=>{
+
+
 
 		//닉네임 중복확인
 		let confirmNickname;
@@ -856,7 +863,7 @@ td, td> div{
 			}
 			
 		})
-	})();
+
 	
 	
 	

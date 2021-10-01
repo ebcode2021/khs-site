@@ -61,7 +61,6 @@ public class BoardController extends HttpServlet {
 		String bdIdx = request.getParameter("bdIdx");
 		String content = request.getParameter("comment-content");
 		
-		System.out.println(bdIdx + content + userId);
 		
 		request.getRequestDispatcher("/board/free-board-detail").forward(request, response);
 	}

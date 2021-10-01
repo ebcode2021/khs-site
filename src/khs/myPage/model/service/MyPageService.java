@@ -215,6 +215,27 @@ public class MyPageService {
 		
 		return profileImage;
 	}
+	
+
+	
+	
+	public int profileImageDelete(String userId) {
+		int res = 0;
+		Connection conn = template.getConnection();
+		try {
+			res = myPageDao.profileImageDelete(conn, userId);
+			
+			template.commit(conn);
+		} catch(DataAccessException e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+	
+	
 
 
 
@@ -226,6 +247,11 @@ public class MyPageService {
 		String userId = member.getUserId();
 		return userId;
 	}
+
+
+
+
+
 
 
 

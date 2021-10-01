@@ -68,6 +68,9 @@ public class MyPageController extends HttpServlet {
 		case "profile-image-upload":
 			profileImageUpload(request,response);
 			break;
+		case "profile-image-delete":
+			profileImageDelete(request,response);
+			break;
 			
 		default: throw new PageNotFoundException();
 		
@@ -77,6 +80,17 @@ public class MyPageController extends HttpServlet {
 	}
 	
 	
+
+
+	private void profileImageDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = myPageService.getLoginMemberId(request);
+		
+		myPageService.profileImageDelete(userId);
+		request.setAttribute("msg", "프로필 사진 삭제 완료");
+		request.setAttribute("url", "/myPage/myPageMain");
+		request.getRequestDispatcher("/error/result").forward(request, response);
+	}
+
 
 
 	private void profileImageUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -90,7 +104,7 @@ public class MyPageController extends HttpServlet {
 		myPageService.profileImageUpload(userId, files.get(0));
 		
 		request.setAttribute("msg", "프로필 사진 업로드 성공");
-		request.setAttribute("url", "/myPage/myPageMain");
+		request.setAttribute("url", "/myPage/myPageDetail");
 		request.getRequestDispatcher("/error/result").forward(request, response);
 		
 	}
@@ -205,6 +219,8 @@ public class MyPageController extends HttpServlet {
 		List<Board> boardList = myPageService.selectMyPost(userId);
 		List<Board> commentList = myPageService.selectMyComment(userId);
 		ProfileImage profileImage = myPageService.profileImageDownload(userId);
+		
+		
 		
 		request.setAttribute("profileImage", profileImage);
 		request.setAttribute("authentication", myPage);

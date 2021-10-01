@@ -13,6 +13,7 @@ public class FileDTO {
 	private String downloadLink;
 	
 	
+	
 	public String getFlIdx() {
 		return flIdx;
 	}

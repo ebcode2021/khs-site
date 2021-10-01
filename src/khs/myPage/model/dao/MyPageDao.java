@@ -205,6 +205,51 @@ public class MyPageDao {
 		
 		return profileImage;
 	}
+	
+	
+
+	public int profileImageUpload(Connection conn, String userId) {
+		int res = 0;
+		String query = "update member set is_leave=1 where user_id = ?";
+		PreparedStatement pstm = null;
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			
+			res = pstm.executeUpdate();
+			
+		}catch (SQLException e){
+			throw new DataAccessException(e);
+		} finally {
+			template.close(pstm);
+		}
+		
+		return res;
+	}
+
+	
+	
+	public int profileImageDelete(Connection conn, String userId) {
+		int res = 0;
+		String query = "update profile_image set file_is_del=1 where user_id = ? and file_is_del=0";
+		PreparedStatement pstm = null;
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			
+			res = pstm.executeUpdate();
+			
+		}catch (SQLException e){
+			throw new DataAccessException(e);
+		} finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+
+
 
 
 
@@ -257,6 +302,9 @@ public class MyPageDao {
 		return myPage;
 	}
 
+
+
+	
 
 
 
