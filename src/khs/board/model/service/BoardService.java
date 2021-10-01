@@ -1,6 +1,7 @@
 package khs.board.model.service;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import khs.board.model.dao.BoardDao;
@@ -53,6 +54,24 @@ public class BoardService {
 		}
 
 		return boardList;
+	}
+
+
+	public int commentInput(Board board) {
+		int res = 0;
+		Connection conn = template.getConnection();
+		
+		try {
+			res = boardDao.commentInput(conn, board);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		
+		return res;
 	}
 	
 	

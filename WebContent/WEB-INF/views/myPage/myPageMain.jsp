@@ -77,7 +77,7 @@ html, body{
 .section{
 	position: relative;
 	display: flex;
-	min-height:75%;
+	
 	margin-left: 13%;
 	margin-right:13%;
 	border-radius: 20px 20px 20px 20px;
@@ -217,7 +217,7 @@ html, body{
 
 
 .history_post{
-	height: 350px;
+	
 	margin-left: 20px;
 	margin-right: 20px;
 	
@@ -270,7 +270,7 @@ html, body{
 	margin-top: 30px;
 	margin-left: 20px;
 	margin-right: 20px;
-	height : 300px;
+
 	
 }
 
@@ -375,7 +375,7 @@ html, body{
  			</div>
  			
  			<div class='history_post'>
- 				<form action="/myPage/delete-post" id="delete-post-submit">
+ 				<form action="/myPage/delete-post" id="delete-post-submit" method="post">
 				 <table class="history_post_table">
 					<div id=history_table_title>작성한 게시글</div>
 					<tr id="post_table_header">
@@ -413,7 +413,7 @@ html, body{
 
 			<div class='history_comments'>
  			
-				<form action="/myPage/delete-comment" id="delete-post-submit">
+				<form action="/myPage/delete-comment" id="delete-post-submit" method="post">
 				 <table class="history_comment_table">
 					<div id=history_comment_title>작성한 댓글</div>
 					<tr id="post_table_header">
@@ -455,7 +455,7 @@ html, body{
  			
  			<div id='delete-account'>
  			<div id=delete_account_title>회원 탈퇴하기</div>
-				<form action="/myPage/delete-account" id="delete-account-submit">
+				<form action="/myPage/delete-account" id="delete-account-submit" method="post">
 				<div>
 				회원 탈퇴 시 작성한 게시글/댓글은 자동으로 지워지지 않습니다. 탈퇴를 진행하시겠습니까?
 				</div>

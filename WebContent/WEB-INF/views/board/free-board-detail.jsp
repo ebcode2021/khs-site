@@ -213,7 +213,7 @@ html, body{
 
 
 .board-detail-wrapper{
-	height: 350px;
+	
 	margin-left: 20px;
 	margin-right: 20px;
 	
@@ -397,14 +397,16 @@ html, body{
  			
  			<div class='board-detail-wrapper'>
  				<div id="board-comment-title">댓 글 작 성</div>
- 				<form action="/board/board-detail-comment-input?bdIdx=${board.bdIdx}"  method="post">
-				 <table class="board-detail-table">
-					<div class="cmt_input">
-						<textarea name="comment-content" required="required"></textarea>
-					</div>
-					<button>전송</button>
+ 				<table class="board-detail-table">
+	 				<form action="/board/free-board-comment-input?bdIdx=${board.bdIdx}"  method="post">
+					 
+						<div class="cmt_input">
+							<textarea name="comment-content" required="required"></textarea>
+						</div>
+						<button>전송</button>
+					
+					</form>
 				</table>
-				</form>
  			</div>
  			
  			

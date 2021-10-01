@@ -379,7 +379,7 @@ td, td> div{
 						</form>
 
 						<c:if test="${not empty profileImage.originFileName}">
-							<form action="/myPage/profile-image-delete">
+							<form action="/myPage/profile-image-delete" method="post">
 								<button>프로필 사진 삭제</button>
 							</form>
 						</c:if>
@@ -389,7 +389,7 @@ td, td> div{
 				
  			</div>
  			<div class='mypage_wrapper'>
- 				<form id='mypage_detail' action="/myPage/updateDetail">
+ 				<form id='mypage_detail' action="/myPage/updateDetail" method="post">
  				
 			 		<table>
 						<tr>
@@ -521,7 +521,7 @@ td, td> div{
  			
  			
  			<div class='password_wrapper'>
- 				<form id='change_password' action="/myPage/changePassword">
+ 				<form id='change_password' action="/myPage/changePassword" method="post">
  				<table>
  				<tr>
  				

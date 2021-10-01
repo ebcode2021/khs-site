@@ -206,6 +206,35 @@ public class BoardDao {
 		
 		return res;
 	}
+	
+	
+	
+	public int commentInput(Connection conn, Board board) {
+		PreparedStatement pstm = null;
+		int res = 0;
+		String query = "insert into board_comment (cmt_idx, bd_idx, user_id, cmt_content)"
+				+ " values(BD_CMT_IDX_INCREASE.NEXTVAL, ?, ?, ?)";
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, board.getBdIdx());
+			pstm.setString(2, board.getUserId());
+			pstm.setString(3, board.getCmtContent());
+			pstm.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(pstm);
+		}
+		
+		return res;
+		
+	}
+	
+	
+	
+	
+	
 
 	
 	
@@ -278,6 +307,8 @@ public class BoardDao {
 		board.setCmtRegDate(rset.getDate("cmt_reg_date"));
 		return board;
 	}
+
+
 	
 
 
