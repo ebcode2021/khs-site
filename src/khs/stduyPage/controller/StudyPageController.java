@@ -49,26 +49,16 @@ public class StudyPageController extends HttpServlet {
 		//먼저 보내기위해 윗줄
 		List<BoardStudy> list = new ArrayList<>();
 		list = studyPageService.checkNickName();
-		
 		/*
 		 * for (BoardStudy boardStudy : list) {
 		 * System.out.println(boardStudy.toString()); }
 		 */
-		
 		BoardStudy boardStudy = new BoardStudy();
-		
-		
 		for (int i=0; i<30; i++) {
 			boardStudy = list.get(i);
 			request.getSession().setAttribute("boardStudy"+(i), boardStudy);
 		}
-		
-		
-		
-		
-		
 		request.getRequestDispatcher("/studyPage/studyPage").forward(request, response);
-		
 	}
 
 	

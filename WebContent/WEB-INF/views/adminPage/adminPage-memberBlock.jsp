@@ -236,6 +236,8 @@ html, body{
 	<div class="ap_indexText">KHS 회원들의 차단 유무를 확인할 수 있는 페이지입니다.</div>
 	<div class="ap_indexText">관리자는 선택한 회원을 차단할 수 있으며 차단일은 1일/7일/영구 차단이 가능합니다.</div>
 	<div class="ap_indexText">또한 차단된 회원을 해제하는 것도 이 페이지에서 할 수 있습니다.</div>
+	<br>
+	<div class="ap_indexText">** B01은 차단해제, B02는 1일차단, B03는 7일차단, B04는 영구차단 상태입니다.**</div>
 	
 	<hr class="ap_hr">
 	
@@ -246,11 +248,13 @@ html, body{
 			<th id="ap_banTable_id">아이디</th>
 			<th>상태</th> 
 		</tr>
-		<tr>
-			<td><input type="radio" name="chk_info" value="공지글등록"></td>
-			<td></td>
-			<td></td>
-		</tr>
+		<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
+			<tr>
+				<td><input type="radio" name="chk_info" value="공지글등록"></td>
+				<td>${list.userId}</td>
+				<td>${list.banGrade}</td>
+			</tr>
+		</c:forEach>
 	</table>
 	<input class="ap_button01" type="submit" value="선택한 사용자를 1일정지" style="margin-left: 30px;">
 	<input class="ap_button01" type="submit" value="선택한 사용자를 7일정지">

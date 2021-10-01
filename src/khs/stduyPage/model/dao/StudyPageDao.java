@@ -31,7 +31,7 @@ public class StudyPageDao {
 			rset = pstm.executeQuery();
 			
 			while(rset.next()) {
-				System.out.println(boardStudy);
+				//System.out.println(boardStudy);
 				boardStudy = convertAllToBoardStudy(rset);
 				// convertAllToBoardStudy 규격에 맞는 상자
 				studyDataBox.add(boardStudy);

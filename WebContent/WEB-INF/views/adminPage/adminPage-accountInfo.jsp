@@ -233,8 +233,7 @@ html, body{
 	<div class="ap_indexText">조회 가능한 정보는 이름/닉네임/ID/생년월일/E-mail/등급/학원지점/등록일/상태가 있습니다.</div>
 	
 	<hr class="ap_hr">
-	
-	<form action="">	
+		
 	<table class="ap_session_base">
 		<tr>
 			<th>이름</th> <!-- MEMBER.NAME -->
@@ -245,17 +244,18 @@ html, body{
 			<th>등급</th> <!-- MEMBER.GRADE -->
 			<th>등록일</th> <!-- MEMBER.REG_DATE -->
 		</tr>
+		<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>${list.name}</td> 
+			<td>${list.nickname}</td>
+			<td>${list.userId}</td>
+			<td>${list.birthDate}</td>
+			<td>${list.email}</td>
+			<td>${list.grade}</td>
+			<td>${list.regDate}</td>
 		</tr>
+		</c:forEach>
 	</table>
-	</form>
 	
 	
 </div>
