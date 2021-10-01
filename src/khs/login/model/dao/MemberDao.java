@@ -80,6 +80,7 @@ public class MemberDao {
 		member.setFinalDate(rset.getDate("final_date"));
 		member.setStartDate(rset.getDate("start_date"));
 		member.setBanGrade(rset.getString("ban_grade"));
+		member.setKhCenter(rset.getString("kh_code"));
 		//member.setKakaoCode(rset.getString("kakaoCode"));
 		return member;
 	}

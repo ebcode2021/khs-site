@@ -7,7 +7,7 @@ public enum Config {
 	SMTP_AUTHENTICATION_ID("KHsemiPro04@gmail.com"),
 	SMTP_AUTHENTICATION_PASSWORD("dlftjrtkwh04"),
 	//UPLOAD_PATH("C:\\CODE\\upload\\"); //이건 배포 경로
-	UPLOAD_PATH("C:\\CODE\\upload\\");
+	UPLOAD_PATH("C:\\SEMI\\upload\\");
 	
 	public final String DESC;
 	

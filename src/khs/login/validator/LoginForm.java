@@ -28,7 +28,7 @@ public class LoginForm {
 	public void test() {
 		Member member = null;
 		member = memberService.memberAuthenticate(userId, password);
-		
+		System.out.println(member);
 		//DB에 정보가 없을 경우
 		if(member==null) {
 			throw new HandlableException(ErrorCode.LOGIN_NOT_VALIDATOR_ERROR);
