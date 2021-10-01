@@ -31,7 +31,7 @@
    	  </form>
     </div>
       <div id="icon">
-      	<i class="far fa-question-circle fa-2x"></i> 
+      	<i class="far fa-question-circle fa-2x" style="cursor:pointer"></i> 
       </div>
     </div>
     

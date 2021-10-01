@@ -77,15 +77,16 @@ public class AuthorizationFilter implements Filter {
 		 * //로그인 없이 접근할 경우 if(member==null) { throw new
 		 * HandlableException(ErrorCode.NEED_LOGIN.setURL("/login")); }
 		 */
+		
 		//차단회원인 경우
 				if(!member.getBanGrade().equals("B01")) {
 					switch(member.getBanGrade()) {
 						case "B02" :
-							throw new HandlableException(ErrorCode.BAN_USER2);
+							throw new HandlableException(ErrorCode.BAN_USER2.setURL("/login"));
 						case "B03" :
-							throw new HandlableException(ErrorCode.BAN_USER3);
+							throw new HandlableException(ErrorCode.BAN_USER3.setURL("/login"));
 						case "B04" :
-							throw new HandlableException(ErrorCode.BAN_USER4);
+							throw new HandlableException(ErrorCode.BAN_USER4.setURL("/login"));
 					}
 					
 				}
