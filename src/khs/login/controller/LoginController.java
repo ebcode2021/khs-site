@@ -44,20 +44,19 @@ public class LoginController extends HttpServlet {
 	}
 	
 	private void kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("카카오 로그인 서블릿으로 넘어왔다!!!!");
-		String kakaoCode = request.getParameter("kakaoCode");
-		System.out.println(kakaoCode);
+		System.out.println("카카오 로그인 서블릿으로 넘어왔다!");
+		String kakaoCode = request.getParameter("code");
+		request.getSession().setAttribute("kakaoCode", kakaoCode);
 		
 		KakaoForm kakaoForm = new KakaoForm(request);
-		//member에 kakaoCode가 없다면 회원가입
-		if(!kakaoForm.testKakao(kakaoCode)) {
-			System.out.println("kakaocODE가 없다고 넘어오겠지");
-			response.sendRedirect("/join/join-form");
-			//request.getRequestDispatcher("/join/join-form").forward(request, response);
+		
+		//DB의 member 테이블에 kakaoCode가 있는 회원인지 확인
+		if(!kakaoForm.testKakao(kakaoCode)) {//member에 kakaoCode가 없다면 회원가입
+			//System.out.println("아이디가 없어서 회원가입 시켜야해");
+			response.getWriter().print("notContain");
 		}else{
-			//member에 kakaoCode가 있다면 그대로 로그인
-			System.out.println("카카오코드는 이미 있어");
-			response.sendRedirect("/main");
+			//System.out.println("아이디가 있어서 그대로 로그인 해도 돼");//member에 kakaoCode가 있다면 그대로 로그인
+			response.getWriter().print("contain");
 		};
 		
 		

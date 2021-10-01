@@ -44,7 +44,7 @@ public class MemberDao {
 		Member member = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select * from member where kakao_code = ? and is_leave=0";
+		String query = "select * from member inner join lecture using(kh_code) where kakao_code = ? and is_leave=0";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -52,8 +52,10 @@ public class MemberDao {
 			rset = pstm.executeQuery();
 			
 			if(rset.next()) {
-				member = kakaoToMember(rset);
+				member = convertAllToMember(rset);
 			}
+			
+			
 		}catch(SQLException e) {
 			throw new DataAccessException(e);
 		}finally {
@@ -64,13 +66,6 @@ public class MemberDao {
 		
 	}
 	
-
-	private Member kakaoToMember(ResultSet rset) throws SQLException {
-		Member member = new Member();
-		member.setKakaoCode(rset.getString("kakao_code"));
-		member.setIsLeave(rset.getInt("is_leave"));
-		return null;
-	}
 
 	private Member convertAllToMember(ResultSet rset) throws SQLException {
 		Member member = new Member();
@@ -87,8 +82,8 @@ public class MemberDao {
 		member.setStartDate(rset.getDate("start_date"));
 		member.setBanGrade(rset.getString("ban_grade"));
 		member.setKhCenter(rset.getString("kh_code"));
-		
 		member.setBanDate(rset.getDate("ban_date"));
+		member.setKakaoCode(rset.getString("kakao_code"));
 		return member;
 	}
 

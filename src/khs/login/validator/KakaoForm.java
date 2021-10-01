@@ -24,7 +24,7 @@ public class KakaoForm {
 		Member member = null;
 		member = memberService.memberIsCode(kakaoCode);
 		
-		if(member==null) {
+		if(member==null) {//kakaoCode가 member테이블에서 검색되지 않는다면 바로 리턴
 			return false;
 		}
 		
@@ -32,7 +32,6 @@ public class KakaoForm {
 		long remainder = (member.getFinalDate().getTime()-date.getTime())/(24*60*60*1000);
 		request.getSession().setAttribute("remainder", remainder);
 		
-		// member에서 kakao_token 값이 있는지. 확인. 
 		// 있다면 바로 일치하는 member 정보를 불러오고, main 페이지로 redirect
 		// 없다면 토큰 값을 포함해서 회원가입 페이지로 넘겨주기.
 		

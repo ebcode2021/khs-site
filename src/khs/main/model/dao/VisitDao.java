@@ -44,7 +44,7 @@ public class VisitDao {
 			return (todayCnt+1);
 		}else {//검색된 결과가 있다면 그대로 넘겨주기
 			res = setTodayVisitCnt(conn);
-			System.out.println("검색된 결과가 있습니다.");
+			
 			return res;
 		}
 	}

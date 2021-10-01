@@ -26,7 +26,7 @@
 
     <div class="find">
       <div><a href="${ContextPath}/join/find">아이디/비밀번호 찾기</a></div>
-      <form name="kakao" action="${ContextPath}/login/kakaoLogin" method="post">
+      <form name="kakao">
       <div><a href="javascript:kakaoLogin()">카카오로 회원가입/로그인</a></div>
    	  </form>
     </div>
@@ -62,15 +62,24 @@
 	          window.Kakao.API.request({
 	            url : '/v2/user/me',
 	            success : function(response) {
-	      			  let kakao = document.kakao;
-		        	  
-		        	  $.ajax({
+	      			  let code = response.id;
+		        	  fetch('/login/kakaoLogin?code='+code)
+		        	  .then(response=>response.text())
+		        	  .then(text => {
+		        		  if(text=="notContain"){
+		        			  location.href="/join/join-form";
+		        		  }else{
+		        			  location.href="/main"
+		        		  }
+		        			  
+		        	  })
+		        	  /* $.ajax({
 		        		  url : "login/kakaoLogin",
 		        		  type : "POST",
 		        		  data : {kakaoCode : JSON.stringify(response.id)},
 		        		  
-		        	  })	        	 
-	              //여기서 비동기통신으로 다시 컨트롤러 단으로? ajax사용..
+		        	  })	 */        	 
+	             
 	            }
 	          });
 	        }
