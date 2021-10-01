@@ -185,12 +185,54 @@ html, body{
 			height: 100%;
 			width: 100%;
 		}
-			.bigSlide span{
+			.smallSlide{
 				display:block;
+				justify-content:center;
 				border: 1px solid green;
-				background-color: lightgreen;
 				height: 33.3%;
-			}			
+				min-width: 800px;
+			}	
+			.smallSlide img{
+				vertical-align:center;
+				display:inline;
+				width:150px;
+				height:80%; 
+				
+				margin: 10px 10px 10px 10px;
+			}
+				#hpImg{
+					display: inline-block;
+					background-color: red;
+				}
+				#hpImg2{
+					display: inline-block;
+					background-color: blue;
+				}
+			.smallSlide span{
+				vertical-align: top;
+			    display:inline-block;
+			    min-width:250px;
+				width:400px;
+				height:80%; 
+				background-color: red;
+				margin: 10px 10px 10px 10px;
+			}
+				/* .hpImg{
+				display:inline-block;
+				width:150px;
+				height:80%; 
+				background-color: red;
+				margin: 10px 10px 10px 10px;
+				}
+				.hpWrite{
+				display: inline-block;
+				min-width:300px;
+				width :60%;
+				height:80%;
+				background-color: red;
+				margin: 10px 10px 10px 10px;
+				} */
+				
 /* slick 화살표 설정 */	
 	#buttonDiv{
 		display:flex;

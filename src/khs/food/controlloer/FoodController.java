@@ -61,6 +61,12 @@ public class FoodController extends HttpServlet {
 			for (Object object : foodArr) {
 				System.out.println(object);
 			} 
+			request.getSession().setAttribute("foodArr", foodArr);
+			// foodArr이라는 것은 = 결국 object(dto)의 배열 
+			// foodArr의 인덱스 값을 부른다면, dto 나옴 
+			// 과연 어떻게 인덱스의 dto개별 값을 불러야 할까? 
+			
+			
 			request.getRequestDispatcher("/food/food-form").forward(request, response);
 	}
 
