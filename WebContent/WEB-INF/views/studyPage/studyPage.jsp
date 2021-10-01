@@ -162,8 +162,8 @@ html, body{
 <!-- [BaseCode]section 영역 -->
  	<div class="section">
  		<div class='sidemenu'>
- 		 	<div id="mypage"><a>나의 현황</a></div>
- 			<div><a>학습 자료실</a></div>
+ 		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
+ 			<div><a href="/studyPage/index">학습 자료실</a></div>
  			<div id="wrap_hotplace"><a>맛집 정보</a>
 	 			<div class="hotplace">
 	 				<a>강남지원</a>
@@ -171,7 +171,7 @@ html, body{
 	 				<a>당산지원</a>
 	 			</div>
  			</div>
- 			<div><a>게시판</a></div>
+ 			<div><a href="/board/free-board-main">게시판</a></div>
  			<div><a>문의하기</a></div>
  		</div>
  
@@ -204,11 +204,11 @@ html, body{
 		
 		<!-- 001번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy0.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/001.JPG">
 			</a>
-			<div class="sp_dataTitle" ></div>
-			<div class="sp_dataInstruction" ></div>
+			<div class="sp_dataTitle" >${boardStudy0.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy0.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -218,11 +218,11 @@ html, body{
 		
 		<!-- 002번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy1.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/002.JPG">
 			</a>
-			<div class="sp_dataTitle" >${boardStudy.stIdx}</div>
-			<div class="sp_dataInstruction" >${boardStudy.stIdx}</div>
+			<div class="sp_dataTitle" >${boardStudy1.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy1.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -231,11 +231,11 @@ html, body{
 		
 		<!-- 003번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy2.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/003.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy2.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy2.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -245,11 +245,11 @@ html, body{
 		
 		<!-- 004번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy3.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/004.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy3.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy3.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -258,11 +258,11 @@ html, body{
 		
 		<!-- 005번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy4.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/005.png">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy4.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy4.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -272,11 +272,11 @@ html, body{
 		
 		<!-- 006번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy5.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/006.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy5.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy5.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -285,11 +285,11 @@ html, body{
 		
 		<!-- 007번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy6.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/007.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy6.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy6.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -298,11 +298,11 @@ html, body{
 		
 		<!-- 008번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy7.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/008.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy7.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy7.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -312,11 +312,11 @@ html, body{
 		
 		<!-- 009번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy8.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/009.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy8.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy8.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -325,11 +325,11 @@ html, body{
 
 		<!-- 010번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy9.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/010.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy9.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy9.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -338,11 +338,11 @@ html, body{
 		
 		<!-- 011번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy10.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/011.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy10.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy10.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -352,11 +352,11 @@ html, body{
 		
 		<!-- 012번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy11.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/012.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy11.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy11.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -365,11 +365,11 @@ html, body{
 		
 		<!-- 013번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy12.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/013.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy12.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy12.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -379,11 +379,11 @@ html, body{
 		
 		<!-- 014번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy13.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/014.png">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy13.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy13.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus01" >사이트</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -400,11 +400,11 @@ html, body{
 		
 		<!-- 015번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy14.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/015.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy14.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy14.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -414,11 +414,11 @@ html, body{
 		
 		<!-- 016번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy15.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/016.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy15.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy15.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -427,11 +427,11 @@ html, body{
 		
 		<!-- 017번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy16.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/017.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy16.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy16.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -440,11 +440,11 @@ html, body{
 		
 		<!-- 018번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy17.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/018.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy17.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy17.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -453,11 +453,11 @@ html, body{
 		
 		<!-- 019번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy18.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/019.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy18.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy18.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -467,11 +467,11 @@ html, body{
 		
 		<!-- 020번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy19.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/020.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy19.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy19.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 			</div>
@@ -479,11 +479,11 @@ html, body{
 		
 		<!-- 021번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy20.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/021.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy20.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy20.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -492,11 +492,11 @@ html, body{
 		
 		<!-- 022번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy21.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/022.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy21.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy21.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -506,11 +506,11 @@ html, body{
 		
 		<!-- 023번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy22.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/023.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy22.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy22.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -519,11 +519,11 @@ html, body{
 		
 		<!-- 024번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy23.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/024.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy23.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy23.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -532,11 +532,11 @@ html, body{
 		
 		<!-- 025번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy24.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/025.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy24.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy24.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 			</div>
@@ -544,11 +544,11 @@ html, body{
 		
 		<!-- 026번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy25.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/026.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy25.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy25.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -558,11 +558,11 @@ html, body{
 		
 		<!-- 027번 자료 -->
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy26.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/027.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy26.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy26.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus04" >기술</div>
 				<div class="sp_dataPlus03" >추천</div>
@@ -579,22 +579,22 @@ html, body{
 		<br>요구되고 있습니다. 네트워크부터 시작해서 클라우드 등 우리의 웹 지식을 넓혀가 보아요!</div>
 		
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy27.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/028.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy27.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy27.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus05" >지식</div>
 			</div>
 		</div>
 		
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy28.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/029.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy28.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy28.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus05" >지식</div>
 				<div class="sp_dataPlus02" >중요</div>
@@ -602,11 +602,11 @@ html, body{
 		</div>
 		
 		<div class="sp_dataBox">
-			<a href="https://www.naver.com/" target="_blank">
+			<a href="${boardStudy29.stStieLink}" target="_blank">
 				<img class="sp_dummyImage" src="/resources/image/studyPage/030.JPG">
 			</a>
-			<div class="sp_dataTitle" >DataName</div>
-			<div class="sp_dataInstruction" >DataDescription01 DataDescription02 ...</div>
+			<div class="sp_dataTitle" >${boardStudy29.stTitle}</div>
+			<div class="sp_dataInstruction" >${boardStudy29.stDescription}</div>
 			<div class="sp_dataPlus">
 				<div class="sp_dataPlus05" >지식</div>
 				<div class="sp_dataPlus03" >추천</div>

@@ -24,14 +24,14 @@ public class StudyPageDao {
 		
 		BoardStudy boardStudy = new BoardStudy();
 		
-		String query = "select * from board_study";
+		String query = "select * from board_study order by ST_IDX asc";
 
 		try {
 			pstm = conn.prepareStatement(query);
 			rset = pstm.executeQuery();
 			
 			while(rset.next()) {
-				System.out.println("테스트01");
+				System.out.println(boardStudy);
 				boardStudy = convertAllToBoardStudy(rset);
 				// convertAllToBoardStudy 규격에 맞는 상자
 				studyDataBox.add(boardStudy);
