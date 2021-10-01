@@ -66,9 +66,7 @@
 				<div class = "validCheckPassed" id = "emailPassed"></div>
 				<div class = "validCheckFailed" id = "emailFailed"></div>
 			<button class = 'sendEmail' type="button">인증번호 전송</button>
-		<div class = emailValiWrapper>
-			<input type="text" name='emailVali' id='emailVali' class = "emailVali" maxlength="7" placeholder="인증번호를 입력하세요."><span>00 : 00</span>
-		</div>
+			<input type="text" name='emailVali' id='emailVali' class = "emailVali" maxlength="7" placeholder="인증번호를 입력하세요.">
 			<div class = "validCheckPassed" id = "emailValiPassed"></div>
 			<div class = "validCheckFailed" id = "emailValiFailed"></div>
 			<button class = 'variEmail' type="button">인증하기</button>
@@ -113,9 +111,13 @@
 				</h2>
 				<div class = "selectKHWrapper">
 				<select name='selectKH' id='selectKH' class="selectKH">
-					<option disabled selected>현재 다니시는 학원 지점을 선택하세요</option>
-					<option value="gangnam">강남 지점</option>
-					<option value="itewon">이태원 지점</option>
+					<option disabled selected>현재 수강하시는 강의를 선택하세요</option>
+					<option value="JAVA001">오전 ui/ux 스마트 콘텐츠 웹기반 융합 응용</option>
+					<option value="JAVA002">백엔드 개발자 양성과정</option>
+					<option value="JAVA003">풀스택 개발자 양성과정</option>
+					<option value="SECURITY001">보안전문가 과정</option>
+					<option value="SECURITY002">보안전문가 과정2</option>
+					<option value="SECURITY003">보안전문가 과정3</option>
 				</select><br>
 				<div class = "validCheckPassed" id = "centerPassed"></div>
 					<div class="fileboxWrapper">

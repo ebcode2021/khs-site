@@ -48,7 +48,7 @@ public class FoodController extends HttpServlet {
 	}
 
 	private void foodMethod(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
-		System.out.println("2. 진입 확인 (Session객체를 바꾸는 용)");
+	System.out.println("2. 진입 확인 (Session객체를 바꾸는 용)");
 	}
 
 	private void food(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
