@@ -96,7 +96,7 @@ public class VisitDao {
 		try {
 			pstm = conn.prepareStatement(query);
 			rset = pstm.executeQuery();
-			while(rset.next()) {
+			while(rset.next()) { 
 				res+= rset.getInt(1);
 			}
 			template.commit(conn);
