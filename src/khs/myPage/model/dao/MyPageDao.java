@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import khs.common.code.MemberGrade;
 import khs.common.db.JDBCTemplate;
 import khs.common.exception.DataAccessException;
+import khs.common.file.FileDTO;
 import khs.myPage.model.dto.MyPage;
+import khs.myPage.model.dto.ProfileImage;
 
 public class MyPageDao {
 	private JDBCTemplate template = JDBCTemplate.getInstance();
@@ -132,10 +135,102 @@ public class MyPageDao {
 	
 		return res;
 	}
+	
+	
+	/*
+	 * 
+	 * public int profileImageUploadMember(Connection conn, String userId, FileDTO
+	 * fileDTO) { int res = 0; String query =
+	 * "update member set profile_image_idx=file_idx_increase.nextval where user_id = ?"
+	 * ; PreparedStatement pstm = null;
+	 * 
+	 * try { pstm = conn.prepareStatement(query); pstm.setString(1, userId); res =
+	 * pstm.executeUpdate();
+	 * 
+	 * }catch (SQLException e){ throw new DataAccessException(e); } finally {
+	 * template.close(pstm); }
+	 * 
+	 * return res; }
+	 * 
+	 */
+	
+	
+	
+	public int profileImageUpload(Connection conn, String userId, FileDTO fileDTO) {
+		
+		int res = 0;
+		String query = "insert into profile_image (PR_FL_IDX, USER_ID, ORIGIN_FILE_NAME, RENAME_FILE_NAME, SAVE_PATH)"
+				+ " values(pr_file_idx_increase.nextval, ?, ?, ?, ?)";
+		PreparedStatement pstm = null;
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			pstm.setString(2, fileDTO.getOriginFileName());
+			pstm.setString(3, fileDTO.getRenameFileName());
+			pstm.setString(4, fileDTO.getSavePath());
+			
+			res = pstm.executeUpdate();
+			
+		}catch (SQLException e){
+			throw new DataAccessException(e);
+		} finally {
+			template.close(pstm);
+		}
+		
+		return res;
+	}
+	
+	
+	public ProfileImage profileImageDownload(Connection conn, String userId) {
+		ProfileImage profileImage = null;
+		String query = "select * from profile_image where user_id = ? and file_is_del = 0";
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			rset = pstm.executeQuery();
+			
+			if(rset.next()) {
+				profileImage = convertAllToProfileImage(rset);
+			}
+			
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return profileImage;
+	}
+
+
+
 
 	
 
 	
+
+	
+
+
+	private ProfileImage convertAllToProfileImage(ResultSet rset) throws SQLException {
+		ProfileImage profileImage = new ProfileImage();
+		
+		profileImage.setPrFlIdx(rset.getString("pr_fl_idx"));
+		profileImage.setUserId(rset.getString("user_id"));
+		profileImage.setOriginFileName(rset.getString("origin_file_name"));
+		profileImage.setRenameFileName(rset.getString("rename_file_name"));
+		profileImage.setSavePath(rset.getString("save_path"));
+		profileImage.setFileIsDel(rset.getInt("file_is_del"));
+		
+		
+		return profileImage;
+	}
+
+
 
 	//쿼리문으로 받아오는 속성 수 보다 아래 함수에서 저장하는 속성들이 더 많아지면, 오류남
 	private MyPage convertAllToMyPage(ResultSet rset) throws SQLException {
@@ -161,6 +256,14 @@ public class MyPageDao {
 
 		return myPage;
 	}
+
+
+
+
+
+
+
+
 
 
 

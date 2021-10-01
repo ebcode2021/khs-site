@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import khs.board.model.dao.BoardDao;
 import khs.board.model.dto.Board;
 import khs.common.db.JDBCTemplate;
+import khs.common.exception.DataAccessException;
+import khs.common.file.FileDTO;
 import khs.login.model.dto.Member;
 import khs.myPage.model.dao.MyPageDao;
 import khs.myPage.model.dto.MyPage;
+import khs.myPage.model.dto.ProfileImage;
 
 public class MyPageService {
 	private BoardDao boardDao = new BoardDao();
@@ -178,6 +181,41 @@ public class MyPageService {
 		return res;
 		
 	}
+	
+	
+	
+	public void profileImageUpload(String userId, FileDTO fileDTO) {
+		Connection conn = template.getConnection();
+		
+		try {
+			//myPageDao.profileImageUploadMember(conn, userId, fileDTO);
+			myPageDao.profileImageUpload(conn, userId, fileDTO);
+			
+			template.commit(conn);
+		} catch(DataAccessException e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		
+		
+		
+	}
+
+
+	public ProfileImage profileImageDownload(String userId) {
+		Connection conn = template.getConnection();
+		ProfileImage profileImage = null;
+		try {
+			profileImage = myPageDao.profileImageDownload(conn, userId);
+		} finally {
+			template.close(conn);
+		}
+		
+		return profileImage;
+	}
+
 
 
 	
@@ -188,6 +226,15 @@ public class MyPageService {
 		String userId = member.getUserId();
 		return userId;
 	}
+
+
+
+
+
+
+
+
+
 
 
 
