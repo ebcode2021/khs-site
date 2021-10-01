@@ -2,6 +2,7 @@ package khs.myPage.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,11 @@ import khs.common.code.ErrorCode;
 import khs.common.encrypt.Encrypter;
 import khs.common.exception.HandlableException;
 import khs.common.exception.PageNotFoundException;
+import khs.common.file.FileDTO;
+import khs.common.file.FileUtil;
+import khs.common.file.MultiPartParams;
 import khs.myPage.model.dto.MyPage;
+import khs.myPage.model.dto.ProfileImage;
 import khs.myPage.model.service.MyPageService;
 
 /**
@@ -60,6 +65,9 @@ public class MyPageController extends HttpServlet {
 		case "logout":
 			logout(request,response);
 			break;
+		case "profile-image-upload":
+			profileImageUpload(request,response);
+			break;
 			
 		default: throw new PageNotFoundException();
 		
@@ -69,6 +77,24 @@ public class MyPageController extends HttpServlet {
 	}
 	
 	
+
+
+	private void profileImageUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String userId = myPageService.getLoginMemberId(request);
+		FileUtil util = new FileUtil();
+
+		MultiPartParams multiPart = util.fileUpload(request);
+		
+		List<FileDTO> files = multiPart.getFilesInfo();
+		
+		myPageService.profileImageUpload(userId, files.get(0));
+		
+		request.setAttribute("msg", "프로필 사진 업로드 성공");
+		request.setAttribute("url", "/myPage/myPageMain");
+		request.getRequestDispatcher("/error/result").forward(request, response);
+		
+	}
+
 
 
 	private void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -163,6 +189,9 @@ public class MyPageController extends HttpServlet {
 	private void myPageDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = myPageService.getLoginMemberId(request);
 		MyPage myPage = myPageService.selectMyPage(userId);
+		ProfileImage profileImage = myPageService.profileImageDownload(userId);
+		
+		request.setAttribute("profileImage", profileImage);
 		request.setAttribute("authentication", myPage);
 		request.getRequestDispatcher("/myPage/myPageDetail").forward(request, response);
 		
@@ -175,8 +204,9 @@ public class MyPageController extends HttpServlet {
 		MyPage myPage = myPageService.selectMyPage(userId);
 		List<Board> boardList = myPageService.selectMyPost(userId);
 		List<Board> commentList = myPageService.selectMyComment(userId);
+		ProfileImage profileImage = myPageService.profileImageDownload(userId);
 		
-		
+		request.setAttribute("profileImage", profileImage);
 		request.setAttribute("authentication", myPage);
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("commentList", commentList);
