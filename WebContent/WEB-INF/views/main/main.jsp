@@ -75,7 +75,6 @@
     /* secion_1 부분 */
 
     .hello {
-      color:white;
       font-size: 20px;
       font-weight: bolder;
       align-items: center;
@@ -124,7 +123,19 @@
     /* section_2부분 */
  
     .cal{
-      width :30%;
+      font-size: 30px;
+      font-weight: bolder;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width : 30%;
+      line-height: 300%;
+      padding-top:30px;
+      color:gray;
+    }
+    
+    .cal>.countdown{
+    	font-size: 40px;
     }
 
     .main_show{
@@ -352,7 +363,8 @@
 
     <section class="section_2">
       <div class="cal">
-        
+        <div class='checkout'>퇴실까지 남은 시간</div>
+        <div class="countdown">05:00:00</div>
       </div>
       <div class="main_show">
         <ol class="list">
@@ -428,6 +440,46 @@
 
     })
 
+    let renderTime = () => {
+    	//수업 시작시간과 종료시간 추출
+    	let classStartTime = ${authentication.startTime};
+    	let classEndTime = ${authentication.endTime};
+    	
+    	//현재 시간를 추출
+    	let now = new Date();
+    	let nowHour = now.getHours();
+    	let nowMin = now.getMinutes();
+    	let nowSec = now.getSeconds();
+    	
+    	let nowTime = nowHour*60*60 + nowMin*60 + nowSec;
+    	
+ 
+    	
+    	if(!(nowTime>classStartTime && nowTime<classEndTime)){
+    		document.querySelector('.countdown').innerHTML = "00 : 00 : 00";
+    	}else{
+    		let remainTime = classEndTime - nowTime;
+    		remainTime = secToClock(remainTime);
+    	
+    		document.querySelector('.countdown').innerHTML = remainTime;
+    	}
+    	
+    }
+    
+    (()=>{
+    	setInterval(renderTime,1000);
+    })()
+    
+    function secToClock(sec){
+    	let hour = parseInt(sec/3600) <10? '0'+parseInt(sec/3600) : parseInt(sec/3600);
+    	let min = parseInt((sec%3600)/60) < 10 ? '0'+ parseInt((sec%3600)/60) : parseInt((sec%3600)/60);
+    	sec = sec%60 < 10? '0'+sec%60 : sec%60;
+    	
+    	return hour + ":" +min+ ":" + sec;
+    }
+    
+    	
+    
      jQuery(document).ready(function(){
     	 jQuery('#slide_slick').slick({
     		dots : false,
@@ -449,7 +501,7 @@
     		pay_method : 'card',
     		merchant_uid : 'merchant_' + new Date().getTime(),
     		name : 'KHS 개발자를 위해 까까 사주기',
-    		amount : '10',
+    		amount : '100',
     		buyer_email :'',
     		buyer_tell :'',
     		buyer_addr : '',
@@ -466,6 +518,9 @@
     		alert(msg);
     	});
     });
+    
+    
+    
   </script>
 </body>
 </html>

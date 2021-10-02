@@ -76,7 +76,7 @@ public class AuthorizationFilter implements Filter {
 		Member member = (Member) session.getAttribute("authentication");
 		Date date = new Date();
 		
-		  //로그인 없이 접근할 경우 
+		//로그인 없이 접근할 경우 
 		if(member==null) { 
 			throw new HandlableException(ErrorCode.NEED_LOGIN.setURL("/login")); }
 		
@@ -86,8 +86,8 @@ public class AuthorizationFilter implements Filter {
 			throw new HandlableException(ErrorCode.BAN_USER
 					.setMSG("커뮤니티 규정 위반으로  " + banDate + "일 차단 되셨습니다." + "\\n차단 만료 일자 : " + member.getBanDate() 
 							+ "\\n문의 메일 : KHsemiPro04@gmail.com"));
-		}
-						
+		}		
+		
 		//탈퇴회원인 경우
 		if(member.getIsLeave()==1) {
 			throw new HandlableException(ErrorCode.MEMBER_ISLEAVE.setURL("/login"));

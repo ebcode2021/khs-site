@@ -84,6 +84,8 @@ public class MemberDao {
 		member.setKhCenter(rset.getString("kh_code"));
 		member.setBanDate(rset.getDate("ban_date"));
 		member.setKakaoCode(rset.getString("kakao_code"));
+		member.setStartTime(rset.getInt("start_time"));
+		member.setEndTime(rset.getInt("end_time"));
 		return member;
 	}
 

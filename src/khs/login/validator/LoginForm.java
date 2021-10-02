@@ -39,9 +39,17 @@ public class LoginForm {
 			throw new HandlableException(ErrorCode.MEMBER_ISLEAVE);
 		}
 		
+		//member의 정보를 세션에 담아줌
 		request.getSession().setAttribute("authentication", member);
+		
+		//종강까지 남은 날짜를 세션에 담아줌
 		long remainder = (member.getFinalDate().getTime()-date.getTime())/(24*60*60*1000);
 		request.getSession().setAttribute("remainder", remainder);
+
+		//퇴실까지 남은 시간을 세션에 담아줌
+		long intervalTime = (member.getEndTime() - member.getStartTime());
+		request.getSession().setAttribute("intervalTime", intervalTime);
+		
 	}
 
 	
