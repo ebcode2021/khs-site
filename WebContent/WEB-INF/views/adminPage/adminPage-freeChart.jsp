@@ -179,14 +179,7 @@ html, body{
 <!-- [BaseCode]section 영역 -->
  	<div class="section">
  		<div class='sidemenu'>
- 		
-		 	<div id="wrap_myStatus"><a href="/adminPage/index" target="_self">나의 현황</a>
-	 			<div class="myStatus">
-	 				<a href="/adminPage/accountInfo" target="_self">회원 정보 조회</a>
-	 				<a href="/adminPage/memberBlock" target="_self">차단된 회원 관리</a>
-	 				<a href="/adminPage/freeChart" target="_self">자유게시판 관리</a>
-	 			</div>
- 			</div>
+
  			
  			<div><a href="/studyPage/index">학습 자료실</a></div>
  			
@@ -200,8 +193,13 @@ html, body{
  			
  			<div><a href="/board/free-board-main">게시판</a></div>
  			
- 			<div><a>문의하기</a></div>
- 			
+		 	<div id="wrap_myStatus"><a href="/adminPage/index" target="_self">관리현황</a>
+	 			<div class="myStatus">
+	 				<a href="/adminPage/accountInfo" target="_self">회원 정보 조회</a>
+	 				<a href="/adminPage/memberBlock" target="_self">차단된 회원 관리</a>
+	 				<a href="/adminPage/freeChart" target="_self">자유게시판 관리</a>
+	 			</div>
+ 			</div>	 
  		</div>
  
  
@@ -249,11 +247,16 @@ html, body{
 			<!-- ******* -->
 			
 			<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
-				<form action="/adminPage/boardBlindData?bdIdxName=${bdIdx}">
+				<form action="/adminPage/boardBlindData?bdIdx=${list.bdIdx}" method="post" ><!-- bdIdxName=${list.bdIdx} : 쿼리스트링 -->
 					<tr>
 						<td>${list.bdIdx}</td>
 						<td>${list.title}</td>
-						<td><button class="ap_button02">블라인드</button></td>
+						<td><button class="ap_button02" id="alertBtn">블라인드</button></td>
+						<script>
+						$("#alertBtn").click(function(){alert("등록되었습니다")});
+						</script>
+
+
 					</tr>
 				</form>
 			</c:forEach>

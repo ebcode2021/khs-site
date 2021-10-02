@@ -56,13 +56,27 @@ public class AdminPageController extends HttpServlet {
 		}
 	}
 
+	
+	
+	
+	
 	// 자유게시판 블라인드 처리  *******
 	private void boardBlindData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String bdIdx = request.getAttribute("bdIdxName");
-		//System.out.println(bdIdx);
-		//int boardBlindData = adminPageService.boardBlind(bdIdx);
 		
+		String bdIdx = request.getParameter("bdIdx");
+		// jsp에서 값(bdIdx)을 받아음
+		
+		adminPageService.boardBlind(bdIdx);
+		// jsp에서 받아온 bdIdx을 dao까지 가져가 수정을 시킴
+		
+		// 그럼 지금은 쿼리 수정이 완료된 상태
+		request.getRequestDispatcher("/adminPage/adminPage-freeChart").forward(request, response);
 	}
+	
+	
+	
+	
+	
 
 	// 관리자 메인 페이지로 접속
 	private void index(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,7 +87,7 @@ public class AdminPageController extends HttpServlet {
 	// 회원정보조회 페이지로 접속
 	private void accountInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<AdminPage> list = adminPageService.adminPageService();
-		request.setAttribute("adminPageList", list);
+		request.setAttribute("adminPageList", list); //list
 		request.getRequestDispatcher("/adminPage/adminPage-accountInfo").forward(request, response);
 	}
 

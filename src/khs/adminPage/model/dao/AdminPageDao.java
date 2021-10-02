@@ -91,13 +91,14 @@ public class AdminPageDao {
 	public int boardBlind(Connection conn, String bdIdx) {
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "update BOARD set BD_IS_BLIND=1 where BD_IDX=?"; 
+		String query = "update BOARD set BD_IS_BLIND = 1 where BD_IDX=?"; 
 		// 게시글 번호가 ?인 글의 값을 1로 변경하여 조회되지 않도록 하는 쿼리
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, bdIdx);
 			
 			res = pstm.executeUpdate();
+			System.out.println(res); //1
 			
 		}catch(SQLException e) {
 			throw new DataAccessException(e);
