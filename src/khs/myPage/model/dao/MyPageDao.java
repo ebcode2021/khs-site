@@ -207,25 +207,6 @@ public class MyPageDao {
 	
 	
 
-	public int profileImageUpload(Connection conn, String userId) {
-		int res = 0;
-		String query = "update member set is_leave=1 where user_id = ?";
-		PreparedStatement pstm = null;
-		
-		try {
-			pstm = conn.prepareStatement(query);
-			pstm.setString(1, userId);
-			
-			res = pstm.executeUpdate();
-			
-		}catch (SQLException e){
-			throw new DataAccessException(e);
-		} finally {
-			template.close(pstm);
-		}
-		
-		return res;
-	}
 
 	
 	

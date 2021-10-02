@@ -112,12 +112,12 @@ public class MyPageService {
 
 	
 	
-	public int deleteMyPost(String userId, String[] bdIdx) {
+	public int deleteMyPost(String[] bdIdx) {
 		Connection conn = template.getConnection();
 		int res = 0;
 		
 		try {
-			res = boardDao.deleteMyPost(conn, userId, bdIdx);
+			res = boardDao.deleteMyPost(conn, bdIdx);
 			template.commit(conn);
 		} catch (Exception e) {
 			template.rollback(conn);

@@ -1,5 +1,6 @@
 package khs.board.model.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import khs.board.model.dto.Board;
 import khs.common.code.BoardSection;
 import khs.common.db.JDBCTemplate;
 import khs.common.exception.DataAccessException;
+import khs.common.file.FileDTO;
 
 
 public class BoardDao {
@@ -23,7 +25,7 @@ public class BoardDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from board inner join member using(user_id) where bd_is_del=0 order by to_number(bd_idx) desc";
+		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 order by to_number(bd_idx) desc";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -71,13 +73,50 @@ public class BoardDao {
 	
 	
 	
+public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
+		
+		String sql = "select fl_idx, bd_idx, origin_file_name, rename_file_name,"
+						+ " save_path, reg_date from board_file"
+						+ " where bd_idx = ? and file_is_del = 0";
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		List<FileDTO> files = new ArrayList<FileDTO>();
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, bdIdx);
+			rset = pstm.executeQuery();
+			
+			while(rset.next()) {
+				FileDTO file = new FileDTO();
+				file.setFlIdx(rset.getString("fl_idx"));
+				file.setTypeIdx(rset.getString("bd_idx"));
+				file.setOriginFileName(rset.getString("origin_file_name"));
+				file.setRenameFileName(rset.getString("rename_file_name"));
+				file.setSavePath(rset.getString("save_path"));
+				file.setRegDate(rset.getDate("reg_date"));
+				
+				files.add(file);
+			}
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(conn);
+		}
+		
+		return files;
+	}
+
+	
+	
+	
 	
 	public List<Board> freeBoardDetailComment(Connection conn, String bdIdx) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from board_comment inner join member using(user_id) where cmt_is_del=0 AND bd_idx=?";
+		String query = "select * from board_comment inner join member using(user_id) where cmt_is_del=0 AND bd_idx=? order by cmt_idx";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -107,7 +146,7 @@ public class BoardDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from board where user_id = ? AND bd_is_del=0 AND bd_is_blind=0 order by to_number(bd_idx) desc";
+		String query = "select * from board where user_id = ? AND bd_is_del=0 order by to_number(bd_idx) desc";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -129,28 +168,29 @@ public class BoardDao {
 	}
 	
 	
+	
 
-	public int deleteMyPost(Connection conn, String userId, String[] bdIdx) {
-		PreparedStatement pstm = null;
+	public int deleteMyPost(Connection conn, String[] bdIdx) {
+		CallableStatement cstm = null;
 		int res = 0;
-		String query = "update board set bd_is_del=1 where user_id = ? and bd_idx=?";
+		String query = "{call SP_POST_DELETE(?)}";
 		try {
-			pstm = conn.prepareStatement(query);
-			pstm.setString(1, userId);
-			
+			cstm = conn.prepareCall(query);
 			for (String str : bdIdx) {
-				pstm.setString(2, str);
-				res = pstm.executeUpdate();
+				cstm.setString(1, str);
+				res = cstm.executeUpdate();
 			}
 
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
 		} finally {
-			template.close(pstm);
+			template.close(cstm);
 		}
 		
 		return res;
 	}
+	
+
 	
 	
 	
@@ -219,7 +259,7 @@ public class BoardDao {
 			pstm.setString(1, board.getBdIdx());
 			pstm.setString(2, board.getUserId());
 			pstm.setString(3, board.getCmtContent());
-			pstm.executeUpdate();
+			res = pstm.executeUpdate();
 			
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
@@ -233,6 +273,140 @@ public class BoardDao {
 	
 	
 	
+	public int insertBoard(Connection conn, Board board) {
+		  int res = 0;
+	      String query = "insert into board(bd_idx,user_id,"
+	            + "title,content) values("
+	            + "bd_post_idx_increase.nextval,?,?,?)";
+	      
+	      PreparedStatement pstm = null;
+	      
+	      try {
+	         
+	         pstm = conn.prepareStatement(query);
+	         pstm.setString(1, board.getUserId());
+	         pstm.setString(2, board.getTitle());
+	         pstm.setString(3, board.getContent());
+	         res = pstm.executeUpdate();
+	         
+	      } catch (SQLException e) {
+	         throw new DataAccessException(e);
+	      }finally {
+	         template.close(pstm);
+	      }
+	      return res;
+	   }
+	
+	
+	
+	public int insertFile(Connection conn, FileDTO fileDTO) {
+		int res = 0;
+		String query = "insert into board_file (fl_idx,bd_idx,"
+	            + "origin_file_name,rename_file_name,save_path)"
+	            + "values(file_idx_increase.nextval, bd_post_idx_increase.currval,?,?,?)";
+	      
+	      PreparedStatement pstm = null;
+	      
+	      try {
+	         pstm = conn.prepareStatement(query);
+	         pstm.setString(1, fileDTO.getOriginFileName());
+	         pstm.setString(2, fileDTO.getRenameFileName());
+	         pstm.setString(3, fileDTO.getSavePath());
+	         
+	         res =  pstm.executeUpdate();
+	      } catch (SQLException e) {
+	         throw new DataAccessException(e);
+	      }finally {
+	         template.close(pstm);
+	      }
+	      return res;
+		
+	}
+	
+	
+	public int deletePost(Connection conn, String bdIdx) {
+		int res = 0;
+		CallableStatement cstm = null;
+		String query = "{call SP_POST_DELETE(?)}";
+		try {
+			cstm = conn.prepareCall(query);
+			cstm.setString(1, bdIdx);
+			res = cstm.executeUpdate();
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(cstm);
+		}
+		return res;
+	}
+	
+	
+	public int updatePost(Connection conn, Board board) {
+		int res = 0;
+		CallableStatement cstm = null;
+		String query = "{call SP_POST_UPDATE(?,?,?,?)}";
+		
+		try {
+			cstm = conn.prepareCall(query);
+			cstm.setString(1, board.getBdIdx());
+			cstm.setString(2, board.getUserId());
+			cstm.setString(3, board.getTitle());
+			cstm.setString(4, board.getContent());
+			res = cstm.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(cstm);
+		}
+		return res;
+	}
+
+	
+	public int updateFile(Connection conn, FileDTO fileDTO, String bdIdx) {
+		int res = 0;
+		String query = "insert into board_file (fl_idx,bd_idx,"
+	            + "origin_file_name,rename_file_name,save_path)"
+	            + "values(file_idx_increase.nextval, ?,?,?,?)";
+	      
+	      PreparedStatement pstm = null;
+	      
+	      try {
+	         pstm = conn.prepareStatement(query);
+	         pstm.setString(1, bdIdx);
+	         pstm.setString(2, fileDTO.getOriginFileName());
+	         pstm.setString(3, fileDTO.getRenameFileName());
+	         pstm.setString(4, fileDTO.getSavePath());
+	         
+	         res =  pstm.executeUpdate();
+	      } catch (SQLException e) {
+	         throw new DataAccessException(e);
+	      }finally {
+	         template.close(pstm);
+	      }
+		return res;
+	}
+	
+	
+	
+	public int deleteComment(Connection conn, String cmtIdx) {
+		PreparedStatement pstm = null;
+		int res = 0;
+		String query = "update board_comment set cmt_is_del=1 where cmt_idx = ?";
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, cmtIdx);
+			res = pstm.executeUpdate();
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+
+
+
 	
 	
 
@@ -308,6 +482,18 @@ public class BoardDao {
 		return board;
 	}
 
+
+	
+
+	
+
+
+
+
+
+
+
+	
 
 	
 

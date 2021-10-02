@@ -136,10 +136,9 @@ public class MyPageController extends HttpServlet {
 
 
 	private void deletePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = myPageService.getLoginMemberId(request);
 		String[] bdIdx = request.getParameterValues("chk_num");
 	
-		myPageService.deleteMyPost(userId, bdIdx);
+		myPageService.deleteMyPost(bdIdx);
 		
 		request.setAttribute("msg", "선택한 게시글이 삭제되었습니다.");
 		request.setAttribute("url", "/myPage/myPageMain");

@@ -181,34 +181,9 @@ html, body{
 }
 
 
-.userInfo {
-	height: 200px;
-	min-height: 200px;
-	position: relative;
-	display: flex;
-}
-
-.profile_image {
-	position: absolute;
-	height: 155px;
-	width: 155px;
-	left: 3%;
-	top: 20px;
-}
 
 
-.profile_table {
-	margin-left: 220px;
-	position: relative;
-	top: 20px;
-	height: 155px;
-	width: 400px;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-around;
-	flex-direction: column;
-	font-family: 'han_sans_kr_Medium';
-}
+
 
 
 
@@ -320,25 +295,30 @@ html, body{
 					</tr>
 					<tr>
 						<td>
-						<c:out value= '${board.bdIdx}'/>
+						<c:out value= '${datas.board.bdIdx}'/>
 						</td>
 						<td>
-						<c:out value='${board.nickName}'/>
+						<c:out value='${datas.board.nickName}'/>
 						</td>
 						<td>
-						<c:out value= '${board.title}'/>
+						<c:out value= '${datas.board.title}'/>
 						</td>
 						<td>
-						<c:out value= '${board.regDate}'/>
+						<c:out value= '${datas.board.regDate}'/>
 						</td>
 					</tr>
 
 					<tr>
 						<td colspan=4 id="board-content">
 							<br>
+							<c:if test="${not empty datas.files}">
+							<c:forEach items="${datas.files}" var="file" varStatus="i">
+								<img src="/file/${file.savePath}${file.renameFileName}?originFileName=${file.originFileName}" id="profile-image">
+							</c:forEach>
+							</c:if>
 							<br>
 							<br>
-							${board.content}
+							${datas.board.content}
 							<br>
 							<br>
 							<br>
@@ -349,6 +329,16 @@ html, body{
 				</table>
 
  			</div>
+ 			<c:if test="${not empty myworks}">
+ 			<div class="remove-and-upadte">
+ 				<form action = "/board/free-board-update-form?bdIdx=${datas.board.bdIdx}" method="post">
+ 					<button>게시글 수정하기</button>
+ 				</form>
+ 				<form action = "/board/free-board-delete?bdIdx=${datas.board.bdIdx}" method="post">
+ 					<button>게시글 삭제하기</button>
+ 				</form>
+ 			</div>
+ 			</c:if>
  			
  			
  			<div class='board-detail-wrapper'>
@@ -368,12 +358,24 @@ html, body{
 								<td>${board.cmtRegDate}</td>
 							</tr>
 							<tr>
-								<td colspan = 3 class="comment-content">
+								<td colspan = 2 class="comment-content">
 									<br>
 									<br>
 									${board.cmtContent}
 									<br>
 									<br>
+								</td>
+								<td>
+									<c:if test="${not empty myworks}">
+							 			<div class="remove-and-upadte">
+							 				<form action = "/board/free-board-comment-update?cmtIdx=${board.cmtIdx}" method="post">
+							 					<button>댓글 수정하기</button>
+							 				</form>
+							 				<form action = "/board/free-board-comment-delete?cmtIdx=${board.cmtIdx}&bdIdx=${datas.board.bdIdx}" method="post">
+							 					<button>댓글 삭제하기</button>
+							 				</form>
+							 			</div>
+							 			</c:if>
 								</td>
 							</tr>
 						</c:forEach>					
@@ -398,7 +400,7 @@ html, body{
  			<div class='board-detail-wrapper'>
  				<div id="board-comment-title">댓 글 작 성</div>
  				<table class="board-detail-table">
-	 				<form action="/board/free-board-comment-input?bdIdx=${board.bdIdx}"  method="post">
+	 				<form action="/board/free-board-comment-input?bdIdx=${datas.board.bdIdx}"  method="post">
 					 
 						<div class="cmt_input">
 							<textarea name="comment-content" required="required"></textarea>

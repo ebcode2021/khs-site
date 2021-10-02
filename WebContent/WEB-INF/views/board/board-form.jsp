@@ -4,6 +4,8 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+
+
 <style type="text/css">
 
 
@@ -182,10 +184,6 @@ html, body{
 
 
 
-.history_post{
-	margin-left: 20px;
-	margin-right: 20px;
-}
 
 #history_table_title{
 	font-size: 1.2rem;
@@ -219,7 +217,11 @@ html, body{
 
 
 
-
+#content_input_editor {
+	resize: none;
+	height: 500px;
+	width: 700px;
+}
 
 
 
@@ -232,8 +234,6 @@ html, body{
 	background-color: white;
 	color: gray;
 }
-
-
 
 
 
@@ -278,49 +278,44 @@ html, body{
  			<div><a>문의하기</a></div>
  		</div>
  		<div class= 'main_banner'>
- 			
- 			<div class='history_post'>
-				 <table class="history_post_table">
-					<div id=history_table_title>자 유 게 시 판</div>
-					<tr id="post_table_header">
-						<th>게시글번호</th>
-						<th>작성자</th>
-						<th>글 제목</th>
-						<th>작성일자</th>
-					</tr>
-					<c:if test="${not empty boardList}">
-						<c:forEach items="${boardList}" var="board" varStatus="i">
-							<tr height = "25">
-								<td>${board.bdIdx}</td>
-								<td>${board.nickName}</td>
-								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
-								<td>${board.regDate}</td>
-							</tr>
-						</c:forEach>
+ 		
+ 			<form action=
+ 				<c:if test="${empty datas}">
+							"/board/free-board-upload"
+				</c:if>
+ 				<c:if test="${not empty datas}">
+							"/board/free-board-update?bdIdx=${datas.board.bdIdx}"
+				</c:if> 
+				method="post" enctype="multipart/form-data">
+ 				<div class='title'>
+ 					제목 : <input type="text" name="title" id="title"
+ 					<c:if test="${not empty datas}">
+						value= ${datas.board.title}
 					</c:if>
-					
-					<c:if test="${empty boardList}">
-					<tr>
-						<td>작성된 게시글이 없습니다.<td>
-					</tr>
-					</c:if>
-
-				</table>
-				<span id="check-error-msg"></span>
- 			</div>
- 			
- 			<div id="post_input_page_link">
- 				<a href="/board/board-form">게시글 작성하기</a>
- 			</div>
- 			
- 			
+ 					required="required">
+ 					
+ 				</div>
+ 				
+ 				<div class='file'>
+ 					파일 : <input type="file" name="files" id="contract_file" multiple/>
+ 				</div>
+ 				
+	 			<div class='content_board'>
+					<textarea name="content" id="content" rows="10" cols="100"><c:if test="${not empty datas}">${datas.board.content}</c:if></textarea>
+	 			</div>
+	 			
+	 			<div class="btn_section">
+	 				<button id="post_input_page_link">게시글 작성하기</button>
+	 			</div>
+	 			
+ 			</form>
  			
  		</div>
  	</div>
  	
  	
+ 	
 	<div class="footer">Copyright © 1998-2021 KH Information Educational Institute All Right Reserved</div>
-	
 	
 	
 	
@@ -341,12 +336,13 @@ html, body{
 		})
 	})();
 	
-	
 
 	
+
+
 	</script>
-
 	
+
 	
 </body>
 </html>
