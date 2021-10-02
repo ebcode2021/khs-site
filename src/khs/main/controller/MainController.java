@@ -1,6 +1,8 @@
 package khs.main.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import khs.board.model.dto.Board;
+import khs.board.model.service.BoardService;
 import khs.common.exception.PageNotFoundException;
 
 @WebServlet("/main/*")
@@ -49,7 +53,9 @@ public class MainController extends HttpServlet {
 	}
 
 	private void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		BoardService boardService = new BoardService();
+		List<Board> boardList = boardService.freeBoardMain();
+		request.setAttribute("boardList", boardList);
 		request.getRequestDispatcher("/main/main").forward(request, response);
 		
 	}

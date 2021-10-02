@@ -356,7 +356,7 @@
         <div class="nav_1">
           <div id="mypage"><a href="/myPage/myPageMain">마이페이지</a></div>
           <div id="board"><a href="/board/free-board-main">게시판</a></div>
-          <div id="restaurant"><a href="/restaurant">맛집 정보</a></div>
+          <div id="restaurant"><a href="/food">맛집 정보</a></div>
          </div>
          <div class="nav_2">
            <div id="study"><a href="/studyPage/index">학습 자료실</a></div>
@@ -375,12 +375,18 @@
       <div class="main_show">
         <ol class="list">
           <li> <span>공지사항</span></li>
-          <div>여기에 공지사항 리스트 들어갈거고</div>
+          <c:if test="${not empty boardList}">
+          <c:forEach items="${boardList}" var="board" varStatus="i">
+          	<div>${board.title}</div>
+          </c:forEach>
+          </c:if>
           <hr>
           <li> <span>BEST 게시판</span></li>
-          <div>여기에는 추천수 대로 best게시판 넣어볼까?</div>
-          <div>여기에 계속 div가 추가되게 for문</div>
-          <div>지금은 볼려고 이렇게</div>
+           <c:if test="${not empty boardList}">
+          <c:forEach items="${boardList}" var="board" varStatus="i">
+          	<div>${board.title}</div>
+          </c:forEach>
+          </c:if>
         </ol>
       </div>
     </section>
