@@ -13,4 +13,6 @@ public enum BanGrade {
 		this.banGrade = banGrade;
 		this.BanDate = BanDate;
 	}
+	
+	
 }

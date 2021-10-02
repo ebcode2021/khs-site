@@ -67,7 +67,6 @@ public class VisitDao {
 		}
 		
 		res = getAllTodayCnt(conn);
-		System.out.println("res의 값은? " + res);
 		return res;
 	}
 	

@@ -49,6 +49,7 @@ public class MainController extends HttpServlet {
 	
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().getAttribute("authentication");
 		request.getSession().removeAttribute("authentication");
 		response.sendRedirect("/login");
 		
