@@ -41,6 +41,77 @@ public class AdminPageDao {
 		}
 		return AdminPageMemberBox;
 	}
+	
+	
+	// 어드민게시판 : 차단된 회원 관리
+	public int memberBanGrade01(Connection conn, String userId) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update MEMBER set BAN_GRADE = 'B01' where USER_ID = ?"; 
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+	
+	public int memberBanGrade02(Connection conn, String userId) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update MEMBER set BAN_GRADE = 'B02' where USER_ID = ?"; 
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+
+
+	public int memberBanGrade03(Connection conn, String userId) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update MEMBER set BAN_GRADE = 'B03' where USER_ID = ?"; 
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+
+
+	public int memberBanGrade04(Connection conn, String userId) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update MEMBER set BAN_GRADE = 'B04' where USER_ID = ?"; 
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+	
+	
+	
 
 	// 어드민게시판 : 회원정보조회 게시판
 	// 어드민게시판 : 차단된 회원 관리 게시판

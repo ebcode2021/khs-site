@@ -55,9 +55,72 @@ public class AdminPageService {
 	public int boardBlind(String bdIdx) {
 		Connection conn = template.getConnection();
 		int res = 0;
-		
 		try {
 			res = adminPageDao.boardBlind(conn, bdIdx);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+
+	// 관리자게시판 : 회원 차단등급 변경
+	public int memberBanGrade01(String userId) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		try {
+			res = adminPageDao.memberBanGrade01(conn, userId);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+
+
+	public int memberBanGrade02(String userId) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		try {
+			res = adminPageDao.memberBanGrade02(conn, userId);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+
+
+	public int memberBanGrade03(String userId) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		try {
+			res = adminPageDao.memberBanGrade03(conn, userId);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+
+
+	public int memberBanGrade04(String userId) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		try {
+			res = adminPageDao.memberBanGrade04(conn, userId);
 			template.commit(conn);
 		} catch (Exception e) {
 			template.rollback(conn);

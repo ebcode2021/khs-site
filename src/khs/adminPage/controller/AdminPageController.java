@@ -48,6 +48,23 @@ public class AdminPageController extends HttpServlet {
 		case "boardBlindData":
 			boardBlindData(request,response);
 			break;
+			
+			
+		case "memberBanGrade01":
+			memberBanGrade01(request,response);
+			break;
+		case "memberBanGrade02":
+			memberBanGrade02(request,response);
+			break;
+		case "memberBanGrade03":
+			memberBanGrade03(request,response);
+			break;
+		case "memberBanGrade04":
+			memberBanGrade04(request,response);
+			break;
+			
+			
+			
 		case "logout":
 			logout(request,response);
 			break;
@@ -59,8 +76,44 @@ public class AdminPageController extends HttpServlet {
 	
 	
 	
+	private void memberBanGrade04(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		String userId = request.getParameter("userId04");
+		System.out.println(userId);
+		System.out.println("정지해제");
+		adminPageService.memberBanGrade04(userId);
+		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
+	}
+
+	private void memberBanGrade03(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		String userId = request.getParameter("userId03");
+		System.out.println(userId);
+		System.out.println("영구정지");
+		adminPageService.memberBanGrade03(userId);
+		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
+	}
+
+	private void memberBanGrade02(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		String userId = request.getParameter("userId02");
+		System.out.println(userId);
+		System.out.println("7일정지");
+		adminPageService.memberBanGrade02(userId);
+		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
+	}
+
+	// 맴버 밴등급 관리
+	private void memberBanGrade01(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		String userId = request.getParameter("userId01");
+		System.out.println(userId);
+		System.out.println("1일정지");
+		adminPageService.memberBanGrade01(userId);
+		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
+	}
+
 	
-	// 자유게시판 블라인드 처리  *******
+	
+	
+	
+	// 자유게시판 블라인드 처리  
 	private void boardBlindData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String bdIdx = request.getParameter("bdIdx");

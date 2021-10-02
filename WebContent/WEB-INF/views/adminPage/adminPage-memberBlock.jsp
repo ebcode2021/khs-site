@@ -250,10 +250,22 @@ html, body{
 			<tr>
 				<td>${list.userId}</td>
 				<td>${list.banGrade}</td>
+				
+				<form action="/adminPage/memberBanGrade01?userId01=${list.userId}" method="post" >
 				<td><button class="ap_button01">1일정지</button></td>
+				</form>
+				
+				<form action="/adminPage/memberBanGrade02?userId02=${list.userId}" method="post" >
 				<td><button class="ap_button01">7일정지</button></td>
+				</form>
+				
+				<form action="/adminPage/memberBanGrade03?userId03=${list.userId}" method="post" >
 				<td><button class="ap_button01">영구정지</button></td>
+				</form>
+				
+				<form action="/adminPage/memberBanGrade04?userId04=${list.userId}" method="post" >
 				<td><button class="ap_button02">정지해제</button></td>
+				</form>
 			</tr>
 		</c:forEach>
 	</table>

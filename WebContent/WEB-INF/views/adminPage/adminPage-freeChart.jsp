@@ -251,12 +251,7 @@ html, body{
 					<tr>
 						<td>${list.bdIdx}</td>
 						<td>${list.title}</td>
-						<td><button class="ap_button02" id="alertBtn">블라인드</button></td>
-						<script>
-						$("#alertBtn").click(function(){alert("등록되었습니다")});
-						</script>
-
-
+						<td><button class="ap_button02">블라인드</button></td>
 					</tr>
 				</form>
 			</c:forEach>

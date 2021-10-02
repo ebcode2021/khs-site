@@ -172,7 +172,6 @@ html, body{
 	 			</div>
  			</div>
  			<div><a href="/board/free-board-main">게시판</a></div>
- 			<div><a>문의하기</a></div>
  		</div>
  
  
