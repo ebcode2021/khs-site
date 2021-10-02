@@ -1,18 +1,25 @@
 package khs.food.model.dto;
 
 public class Food {
-	String hpIdx; 
-	String khCenter; 
-	String stImg; 
-	String stName; 
-	String stMenu; 
-	String stDescription;
-	int hipIsDel;
-	public String getHpIdx() {
-		return hpIdx;
+
+	private String reIdx; 
+	private String khCenter; 
+	private String StoreName; 
+	private String StoreMenu;
+	private String StoreDescription;
+	private String StoreImg;
+	private int hpIsDel;
+	
+	private void food() {
+		// TODO Auto-generated method stub
+
 	}
-	public void setHpIdx(String hpIdx) {
-		this.hpIdx = hpIdx;
+	
+	public String getReIdx() {
+		return reIdx;
+	}
+	public void setReIdx(String reIdx) {
+		this.reIdx = reIdx;
 	}
 	public String getKhCenter() {
 		return khCenter;
@@ -20,42 +27,46 @@ public class Food {
 	public void setKhCenter(String khCenter) {
 		this.khCenter = khCenter;
 	}
-	public String getStImg() {
-		return stImg;
+	public String getStoreName() {
+		return StoreName;
 	}
-	public void setStImg(String stImg) {
-		this.stImg = stImg;
+	public void setStoreName(String storeName) {
+		StoreName = storeName;
 	}
-	public String getStName() {
-		return stName;
+	public String getStoreMenu() {
+		return StoreMenu;
 	}
-	public void setStName(String stName) {
-		this.stName = stName;
+	public void setStoreMenu(String storeMenu) {
+		StoreMenu = storeMenu;
 	}
-	public String getStMenu() {
-		return stMenu;
+	public String getStoreDescription() {
+		return StoreDescription;
 	}
-	public void setStMenu(String stMenu) {
-		this.stMenu = stMenu;
+	public void setStoreDescription(String storeDescription) {
+		StoreDescription = storeDescription;
 	}
-	public String getStDescription() {
-		return stDescription;
+	public String getStoreImg() {
+		return StoreImg;
 	}
-	public void setStDescription(String stDescription) {
-		this.stDescription = stDescription;
+	public void setStoreImg(String storeImg) {
+		StoreImg = storeImg;
 	}
-	public int getHipIsDel() {
-		return hipIsDel;
+	public int getHpIsDel() {
+		return hpIsDel;
 	}
-	public void setHipIsDel(int hipIsDel) {
-		this.hipIsDel = hipIsDel;
+	public void setHpIsDel(int hpIsDel) {
+		this.hpIsDel = hpIsDel;
 	}
 	@Override
 	public String toString() {
-		return "Food [hpIdx=" + hpIdx + ", khCenter=" + khCenter + ", stImg=" + stImg + ", stName=" + stName
-				+ ", stMenu=" + stMenu + ", stDescription=" + stDescription + ", hipIsDel=" + hipIsDel + "]";
-	}
-
+		return "Food [reIdx=" + reIdx + ", khCenter=" + khCenter + ", StoreName=" + StoreName + ", StoreMenu="
+				+ StoreMenu + ", StoreDescription=" + StoreDescription + ", StoreImg=" + StoreImg + ", hpIsDel="
+				+ hpIsDel + "]";
+	} 
+	
+	
+	
+	
 	
 	
 }

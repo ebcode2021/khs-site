@@ -75,7 +75,9 @@ public class JoinController extends HttpServlet {
 	}
 	
 	private void join(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 	 
+		 
+		 System.out.println( request.getParameter("kakaoCode") );
+		
 		 //filter에서 완성한 MemberDTO 추출 
 		 Member member = new Member();
 		 member = (Member) request.getAttribute("joinCompleteMember");

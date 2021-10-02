@@ -54,13 +54,13 @@ public class FoodDao {
 	private Food convertAllToFood(ResultSet rset) throws SQLException {
 		Food food = new Food();
 		
-		food.setHpIdx(rset.getString("HP_IDX"));
+		food.setReIdx(rset.getString("RE_IDX"));
 		food.setKhCenter(rset.getString("KH_CENTER"));
-		food.setStImg(rset.getString("ST_IMG"));
-		food.setStName(rset.getString("ST_NAME"));
-		food.setStMenu(rset.getString("ST_MENU"));
-		food.setStDescription(rset.getString("ST_DESCRIPTION"));
-		food.setHipIsDel(rset.getInt("HIP_IS_DEL"));
+		food.setStoreName(rset.getString("STORE_NAME"));
+		food.setStoreMenu(rset.getString("STORE_MENU"));
+		food.setStoreDescription(rset.getString("STORE_DESCRIPTION"));
+		food.setStoreImg(rset.getString("STORE_IMG"));
+		food.setHpIsDel(rset.getInt("HP_IS_DEL"));
 	
 		return food;
 	}

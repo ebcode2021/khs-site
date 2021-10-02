@@ -24,8 +24,6 @@ public class FoodController extends HttpServlet {
 	
     public FoodController() {
         super();
-        // TODO Auto-generated constructor stub
-        System.out.println("컨트롤러 생성자 진입");
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,6 +55,7 @@ public class FoodController extends HttpServlet {
 			String khCenter = "강남"; 
 
 			foodList = foodService.searchFood(khCenter); 
+			
 			Object[] foodArr = foodList.toArray(); 
 			for (Object object : foodArr) {
 				System.out.println(object);
