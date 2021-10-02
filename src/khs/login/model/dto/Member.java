@@ -21,9 +21,18 @@ public class Member {
 	private Date banDate;
 	private int startTime;
 	private int endTime;
+	private String qrCode;
 	
 	
 	
+
+	public String getQrCode() {
+		return qrCode;
+	}
+
+	public void setQrCode(String qrCode) {
+		this.qrCode = qrCode;
+	}
 
 	public int getStartTime() {
 		return startTime;
@@ -172,8 +181,10 @@ public class Member {
 				+ ", regDate=" + regDate + ", name=" + name + ", nickname=" + nickname + ", BirthDate=" + BirthDate
 				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + ", startDate=" + startDate + ", finalDate="
 				+ finalDate + ", kakaoCode=" + kakaoCode + ", banGrade=" + banGrade + ", banDate=" + banDate
-				+ ", startTime=" + startTime + ", endTime=" + endTime + "]";
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", qrCode=" + qrCode + "]";
 	}
+
+
 
 	
 

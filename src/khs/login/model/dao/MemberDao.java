@@ -86,6 +86,7 @@ public class MemberDao {
 		member.setKakaoCode(rset.getString("kakao_code"));
 		member.setStartTime(rset.getInt("start_time"));
 		member.setEndTime(rset.getInt("end_time"));
+		member.setQrCode(rset.getString("qr_code"));
 		return member;
 	}
 

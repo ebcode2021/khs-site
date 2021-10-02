@@ -36,8 +36,16 @@ public class MainController extends HttpServlet {
 		case "logout" :
 			logout(request,response);
 			break;
+		case "popup" :
+			popup(request,response);
+			break;
 		default : throw new PageNotFoundException();
 		}
+	}
+
+	private void popup(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/main/popup").forward(request, response);
+		
 	}
 
 	private void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

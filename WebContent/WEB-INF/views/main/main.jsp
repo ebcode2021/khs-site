@@ -12,7 +12,7 @@
 <link href="/resources/slick/slick.css"  rel="stylesheet" type="text/css">
 <link href="/resources/js/common/jquery.js" rel="stylesheet" type="text/css"> 
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<!-- <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript"></script> -->
+
 
 <!-- 카카오페이 결제 시스템 -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -20,8 +20,7 @@
 <script type="text/javascript">
       $.noConflict();
 </script>
-<!--여기 경로만 잡으면 끝 slick완성-->
-<!-- <link href="/resources/js/common/jquery.js" rel="stylesheet" type="text/css"> -->
+
 
 
 
@@ -223,14 +222,22 @@
       padding-bottom:25%;
     }
     
-    .game>.game1{
-      background-image : url("../resources/image/main/dino.png");
-      background-size : contain;
-      background-position : center;
+    .game{
+      //background-size : contain;
+      background-position : 80% center;
       cursor:pointer;
     }
-    .game>.game2,.game3{
-      background-image : url("../resources/image/main/ready.png");
+    .game>.game1{
+      background-image : url("../resources/image/main/dino.png");
+      background-size : cover;
+      
+    }
+    .game>.game2{
+    	background-image : url("../resources/image/main/game2.png");
+    	background-size : cover;
+    }
+    .game>.game3{
+      background-image : url("../resources/image/main/game3.JPG");
       background-size : cover;
       background-position : center;
      
@@ -353,7 +360,6 @@
          </div>
          <div class="nav_2">
            <div id="study"><a href="/studyPage/index">학습 자료실</a></div>
-           <div id="question"><a href="/question">문의사항</a></div>
            <div id="admin"><a href="/adminPage/index">관리자</a></div>
          </div>
       </div> 
@@ -364,7 +370,7 @@
     <section class="section_2">
       <div class="cal">
         <div class='checkout'>퇴실까지 남은 시간</div>
-        <div class="countdown">05:00:00</div>
+        <div class="countdown">00:00:00</div>
       </div>
       <div class="main_show">
         <ol class="list">
@@ -384,9 +390,9 @@
        <ol class="game_news_list">
         <li> <span>게임</span></li>
          <div class="game">
-           <div class="game1" onclick="window.open('#')"></div>
-           <div class="game2"></div>
-           <div class="game3"></div>
+           <div class="game1" onclick="window.open('https://www.trex-game.skipser.com/')"></div>
+           <div class="game2" onclick="window.open('https://elgoog.im/breakout/')"></div>
+           <div class="game3" onclick="window.open('https://www.google.com/doodles/halloween-2016')"></div>
         </div>
         <br>
         <li> <span>관련 사이트</span></li>
@@ -478,6 +484,7 @@
     	return hour + ":" +min+ ":" + sec;
     }
     
+    
     	
     
      jQuery(document).ready(function(){
@@ -491,6 +498,7 @@
     	});
     }); 
 
+     
 
     jQuery('#kakaopay').click(function(){
     	var IMP = window.IMP;
@@ -519,7 +527,7 @@
     	});
     });
     
-    
+    window.open("/main/popup", "qr코드","width=500px, height=500px")
     
   </script>
 </body>
