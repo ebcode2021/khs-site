@@ -239,32 +239,28 @@ html, body{
 	
 	<hr class="ap_hr">
 	
-	<form action="">
-		<input type="text" minlength="1" size="25" placeholder="검색할 내용을 입력하시오">
-		<input class="ap_button01" type="submit" value="게시글 검색하기">
-		<input class="ap_button01" type="submit" value="전체 게시글 조회하기">
-			
 		<table class="ap_session_base">
 			<tr>
-				<th>선택</th>
 				<th>게시글번호</th> <!-- BOARD.BD_IDX -->
 				<th id="freeChart_title">글제목</th> <!-- BOARD.TITLE -->
+				<th>삭제버튼</th>
 			</tr>
 			<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
 				<tr>
-					<td><input type="radio" name="chk_info" value="공지글등록"></td>
 					<td>${list.bdIdx}</td>
 					<td>${list.title}</td>
+					<td><button class="ap_button02">삭제하기</button></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<input class="ap_button01" type="submit" value="선택한 글을 삭제">
-	</form>
+	
+	
+	
 	
 	
 </div>
- 		</div>
- 	</div>
+</div>
+</div>
  	
 <!-- [BaseCode]footer 영역 -->
 	<div class="footer">Copyright © 1998-2021 KH Information Educational Institute All Right Reserved</div>

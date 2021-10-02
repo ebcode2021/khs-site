@@ -241,28 +241,23 @@ html, body{
 	
 	<hr class="ap_hr">
 	
-	<form action="">
 	<table class="ap_session_base" id="ap_banTable">
 		<tr>
-			<th>선택</th>
-			<th id="ap_banTable_id">아이디</th>
-			<th>상태</th> 
+			<th>아이디</th>
+			<th>상태</th>
+			<th colspan='4'>차단 관리 버튼</th> 
 		</tr>
 		<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
 			<tr>
-				<td><input type="radio" name="chk_info" value="공지글등록"></td>
 				<td>${list.userId}</td>
 				<td>${list.banGrade}</td>
+				<td><button class="ap_button01">1일정지</button></td>
+				<td><button class="ap_button01">7일정지</button></td>
+				<td><button class="ap_button01">영구정지</button></td>
+				<td><button class="ap_button02">정지해제</button></td>
 			</tr>
 		</c:forEach>
 	</table>
-	<input class="ap_button01" type="submit" value="선택한 사용자를 1일정지" style="margin-left: 30px;">
-	<input class="ap_button01" type="submit" value="선택한 사용자를 7일정지">
-	<br>
-	<input class="ap_button01" type="submit" value="선택한 사용자를 영구정지" style="margin-left: 30px;margin-top: 10px;">
-	<input class="ap_button01" type="submit" value="선택한 사용자를 정지해제">
-
-	</form>
 	
 	
 </div>

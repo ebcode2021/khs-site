@@ -69,7 +69,7 @@ public class AdminPageDao {
 		List<Board> boardSelectBox = new ArrayList<>();
 		Board board = null;
 		ResultSet rset = null;
-		String query = "select * from BOARD order by BD_IDX DESC";
+		String query = "select * from BOARD where BD_IS_BLIND = 0 order by BD_IDX DESC";
 		try {
 			pstm = conn.prepareStatement(query);
 			rset = pstm.executeQuery();
@@ -87,6 +87,7 @@ public class AdminPageDao {
 		return boardSelectBox;
 	}
 	
+	//
 	
 	// 어드민게시판 : 자유게시판 조회하기 기능
 	private Board convertAllToBoard(ResultSet rset) throws SQLException {
