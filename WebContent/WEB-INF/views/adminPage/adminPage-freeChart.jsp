@@ -245,15 +245,19 @@ html, body{
 				<th id="freeChart_title">글제목</th> <!-- BOARD.TITLE -->
 				<th>삭제버튼</th>
 			</tr>
+			
+			<!-- ******* -->
+			
 			<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
-				<tr>
-					<td>${list.bdIdx}</td>
-					<td>${list.title}</td>
-					<td><button class="ap_button02">삭제하기</button></td>
-				</tr>
+				<form action="/adminPage/boardBlindData?bdIdxName=${bdIdx}">
+					<tr>
+						<td>${list.bdIdx}</td>
+						<td>${list.title}</td>
+						<td><button class="ap_button02">블라인드</button></td>
+					</tr>
+				</form>
 			</c:forEach>
 		</table>
-	
 	
 	
 	

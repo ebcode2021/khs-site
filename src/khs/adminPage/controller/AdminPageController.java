@@ -45,12 +45,23 @@ public class AdminPageController extends HttpServlet {
 		case "freeChart":
 			freeChart(request,response);
 			break;
+		case "boardBlindData":
+			boardBlindData(request,response);
+			break;
 		case "logout":
 			logout(request,response);
 			break;
 		default: response.setStatus(404);
 			break;
 		}
+	}
+
+	// 자유게시판 블라인드 처리  *******
+	private void boardBlindData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//String bdIdx = request.getAttribute("bdIdxName");
+		//System.out.println(bdIdx);
+		//int boardBlindData = adminPageService.boardBlind(bdIdx);
+		
 	}
 
 	// 관리자 메인 페이지로 접속

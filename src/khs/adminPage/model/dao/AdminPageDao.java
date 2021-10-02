@@ -87,7 +87,27 @@ public class AdminPageDao {
 		return boardSelectBox;
 	}
 	
-	//
+	// 어드민게시판 : 자유게시판 블라인드 기능 *******
+	public int boardBlind(Connection conn, String bdIdx) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update BOARD set BD_IS_BLIND=1 where BD_IDX=?"; 
+		// 게시글 번호가 ?인 글의 값을 1로 변경하여 조회되지 않도록 하는 쿼리
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, bdIdx);
+			
+			res = pstm.executeUpdate();
+			
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+	
+	
 	
 	// 어드민게시판 : 자유게시판 조회하기 기능
 	private Board convertAllToBoard(ResultSet rset) throws SQLException {

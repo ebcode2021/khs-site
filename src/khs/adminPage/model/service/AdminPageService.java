@@ -34,7 +34,7 @@ public class AdminPageService {
 	}
 	
 	
-	
+	// 관리자게시판 : 자유게시판 조회
 	public List<Board> adminPageBoardService(){
 		List<Board> result = null;
 		Connection conn = template.getConnection();
@@ -51,8 +51,22 @@ public class AdminPageService {
 	}
 	
 	
-	
-	
+	// 관리자게시판 : 게시글 블라인드 처리 *******
+	public int boardBlind(String bdIdx) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		
+		try {
+			res = adminPageDao.boardBlind(conn, bdIdx);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
 	
 	
 	
