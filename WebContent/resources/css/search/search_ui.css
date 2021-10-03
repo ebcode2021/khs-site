@@ -319,15 +319,40 @@
 	#filePassed{
 		padding-top: 20px;
 	}
+	
+	
 
 footer{
 		height: 300px;
 		
 	}
-
+/* 기타 search 관련 설정 조절 */
 #emailTestDiv{
 	min-height:100px;
 }	
+
+#commitPassword{
+	display: block;
+	border: 3px solid #FFB751;
+	background-color: rgba(0, 0, 0, 0);
+	width: 250px;
+	height: 50px;
+	color: #FFB751;
+	padding: 5px;
+	margin-left: 270px;
+	margin-top : 30px;
+	border-radius: 15px;
+	font-weight: bolder;
+}
+
+#commitPassword:hover {
+	color: white;
+	background-color: #FFB751;
+}
+	#search_tit{
+		min-height: 150px;
+		color: #FFB751;
+	}
 
 /* font 적용 */
 h2 {   

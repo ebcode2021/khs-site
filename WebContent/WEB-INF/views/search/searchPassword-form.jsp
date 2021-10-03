@@ -18,9 +18,14 @@
 	</div>
 	
 <form action="${context}/search/confirm-password" enctype="x-www-form-urlencoded" method="GET" autocomplete="off">
+		<div class = "test" style="min-height: 50px;">
+			<h1 id = "search_tit" >KHS 회원 비밀번호 재설정 </h1>
+		</div>
 		<div class = 'test'>
-			<h1> 회원 비밀번호 재설정 </h1>
-			<h2>변경하실 비밀번호를 입력하고 중복검사를 완료하세요 </h2>
+			
+			
+			<h2>변경하실 비밀번호를 올바르게 입력하고 <br>
+			       중복검사 후  확정버튼을 눌러주세요 </h2>
 			<input type="password" name="password" id='password' placeholder="비밀번호 (8-12자 이내, 영문,숫자, 특수기호가 필요합니다.)"><br>
 				<div class = "validCheckPassed" id = "userPwPassed" ></div>
 				<div class = "validCheckFailed" id = "userPwFailed"></div>
@@ -28,9 +33,9 @@
 			<br>
 				<div class = "validCheckPassed" id = "passwordAgainPassed"></div>
 				<div class = "validCheckFailed" id = "passwordAgainFailed"></div>
-			<button class = 'checkPassword' id='checkPassword'  type="button">비밀번호 확정</button>	
+			<button class = 'commitPassword' id='commitPassword'  type="button">비밀번호 확정</button>	
 		</div>
-		<button class = "commitButton" id = 'backButton' type="button">뒤로</button><button class = "commitButton" id='joinButton' type="submit" style="pointer-events: none;">아이디 찾기</button>
+		<button class = "commitButton" id = 'backButton' type="button">뒤로</button><button class = "commitButton" id='joinButton' type="submit" style="pointer-events: none;">비밀번호 변경</button>
 </form>
 </div> 
 <footer></footer>
@@ -164,7 +169,7 @@
 	})
 
 //****1-2. 패스워드 중복검사 버튼 기능 ****
-document.querySelector('#checkPassword').addEventListener('click', e => {
+document.querySelector('#commitPassword').addEventListener('click', e => {
 	
 	let dom = document.querySelector('#password');
 	let passed = document.querySelector('#userPwPassed');

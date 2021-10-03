@@ -18,8 +18,12 @@
 	</div>
 	
 <form action="${context}/search/searchId-Method" enctype="x-www-form-urlencoded" method="GET" autocomplete="off">
+		<div class = "test" style="min-height: 50px;">
+			<h1 id = "search_tit" >KHS 회원  아이디 찾기 </h1>
+		</div>
 		<div class = 'test'>
-			<h1> 회원 아이디 찾기 </h1>
+
+
 			<h2>01. 가입 시의 이름과 생년월일을 입력하세요</h2>
 			<input type="text" name='name' id='name' placeholder="이름(2-4자의 한글이름)"><br>
 				<div class = "validCheckPassed" id = "namePassed"></div>
