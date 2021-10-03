@@ -95,10 +95,6 @@ public class BoardController extends HttpServlet {
 		
 		List<FileDTO> files = multiPart.getFilesInfo();
 		
-		for (FileDTO fileDTO : files) {
-			System.out.println(fileDTO);
-		}
-		System.out.println(board.toString());
 		
 		boardService.updatePost(board, files);
 		
@@ -182,7 +178,8 @@ public class BoardController extends HttpServlet {
     	if(board.getUserId().equals(userId)) {
     		request.setAttribute("myworks", "1");
     	}
-		
+    	
+		request.setAttribute("myUserId", myPageService.getLoginMemberId(request));
 		request.setAttribute("datas", datas);
 		request.setAttribute("boardCommentList", boardCommentList);
 		
