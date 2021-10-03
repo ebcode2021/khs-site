@@ -294,6 +294,10 @@
        width:50vw;
     }
     
+    .slide{
+    	cursor: pointer;
+    }
+    
     .slide img{
     	display : block;
     	width : 50vw;
@@ -420,10 +424,10 @@
         <div>누적 방문자 수 : ${totalCnt}</div>
       </div>
       <div class="slide" id="slide_slick">
-        <div><img src="../resources/image/main/slide/slide01.jpg"/></div>
-        <div><img src="../resources/image/main/slide/slide03.png"/></div>
-        <div><img src="../resources/image/main/slide/slide04.jpg"/></div>
-        <div><img src="../resources/image/main/slide/slide05.png"/></div>
+        <div onclick="window.open('https://www.subway.co.kr/')"><img src="../resources/image/main/slide/slide01.jpg"/></div>
+        <div onclick="window.open('https://web.dominos.co.kr/main')"><img src="../resources/image/main/slide/slide03.png"/></div>
+        <div onclick="window.open('https://www.subway.co.kr/')"><img src="../resources/image/main/slide/slide04.jpg"/></div>
+        <div onclick="window.open('https://much-merch.com/product/%EA%B9%80%EA%B0%91%EC%83%9D-%ED%95%A0%EB%A8%B8%EB%8B%88%EA%B9%80-%EC%B0%B8%EB%8F%8C%EC%9E%90%EB%B0%9870g-4%EA%B0%9C/1112/category/311/display/1/')"><img src="../resources/image/main/slide/slide05.png"/></div>
       </div>
       <div class="qrcode">
         <div id="literal">개발자에게 <br> 돈 보내기 <br></div>
@@ -499,7 +503,7 @@
     		arrows: false,
     		infinite : true,
     		autoplay : true,
-    		autoplaySpeed : 4000,
+    		autoplaySpeed : 3500,
     	
     	});
     }); 

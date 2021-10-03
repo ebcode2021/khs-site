@@ -366,7 +366,7 @@ html, body{
 									<br>
 								</td>
 								<td>
-									<c:if test="${not empty myworks}">
+									<c:if test="${board.userId eq myUserId}">
 							 			<div class="remove-and-upadte">
 							 				<form action = "/board/free-board-comment-update?cmtIdx=${board.cmtIdx}" method="post">
 							 					<button>댓글 수정하기</button>
