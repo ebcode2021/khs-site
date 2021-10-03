@@ -16,7 +16,8 @@ public enum ErrorCode {
 	MEMBER_ISLEAVE("탈퇴한 아이디입니다."),
 	BAN_USER(""),
 	NEED_LOGIN("로그인을 해주세요."),
-	ADMIN_PAGE("접근 권한이 없습니다.");
+	ADMIN_PAGE("접근 권한이 없습니다."),
+	NEED_TO_UP("관리자 승인 후 접근 가능합니다.\\n회원가입 후 24시간 이내로 승인 됩니다.");
 	
 	public String MESSAGE; //기존에 final
 	public String URL;

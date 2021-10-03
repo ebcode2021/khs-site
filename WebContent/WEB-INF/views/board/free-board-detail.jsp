@@ -331,10 +331,10 @@ html, body{
  			</div>
  			<c:if test="${not empty myworks}">
  			<div class="remove-and-upadte">
- 				<form action = "/board/free-board-update-form?bdIdx=${datas.board.bdIdx}" method="post">
+ 				<form action = "/board/board-update-form?bdIdx=${datas.board.bdIdx}" method="post">
  					<button>게시글 수정하기</button>
  				</form>
- 				<form action = "/board/free-board-delete?bdIdx=${datas.board.bdIdx}" method="post">
+ 				<form action = "/board/board-delete?bdIdx=${datas.board.bdIdx}" method="post">
  					<button>게시글 삭제하기</button>
  				</form>
  			</div>

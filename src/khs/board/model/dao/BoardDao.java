@@ -20,12 +20,14 @@ public class BoardDao {
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	
 	
-	public List<Board> freeBoardMain(Connection conn) {
+	
+	//hot게시판 목록 불러오기
+	public List<Board> hotBoard(Connection conn) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 order by to_number(bd_idx) desc";
+		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 AND bd_section='HOT' order by to_number(bd_idx) desc";
 		
 		try {
 			pstm = conn.prepareStatement(query);
@@ -46,7 +48,60 @@ public class BoardDao {
 	}
 	
 	
-	public Board freeBoardDetail(Connection conn, String bdIdx) {
+	// 공지사항 목록 불러오기
+	public List<Board> alertBoard(Connection conn) {
+		List<Board> boardList = new ArrayList<Board>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Board board = null;
+		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 AND bd_section='ALERT' order by to_number(bd_idx) desc";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			rset = pstm.executeQuery();
+
+			while(rset.next()) {
+				board = convertAllToFreeBoardMain(rset);
+				boardList.add(board);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return boardList;
+	}
+	
+	
+	public List<Board> freeBoardMain(Connection conn) {
+		List<Board> boardList = new ArrayList<Board>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Board board = null;
+		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 AND bd_section='FREE' order by to_number(bd_idx) desc";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			rset = pstm.executeQuery();
+
+			while(rset.next()) {
+				board = convertAllToFreeBoardMain(rset);
+				boardList.add(board);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return boardList;
+	}
+	
+	// 게시글 상세보기
+	public Board boardDetail(Connection conn, String bdIdx) {
 		Board board = null;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -111,7 +166,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 	
 	
 	
-	public List<Board> freeBoardDetailComment(Connection conn, String bdIdx) {
+	public List<Board> boardDetailComment(Connection conn, String bdIdx) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
@@ -297,6 +352,32 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 	      return res;
 	   }
 	
+
+	public int insertBoard(Connection conn, Board board, String section) {
+		  int res = 0;
+	      String query = "insert into board(bd_idx,user_id,"
+	            + "title,content,bd_section) values("
+	            + "bd_post_idx_increase.nextval,?,?,?,?)";
+	      
+	      PreparedStatement pstm = null;
+	      
+	      try {
+	         
+	         pstm = conn.prepareStatement(query);
+	         pstm.setString(1, board.getUserId());
+	         pstm.setString(2, board.getTitle());
+	         pstm.setString(3, board.getContent());
+	         pstm.setString(4, board.getBdSection());
+	         res = pstm.executeUpdate();
+	         
+	      } catch (SQLException e) {
+	         throw new DataAccessException(e);
+	      }finally {
+	         template.close(pstm);
+	      }
+	      return res;
+	   }
+	
 	
 	
 	public int insertFile(Connection conn, FileDTO fileDTO) {
@@ -412,7 +493,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from (select * from board" 
+		String query = "select * from (select * from board inner join member using(user_id)" 
 						+" where bd_is_del=0 AND bd_is_blind=0 AND bd_section='ALERT'"
 						+" order by to_number(bd_idx) desc)"
 						+" where rownum<4";
@@ -441,7 +522,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from (select * from board" 
+		String query = "select * from (select * from board inner join member using(user_id)" 
 						+" where bd_is_del=0 AND bd_is_blind=0 AND bd_section='HOT'"
 						+" order by to_number(bd_idx) desc)"
 						+" where rownum<4";
@@ -523,7 +604,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		board.setRegDate(rset.getDate("REG_DATE"));
 		board.setTitle(rset.getString("TITLE"));
 		board.setContent(rset.getString("content"));
-
+		board.setBdSection(rset.getString("bd_section"));
 		return board;
 	}
 	
@@ -549,10 +630,9 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		board.setBdSection(rset.getString("bd_section"));
 		board.setBdIsDel(rset.getInt("BD_IS_DEL"));
 		board.setBdIsBlind(rset.getInt("BD_IS_BLIND"));
+		board.setNickName(rset.getString("NICKNAME"));
 		return board;
 	}
 
-
-
-
+	
 }

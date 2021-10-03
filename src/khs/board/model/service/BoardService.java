@@ -21,7 +21,12 @@ public class BoardService {
 	      Connection conn = template.getConnection();
 	      
 	      try {
-	         boardDao.insertBoard(conn, board);
+	    	  if(board.getBdSection() != null) {
+	    		  boardDao.insertBoard(conn, board, board.getBdSection());
+	    	  }else {
+	    		  boardDao.insertBoard(conn, board);
+	    	  }
+	        
 	         for (FileDTO fileDTO : files) {
 	            boardDao.insertFile(conn,fileDTO);
 	         }
@@ -33,6 +38,37 @@ public class BoardService {
 	         template.close(conn);
 	      }
 	   }
+	 
+
+
+	public List<Board> hotBoard() {
+		Connection conn = template.getConnection();
+		List<Board> boardList = null;
+		
+		try {
+			boardList = boardDao.hotBoard(conn);
+		} finally {
+			template.close(conn);
+		}
+
+		return boardList;
+	}
+	 
+	 
+
+	public List<Board> alertBoard() {
+		Connection conn = template.getConnection();
+		List<Board> boardList = null;
+		
+		try {
+			boardList = boardDao.alertBoard(conn);
+		} finally {
+			template.close(conn);
+		}
+
+		return boardList;
+	}
+	
 	
 	
 	
@@ -50,11 +86,11 @@ public class BoardService {
 	}
 	
 	
-	public Map<String, Object> freeBoardDetail(String bdIdx) {
+	public Map<String, Object> boardDetail(String bdIdx) {
 		Connection conn = template.getConnection();
 		Map<String, Object> res = new HashMap<String, Object>();
 		try {
-			Board board = boardDao.freeBoardDetail(conn, bdIdx);
+			Board board = boardDao.boardDetail(conn, bdIdx);
 			List<FileDTO> files = boardDao.selectFileDTOs(conn, bdIdx);
 			res.put("board", board);
 			res.put("files", files);
@@ -66,12 +102,12 @@ public class BoardService {
 	}
 	
 	
-	public List<Board> freeBoardDetailComment(String bdIdx) {
+	public List<Board> boardDetailComment(String bdIdx) {
 		Connection conn = template.getConnection();
 		List<Board> boardList = null;
 		
 		try {
-			boardList = boardDao.freeBoardDetailComment(conn, bdIdx);
+			boardList = boardDao.boardDetailComment(conn, bdIdx);
 		} finally {
 			template.close(conn);
 		}
@@ -180,7 +216,6 @@ public class BoardService {
 
 		return hotBoardList;
 	}
-	
 
 	
 

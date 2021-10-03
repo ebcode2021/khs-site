@@ -46,7 +46,7 @@ public class AuthorizationFilter implements Filter {
 					commonAuthorize(httpRequest, httpResponse, uriArr);
 					break;
 				case "main" :
-					commonAuthorize(httpRequest, httpResponse, uriArr);
+					mainAuthorize(httpRequest, httpResponse, uriArr);
 					break;
 				case "board" :
 					commonAuthorize(httpRequest, httpResponse, uriArr);
@@ -69,6 +69,8 @@ public class AuthorizationFilter implements Filter {
 		chain.doFilter(request, response);
 
 	}
+
+
 
 	private void adminAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
 		HttpSession session = httpRequest.getSession();
@@ -103,15 +105,36 @@ public class AuthorizationFilter implements Filter {
 		if(member.getIsLeave()==1) {
 			throw new HandlableException(ErrorCode.MEMBER_ISLEAVE.setURL("/login"));
 		}
+		
+		//인증회원이 아닌경우(==LV01)
+		if(member.getGrade().equals("LV01")) {
+			throw new HandlableException(ErrorCode.NEED_TO_UP.setURL("/main"));
+		}
 	}
 	
-	private void myPageAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+	private void mainAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
 		HttpSession session = httpRequest.getSession();
 		Member member = (Member) session.getAttribute("authentication");
+		Date date = new Date();
 		
-		if(member == null) {
-			throw new HandlableException(ErrorCode.REDIRECT.setURL("/login"));
+		//로그인 없이 접근할 경우 
+		if(member==null) { 
+			throw new HandlableException(ErrorCode.NEED_LOGIN); 
 		}
+		
+		// 차단회원인 경우
+		if (!member.getBanGrade().equals("B01") && member.getBanDate().after(date)) { //차단이 되었던 기록이 있으면서, 그 차단 날짜가 남았을 경우
+			int banDate = BanGrade.valueOf(member.getBanGrade()).BanDate;
+			throw new HandlableException(ErrorCode.BAN_USER
+					.setMSG("커뮤니티 규정 위반으로  " + banDate + "일 차단 되셨습니다." + "\\n차단 만료 일자 : " + member.getBanDate() 
+							+ "\\n문의 메일 : KHsemiPro04@gmail.com"));
+		}		
+		
+		//탈퇴회원인 경우
+		if(member.getIsLeave()==1) {
+			throw new HandlableException(ErrorCode.MEMBER_ISLEAVE.setURL("/login"));
+		}
+		
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {
