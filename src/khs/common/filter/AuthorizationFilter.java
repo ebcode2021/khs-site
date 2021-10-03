@@ -75,7 +75,7 @@ public class AuthorizationFilter implements Filter {
 		Member member = (Member) session.getAttribute("authentication");
 		
 		if(!member.getGrade().equals("AD01")) {
-			throw new HandlableException(ErrorCode.ADMIN_PAGE);
+			throw new HandlableException(ErrorCode.ADMIN_PAGE.setURL("/main"));
 		}
 		
 	}
@@ -88,7 +88,8 @@ public class AuthorizationFilter implements Filter {
 		
 		//로그인 없이 접근할 경우 
 		if(member==null) { 
-			throw new HandlableException(ErrorCode.NEED_LOGIN.setURL("/login")); }
+			throw new HandlableException(ErrorCode.NEED_LOGIN); 
+		}
 		
 		// 차단회원인 경우
 		if (!member.getBanGrade().equals("B01") && member.getBanDate().after(date)) { //차단이 되었던 기록이 있으면서, 그 차단 날짜가 남았을 경우

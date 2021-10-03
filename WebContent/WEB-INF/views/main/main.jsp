@@ -533,7 +533,7 @@
     	});
     });
     
-    let cookiedata = documnet.cookie;
+    let cookiedata = document.cookie;
     if(cookiedata.indexOf("close=Y")<0){
     window.open("/main/popup", "qr코드","width=500px, height=500px")
     }
