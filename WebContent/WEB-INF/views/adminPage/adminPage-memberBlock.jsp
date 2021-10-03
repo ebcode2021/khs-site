@@ -244,13 +244,14 @@ html, body{
 		<tr>
 			<th>아이디</th>
 			<th>상태</th>
+			<th>차단일자</th>
 			<th colspan='4'>차단 관리 버튼</th> 
 		</tr>
 		<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
 			<tr>
 				<td>${list.userId}</td>
 				<td>${list.banGrade}</td>
-				
+				<td>${list.banDate}</td>
 				<form action="/adminPage/memberBanGrade01?userId01=${list.userId}" method="post" >
 				<td><button class="ap_button04">1일정지</button></td>
 				</form>
