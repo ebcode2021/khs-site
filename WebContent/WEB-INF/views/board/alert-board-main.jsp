@@ -188,10 +188,6 @@ html, body{
 }
 
 #history_table_title{
-	font-size: 1.2rem;
-	font-family: 'han_sans_kr_Medium';
-	font-weight: bold; /*추가*/
-	margin-bottom: 0.8vw;
    font-size: 1.2rem;
    font-family: 'han_sans_kr_Medium';
    font-weight: bold; /*추가*/
@@ -213,7 +209,6 @@ html, body{
 }
 
 #post_table_header> th{
-	   padding: 10px; /*추가*/
       padding: 10px; /*추가*/
    text-align: center; 
     font-size:20px;
@@ -278,61 +273,60 @@ html, body{
 </head>
 <body>
 
- 	<div class="header">
- 		<div class = "wrap_header">
- 			<div class='site_tit'><a href="/main">K H S</a></div>
- 			<div class='logout'><button><a href="/myPage/logout">로그아웃</a></button></div>
- 		</div>
- 		
- 	</div>
- 	
- 	
- 	<div class="nav">
- 	</div>
- 	
- 	
- 	<div class="section">
- 		<div class='sidemenu'>
- 		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
- 			<div><a>학습 자료실</a></div>
- 			<div id="wrap_hotplace"><a>맛집 정보</a>
-	 			<div class="hotplace">
-	 				<a>강남지원</a>
-	 				<a>종로지원</a>
-	 				<a>당산지원</a>
-	 			</div>
- 			</div>
- 			<div><a>게시판</a></div>
- 			<div><a>문의하기</a></div>
- 		</div>
- 		<div class= 'main_banner'>
- 			
- 			<div class='history_post'>
-				 <table class="history_post_table">
-					<div id=history_table_title>자 유 게 시 판</div>
-					<tr id="post_table_header">
-						<th>게시글번호</th>
-						<th>작성자</th>
-						<th>글 제목</th>
-						<th>작성일자</th>
-					</tr>
-					<c:if test="${not empty boardList}">
-						<c:forEach items="${boardList}" var="board" varStatus="i">
-							<tr id="post_table_list" height = "25">
-								<td>${board.bdIdx}</td>
-								<td>${board.nickName}</td>
-								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
-								<td>${board.regDate}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-					
-					<c:if test="${empty boardList}">
-					<tr>
-						<td>작성된 게시글이 없습니다.<td>
-					</tr>
-					</c:if>
-   
+    <div class="header">
+       <div class = "wrap_header">
+          <div class='site_tit'><a href="/main">K H S</a></div>
+          <div class='logout'><button><a href="/myPage/logout">로그아웃</a></button></div>
+       </div>
+       
+    </div>
+    
+    
+    <div class="nav">
+    </div>
+    
+    
+    <div class="section">
+       <div class='sidemenu'>
+           <div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
+          <div><a>학습 자료실</a></div>
+          <div id="wrap_hotplace"><a>맛집 정보</a>
+             <div class="hotplace">
+                <a>강남지원</a>
+                <a>종로지원</a>
+                <a>당산지원</a>
+             </div>
+          </div>
+          <div><a>게시판</a></div>
+          <div><a>문의하기</a></div>
+       </div>
+       <div class= 'main_banner'>
+          
+          <div class='history_post'>
+             <table class="history_post_table">
+               <div id=history_table_title>공 지 사 항</div>
+               <tr id="post_table_header">
+                  <th>게시글번호</th>
+                  <th>작성자</th>
+                  <th>글 제목</th>
+                  <th>작성일자</th>
+               </tr>
+               <c:if test="${not empty boardList}">
+                  <c:forEach items="${boardList}" var="board" varStatus="i">
+                     <tr id="post_table_list" height = "25">
+                        <td>${board.bdIdx}</td>
+                        <td>${board.nickName}</td>
+                        <td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
+                        <td>${board.regDate}</td>
+                     </tr>
+                  </c:forEach>
+               </c:if>
+               
+               <c:if test="${empty boardList}">
+               <tr>
+                  <td>작성된 게시글이 없습니다.<td>
+               </tr>
+               </c:if>
 
             </table>
             <span id="check-error-msg"></span>
@@ -341,7 +335,9 @@ html, body{
           <div id="post_input_page_link">
              <a href="/board/board-form">게시글 작성하기</a>
           </div>
-
+          
+          
+          
        </div>
     </div>
     
@@ -351,8 +347,7 @@ html, body{
    
    
    
-    
-    
+   
    
    <script type="text/javascript">
    

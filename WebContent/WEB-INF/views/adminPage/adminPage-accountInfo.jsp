@@ -163,8 +163,8 @@ html, body{
 <!-- [BaseCode]header 영역 -->
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'><a href = "/main">K H S</a></div>
- 			<div class='logout'><button><a href="/adminPage/logout">로그아웃</a></button></div>
+ 			<div class='site_tit'><a href = "/main" style="color: #f29d2a">K H S</a></div>
+ 			<div class='logout'><button class="ap_button01"><a href="/adminPage/logout">로그아웃</a></button></div>
  		</div>
  	</div>
  	
@@ -179,7 +179,7 @@ html, body{
  			
  			<div><a href="/studyPage/index">학습 자료실</a></div>
  			
- 			<div id="wrap_hotplace"><a>맛집 정보</a>
+			<div id="wrap_hotplace"><a a href="/food/food">맛집 정보</a>
 	 			<div class="hotplace">
 	 				<a>강남지원</a>
 	 				<a>종로지원</a>
@@ -229,19 +229,21 @@ html, body{
 	<br><br>
 	
 	<div class="ap_indexText">KHS 사이트에  가입되어 있는 회원들의 정보를 볼 수 있습니다.</div>
-	<div class="ap_indexText">조회 가능한 정보는 이름/닉네임/ID/생년월일/E-mail/등급/학원지점/등록일/상태가 있습니다.</div>
+	<div class="ap_indexText">조회 가능한 정보는 이름/닉네임/ID/생년월일/E-mail/등급/학원지점/등록일/상태가 있습니다.</div><br>
+	<div class="ap_indexText" style="font-weight: bold">** 또한 버튼을 클릭할 시 LV01와 LV02를 자유롭게 변경할 수 있습니다. **</div>
 	
 	<hr class="ap_hr">
 		
 	<table class="ap_session_base">
 		<tr>
-			<th>이름</th> <!-- MEMBER.NAME -->
-			<th>닉네임</th> <!-- MEMBER.NICKNAME -->
-			<th>ID</th> <!-- MEMBER.USER_ID -->
-			<th>생년월일</th> <!-- MEMBER.BIRTH_DATE -->
-			<th>E-mail</th> <!-- MEMBER.EMAIL -->
-			<th>등급</th> <!-- MEMBER.GRADE -->
-			<th>등록일</th> <!-- MEMBER.REG_DATE -->
+			<th style="width: 10%">이름</th> <!-- MEMBER.NAME -->
+			<th style="width: 10%">닉네임</th> <!-- MEMBER.NICKNAME -->
+			<th style="width: 10%">ID</th> <!-- MEMBER.USER_ID -->
+			<th style="width: 10%">생년월일</th> <!-- MEMBER.BIRTH_DATE -->
+			<th style="width: 10%">E-mail</th> <!-- MEMBER.EMAIL -->
+			<th style="width: 10%">등급</th> <!-- MEMBER.GRADE -->
+			<th colspan='2' style="width: 10%">등급버튼</th> 
+			<th style="width: 10%">등록일</th> <!-- MEMBER.REG_DATE -->
 		</tr>
 		<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
 		<tr>
@@ -251,6 +253,12 @@ html, body{
 			<td>${list.birthDate}</td>
 			<td>${list.email}</td>
 			<td>${list.grade}</td>
+			<form action="/adminPage/userGradeLV01?userGradeLV01=${list.userId}" method="post" >
+				<td><button class="ap_button03" style="padding: 2px; background-color: #e9be2a8a; color: black;">LV01</button></td>
+			</form>
+			<form action="/adminPage/userGradeLV02?userGradeLV02=${list.userId}" method="post" >
+				<td><button class="ap_button03" style="padding: 2px; background-color: #0097c74a; color: black;">LV02</button></td>
+			</form>
 			<td>${list.regDate}</td>
 		</tr>
 		</c:forEach>

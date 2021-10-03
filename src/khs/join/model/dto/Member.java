@@ -16,9 +16,16 @@ public class Member {
 	private int isLeave; 
 	private int isBan;
 	private String variFile;
+	private String kakaoCode; 
 	
 	public String getUserId() {
 		return userId;
+	}
+	public String getKakaoCode() {
+		return kakaoCode;
+	}
+	public void setKakaoCode(String kakaoCode) {
+		this.kakaoCode = kakaoCode;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -94,9 +101,9 @@ public class Member {
 		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", grade=" + grade
 				+ ", regDate=" + regDate + ", name=" + name + ", nickname=" + nickname + ", birthDate=" + birthDate
 				+ ", khCenter=" + khCenter + ", isLeave=" + isLeave + ", isBan=" + isBan + ", variFile=" + variFile
-				+ "]";
-	} 
-	
+				+ ", kakaoCode=" + kakaoCode + "]";
+	}
+
 	
 	
 }

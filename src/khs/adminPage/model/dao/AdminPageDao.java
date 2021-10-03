@@ -44,10 +44,11 @@ public class AdminPageDao {
 	
 	
 	// 어드민게시판 : 차단된 회원 관리
+	// B02으로 변경 / 1일 차단
 	public int memberBanGrade01(Connection conn, String userId) {
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "update MEMBER set BAN_GRADE = 'B01' where USER_ID = ?"; 
+		String query = "update MEMBER set BAN_GRADE = 'B02', BAN_DATE = SYSDATE+1 where USER_ID = ?"; 
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, userId);
@@ -60,10 +61,12 @@ public class AdminPageDao {
 		return res;
 	}
 	
+	// 어드민게시판 : 차단된 회원 관리
+	// B03으로 변경 / 7일 차단
 	public int memberBanGrade02(Connection conn, String userId) {
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "update MEMBER set BAN_GRADE = 'B02' where USER_ID = ?"; 
+		String query = "update MEMBER set BAN_GRADE = 'B03', BAN_DATE = SYSDATE+7 where USER_ID = ?"; 
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, userId);
@@ -76,11 +79,12 @@ public class AdminPageDao {
 		return res;
 	}
 
-
+	// 어드민게시판 : 차단된 회원 관리
+	// B04으로 변경 / 영구 차단
 	public int memberBanGrade03(Connection conn, String userId) {
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "update MEMBER set BAN_GRADE = 'B03' where USER_ID = ?"; 
+		String query = "update MEMBER set BAN_GRADE = 'B04', BAN_DATE = '2099/12/30' where USER_ID = ?"; 
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, userId);
@@ -93,11 +97,12 @@ public class AdminPageDao {
 		return res;
 	}
 
-
+	// 어드민게시판 : 차단된 회원 관리
+	// B01으로 변경 / 차단 해제
 	public int memberBanGrade04(Connection conn, String userId) {
 		int res = 0;
 		PreparedStatement pstm = null;
-		String query = "update MEMBER set BAN_GRADE = 'B04' where USER_ID = ?"; 
+		String query = "update MEMBER set BAN_GRADE = 'B01', BAN_DATE = SYSDATE-1 where USER_ID = ?"; 
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, userId);
@@ -113,6 +118,42 @@ public class AdminPageDao {
 	
 	
 
+	
+	public int userGradeLV01(Connection conn, String userId) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update MEMBER set GRADE = 'LV01' where USER_ID = ?"; 
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+
+	public int userGradeLV02(Connection conn, String userId) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update MEMBER set GRADE = 'LV02' where USER_ID = ?"; 
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			res = pstm.executeUpdate();
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+	
+	
+	
+	
 	// 어드민게시판 : 회원정보조회 게시판
 	// 어드민게시판 : 차단된 회원 관리 게시판
 	private AdminPage convertAllToAdminPage(ResultSet rset) throws SQLException  {
@@ -127,6 +168,7 @@ public class AdminPageDao {
 		adminPage.setName(rset.getString("NAME"));
 		adminPage.setNickname(rset.getString("NICKNAME"));
 		adminPage.setBirthDate(rset.getDate("BIRTH_DATE"));
+		adminPage.setBanDate(rset.getDate("BAN_DATE"));
 		adminPage.setIsLeave(rset.getInt("IS_LEAVE"));
 		adminPage.setVariFile(rset.getString("VARI_FILE"));
 		return adminPage;
@@ -140,7 +182,7 @@ public class AdminPageDao {
 		List<Board> boardSelectBox = new ArrayList<>();
 		Board board = null;
 		ResultSet rset = null;
-		String query = "select * from BOARD where BD_IS_BLIND = 0 order by BD_IDX DESC";
+		String query = "select * from BOARD order by BD_IDX DESC";
 		try {
 			pstm = conn.prepareStatement(query);
 			rset = pstm.executeQuery();
@@ -159,14 +201,14 @@ public class AdminPageDao {
 	}
 	
 	// 어드민게시판 : 자유게시판 블라인드 기능 *******
-	public int boardBlind(Connection conn, String bdIdx) {
+	public int bdIdxDelete(Connection conn, String bdIdxDelete) {
 		int res = 0;
 		PreparedStatement pstm = null;
 		String query = "update BOARD set BD_IS_BLIND = 1 where BD_IDX=?"; 
 		// 게시글 번호가 ?인 글의 값을 1로 변경하여 조회되지 않도록 하는 쿼리
 		try {
 			pstm = conn.prepareStatement(query);
-			pstm.setString(1, bdIdx);
+			pstm.setString(1, bdIdxDelete);
 			
 			res = pstm.executeUpdate();
 			System.out.println(res); //1
@@ -178,6 +220,26 @@ public class AdminPageDao {
 		}
 		return res;
 	}
+	
+	public int bdIdxRollBack(Connection conn, String bdIdxRollBack) {
+		int res = 0;
+		PreparedStatement pstm = null;
+		String query = "update BOARD set BD_IS_BLIND = 0 where BD_IDX=?"; 
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, bdIdxRollBack);
+			
+			res = pstm.executeUpdate();
+			System.out.println(res); //1
+			
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		return res;
+	}
+	
 	
 	
 	
@@ -194,6 +256,8 @@ public class AdminPageDao {
 		board.setBdIsBlind(rset.getInt("BD_IS_BLIND"));
 		return board;
 	}
+
+
 	
 	
 	

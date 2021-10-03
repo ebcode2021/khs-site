@@ -40,8 +40,8 @@
     box-shadow: inset 1px 1px 1px #DFDFDF;   
 }
 .ap_button02 {
-    color: #444444;
-    background: #dc1a9721;
+    color: #ffffff;
+    background: #d44235;
     border: 1px #DADADA solid;
     padding: 5px 10px;
     border-radius: 2px;
@@ -53,14 +53,52 @@
 .ap_button02:hover {
     border: 1px #C6C6C6 solid;
     box-shadow: 1px 1px 1px #EAEAEA;
-    color: #333333;
-    background: #dc1a9721;
+    color: #ffffff;
+    background: #d44235;
 }
 .ap_button02:active {
     box-shadow: inset 1px 1px 1px #DFDFDF;   
 }
-
-
+.ap_button03 {
+    color: #ffffff;
+    background: #d44235bd;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+    margin-right: 10px;
+}
+.ap_button03:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #ffffff;
+    background: #d44235bd;
+}
+.ap_button03:active {
+    box-shadow: inset 1px 1px 1px #DFDFDF;   
+}
+.ap_button04 {
+    color: #ffffff;
+    background: #d4423547;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 9pt;
+    outline: none;
+    margin-right: 10px;
+}
+.ap_button04:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #ffffff;
+    background: #d4423547;
+}
+.ap_button04:active {
+    box-shadow: inset 1px 1px 1px #DFDFDF;   
+}
 
 
 
@@ -72,14 +110,15 @@
   line-height: 1.5;
   margin: 20px 10px;
   width: 850px;
+  font-size: 12px;
 }
 .ap_session_base th {
   width: 155px;
   padding: 10px;
   font-weight: bold;
   vertical-align: top;
-  color: #fff;
-  background: #B7B2AB;
+/*   color: #fff; */
+  background: #b7b2ab91;
 }
 .ap_session_base td {
   width: 155px;
@@ -118,7 +157,7 @@
 
 /* adminPage_memberBlock CSS */
 #ap_banTable{
-	width: 700px;
+	width: 800px;
 }
 #ap_banTable_id{
 	padding-left: 70px;
@@ -127,7 +166,11 @@
 
 /* adminPage_freeChart CSS */
 #freeChart_title{
-	padding-left: 230px;
-    padding-right: 230px;
+	padding-left: 170px;
+    padding-right: 170px;
+}
+#freeChart_bl{
+	padding-left: 20px;
+    padding-right: 20px;
 }
 

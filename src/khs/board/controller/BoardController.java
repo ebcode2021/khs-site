@@ -107,7 +107,7 @@ public class BoardController extends HttpServlet {
 
 	private void updateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String bdIdx = request.getParameter("bdIdx");
-    	Map<String, Object> datas = boardService.freeBoardDetail(bdIdx);
+    	Map<String, Object> datas = boardService.boardDetail(bdIdx);
     	
     	request.setAttribute("datas", datas);
     	request.getRequestDispatcher("/board/board-form").forward(request, response);
@@ -170,9 +170,9 @@ public class BoardController extends HttpServlet {
 	private void boardDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = myPageService.getLoginMemberId(request);
     	String bdIdx = request.getParameter("bd_idx");
-    	Map<String, Object> datas = boardService.freeBoardDetail(bdIdx);
+    	Map<String, Object> datas = boardService.boardDetail(bdIdx);
     	
-    	List<Board> boardCommentList = boardService.freeBoardDetailComment(bdIdx);
+    	List<Board> boardCommentList = boardService.boardDetailComment(bdIdx);
     	
     	Board board = (Board) datas.get("board");
     	if(board.getUserId().equals(userId)) {
@@ -192,7 +192,13 @@ public class BoardController extends HttpServlet {
 	
 	private void boardMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Board> boardList = boardService.freeBoardMain();
-		
+		int page = 1;
+		/*
+		 * if(request.getParameter("page") != null && request.getParameter("page") == 0)
+		 * {
+		 * 
+		 * }
+		 */
 		request.setAttribute("boardList", boardList);
 		
 		

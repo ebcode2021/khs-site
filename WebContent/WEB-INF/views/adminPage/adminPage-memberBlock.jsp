@@ -167,8 +167,8 @@ html, body{
 <!-- [BaseCode]header 영역 -->
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'><a href = "/main">K H S</a></div>
- 			<div class='logout'><button><a href="/adminPage/logout">로그아웃</a></button></div>
+ 			<div class='site_tit'><a href = "/main" style="color: #f29d2a">K H S</a></div>
+ 			<div class='logout'><button class="ap_button01"><a href="/adminPage/logout">로그아웃</a></button></div>
  		</div>
  	</div>
  	
@@ -184,7 +184,7 @@ html, body{
  			
  			<div><a href="/studyPage/index">학습 자료실</a></div>
  			
- 			<div id="wrap_hotplace"><a>맛집 정보</a>
+ 			<div id="wrap_hotplace"><a a href="/food/food">맛집 정보</a>
 	 			<div class="hotplace">
 	 				<a>강남지원</a>
 	 				<a>종로지원</a>
@@ -236,7 +236,7 @@ html, body{
 	<div class="ap_indexText">관리자는 선택한 회원을 차단할 수 있으며 차단일은 1일/7일/영구 차단이 가능합니다.</div>
 	<div class="ap_indexText">또한 차단된 회원을 해제하는 것도 이 페이지에서 할 수 있습니다.</div>
 	<br>
-	<div class="ap_indexText">** B01은 차단해제, B02는 1일차단, B03는 7일차단, B04는 영구차단 상태입니다.**</div>
+	<div class="ap_indexText" style="font-weight: bold">** B01은 차단해제, B02는 1일차단, B03는 7일차단, B04는 영구차단 상태입니다.**</div>
 	
 	<hr class="ap_hr">
 	
@@ -244,27 +244,28 @@ html, body{
 		<tr>
 			<th>아이디</th>
 			<th>상태</th>
+			<th>차단일자</th>
 			<th colspan='4'>차단 관리 버튼</th> 
 		</tr>
 		<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
 			<tr>
 				<td>${list.userId}</td>
 				<td>${list.banGrade}</td>
-				
+				<td>${list.banDate}</td>
 				<form action="/adminPage/memberBanGrade01?userId01=${list.userId}" method="post" >
-				<td><button class="ap_button01">1일정지</button></td>
+				<td><button class="ap_button04">1일정지</button></td>
 				</form>
 				
 				<form action="/adminPage/memberBanGrade02?userId02=${list.userId}" method="post" >
-				<td><button class="ap_button01">7일정지</button></td>
+				<td><button class="ap_button03">7일정지</button></td>
 				</form>
 				
 				<form action="/adminPage/memberBanGrade03?userId03=${list.userId}" method="post" >
-				<td><button class="ap_button01">영구정지</button></td>
+				<td><button class="ap_button02">영구정지</button></td>
 				</form>
 				
 				<form action="/adminPage/memberBanGrade04?userId04=${list.userId}" method="post" >
-				<td><button class="ap_button02">정지해제</button></td>
+				<td><button class="ap_button01">정지해제</button></td>
 				</form>
 			</tr>
 		</c:forEach>

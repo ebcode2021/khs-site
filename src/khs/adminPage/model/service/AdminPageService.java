@@ -52,11 +52,11 @@ public class AdminPageService {
 	
 	
 	// 관리자게시판 : 게시글 블라인드 처리 *******
-	public int boardBlind(String bdIdx) {
+	public int bdIdxDelete(String bdIdxDelete) {
 		Connection conn = template.getConnection();
 		int res = 0;
 		try {
-			res = adminPageDao.boardBlind(conn, bdIdx);
+			res = adminPageDao.bdIdxDelete(conn, bdIdxDelete);
 			template.commit(conn);
 		} catch (Exception e) {
 			template.rollback(conn);
@@ -66,7 +66,26 @@ public class AdminPageService {
 		}
 		return res;
 	}
-
+	public int bdIdxRollBack(String bdIdxRollBack) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		try {
+			res = adminPageDao.bdIdxRollBack(conn, bdIdxRollBack);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+	
+	
+	
+	
+	
+	
 	// 관리자게시판 : 회원 차단등급 변경
 	public int memberBanGrade01(String userId) {
 		Connection conn = template.getConnection();
@@ -130,6 +149,40 @@ public class AdminPageService {
 		}
 		return res;
 	}
+
+
+	public int userGradeLV01(String userId) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		try {
+			res = adminPageDao.userGradeLV01(conn, userId);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+
+
+	public int userGradeLV02(String userId) {
+		Connection conn = template.getConnection();
+		int res = 0;
+		try {
+			res = adminPageDao.userGradeLV02(conn, userId);
+			template.commit(conn);
+		} catch (Exception e) {
+			template.rollback(conn);
+			throw e;
+		} finally {
+			template.close(conn);
+		}
+		return res;
+	}
+
+
 	
 	
 	

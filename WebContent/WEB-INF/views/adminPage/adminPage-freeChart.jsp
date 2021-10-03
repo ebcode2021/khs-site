@@ -167,8 +167,8 @@ html, body{
 <!-- [BaseCode]header 영역 -->
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'><a href = "/main">K H S</a></div>
- 			<div class='logout'><button><a href="/adminPage/logout">로그아웃</a></button></div>
+ 			<div class='site_tit'><a href = "/main" style="color: #f29d2a">K H S</a></div>
+ 			<div class='logout'><button class="ap_button01"><a href="/adminPage/logout">로그아웃</a></button></div>
  		</div>
  	</div>
  	
@@ -183,7 +183,7 @@ html, body{
  			
  			<div><a href="/studyPage/index">학습 자료실</a></div>
  			
- 			<div id="wrap_hotplace"><a>맛집 정보</a>
+			<div id="wrap_hotplace"><a a href="/food/food">맛집 정보</a>
 	 			<div class="hotplace">
 	 				<a>강남지원</a>
 	 				<a>종로지원</a>
@@ -234,26 +234,36 @@ html, body{
 	
 	<div class="ap_indexText">KHS 회원들이 이용하는 자유게시판 페이지를 관리할 수 있습니다.</div>
 	<div class="ap_indexText">게시글을 선택하면, 선택된 게시글을 회원들이 볼 수 없도록 관리가 가능합니다.</div>
+	<br>
+	<div class="ap_indexText"  style="font-weight: bold">** 삭제번호가 1이면 일반회원은 게시글을 볼 수 없으며,</div>
+	<div class="ap_indexText"  style="font-weight: bold">&nbsp&nbsp&nbsp삭제번호가 0이면 일반회원도 게시글을 볼 수 있습니다. **</div>
+	
 	
 	<hr class="ap_hr">
 	
 		<table class="ap_session_base">
 			<tr>
-				<th>게시글번호</th> <!-- BOARD.BD_IDX -->
-				<th id="freeChart_title">글제목</th> <!-- BOARD.TITLE -->
-				<th>삭제버튼</th>
+				<th id="freeChart_bl" style="padding: 10px 0 10px 0;">삭제여부</th> 
+				<th style="padding: 10px 0 10px 0;">게시글번호</th>
+				<th id="freeChart_title" style="padding: 10px 150px 10px 150px;">글제목</th>
+				<th id="freeChart_bl" style="padding: 10px 0 10px 0;">블라인드</th>
+				<th>되돌리기</th>
 			</tr>
 			
 			<!-- ******* -->
 			
 			<c:forEach items="${adminPageList}" var="list" varStatus="i"> 
-				<form action="/adminPage/boardBlindData?bdIdx=${list.bdIdx}" method="post" ><!-- bdIdxName=${list.bdIdx} : 쿼리스트링 -->
 					<tr>
-						<td>${list.bdIdx}</td>
+						<td>${list.bdIsBlind}</td>
+						<td>${list.bdIdx}</td>						
 						<td>${list.title}</td>
+						<form action="/adminPage/bdIdxDelete?bdIdxDelete=${list.bdIdx}" method="post" ><!-- bdIdxName=${list.bdIdx} : 쿼리스트링 -->
 						<td><button class="ap_button02">블라인드</button></td>
+						</form>
+						<form action="/adminPage/bdIdxRollBack?bdIdxRollBack=${list.bdIdx}" method="post" ><!-- bdIdxName=${list.bdIdx} : 쿼리스트링 -->
+						<td><button class="ap_button01">되돌리기</button></td>
+						</form>
 					</tr>
-				</form>
 			</c:forEach>
 		</table>
 	

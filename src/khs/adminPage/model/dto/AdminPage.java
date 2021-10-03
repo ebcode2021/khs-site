@@ -19,8 +19,16 @@ public class AdminPage {
 	private String name;
 	private String nickname;
 	private Date birthDate;
+	private Date banDate;
 	private int isLeave;
 	private String variFile;
+	
+	public Date getBanDate() {
+		return banDate;
+	}
+	public void setBanDate(Date banDate) {
+		this.banDate = banDate;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -97,9 +105,11 @@ public class AdminPage {
 	public String toString() {
 		return "AdminPage [userId=" + userId + ", khCode=" + khCode + ", banGrade=" + banGrade + ", password="
 				+ password + ", email=" + email + ", grade=" + grade + ", regDate=" + regDate + ", name=" + name
-				+ ", nickname=" + nickname + ", birthDate=" + birthDate + ", isLeave=" + isLeave + ", variFile="
-				+ variFile + "]";
+				+ ", nickname=" + nickname + ", birthDate=" + birthDate + ", banDate=" + banDate + ", isLeave="
+				+ isLeave + ", variFile=" + variFile + "]";
 	}
+
+	
 	
 	
 	

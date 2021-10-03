@@ -289,7 +289,7 @@ html, body{
  			
  			<div class='board-detail-wrapper'>
 				 <table class="board-detail-table">
-					<div id=board-detail-table-title>자 유 게 시 판</div>
+					<div id=board-detail-table-title>자유게시판</div>
 					<tr id="post_table_header">
 						<th>게시글번호</th><th>작성자</th><th>글 제목</th><th>작성일자</th>
 					</tr>
