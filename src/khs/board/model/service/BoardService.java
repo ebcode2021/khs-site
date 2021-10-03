@@ -21,7 +21,12 @@ public class BoardService {
 	      Connection conn = template.getConnection();
 	      
 	      try {
-	         boardDao.insertBoard(conn, board);
+	    	  if(board.getBdSection() != null) {
+	    		  boardDao.insertBoard(conn, board, board.getBdSection());
+	    	  }else {
+	    		  boardDao.insertBoard(conn, board);
+	    	  }
+	        
 	         for (FileDTO fileDTO : files) {
 	            boardDao.insertFile(conn,fileDTO);
 	         }
@@ -41,7 +46,7 @@ public class BoardService {
 		List<Board> boardList = null;
 		
 		try {
-			boardList = boardDao.alertBoard(conn);
+			boardList = boardDao.hotBoard(conn);
 		} finally {
 			template.close(conn);
 		}
@@ -211,7 +216,6 @@ public class BoardService {
 
 		return hotBoardList;
 	}
-	
 
 	
 

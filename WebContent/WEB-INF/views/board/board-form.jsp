@@ -281,10 +281,20 @@ html, body{
  		
  			<form action=
  				<c:if test="${empty datas}">
-							"/board/free-board-upload"
+ 							<c:choose>
+ 								<c:when test="${not empty alert}">
+ 								"/board/board-upload?bd-section=alert"
+ 								</c:when>
+ 								<c:when test="${not empty hot}">
+ 								"/board/board-upload?bd-section=hot"
+ 								</c:when>
+	 							<c:when test="${not empty free}">
+								"/board/board-upload?bd-section=free"
+								</c:when>
+							</c:choose>
 				</c:if>
  				<c:if test="${not empty datas}">
-							"/board/free-board-update?bdIdx=${datas.board.bdIdx}"
+							"/board/board-update?bdIdx=${datas.board.bdIdx}&section=${datas.board.bdSection}"
 				</c:if> 
 				method="post" enctype="multipart/form-data">
  				<div class='title'>

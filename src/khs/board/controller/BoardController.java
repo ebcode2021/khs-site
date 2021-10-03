@@ -50,20 +50,26 @@ public class BoardController extends HttpServlet {
 		case "free-board-comment-input":
 			commentInput(request,response);
 			break;
-		case "free-board-upload":
+		case "board-upload":
 			uploadPost(request,response);
 			break;
-		case "free-board-delete":
+		case "board-delete":
 			deletePost(request,response);
 			break;
-		case "free-board-update-form":
+		case "board-update-form":
 			updateForm(request,response);
 			break;
-		case "free-board-update":
+		case "board-update":
 			updatePost(request,response);
 			break;
 		case "free-board-comment-delete":
 			deleteComment(request,response);
+			break;
+		case "alert-board-main":
+			alertBoardMain(request,response);
+			break;
+		case "hot-board-main":
+			hotBoardMain(request,response);
 			break;
 		default: throw new PageNotFoundException();
 		}
@@ -71,7 +77,25 @@ public class BoardController extends HttpServlet {
 	}
 
 
-    private void deleteComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void hotBoardMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	List<Board> boardList = boardService.hotBoard();
+    	
+		request.setAttribute("boardList", boardList);
+		request.getRequestDispatcher("/board/hot-board-main").forward(request, response);
+	}
+
+
+	private void alertBoardMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Board> boardList = boardService.alertBoard();
+		
+		request.setAttribute("boardList", boardList);
+		request.getRequestDispatcher("/board/alert-board-main").forward(request, response);
+	}
+	
+	
+
+
+	private void deleteComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmtIdx = request.getParameter("cmtIdx");
 		String bdIdx = request.getParameter("bdIdx");
 		boardService.deleteComment(cmtIdx);
@@ -97,9 +121,20 @@ public class BoardController extends HttpServlet {
 		
 		
 		boardService.updatePost(board, files);
-		
 		request.setAttribute("msg","게시글이 수정되었습니다.");
-		request.setAttribute("url", "/board/free-board-main");
+		
+		switch(request.getParameter("section")) {
+			case "FREE":
+				request.setAttribute("url", "/board/free-board-main");
+				break;
+			case "ALERT":
+				request.setAttribute("url", "/board/alert-board-main");
+				break;
+			case "HOT"
+					+ "":
+				request.setAttribute("url", "/board/hot-board-main");
+				break;
+		}
 		request.getRequestDispatcher("/error/result").forward(request, response);
     	
 	}
@@ -134,18 +169,53 @@ public class BoardController extends HttpServlet {
 		board.setUserId(member.getUserId());
 		board.setTitle(multiPart.getParameter("title"));
 		board.setContent(multiPart.getParameter("content"));
-		
-
 		List<FileDTO> files = multiPart.getFilesInfo();
-		boardService.insertBoard(board, files);
-		request.setAttribute("msg","게시글 작성 완료");
-		request.setAttribute("url", "/board/free-board-main");
-		request.getRequestDispatcher("/error/result").forward(request, response);
+		
+		if(request.getParameter("bd-section").equals("alert")) {
+			board.setBdSection("ALERT");
+			boardService.insertBoard(board, files);
+			request.setAttribute("msg","게시글 작성 완료");
+			request.setAttribute("url", "/board/alert-board-main");
+			request.getRequestDispatcher("/error/result").forward(request, response);
+			return;
+		}
+		if(request.getParameter("bd-section").equals("hot")) {
+			board.setBdSection("HOT");
+			boardService.insertBoard(board, files);
+			request.setAttribute("msg","게시글 작성 완료");
+			request.setAttribute("url", "/board/hot-board-main");
+			request.getRequestDispatcher("/error/result").forward(request, response);
+			return;
+		}
+		if (request.getParameter("bd-section").equals("free")){
+			boardService.insertBoard(board, files);
+			request.setAttribute("msg","게시글 작성 완료");
+			request.setAttribute("url", "/board/free-board-main");
+			request.getRequestDispatcher("/error/result").forward(request, response);
+		}
+
+		
 		
 	}
     
     
     private void boardForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	String section = request.getParameter("section");
+    	
+    	switch(section) {
+    		case "alert":
+    			request.setAttribute("alert", "alert");
+    			break;
+    		case "hot" :
+    			request.setAttribute("hot", "hot");
+    			break;
+    		case "free" :
+    			request.setAttribute("free", "free");
+    			break;
+    		default: throw new PageNotFoundException();
+    	}
+    
 		request.getRequestDispatcher("/board/board-form").forward(request, response);
 	}
 	
@@ -202,7 +272,7 @@ public class BoardController extends HttpServlet {
 		request.setAttribute("boardList", boardList);
 		
 		
-		request.getRequestDispatcher("/board/free-board-main").forward(request, response);;
+		request.getRequestDispatcher("/board/free-board-main").forward(request, response);
 	}
 
 	

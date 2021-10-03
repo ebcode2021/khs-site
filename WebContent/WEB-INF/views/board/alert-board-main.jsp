@@ -333,7 +333,9 @@ html, body{
           </div>
           
           <div id="post_input_page_link">
-             <a href="/board/board-form">게시글 작성하기</a>
+	          <form action="/board/board-form?section=alert" method="post">
+	             	<button>작성하기</button>
+	          </form>  
           </div>
           
           
