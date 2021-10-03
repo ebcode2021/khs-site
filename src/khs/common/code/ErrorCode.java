@@ -15,11 +15,8 @@ public enum ErrorCode {
 	LOGIN_NOT_VALIDATOR_ERROR("아이디나 비밀번호를 다시 확인해주세요."),
 	MEMBER_ISLEAVE("탈퇴한 아이디입니다."),
 	BAN_USER(""),
-	/*
-	 * BAN_USER2("차단됬음 ㅎㅎ\\n"), BAN_USER3("커뮤니티 규정 위반으로 7일 차단 되셨습니다."),
-	 * BAN_USER4("커뮤니티 규정 위반으로 영구 차단 되셨습니다."),
-	 */
-	NEED_LOGIN("로그인을 해주세요.");
+	NEED_LOGIN("로그인을 해주세요."),
+	ADMIN_PAGE("접근 권한이 없습니다.");
 	
 	public String MESSAGE; //기존에 final
 	public String URL;

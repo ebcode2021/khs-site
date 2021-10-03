@@ -43,10 +43,22 @@ public class AuthorizationFilter implements Filter {
 			
 			switch (uriArr[1]) {
 				case "myPage":
-					myPageAuthorize(httpRequest, httpResponse, uriArr);
+					commonAuthorize(httpRequest, httpResponse, uriArr);
 					break;
 				case "main" :
-					mainAuthorize(httpRequest, httpResponse, uriArr);
+					commonAuthorize(httpRequest, httpResponse, uriArr);
+					break;
+				case "board" :
+					commonAuthorize(httpRequest, httpResponse, uriArr);
+					break;
+				case "food" : 
+					commonAuthorize(httpRequest, httpResponse, uriArr);
+					break;
+				case "studyPage" : 
+					commonAuthorize(httpRequest, httpResponse, uriArr);
+					break;
+				case "adminPage" :
+					adminAuthorize(httpRequest, httpResponse, uriArr);
 					break;
 				default: 
 					break;
@@ -58,20 +70,18 @@ public class AuthorizationFilter implements Filter {
 
 	}
 
-	private void myPageAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+	private void adminAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
 		HttpSession session = httpRequest.getSession();
 		Member member = (Member) session.getAttribute("authentication");
 		
-		if(member == null) {
-			throw new HandlableException(ErrorCode.REDIRECT.setURL("/login"));
+		if(!member.getGrade().equals("AD01")) {
+			throw new HandlableException(ErrorCode.ADMIN_PAGE);
 		}
-
-		
 		
 	}
 
 
-	private void mainAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) throws ServletException, IOException {
+	private void commonAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) throws ServletException, IOException {
 		HttpSession session = httpRequest.getSession();
 		Member member = (Member) session.getAttribute("authentication");
 		Date date = new Date();
@@ -92,10 +102,15 @@ public class AuthorizationFilter implements Filter {
 		if(member.getIsLeave()==1) {
 			throw new HandlableException(ErrorCode.MEMBER_ISLEAVE.setURL("/login"));
 		}
-		
-		
+	}
 	
+	private void myPageAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
+		HttpSession session = httpRequest.getSession();
+		Member member = (Member) session.getAttribute("authentication");
 		
+		if(member == null) {
+			throw new HandlableException(ErrorCode.REDIRECT.setURL("/login"));
+		}
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException {
