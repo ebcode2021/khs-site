@@ -342,7 +342,7 @@
   <header>
   <div></div>
    <div><a href='/main'>KHS</a></div>
-   <div id="exclamation"><a id="logout" href="/main/logout">logout</a><i class="fas fa-exclamation-circle fa-2x"></i></div>
+   <div id="exclamation"><a id="logout" href="/main/logout">logout</a></div>
   </header>
 
   <main>
@@ -533,8 +533,10 @@
     	});
     });
     
+    let cookiedata = documnet.cookie;
+    if(cookiedata.indexOf("close=Y")<0){
     window.open("/main/popup", "qr코드","width=500px, height=500px")
-    
+    }
   </script>
 </body>
 </html>

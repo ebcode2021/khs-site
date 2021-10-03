@@ -44,61 +44,58 @@
 </head>
 
 <body>
-  <form name="notice_form">
-      <div id="divpop1" class="divpop">    
-          <div class="title_area"></div>
-           <div class="button_area">
-               <input type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>오늘 하루 이 창을 열지 않음    
-               <a href='#' onclick="javascript:closeWin(1);"><B>[닫기]</B></a>
-           </div>
-      </div>
-  </form>
-  
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script>
-    //쿠키설정    
-    function setCookie( name, value, expiredays ) {
-    let todayDate = new Date();
-    todayDate.setDate( todayDate.getDate() + expiredays );
-    document.cookie = name + '=' + escape( value ) + '; path=/; expires=' + todayDate.toGMTString() + ';'
-    }
+	<form name="notice_form">
+		<div id="divpop1" class="divpop">
+			<div class="title_area"></div>
+			<div class="button_area">
+				<input type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>오늘
+				하루 이 창을 열지 않음 <a href='#' onclick="javascript:closeWin(1);"><B>[닫기]</B></a>
+			</div>
+		</div>
+	</form>
 
-    //쿠키 불러오기
-    function getCookie(name) 
-    { 
-        let obj = name + "="; 
-        let x = 0; 
-        while ( x <= document.cookie.length ) 
-        { 
-            let y = (x+obj.length); 
-            if ( document.cookie.substring( x, y ) == obj ) 
-            { 
-                if ((endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) 
-                    endOfCookie = document.cookie.length;
-                return unescape( document.cookie.substring( y, endOfCookie ) ); 
-            } 
-            x = document.cookie.indexOf( " ", x ) + 1; 
-            
-            if ( x == 0 ) break; 
-        } 
-        return ""; 
-    }
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script>
+	// 쿠키 가져오기
+		var getCookie = function (cname) {
+   		var name = cname + "=";
+   	 	var ca = document.cookie.split(';');
+   	 	for(var i=0; i<ca.length; i++) {
+       		 var c = ca[i];
+        		while (c.charAt(0)==' ') c = c.substring(1);
+       			if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+   		 }
+    return "";
+}
 
-    //닫기 버튼 클릭시
-    function closeWin(key)
-    {
-        if($("#todaycloseyn").prop("checked"))
-        {
-            setCookie('divpop'+key, 'Y' , 1 );
-        }
-        $("#divpop"+key+"").hide();
+// 24시간 기준 쿠키 설정하기  
+var setCookie = function (cname, cvalue, exdays) {
+    var todayDate = new Date();
+    todayDate.setTime(todayDate.getTime() + (exdays*24*60*60*1000));    
+    var expires = "expires=" + todayDate.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+var couponClose = function(){
+    if($("input[name='chkbox']").is(":checked") == true){
+        setCookie("close","Y",1);  
     }
-  
-    $(function(){    
-        if(getCookie("divpop1") !="Y"){
-            $("#divpop1").show();
-        }
+    $(".divpop").hide();
+}
+
+$(document).ready(function(){
+    var cookiedata = document.cookie;
+    console.log(cookiedata);
+    if(cookiedata.indexOf("close=Y")<0){
+        $(".divpop").show();
+    }else{
+        $(".divpop").hide();
+    }
+    $("#todaycloseyn").click(function(){
+       close();
     });
+});
+    
 </script>
 </body>
 </html>
