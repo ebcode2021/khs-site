@@ -20,7 +20,7 @@ public class AdminPageController extends HttpServlet {
 	
 	private AdminPageService adminPageService = new AdminPageService();
 	
-	
+	// 커밋테스트 - 나중에 지우기
        
     public AdminPageController() {
         super();
