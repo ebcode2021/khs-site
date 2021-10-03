@@ -25,43 +25,43 @@
 }
 
 html, body{
-	width: 100%;
-	height: 100%;.
+   width: 100%;
+   height: 100%;.
 }
 .header{
-	display: flex;
-	justify-content: space-around;
-	height: 10%;
+   display: flex;
+   justify-content: space-around;
+   height: 10%;
 }
 
 .wrap_header{
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	height: 100%;
-	margin-left: 13%;
-	margin-right: 13%;
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   height: 100%;
+   margin-left: 13%;
+   margin-right: 13%;
 }
 
 .site_tit{
-	display: flex;
-	align-items: flex-end;
-	margin-left: 2%;
-	margin-bottom: 0.5%;
-	font-weight: bolder;
-	font-size: 3.2vw;
+   display: flex;
+   align-items: flex-end;
+   margin-left: 2%;
+   margin-bottom: 0.5%;
+   font-weight: bolder;
+   font-size: 3.2vw;
 }
 .site_tit> a{
-	color: #f29d2a;
+   color: #f29d2a;
 }
 
 
 .logout{
-	display: flex;
-	align-items: flex-end;
-	margin-right: 2%;
-	margin-bottom: 0.5%;
-	right: 25%;
+   display: flex;
+   align-items: flex-end;
+   margin-right: 2%;
+   margin-bottom: 0.5%;
+   right: 25%;
 }
 
 
@@ -75,47 +75,47 @@ html, body{
 
 
 .section{
-	position: relative;
-	display: flex;
-	min-height:75%;
-	margin-left: 13%;
-	margin-right:13%;
-	border-radius: 20px 20px 20px 20px;
+   position: relative;
+   display: flex;
+   min-height:75%;
+   margin-left: 13%;
+   margin-right:13%;
+   border-radius: 20px 20px 20px 20px;
 }
 .main_banner{
-	position: relative;
-	margin-left: 16.5%;
-	width: 100%;
-	background-color: #F0F8FF;
-	border-radius: 20px 20px 20px 20px;
-	min-width: 600px;
-	display: flex;
+   position: relative;
+   margin-left: 16.5%;
+   width: 100%;
+   background-color: #F0F8FF;
+   border-radius: 20px 20px 20px 20px;
+   min-width: 600px;
+   display: flex;
     flex-direction: column;
 }
 .sidemenu{
-	position: absolute;
-	min-height:100%;
-	width: 15.5%;
-	min-width: 15.5%;
-	background-color: #fecf92;
-	border-radius: 20px 20px 20px 20px;
-	z-index: 999;
-	font-family: 'han_sans_kr_Medium';
+   position: absolute;
+   min-height:100%;
+   width: 15.5%;
+   min-width: 15.5%;
+   background-color: #fecf92;
+   border-radius: 20px 20px 20px 20px;
+   z-index: 999;
+   font-family: 'han_sans_kr_Medium';
 }
 #mypage{
-	border-radius: 20px 20px 0 0;
+   border-radius: 20px 20px 0 0;
 }
 .sidemenu>div{
-	font-weight: bolder;
-	font-size: 1.7vw;
-	transition:all 0.3s;
+   font-weight: bolder;
+   font-size: 1.7vw;
+   transition:all 0.3s;
 }
 .sidemenu>div>a {
-	display: flex;
-	justify-content : center;
-	align-items : center;
-	height: 100px;
-	color: white;
+   display: flex;
+   justify-content : center;
+   align-items : center;
+   height: 100px;
+   color: white;
 }
 
 
@@ -123,24 +123,24 @@ html, body{
 
 
 #wrap_hotplace{
-	position: relative;
+   position: relative;
 }
 .hotplace{
-	display: flex;
-	position: absolute;
-	justify-content: space-around;
-	flex-direction: column;
-	transform:translateY(-100%);
-	width: 100%;
-	height: 100%;
-	background-color: #fecf92;
-	border-radius: 0 20px 20px 0;
-	z-index: -1;
+   display: flex;
+   position: absolute;
+   justify-content: space-around;
+   flex-direction: column;
+   transform:translateY(-100%);
+   width: 100%;
+   height: 100%;
+   background-color: #fecf92;
+   border-radius: 0 20px 20px 0;
+   z-index: -1;
 }
 .hotplace>a{
-	text-align: center;
-	font-size: 1.3vw;
-	color: #fecf92;
+   text-align: center;
+   font-size: 1.3vw;
+   color: #fecf92;
 }
 
 
@@ -149,25 +149,25 @@ html, body{
 
 
 #mypage:hover{
-	transition-duration: 0.25s;
-	border-radius: 20px 20px 20px 20px;
-	background-color: #FFAF7A;
+   transition-duration: 0.25s;
+   border-radius: 20px 20px 20px 20px;
+   background-color: #FFAF7A;
 }
 #wrap_hotplace:hover {
-	transition-duration: 0.1s;
-	border-radius: 20px 0 0 20px;
-	background-color: #FFAF7A;
+   transition-duration: 0.1s;
+   border-radius: 20px 0 0 20px;
+   background-color: #FFAF7A;
 }
 .sidemenu>div:hover {
-	transition-duration: 0.25s;
-	border-radius: 20px 20px 20px 20px;
-	background-color: #FFAF7A;
+   transition-duration: 0.25s;
+   border-radius: 20px 20px 20px 20px;
+   background-color: #FFAF7A;
 }
 
 #wrap_hotplace:hover .hotplace>a{
-	transition-duration: 0.25s;
-	text-align: center;
-	color: white;
+   transition-duration: 0.25s;
+   text-align: center;
+   color: white;
 }
 
 
@@ -177,34 +177,57 @@ html, body{
 
 
 .main_banner>  div{
-	margin-bottom: 15px;
+   margin-bottom: 15px;
 }
 
 
 
 .history_post{
-	margin-left: 20px;
-	margin-right: 20px;
+   margin-left: 20px;
+   margin-right: 20px;
 }
 
 #history_table_title{
-	font-size: 1.2rem;
-	font-family: 'han_sans_kr_Medium';
-	margin-bottom: 0.8vw;
+   font-size: 1.2rem;
+   font-family: 'han_sans_kr_Medium';
+   font-weight: bold; /*추가*/
+   margin-bottom: 0.8vw;
 }
 
 .history_post_table {
-	width: 100%;
-	text-align: center;
-	background-color: #FFF5EE;
-	font-size: 0.8vw;
+  table-layout: fixed; /*추가*/
+   width: 100%;
+   font-size: 0.8vw;
+   text-align: center;
+   background-color: #fff5ee;
+   margin-bottom: 0.8vw;/*추가*/
+   border-collapse: separate; /*추가*/
+   border-spacing: 0px; /*추가*/
+    border-top: 1px solid #ccc; /*추가*/
+    border-bottom: 1px solid #444444;
+
 }
 
 #post_table_header> th{
-	height: 35px;
-	text-align: center;
-	font-size: 15px;
+      padding: 10px; /*추가*/
+   text-align: center; 
+    font-size:20px;
+    vertical-align: top; /*추가*/
+    border-top: 0.5px;
+    border-bottom: 1px solid #444444; /*추가*/    
+    background-color: #dec3b1;/*추가*/
 }
+
+
+#post_table_list> td {
+     padding: 10px; /*추가*/
+   font-size:13.5px;
+   margin-top: 30px;
+   text-align: left;
+   vertical-align: top; /*추가*/
+     border-bottom: 1px solid #ccc; /*추가*/
+}
+
 
 
 
@@ -212,8 +235,8 @@ html, body{
 
 
 #post_input_page_link {
-	display: flex;
-	justify-content: flex-end;
+   display: flex;
+   justify-content: flex-end;
     margin-right: 5%;
 }
 
@@ -225,12 +248,12 @@ html, body{
 
 
 .footer{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 15%;
-	background-color: white;
-	color: gray;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 15%;
+   background-color: white;
+   color: gray;
 }
 
 
@@ -250,107 +273,106 @@ html, body{
 </head>
 <body>
 
- 	<div class="header">
- 		<div class = "wrap_header">
- 			<div class='site_tit'><a href="/main">K H S</a></div>
- 			<div class='logout'><button><a href="/myPage/logout">로그아웃</a></button></div>
- 		</div>
- 		
- 	</div>
- 	
- 	
- 	<div class="nav">
- 	</div>
- 	
- 	
- 	<div class="section">
- 		<div class='sidemenu'>
- 		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
- 			<div><a>학습 자료실</a></div>
- 			<div id="wrap_hotplace"><a>맛집 정보</a>
-	 			<div class="hotplace">
-	 				<a>강남지원</a>
-	 				<a>종로지원</a>
-	 				<a>당산지원</a>
-	 			</div>
- 			</div>
- 			<div><a>게시판</a></div>
- 			<div><a>문의하기</a></div>
- 		</div>
- 		<div class= 'main_banner'>
- 			
- 			<div class='history_post'>
-				 <table class="history_post_table">
-					<div id=history_table_title>자 유 게 시 판</div>
-					<tr id="post_table_header">
-						<th>게시글번호</th>
-						<th>작성자</th>
-						<th>글 제목</th>
-						<th>작성일자</th>
-					</tr>
-					<c:if test="${not empty boardList}">
-						<c:forEach items="${boardList}" var="board" varStatus="i">
-							<tr height = "25">
-								<td>${board.bdIdx}</td>
-								<td>${board.nickName}</td>
-								<td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
-								<td>${board.regDate}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-					
-					<c:if test="${empty boardList}">
-					<tr>
-						<td>작성된 게시글이 없습니다.<td>
-					</tr>
-					</c:if>
+    <div class="header">
+       <div class = "wrap_header">
+          <div class='site_tit'><a href="/main">K H S</a></div>
+          <div class='logout'><button><a href="/myPage/logout">로그아웃</a></button></div>
+       </div>
+       
+    </div>
+    
+    
+    <div class="nav">
+    </div>
+    
+    
+    <div class="section">
+       <div class='sidemenu'>
+           <div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
+          <div><a>학습 자료실</a></div>
+          <div id="wrap_hotplace"><a>맛집 정보</a>
+             <div class="hotplace">
+                <a>강남지원</a>
+                <a>종로지원</a>
+                <a>당산지원</a>
+             </div>
+          </div>
+          <div><a>게시판</a></div>
+          <div><a>문의하기</a></div>
+       </div>
+       <div class= 'main_banner'>
+          
+          <div class='history_post'>
+             <table class="history_post_table">
+               <div id=history_table_title>자 유 게 시 판</div>
+               <tr id="post_table_header">
+                  <th>게시글번호</th>
+                  <th>작성자</th>
+                  <th>글 제목</th>
+                  <th>작성일자</th>
+               </tr>
+               <c:if test="${not empty boardList}">
+                  <c:forEach items="${boardList}" var="board" varStatus="i">
+                     <tr id="post_table_list" height = "25">
+                        <td>${board.bdIdx}</td>
+                        <td>${board.nickName}</td>
+                        <td><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">${board.title}</a></td>
+                        <td>${board.regDate}</td>
+                     </tr>
+                  </c:forEach>
+               </c:if>
+               
+               <c:if test="${empty boardList}">
+               <tr>
+                  <td>작성된 게시글이 없습니다.<td>
+               </tr>
+               </c:if>
 
-				</table>
-				<span id="check-error-msg"></span>
- 			</div>
- 			
- 			<div id="post_input_page_link">
- 				<a href="/board/board-form">게시글 작성하기</a>
- 			</div>
- 			
- 			
- 			
- 		</div>
- 	</div>
- 	
- 	
-	<div class="footer">Copyright © 1998-2021 KH Information Educational Institute All Right Reserved</div>
-	
-	
-	
-	
-	
-	
-	<script type="text/javascript">
-	
-	(function hotplaceSlide() {
-		document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
-			document.querySelector(".hotplace").style.transitionDuration = '0.1s';
-			document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
-			document.querySelector(".hotplace").style.backgroundColor = "#FFAF7A";
-		})
-		document.querySelector("#wrap_hotplace").addEventListener('mouseleave',()=>{	
-			document.querySelector(".hotplace").style.transitionDuration = "0.1s";
-			document.querySelector(".hotplace").style.transform=`translateY(-100%)`;
-			document.querySelector(".hotplace").style.backgroundColor = "#fecf92";	
-		})
-	})();
-	
-	
+            </table>
+            <span id="check-error-msg"></span>
+          </div>
+          
+          <div id="post_input_page_link">
+             <a href="/board/board-form">게시글 작성하기</a>
+          </div>
+          
+          
+          
+       </div>
+    </div>
+    
+    
+   <div class="footer">Copyright © 1998-2021 KH Information Educational Institute All Right Reserved</div>
+   
+   
+   
+   
+   
+   
+   <script type="text/javascript">
+   
+   (function hotplaceSlide() {
+      document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
+         document.querySelector(".hotplace").style.transitionDuration = '0.1s';
+         document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
+         document.querySelector(".hotplace").style.backgroundColor = "#FFAF7A";
+      })
+      document.querySelector("#wrap_hotplace").addEventListener('mouseleave',()=>{   
+         document.querySelector(".hotplace").style.transitionDuration = "0.1s";
+         document.querySelector(".hotplace").style.transform=`translateY(-100%)`;
+         document.querySelector(".hotplace").style.backgroundColor = "#fecf92";   
+      })
+   })();
+   
+   
 
-	
-	</script>
+   
+   </script>
 
-	
-	
+   
+   
 </body>
 </html>
-
 
 
 
