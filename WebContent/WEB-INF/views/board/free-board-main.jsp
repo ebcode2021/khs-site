@@ -34,6 +34,7 @@ html, body{
    height: 10%;
 }
 
+
 .wrap_header{
    display: flex;
    justify-content: space-between;
