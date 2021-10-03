@@ -23,8 +23,9 @@ public class JoinDao {
 		
 		
 		try {
-			String query = "INSERT INTO MEMBER (USER_ID, PASSWORD, EMAIL, NAME, " + "NICKNAME, BIRTH_DATE, KH_CODE, VARI_FILE)"
-					+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO MEMBER (USER_ID, PASSWORD, EMAIL, NAME, " 
+					+ "NICKNAME, BIRTH_DATE, KH_CODE, VARI_FILE, KAKAO_CODE)"
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, newMember.getUserId());
 			pstm.setString(2, Encrypter.convertToSHA256(newMember.getPassword()));
@@ -35,7 +36,7 @@ public class JoinDao {
 			pstm.setDate(6, newMember.getBirthDate());
 			pstm.setString(7, newMember.getKhCenter());
 			pstm.setString(8, newMember.getVariFile());
-
+			pstm.setString(9, newMember.getKakaoCode());
 			// DQL을 통해 성공여부를 반환받음, 성공시 UPDATE행갯수, 실패시 0
 			resultInt = pstm.executeUpdate();
 

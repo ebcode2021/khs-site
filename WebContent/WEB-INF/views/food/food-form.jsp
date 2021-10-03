@@ -36,8 +36,8 @@
  		</div>
  		<div class= 'main_banner'>
  		<div class= 'mainDiv' id = 'mainDiv'>
-	 		<div class= "titleDiv" id= "titleDiv">
-	 			<div class="title_wrap"><span class = "title_food">강남 지원 맛집 게시판</span></div>
+	 		<div class= "titleDiv" id= "titleDiv" style="padding-top:30px;">
+	 			<div class="title_wrap"><span class = "title_food" >강남 지원 맛집 게시판</span></div>
 	 		</div>
 	 		<div class="visualDiv" id="visualDiv">
 					<div class="map_wrap">
@@ -52,7 +52,7 @@
 	 		<div class="slideDiv" id="slideDiv">
 	 			<div class="bigSlide" id ="bigSlide">
 	 				<span class="smallSlide" id= "smallSlide">
-	 					<img id = "hpImg" src="${foodArr[0].storeImg}">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F01.jpg">
 	 					<span>
 	 					${foodArr[0].storeName}<br>
 	 					${foodArr[0].storeMenu}<br>
@@ -60,7 +60,7 @@
 	 					</span>
 	 				</span>
 	 				<span class="smallSlide">
-	 					<img id = "hpImg">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F02.jpg">
 	 					<span>
 	 					${foodArr[1].storeName}<br>
 	 					${foodArr[1].storeMenu}<br>
@@ -68,7 +68,7 @@
 	 					</span>
 	 				</span>
 	 				<span class="smallSlide">
-	 					<img id = "hpImg">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F03.jpg">
 	 					<span>
 	 					${foodArr[2].storeName}<br>
 	 					${foodArr[2].storeMenu}<br>
@@ -78,7 +78,7 @@
 	 			</div>
 	 			<div class="bigSlide" id ="bigSlide">
 	 				<span class="smallSlide" id= "smallSlide">
-	 					<img id = "hpImg" src="${foodArr[0].storeImg}">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F04.jpg">
 	 					<span>
 	 					${foodArr[3].storeName}<br>
 	 					${foodArr[3].storeMenu}<br>
@@ -86,7 +86,7 @@
 	 					</span>
 	 				</span>
 	 				<span class="smallSlide">
-	 					<img id = "hpImg">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F05.jpg">
 	 					<span>
 	 					${foodArr[4].storeName}<br>
 	 					${foodArr[4].storeMenu}<br>
@@ -94,7 +94,7 @@
 	 					</span>
 	 				</span>
 	 				<span class="smallSlide">
-	 					<img id = "hpImg">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F06.jpg">
 	 					<span>
 	 					${foodArr[5].storeName}<br>
 	 					${foodArr[5].storeMenu}<br>
@@ -104,7 +104,7 @@
 	 			</div>
 	 			<div class="bigSlide" id ="bigSlide">
 	 				<span class="smallSlide" id= "smallSlide">
-	 					<img id = "hpImg" src="${foodArr[0].storeImg}">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F07.jpg">
 	 					<span>
 	 					${foodArr[6].storeName}<br>
 	 					${foodArr[6].storeMenu}<br>
@@ -112,7 +112,7 @@
 	 					</span>
 	 				</span>
 	 				<span class="smallSlide">
-	 					<img id = "hpImg">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F08.jpg">
 	 					<span>
 	 					${foodArr[7].storeName}<br>
 	 					${foodArr[7].storeMenu}<br>
@@ -120,7 +120,7 @@
 	 					</span>
 	 				</span>
 	 				<span class="smallSlide">
-	 					<img id = "hpImg">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F09.jpg">
 	 					<span>
 	 					${foodArr[8].storeName}<br>
 	 					${foodArr[8].storeMenu}<br>
@@ -128,35 +128,77 @@
 	 					</span>
 	 				</span>		
 	 			</div>
-	 			<%-- <div class="bigSlide">
-	 				<c:forEach var= "foodVO" items="${foodArr}" >
-	 					<span class="smallSlide" id= "smallSlide">
-	 					<img id = "hpImg" src="${foodArr[0].storeImg}">
+	 			<div class="bigSlide" id ="bigSlide">
+	 				<span class="smallSlide" id= "smallSlide">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F10.jpg">
 	 					<span>
-	 					<c:forEach var= "foodVO" items="${foodArr}" >
-	 					${foodVO.stName}<br>
-	 					${foodVO.stMenu}<br>
-	 					${foodVO.stDescription}<br> 
-	 					</c:forEach>
+	 					${foodArr[9].storeName}<br>
+	 					${foodArr[9].storeMenu}<br>
+	 					${foodArr[9].storeDescription}<br> 
 	 					</span>
-	 					</span>
-	 				</c:forEach>
-	 			</div> --%>
-	 			<%-- <c:forEach var= "foodArrVO" items="${foodArr}" >
-	 			<c:set var="num" value="0"></c:set>
-	 			<div class="bigSlide">
-	 				<c:forEach var= "foodVO" begin="${num}" end="${num + 2}" step="1">
-	 					<span class="smallSlide" id= "smallSlide">
-	 						<img id = "hpImg" src="">
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F11.jpg">
 	 					<span>
-	 					${foodArrVO[${num}].stName}<br>
-	 					${foodArrVO.stMenu}<br>
-	 					${foodArrVO.stDescription}<br> 
+	 					${foodArr[10].storeName}<br>
+	 					${foodArr[10].storeMenu}<br>
+	 					${foodArr[10].storeDescription}<br> 
 	 					</span>
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F12.jpg">
+	 					<span>
+	 					${foodArr[11].storeName}<br>
+	 					${foodArr[11].storeMenu}<br>
+	 					${foodArr[11].storeDescription}<br> 
 	 					</span>
-	 				</c:forEach>
+	 				</span>		
 	 			</div>
-	 			</c:forEach> --%>
+	 			<div class="bigSlide" id ="bigSlide">
+	 				<span class="smallSlide" id= "smallSlide">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F13.jpg">
+	 					<span>
+	 					${foodArr[12].storeName}<br>
+	 					${foodArr[12].storeMenu}<br>
+	 					${foodArr[12].storeDescription}<br> 
+	 					</span>
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F14.jpg">
+	 					<span>
+	 					${foodArr[13].storeName}<br>
+	 					${foodArr[13].storeMenu}<br>
+	 					${foodArr[13].storeDescription}<br> 
+	 					</span>
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F15.jpg">
+	 					<span>
+	 					${foodArr[14].storeName}<br>
+	 					${foodArr[14].storeMenu}<br>
+	 					${foodArr[14].storeDescription}<br> 
+	 					</span>
+	 				</span>		
+	 			</div>
+	 			<div class="bigSlide" id ="bigSlide">
+	 				<span class="smallSlide" id= "smallSlide">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F16.jpg">
+	 					<span>
+	 					${foodArr[15].storeName}<br>
+	 					${foodArr[15].storeMenu}<br>
+	 					${foodArr[15].storeDescription}<br> 
+	 					</span>
+	 				</span>
+	 				<span class="smallSlide">
+	 					<img id = "hpImg" src="/resources/image/foodPage/F17.jpg">
+	 					<span>
+	 					${foodArr[16].storeName}<br>
+	 					${foodArr[16].storeMenu}<br>
+	 					${foodArr[16].storeDescription}<br> 
+	 					</span>
+	 				</span>
+	 					
+	 			</div>
 	 		</div>
 	 		<div class="buttonDiv" id="buttonDiv">
 	 			<span><i class="far fa-caret-square-left" id="prev"></i></span><span><i class="far fa-caret-square-right" id="next"></i></span>
