@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<style type="text/css"> 
+<style type="text/css">
 
 
 @font-face {
@@ -188,6 +188,7 @@ html, body{
 }
 
 #history_table_title{
+   padding-top : 
    font-size: 1.2rem;
    font-family: 'han_sans_kr_Medium';
    font-weight: bold; /*추가*/
@@ -303,8 +304,8 @@ html, body{
        <div class= 'main_banner'>
           
           <div class='history_post'>
-             <table class="history_post_table">
-               <div id=history_table_title>자 유 게 시 판</div>
+             <table class='history_post_table'>
+               <div id='history_table_title'>HOT 게시판</div>
                <tr id="post_table_header">
                   <th>게시글번호</th>
                   <th>작성자</th>
