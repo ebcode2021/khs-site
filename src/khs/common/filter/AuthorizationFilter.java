@@ -103,7 +103,7 @@ public class AuthorizationFilter implements Filter {
 		
 		//탈퇴회원인 경우
 		if(member.getIsLeave()==1) {
-			throw new HandlableException(ErrorCode.MEMBER_ISLEAVE.setURL("/login"));
+			throw new HandlableException(ErrorCode.MEMBER_ISLEAVE.setURL("/login")); 
 		}
 		
 		//인증회원이 아닌경우(==LV01)
