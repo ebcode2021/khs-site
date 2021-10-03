@@ -45,10 +45,13 @@ public class AdminPageController extends HttpServlet {
 		case "freeChart":
 			freeChart(request,response);
 			break;
-		case "boardBlindData":
-			boardBlindData(request,response);
-			break;
 			
+		case "bdIdxDelete":
+			bdIdxDelete(request,response);
+			break; 
+		case "bdIdxRollBack":
+			bdIdxRollBack(request,response);
+			break;
 			
 		case "memberBanGrade01":
 			memberBanGrade01(request,response);
@@ -63,6 +66,12 @@ public class AdminPageController extends HttpServlet {
 			memberBanGrade04(request,response);
 			break;
 			
+		case "userGradeLV01":
+			userGradeLV01(request,response);
+			break;
+		case "userGradeLV02":
+			userGradeLV02(request,response);
+			break;
 			
 			
 		case "logout":
@@ -76,11 +85,39 @@ public class AdminPageController extends HttpServlet {
 	
 	
 	
+
+
+	private void userGradeLV01(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException   {
+		String userId = request.getParameter("userGradeLV01");
+		System.out.println(userId);
+		System.out.println("userGradeLV01");
+		adminPageService.userGradeLV01(userId);
+		List<AdminPage> list = adminPageService.adminPageService();
+		request.setAttribute("adminPageList", list);
+		request.getRequestDispatcher("/adminPage/adminPage-accountInfo").forward(request, response);
+	}
+
+	private void userGradeLV02(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException   {
+		String userId = request.getParameter("userGradeLV02");
+		System.out.println(userId);
+		System.out.println("userGradeLV02");
+		adminPageService.userGradeLV02(userId);
+		List<AdminPage> list = adminPageService.adminPageService();
+		request.setAttribute("adminPageList", list);
+		request.getRequestDispatcher("/adminPage/adminPage-accountInfo").forward(request, response);
+	}
+	
+	
+	
+	
+
 	private void memberBanGrade04(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		String userId = request.getParameter("userId04");
 		System.out.println(userId);
 		System.out.println("정지해제");
 		adminPageService.memberBanGrade04(userId);
+		List<AdminPage> list = adminPageService.adminPageService();
+		request.setAttribute("adminPageList", list);
 		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
 	}
 
@@ -89,6 +126,8 @@ public class AdminPageController extends HttpServlet {
 		System.out.println(userId);
 		System.out.println("영구정지");
 		adminPageService.memberBanGrade03(userId);
+		List<AdminPage> list = adminPageService.adminPageService();
+		request.setAttribute("adminPageList", list);
 		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
 	}
 
@@ -97,6 +136,8 @@ public class AdminPageController extends HttpServlet {
 		System.out.println(userId);
 		System.out.println("7일정지");
 		adminPageService.memberBanGrade02(userId);
+		List<AdminPage> list = adminPageService.adminPageService();
+		request.setAttribute("adminPageList", list);
 		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
 	}
 
@@ -106,6 +147,8 @@ public class AdminPageController extends HttpServlet {
 		System.out.println(userId);
 		System.out.println("1일정지");
 		adminPageService.memberBanGrade01(userId);
+		List<AdminPage> list = adminPageService.adminPageService();
+		request.setAttribute("adminPageList", list);
 		request.getRequestDispatcher("/adminPage/adminPage-memberBlock").forward(request, response);
 	}
 
@@ -114,19 +157,26 @@ public class AdminPageController extends HttpServlet {
 	
 	
 	// 자유게시판 블라인드 처리  
-	private void boardBlindData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String bdIdx = request.getParameter("bdIdx");
-		// jsp에서 값(bdIdx)을 받아음
-		
-		adminPageService.boardBlind(bdIdx);
-		// jsp에서 받아온 bdIdx을 dao까지 가져가 수정을 시킴
-		
-		// 그럼 지금은 쿼리 수정이 완료된 상태
+	private void bdIdxDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String bdIdxDelete = request.getParameter("bdIdxDelete");
+		System.out.println(bdIdxDelete);
+		adminPageService.bdIdxDelete(bdIdxDelete);
+		List<Board> list = adminPageService.adminPageBoardService();
+		request.setAttribute("adminPageList", list);
 		request.getRequestDispatcher("/adminPage/adminPage-freeChart").forward(request, response);
 	}
 	
 	
+	
+	// 자유게시판 블라인드 해제
+	private void bdIdxRollBack(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String bdIdxRollBack = request.getParameter("bdIdxRollBack");
+		System.out.println(bdIdxRollBack);
+		adminPageService.bdIdxRollBack(bdIdxRollBack);
+		List<Board> list = adminPageService.adminPageBoardService();
+		request.setAttribute("adminPageList", list);
+		request.getRequestDispatcher("/adminPage/adminPage-freeChart").forward(request, response);
+	}
 	
 	
 	

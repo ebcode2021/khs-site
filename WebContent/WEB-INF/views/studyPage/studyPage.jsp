@@ -150,7 +150,7 @@ html, body{
 <!-- [BaseCode]header 영역 -->
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'><a href = "/main">K H S</a></div>
+ 			<div class='site_tit'><a href = "/main" style="color: #f29d2a">K H S</a></div>
  			<div class='logout'><button><a>로그아웃</a></button></div>
  		</div>
  	</div>
@@ -164,7 +164,7 @@ html, body{
  		<div class='sidemenu'>
  		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
  			<div><a href="/studyPage/index">학습 자료실</a></div>
- 			<div id="wrap_hotplace"><a>맛집 정보</a>
+			<div id="wrap_hotplace"><a a href="/food/food">맛집 정보</a>
 	 			<div class="hotplace">
 	 				<a>강남지원</a>
 	 				<a>종로지원</a>
