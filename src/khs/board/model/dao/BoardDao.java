@@ -407,7 +407,6 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 
 
 
-
 	public List<Board> alertBoardToMain(Connection conn) {
 		List<Board> alertBoardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
