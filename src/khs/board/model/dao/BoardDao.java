@@ -493,7 +493,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from (select * from board" 
+		String query = "select * from (select * from board inner join member using(user_id)" 
 						+" where bd_is_del=0 AND bd_is_blind=0 AND bd_section='ALERT'"
 						+" order by to_number(bd_idx) desc)"
 						+" where rownum<4";
@@ -522,7 +522,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from (select * from board" 
+		String query = "select * from (select * from board inner join member using(user_id)" 
 						+" where bd_is_del=0 AND bd_is_blind=0 AND bd_section='HOT'"
 						+" order by to_number(bd_idx) desc)"
 						+" where rownum<4";
