@@ -1,0 +1,359 @@
+@charset "UTF-8";
+
+@font-face {
+      src : url("../fonts/NotoSansCJKkr-Regular.otf"); 
+      font-family: "han_sans_kr_medium";
+}
+
+@font-face {
+      src : url("../fonts/NotoSansCJKkr-Light.otf"); 
+      font-family: "han_sans_kr_Light";
+}
+
+
+	body, html{
+		width: 100%;
+		height : 100%;
+		justify-content: center;
+	}
+
+	.header{
+ 	 	display: flex;
+ 		align-items: center;
+  		justify-content: center;
+		/* border: 1px solid orange; */
+		margin: 0px auto; 
+		height: 400px; 
+		width: 700px;
+		color: orange;
+	}
+		.headerName{
+			border : 0px;
+			text-align: center;
+			font-size: 100px;
+		}
+
+
+		.wrapper{
+			margin: 0px auto;
+			min-height: 700px;
+			width: 1000px;
+			border : 1px rgba(0, 0, 0, 0.2) solid;
+			border-radius: 10px;
+		}
+		
+			#wrapImg{
+					display:flex;
+					justify-content:center;
+					font-size: 100px;
+					color: gray;
+				}
+					#wrapImg>*{
+						margin: 100px;
+					}
+		
+		form{
+			text-align: center;
+		}	
+			.test{
+				margin: 0px auto;
+				border-color:red;
+				min-height: 300px;
+				width: 80%;
+			}
+				input{
+					width: 450px;
+					height : 35px;
+					margin : 20px;
+					border-radius: 5px;
+					border: 3px solid #D5D5D5;
+					
+				}
+				
+					#checkID{
+						display:block;
+						border: 3px solid #FFB751; 
+						background-color: rgba(0,0,0,0);
+						width: 150px;
+						height: 50px;
+						color: #FFB751;
+						padding: 5px;
+						margin-left :170px;
+						border-radius: 15px;
+						font-weight: bolder;
+					}
+						#checkID:hover{
+							color:white; 
+							background-color: #FFB751;
+						}
+					.sendEmail{
+						display:block;
+						border: 3px solid #FFB751; 
+						background-color: rgba(0,0,0,0);
+						width: 150px;
+						height: 50px;
+						color: #FFB751;
+						padding: 5px;
+						margin-left :170px;
+						border-radius: 15px;
+						font-weight: bolder;
+					}
+						.sendEmail:hover{
+							color:white; 
+							background-color: #FFB751;
+						}
+					.variEmail{
+						display:block;
+						border: 3px solid #FFB751; 
+						background-color: rgba(0,0,0,0);
+						width: 150px;
+						height: 50px;
+						color: #FFB751;
+						padding: 5px;
+						margin-left :170px;
+						border-radius: 15px;
+						font-weight: bolder;
+					}
+						.variEmail:hover{
+							color:white; 
+							background-color: #FFB751;
+						}	
+						
+
+					.emailValiWrapper{
+						display: inline-block;
+						position: relative;
+						right:120px;
+					}
+					
+
+		.NickNameWrapper{
+			display: inline-block;
+			position: relative;
+			right: 10px;
+		}
+			.nickName{
+				width: 325px;
+				
+			}
+		
+			.checkNickName{
+				border: 3px solid #FFB751; 
+				background-color: rgba(0,0,0,0);
+				width: 100px;
+				height: 40px;
+				color: #FFB751;
+				padding: 5px;
+				border-radius: 15px;
+				font-weight: bolder;
+				font-size: 12px;
+			}
+				.checkNickName:hover{
+							color:white; 
+							background-color: #FFB751;
+						}
+		
+		.selectKHWrapper{
+			position: relative;
+			top: 20px;
+		}
+		
+				.selectKH{
+					position:relative;
+					right:10px;
+					border-radius: 5px;
+					border: 1px solid #dddddd;
+					width:230px;
+					height : 40px;
+					font-size: 20px;
+					color: black;
+					text-indent : 5px;
+				}		
+			
+				.fileboxWrapper .upload-name {
+				    display: inline-block;
+				    height: 40px;
+				    padding: 0 10px;
+				    vertical-align: middle;
+				    border: 1px solid #dddddd;
+				    width: 380px;
+				    color: #999999;
+				}		
+					.upload-name{
+						margin-left: 0px;
+					}
+				
+				.fileboxWrapper label {
+				    display: inline-block;
+				    padding: 10px 15px;
+				    border-radius : 5px;
+				    color: #fff;
+				    vertical-align: middle;
+				    background-color: #999999;
+				    cursor: pointer;
+				    height: 20px;
+				}			
+					.fileboxWrapper input[type="file"] {
+					    position: absolute;
+					    width: 0;
+					    height: 0;
+					    padding: 0;
+					    overflow:hidden;
+					    border: 0;
+					}
+		
+		.agreeTitle{
+			display: inline-block;
+		}	
+		
+						
+		.agreePre {
+			overflow: auto;
+			margin: 0px auto;
+			border : 1px solid #dddddd;
+			border-radius:5px;
+			width: 500px;
+			height: 100px;
+			text-align: center;
+		 }
+		.agreeLogin{
+		    display:inline-block;
+			height: 20px;
+			width: 50px;
+		}
+	
+		.agreeLabel{
+			font-size: 17px;
+			font-weight: bolder;
+		}
+
+
+	.commitButton{
+		display:inline-block;
+		font-size: 20px;
+		width: 400px;
+		height: 100px;
+		margin-top: 100px;
+		margin-bottom : 100px;
+		background-color: white;	
+		border : 1px solid #dddddd;
+		font-size: 20px;
+		font-weight: bolder;
+	}
+		#backButton:hover{
+			background-color:#dddddd!important;
+		}
+		#joinButton{
+			background-color: lightgray;
+		}
+		#joinButton:hover{
+			background-color:#6ED000!important;
+		}
+	
+	/* placeholer 간격 두기 및 inputText 간격 두기 	*/
+	input[type="text"]{
+		padding-left: 10px;
+	}
+	input[type="date"]{
+		padding-left: 12px;
+		height : 37px;
+		color: #dddddd;
+	}
+	input[type="password"]{
+		padding-left: 10px;
+	}
+
+	/* input Focus 조절하기 (focus outline 없에기 )  */
+	input:focus{
+		outline : none;
+	}
+
+	/* fontAwsome class 일괄 적용하기 */
+	.validCheckPassed {
+		width:450px; 
+		margin-left :170px;
+		text-align: left; 
+		color:green;
+		display:none;
+	}
+	.validCheckFailed{
+		width:450px; 
+		margin-left :170px;
+		text-align: left; 
+		color: #FF6161;
+		display:none;
+	}
+	
+	/* 이메일  check & 코드 check Div가 button의 inline요소에 붙는 현상 방지 */
+	#emailPassed{
+		padding-bottom: 30px;
+	}
+	#emailFailed{
+		padding-bottom: 30px;
+	}
+	#emailValiPassed{
+		padding-bottom: 30px;
+	}
+	#emailValiFailed{
+		padding-bottom: 30px;
+	}
+	#userIdPassed{
+		padding-bottom: 30px;
+	}
+	#userIdFailed{
+		padding-bottom: 30px;
+	}
+/* select tag의 css를 input과 일치시켜 통일 */
+	#selectKH {
+		width: 450px;
+		margin: 20px;
+		border-radius: 5px;
+		border: 3px solid #D5D5D5;
+		font-size: 90%;
+		color: gray;
+	}
+	#selectKH:focus{
+		outline : none;
+	}
+	/* 이미지 파일첨부 통과 메시지의 padding 값 조절 */
+	#filePassed{
+		padding-top: 20px;
+	}
+
+footer{
+		height: 300px;
+		
+	}
+
+#emailTestDiv{
+	min-height:100px;
+}	
+
+/* font 적용 */
+h2 {   
+    font-family: "han_sans_kr_medium";
+   	color: #575757;
+}
+
+h3 { 
+	font-family: "han_sans_kr_Light";
+	color: gray;
+}
+
+.agreeLabel{
+	font-family: "han_sans_kr_Light";
+	color: gray;
+}
+
+.commitButton{
+	font-family: "han_sans_kr_medium";
+	color: gray;
+}
+
+input[type="text"]::placeholder{
+	font-family: "han_sans_kr_Light";	
+	color: gray;
+}	
+
+
+

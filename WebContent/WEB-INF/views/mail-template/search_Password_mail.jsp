@@ -103,7 +103,7 @@
 
 <body style="background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;">
     <!-- HIDDEN PREHEADER TEXT -->
-    <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> We're thrilled to have you here! Get ready to dive into your new account. </div>
+    <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> </div>
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
         <tr>
@@ -120,7 +120,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; line-height: 48px;">
-                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">KHS 인증 코드 발송</h1> <img src="https://firebasestorage.googleapis.com/v0/b/mewzik-c3c20.appspot.com/o/staticHtml%2Fsound.png?alt=media&token=e4ffc196-72e0-46be-93bc-a08f45599978" width="125" height="120" style="display: block; border: 0px; margin : 30px 20px 20px 20px" />
+                            <h1 style="font-size: 48px; font-weight: 400; margin: 2;">KHS 비밀번호 변경</h1> <img src="https://firebasestorage.googleapis.com/v0/b/mewzik-c3c20.appspot.com/o/staticHtml%2Fsound.png?alt=media&token=e4ffc196-72e0-46be-93bc-a08f45599978" width="125" height="120" style="display: block; border: 0px; margin : 30px 20px 20px 20px" />
                         </td>
                     </tr>
                 </table>
@@ -131,7 +131,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;" >회원 E-mail 인증 코드는 다음과 같습니다. <br> <b>제한시간 5분 이내</b>에 회원가입 페이지에 인증 번호를 입력하세요</p>
+                            <p style="margin: 0;">비밀번호 변경을 원하시면 <br> <b>비밀번호 변경하기</b> 버튼을 클릭하세요</p>
                         </td>
                     </tr>
                     <tr>
@@ -141,7 +141,7 @@
                                     <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <td align="center" style="border-radius: 20px;" bgcolor="#FFB751"><a target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 20px; border: 1px solid #FFA73B; display: inline-block;">${param.variCode }</a></td>
+                                                <td align="center" style="border-radius: 20px;" bgcolor="#FFB751"><a href="http://www.naver.com" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 20px; border: 1px solid #FFA73B; display: inline-block;">비밀번호 변경하기</a></td>
                                             </tr>
                                         </table>
                                     </td>
