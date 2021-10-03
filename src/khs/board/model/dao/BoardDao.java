@@ -607,5 +607,4 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		return board;
 	}
 
-
 }
