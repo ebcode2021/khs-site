@@ -407,6 +407,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 
 
 
+
 	public List<Board> alertBoardToMain(Connection conn) {
 		List<Board> alertBoardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
@@ -551,6 +552,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		board.setBdIsBlind(rset.getInt("BD_IS_BLIND"));
 		return board;
 	}
+
 
 
 

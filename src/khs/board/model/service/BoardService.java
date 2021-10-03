@@ -152,6 +152,7 @@ public class BoardService {
 		return res;
 	}
 
+
 	public List<Board> alertBoardToMain() {
 		Connection conn = template.getConnection();
 		List<Board> alertBoardList = null;
@@ -179,7 +180,6 @@ public class BoardService {
 
 		return hotBoardList;
 	}
-	
 
 	
 
