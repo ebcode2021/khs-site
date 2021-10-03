@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<style type="text/css"> 
+<style type="text/css">
 
 
 @font-face {
