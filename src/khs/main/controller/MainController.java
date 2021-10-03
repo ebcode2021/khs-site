@@ -54,8 +54,12 @@ public class MainController extends HttpServlet {
 
 	private void main(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardService boardService = new BoardService();
-		List<Board> boardList = boardService.freeBoardMain();
-		request.setAttribute("boardList", boardList);
+		List<Board> alertList = boardService.alertBoardToMain();
+		request.setAttribute("alertList", alertList);
+		
+		List<Board> hotList = boardService.hotBoardToMain();
+		request.setAttribute("hotList", hotList);
+		
 		request.getRequestDispatcher("/main/main").forward(request, response);
 		
 	}

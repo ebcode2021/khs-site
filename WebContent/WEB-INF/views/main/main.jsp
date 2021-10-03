@@ -375,15 +375,15 @@
       <div class="main_show">
         <ol class="list">
           <li> <span>공지사항</span></li>
-          <c:if test="${not empty boardList}">
-          <c:forEach items="${boardList}" var="board" varStatus="i">
+          <c:if test="${not empty alertList}">
+          <c:forEach items="${alertList}" var="board" varStatus="i">
           	<div>${board.title}</div>
           </c:forEach>
           </c:if>
           <hr>
           <li> <span>BEST 게시판</span></li>
-           <c:if test="${not empty boardList}">
-          <c:forEach items="${boardList}" var="board" varStatus="i">
+           <c:if test="${not empty hotList}">
+          <c:forEach items="${hotList}" var="board" varStatus="i">
           	<div>${board.title}</div>
           </c:forEach>
           </c:if>

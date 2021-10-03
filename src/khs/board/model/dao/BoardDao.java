@@ -481,29 +481,80 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		board.setCmtRegDate(rset.getDate("cmt_reg_date"));
 		return board;
 	}
+	
+	//메인페이지에서 필요한 board 정보
+	private Board convertAllToMain(ResultSet rset) throws SQLException {
+		Board board = new Board();
+		board.setBdIdx(rset.getString("BD_IDX"));
+		board.setUserId(rset.getString("USER_ID"));
+		board.setRegDate(rset.getDate("REG_DATE"));
+		board.setTitle(rset.getString("TITLE"));
+		board.setBdSection(rset.getString("bd_section"));
+		board.setBdIsDel(rset.getInt("BD_IS_DEL"));
+		board.setBdIsBlind(rset.getInt("BD_IS_BLIND"));
+		return board;
+	}
 
+
+	public List<Board> alertBoardToMain(Connection conn) {
+		List<Board> alertBoardList = new ArrayList<Board>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Board board = null;
+		String query = "select * from (select * from board" 
+						+" where bd_is_del=0 AND bd_is_blind=0 AND bd_section='ALERT'"
+						+" order by to_number(bd_idx) desc)"
+						+" where rownum<4";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			rset = pstm.executeQuery();
+
+			while(rset.next()) {
+				board = convertAllToMain(rset);
+				alertBoardList.add(board);
+			}
+
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return alertBoardList;
+	}
+
+
+	public List<Board> hotBoardToMain(Connection conn) {
+		List<Board> hotBoardList = new ArrayList<Board>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		Board board = null;
+		String query = "select * from (select * from board" 
+						+" where bd_is_del=0 AND bd_is_blind=0 AND bd_section='HOT'"
+						+" order by to_number(bd_idx) desc)"
+						+" where rownum<4";
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			rset = pstm.executeQuery();
+
+			while(rset.next()) {
+				board = convertAllToMain(rset);
+				hotBoardList.add(board);
+			}
+			System.out.println(hotBoardList);
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return hotBoardList;
+	}
 
 	
-
 	
-
-
-
-
-
-
-
-	
-
-	
-
-
-
-
-	
-
-
-
 	
 
 }

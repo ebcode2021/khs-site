@@ -151,6 +151,37 @@ public class BoardService {
 		}
 		return res;
 	}
+
+
+
+	public List<Board> alertBoardToMain() {
+		Connection conn = template.getConnection();
+		List<Board> alertBoardList = null;
+		
+		try {
+			alertBoardList = boardDao.alertBoardToMain(conn);
+		} finally {
+			template.close(conn);
+		}
+
+		return alertBoardList;
+	}
+
+
+
+	public List<Board> hotBoardToMain() {
+		Connection conn = template.getConnection();
+		List<Board> hotBoardList = null;
+		
+		try {
+			hotBoardList = boardDao.hotBoardToMain(conn);
+		} finally {
+			template.close(conn);
+		}
+
+		return hotBoardList;
+	}
+	
 	
 	
 
