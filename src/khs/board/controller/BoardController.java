@@ -136,6 +136,8 @@ public class BoardController extends HttpServlet {
 		List<FileDTO> files = multiPart.getFilesInfo();
 		
 		
+		
+		
 		boardService.updatePost(board, files);
 		request.setAttribute("msg","게시글이 수정되었습니다.");
 		
