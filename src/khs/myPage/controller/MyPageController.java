@@ -212,6 +212,7 @@ public class MyPageController extends HttpServlet {
 
 
 
+	
 	private void myPageMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pageNumPost = "1";
 		if(request.getParameter("page-post") != null) {
