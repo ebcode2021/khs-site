@@ -310,12 +310,12 @@ html, body{
           
           <div class='history_post'>
              <table class='history_post_table'>
-               <div id='history_table_title'>HOT 게시판</div>
+               <div id='history_table_title'>스터디 게시판</div>
                <tr id="post_table_header">
-                  <th>게시글번호</th>
-                  <th>작성자</th>
-                  <th>글 제목</th>
-                  <th>작성일자</th>
+                  <th col width="20%">게시글번호</th>
+                  <th col width="15%">작성자</th>
+                  <th col width="45%">글 제목</th>
+                  <th col width="20%">작성일자</th>
                </tr>
                <c:if test="${not empty boardList}">
                   <c:forEach items="${boardList}" var="board" varStatus="i">
@@ -378,18 +378,7 @@ html, body{
    
    <script type="text/javascript">
    
-   (function hotplaceSlide() {
-      document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
-         document.querySelector(".hotplace").style.transitionDuration = '0.1s';
-         document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
-         document.querySelector(".hotplace").style.backgroundColor = "#FFAF7A";
-      })
-      document.querySelector("#wrap_hotplace").addEventListener('mouseleave',()=>{   
-         document.querySelector(".hotplace").style.transitionDuration = "0.1s";
-         document.querySelector(".hotplace").style.transform=`translateY(-100%)`;
-         document.querySelector(".hotplace").style.backgroundColor = "#fecf92";   
-      })
-   })();
+
    
    
 

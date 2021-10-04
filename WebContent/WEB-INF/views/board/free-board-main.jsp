@@ -189,6 +189,7 @@ html, body{
 }
 
 #history_table_title{
+	margin-top: 0.8vw;
 	font-size: 1.2rem;
 	font-family: 'han_sans_kr_Medium';
 	font-weight: bold; /*추가*/
@@ -210,18 +211,17 @@ html, body{
    border-spacing: 0px; /*추가*/
     border-top: 1px solid #ccc; /*추가*/
     border-bottom: 1px solid #444444;
-
+	
 }
 
 #post_table_header> th{
-	   padding: 10px; /*추가*/
-      padding: 10px; /*추가*/
+	 padding: 10px; /*추가*/
    text-align: center; 
     font-size:20px;
     vertical-align: top; /*추가*/
     border-top: 0.5px;
     border-bottom: 1px solid #444444; /*추가*/    
-    background-color: #dec3b1;/*추가*/
+    background-color: #fecf92;/*추가*/
 }
 
 
@@ -229,7 +229,7 @@ html, body{
      padding: 10px; /*추가*/
    font-size:13.5px;
    margin-top: 30px;
-   text-align: left;
+    text-align: center;
    vertical-align: top; /*추가*/
      border-bottom: 1px solid #ccc; /*추가*/
 }
@@ -241,7 +241,7 @@ html, body{
 
 
 #post_input_page_link {
-	margin-right: 5%;
+	margin-right: 7%;
 	text-align: right;
 	width: 100%;
 }
@@ -249,7 +249,7 @@ html, body{
 
 
 .page {
-	width: 15vw;
+	width: 10vw;
 	display: flex;
     justify-content: space-around;
 }
@@ -319,10 +319,11 @@ html, body{
 						<input type="submit">
 					</form> --%>
 					<tr id="post_table_header">
-						<th>게시글번호</th>
-						<th>작성자</th>
-						<th>글 제목</th>
-						<th>작성일자</th>
+						<th col width="20%">게시글번호</th>
+                 	 	<th col width="15%">작성자</th>
+                 		<th col width="45%">글 제목</th>
+                  		<th col width="20%">작성일자</th>
+
 					</tr>
 					<c:if test="${not empty boardList}">
 						<c:forEach items="${boardList}" var="board" varStatus="i">
@@ -390,19 +391,7 @@ html, body{
    
    <script type="text/javascript">
    
-   (function hotplaceSlide() {
-      document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
-         document.querySelector(".hotplace").style.transitionDuration = '0.1s';
-         document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
-         document.querySelector(".hotplace").style.backgroundColor = "#FFAF7A";
-      })
-      document.querySelector("#wrap_hotplace").addEventListener('mouseleave',()=>{   
-         document.querySelector(".hotplace").style.transitionDuration = "0.1s";
-         document.querySelector(".hotplace").style.transform=`translateY(-100%)`;
-         document.querySelector(".hotplace").style.backgroundColor = "#fecf92";   
-      })
-   })();
-   
+  
    
 
    

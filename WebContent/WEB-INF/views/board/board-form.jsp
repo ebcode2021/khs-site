@@ -27,43 +27,43 @@
 }
 
 html, body{
-	width: 100%;
-	height: 100%;.
+   width: 100%;
+   height: 100%;.
 }
 .header{
-	display: flex;
-	justify-content: space-around;
-	height: 10%;
+   display: flex;
+   justify-content: space-around;
+   height: 10%;
 }
 
 .wrap_header{
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	height: 100%;
-	margin-left: 13%;
-	margin-right: 13%;
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   height: 100%;
+   margin-left: 13%;
+   margin-right: 13%;
 }
 
 .site_tit{
-	display: flex;
-	align-items: flex-end;
-	margin-left: 2%;
-	margin-bottom: 0.5%;
-	font-weight: bolder;
-	font-size: 3.2vw;
+   display: flex;
+   align-items: flex-end;
+   margin-left: 2%;
+   margin-bottom: 0.5%;
+   font-weight: bolder;
+   font-size: 3.2vw;
 }
 .site_tit> a{
-	color: #f29d2a;
+   color: #f29d2a;
 }
 
 
 .logout{
-	display: flex;
-	align-items: flex-end;
-	margin-right: 2%;
-	margin-bottom: 0.5%;
-	right: 25%;
+   display: flex;
+   align-items: flex-end;
+   margin-right: 2%;
+   margin-bottom: 0.5%;
+   right: 25%;
 }
 
 
@@ -77,47 +77,49 @@ html, body{
 
 
 .section{
-	position: relative;
-	display: flex;
-	min-height:75%;
-	margin-left: 13%;
-	margin-right:13%;
-	border-radius: 20px 20px 20px 20px;
+   position: relative;
+   display: flex;
+   min-height:75%;
+   margin-left: 13%;
+   margin-right:13%;
+   border-radius: 20px 20px 20px 20px;
 }
 .main_banner{
-	position: relative;
-	margin-left: 16.5%;
-	width: 100%;
-	background-color: #F0F8FF;
-	border-radius: 20px 20px 20px 20px;
-	min-width: 600px;
-	display: flex;
-    flex-direction: column;
+   position: relative;
+   margin-left: 16.5%;
+   width: 100%;
+   background-color: #F0F8FF;
+   border-radius: 20px 20px 20px 20px;
+   min-width: 600px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   
 }
 .sidemenu{
-	position: absolute;
-	min-height:100%;
-	width: 15.5%;
-	min-width: 15.5%;
-	background-color: #fecf92;
-	border-radius: 20px 20px 20px 20px;
-	z-index: 999;
-	font-family: 'han_sans_kr_Medium';
+   position: absolute;
+   min-height:100%;
+   width: 15.5%;
+   min-width: 15.5%;
+   background-color: #fecf92;
+   border-radius: 20px 20px 20px 20px;
+   z-index: 999;
+   font-family: 'han_sans_kr_Medium';
 }
 #mypage{
-	border-radius: 20px 20px 0 0;
+   border-radius: 20px 20px 0 0;
 }
 .sidemenu>div{
-	font-weight: bolder;
-	font-size: 1.7vw;
-	transition:all 0.3s;
+   font-weight: bolder;
+   font-size: 1.7vw;
+   transition:all 0.3s;
 }
 .sidemenu>div>a {
-	display: flex;
-	justify-content : center;
-	align-items : center;
-	height: 100px;
-	color: white;
+   display: flex;
+   justify-content : center;
+   align-items : center;
+   height: 100px;
+   color: white;
 }
 
 
@@ -125,24 +127,24 @@ html, body{
 
 
 #wrap_hotplace{
-	position: relative;
+   position: relative;
 }
 .hotplace{
-	display: flex;
-	position: absolute;
-	justify-content: space-around;
-	flex-direction: column;
-	transform:translateY(-100%);
-	width: 100%;
-	height: 100%;
-	background-color: #fecf92;
-	border-radius: 0 20px 20px 0;
-	z-index: -1;
+   display: flex;
+   position: absolute;
+   justify-content: space-around;
+   flex-direction: column;
+   transform:translateY(-100%);
+   width: 100%;
+   height: 100%;
+   background-color: #fecf92;
+   border-radius: 0 20px 20px 0;
+   z-index: -1;
 }
 .hotplace>a{
-	text-align: center;
-	font-size: 1.3vw;
-	color: #fecf92;
+   text-align: center;
+   font-size: 1.3vw;
+   color: #fecf92;
 }
 
 
@@ -151,25 +153,25 @@ html, body{
 
 
 #mypage:hover{
-	transition-duration: 0.25s;
-	border-radius: 20px 20px 20px 20px;
-	background-color: #FFAF7A;
+   transition-duration: 0.25s;
+   border-radius: 20px 20px 20px 20px;
+   background-color: #FFAF7A;
 }
 #wrap_hotplace:hover {
-	transition-duration: 0.1s;
-	border-radius: 20px 0 0 20px;
-	background-color: #FFAF7A;
+   transition-duration: 0.1s;
+   border-radius: 20px 0 0 20px;
+   background-color: #FFAF7A;
 }
 .sidemenu>div:hover {
-	transition-duration: 0.25s;
-	border-radius: 20px 20px 20px 20px;
-	background-color: #FFAF7A;
+   transition-duration: 0.25s;
+   border-radius: 20px 20px 20px 20px;
+   background-color: #FFAF7A;
 }
 
 #wrap_hotplace:hover .hotplace>a{
-	transition-duration: 0.25s;
-	text-align: center;
-	color: white;
+   transition-duration: 0.25s;
+   text-align: center;
+   color: white;
 }
 
 
@@ -179,62 +181,71 @@ html, body{
 
 
 .main_banner>  div{
-	margin-bottom: 15px;
+   margin-bottom: 15px;
 }
 
 
+.title {
+	margin-left: 1.5vw;
+	margin-top : 1.5vw;
 
-
-#history_table_title{
-	font-size: 1.2rem;
-	font-family: 'han_sans_kr_Medium';
-	margin-bottom: 0.8vw;
-}
-
-.history_post_table {
-	width: 100%;
-	text-align: center;
-	background-color: #FFF5EE;
-	font-size: 0.8vw;
-}
-
-#post_table_header> th{
-	height: 35px;
-	text-align: center;
-	font-size: 15px;
 }
 
 
+#board-write-table-title {
+   font-size: 1.2rem;
+   font-family: 'han_sans_kr_Medium';
+   font-weight: bold; /*추가*/
+   margin-bottom: 1.0vw;
+   padding: 10px;
+   margin-bottom: 1.0vw; 
+   padding: 10px;
+   margin-top: 50px;
+}
+
+
+.file {
+   margin-bottom: 1.0vw; 
+   margin-top : 1.5vw;
+   margin-left: 1.5vw;
+}
+
+.content_board {
+   width: 98%;
+}
 
 
 
 
 #post_input_page_link {
-	display: flex;
-	justify-content: flex-end;
+   display: flex;
+   justify-content: flex-end;
     margin-right: 5%;
+    display: block; /*추가*/
+    width:300px; /*추가*/
+    margin:auto;/*추가*/
 }
 
 
 
+
 #content_input_editor {
-	resize: none;
-	height: 500px;
-	width: 700px;
+   resize: none;
+   height: 500px;
+   width: 700px;
 }
 
 
 
 
 .footer{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 15%;
-	background-color: white;
-	color: gray;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 15%;
+   background-color: white;
+   color: gray;
 }
-
 
 
 
@@ -330,28 +341,7 @@ html, body{
 	
 	
 	
-	
-	<script type="text/javascript">
-	
-	(function hotplaceSlide() {
-		document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
-			document.querySelector(".hotplace").style.transitionDuration = '0.1s';
-			document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
-			document.querySelector(".hotplace").style.backgroundColor = "#FFAF7A";
-		})
-		document.querySelector("#wrap_hotplace").addEventListener('mouseleave',()=>{	
-			document.querySelector(".hotplace").style.transitionDuration = "0.1s";
-			document.querySelector(".hotplace").style.transform=`translateY(-100%)`;
-			document.querySelector(".hotplace").style.backgroundColor = "#fecf92";	
-		})
-	})();
-	
 
-	
-
-
-	</script>
-	
 
 	
 </body>
