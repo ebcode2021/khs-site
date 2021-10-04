@@ -425,7 +425,6 @@ html, body{
 						<th>작성 게시판</th>
 					</tr>
 					<c:if test="${not empty commentList}">
-					<!-- https://zelkun.tistory.com/entry/JSTL%EB%AC%B8%EB%B2%95-cforEach-ctag%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%B6%9C%EB%A0%A5 -->
 						<c:forEach items="${commentList}" var="board" varStatus="i">
 							<tr height = "25">
 								<td><input type="checkbox" class = "chk_cmt_num" name="chk_cmt_num" value="${board.cmtIdx}"></td>

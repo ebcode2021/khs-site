@@ -261,16 +261,24 @@ public class BoardController extends HttpServlet {
 	
 	
 	private void boardMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Board> boardList = boardService.freeBoardMain();
-		int page = 1;
+		String pageNum = "1";
+		if(request.getParameter("page") != null) {
+			pageNum = request.getParameter("page");
+		}
 		/*
-		 * if(request.getParameter("page") != null && request.getParameter("page") == 0)
-		 * {
-		 * 
-		 * }
+		 * String pageItemsCnt = null; if(request.getParameter("pageItemsCnt") != null)
+		 * { pageItemsCnt = request.getParameter("pageItemsCnt"); } else { pageItemsCnt
+		 * = "15"; }
 		 */
-		request.setAttribute("boardList", boardList);
 		
+		//페이지넘버, 게시판종류, 한페이지에 출력할 게시글 수를 넣으면 페이징에 필요한 값들을 받아오는 메서드
+		Map<String, Integer> pageValues = boardService.boardPaging(pageNum, "FREE", /*Integer.parseInt(pageItemsCnt)*/5, 5);
+		
+		List<Board> boardList = boardService.freeBoardMain(pageValues);
+		
+		request.setAttribute("boardList", boardList);
+		request.setAttribute("pageItemsCnt", /*pageItemsCnt*/5);
+		request.setAttribute("pageValues", pageValues);
 		
 		request.getRequestDispatcher("/board/free-board-main").forward(request, response);
 	}

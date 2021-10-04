@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<style type="text/css"> 
+<style type="text/css">
 
 
 @font-face {
@@ -91,6 +91,7 @@ html, body{
    min-width: 600px;
    display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .sidemenu{
    position: absolute;
@@ -247,7 +248,11 @@ html, body{
 
 
 
-
+.page {
+	width: 15vw;
+	display: flex;
+    justify-content: space-around;
+}
 
 
 
@@ -310,6 +315,16 @@ html, body{
  			<div class='history_post'>
 				 <table class="history_post_table">
 					<div id=history_table_title>자 유 게 시 판</div>
+					
+					<%-- <form>
+						<select name="pageItemsCnt" value="${pageItemsCnt}">  
+							<option value="5">5개 보기</option>
+							<option value="10">10개 보기</option>
+							<option value="15">15개 보기</option>
+							<option value="20">20개 보기</option>
+						</select>
+						<input type="submit">
+					</form> --%>
 					<tr id="post_table_header">
 						<th>게시글번호</th>
 						<th>작성자</th>
@@ -343,10 +358,34 @@ html, body{
 	             	<button>작성하기</button>
 	          </form>  
           </div>
+          
+          
+            <div class="page">
+			   
+			   <c:if test="${pageValues.prevFlg==1}">
+					    <a href="/board/free-board-main?page=${pageValues.startPageNum-1}">이전</a>
+					</c:if>
+					<c:forEach begin="${pageValues.startPageNum}" end="${pageValues.endPageNum}" step="1" var="i">
+					    <c:choose>
+					        <c:when test="${pageValues.currentPage==index}">
+					            ${i}
+					        </c:when>
+					        <c:otherwise>
+					            <a href="/board/free-board-main?page=${i}">${i}</a>
+					        </c:otherwise>
+					    </c:choose>
+					</c:forEach>
+					<c:if test="${pageValues.nextFlg==1}">
+					    <a href="/board/free-board-main?page=${pageValues.endPageNum+1}">다음</a>
+					</c:if>
+
+   			 </div>
+    
 
        </div>
     </div>
     
+  
     
    <div class="footer">Copyright © 1998-2021 KH Information Educational Institute All Right Reserved</div>
    

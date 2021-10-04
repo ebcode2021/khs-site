@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import khs.board.model.dto.Board;
 import khs.common.code.BoardSection;
@@ -75,21 +76,30 @@ public class BoardDao {
 	}
 	
 	
-	public List<Board> freeBoardMain(Connection conn) {
+	public List<Board> freeBoardMain(Connection conn, Map<String, Integer> pageValues) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 AND bd_section='FREE' order by to_number(bd_idx) desc";
+		String query = "select rnum, B.* from ("
+				 + "select rownum rnum, A.* from ("
+				 + "select * from board "
+				 + "inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 AND bd_section='FREE' "
+				 + "order by to_number(bd_idx) desc) A )B "
+				 + "where ? < rnum and rnum <= ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
+			pstm.setInt(1, pageValues.get("startRow"));
+			pstm.setInt(2, pageValues.get("endRow"));
 			rset = pstm.executeQuery();
 
 			while(rset.next()) {
 				board = convertAllToFreeBoardMain(rset);
 				boardList.add(board);
 			}
+			
+			
 
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
@@ -100,6 +110,30 @@ public class BoardDao {
 		return boardList;
 	}
 	
+	
+	public int boardTotalCount(Connection conn, String boardSection) {
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		String query = "select count(*) from board where bd_section = ? and bd_is_del=0";
+		int totalCnt = 0;
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, boardSection);
+			rset = pstm.executeQuery();
+			if(rset.next()) {
+				totalCnt = rset.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return totalCnt;
+	}
+	
+	
 	// 게시글 상세보기
 	public Board boardDetail(Connection conn, String bdIdx) {
 		Board board = null;
@@ -107,7 +141,6 @@ public class BoardDao {
 		ResultSet rset = null;
 
 		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_idx=?";
-		
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, bdIdx);
@@ -633,6 +666,9 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		board.setNickName(rset.getString("NICKNAME"));
 		return board;
 	}
+
+
+
 
 	
 }

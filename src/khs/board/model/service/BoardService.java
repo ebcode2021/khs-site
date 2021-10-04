@@ -72,12 +72,12 @@ public class BoardService {
 	
 	
 	
-	public List<Board> freeBoardMain() {
+	public List<Board> freeBoardMain(Map<String,Integer> pageValues) {
 		Connection conn = template.getConnection();
 		List<Board> boardList = null;
 		
 		try {
-			boardList = boardDao.freeBoardMain(conn);
+			boardList = boardDao.freeBoardMain(conn, pageValues);
 		} finally {
 			template.close(conn);
 		}
@@ -85,6 +85,47 @@ public class BoardService {
 		return boardList;
 	}
 	
+	
+	//페이징 처리용 메서드
+	public Map<String, Integer> boardPaging(String pageNum, String boardSection, int itemsInPage, int pageBlockCnt) {
+		Connection conn = template.getConnection();
+		Map<String, Integer> pageValues = new HashMap<String, Integer>();
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage-1)*itemsInPage;
+		int endRow = ((currentPage-1)*itemsInPage + itemsInPage);
+		int totalPageCnt = (int)Math.ceil((double)boardDao.boardTotalCount(conn,boardSection)/itemsInPage);
+		int startPageNum = ((currentPage-1)/pageBlockCnt)*pageBlockCnt+1;
+		int endPageNum = ((currentPage-1)/pageBlockCnt)*pageBlockCnt+pageBlockCnt;
+		int prevFlg = 0;
+		int nextFlg = 0;
+		
+		if(totalPageCnt < endPageNum) {
+			endPageNum = totalPageCnt;
+			nextFlg = 0;
+		} else {
+			nextFlg = 1;
+		}
+		if(startPageNum != 1) {
+			prevFlg = 1;
+		}
+		try {
+			pageValues.put("currentPage", currentPage);
+			pageValues.put("startRow", startRow);
+			pageValues.put("endRow", endRow);
+			pageValues.put("totalPageCnt", totalPageCnt);
+			pageValues.put("pageBlockCnt", pageBlockCnt);
+			pageValues.put("startPageNum", startPageNum);
+			pageValues.put("endPageNum", endPageNum);
+			pageValues.put("prevFlg", prevFlg);
+			pageValues.put("nextFlg", nextFlg);
+		} finally {
+			template.close(conn);
+		}
+		return pageValues;
+	}
+	
+	
+
 	
 	public Map<String, Object> boardDetail(String bdIdx) {
 		Connection conn = template.getConnection();
