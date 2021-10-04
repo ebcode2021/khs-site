@@ -12,7 +12,6 @@
   <header>
    <p>KHS<span> 수강생 커뮤니티</span></p> 
   </header>
-
   <main>
     <div class="yellow_border">
       <form action="${contextPath}/login/login-check" method="post">
