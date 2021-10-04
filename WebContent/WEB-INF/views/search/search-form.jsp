@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <link href="../resources/css/common/all.css" rel="stylesheet">
 <link rel="stylesheet" href="../resources/css/search/search_ui.css">
+<title>K H S</title>
 </head>
 <body>
 <header class = 'header'>
