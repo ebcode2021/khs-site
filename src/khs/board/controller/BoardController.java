@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import khs.board.model.dto.Board;
 import khs.board.model.service.BoardService;
+import khs.common.code.ErrorCode;
+import khs.common.code.MemberGrade;
+import khs.common.exception.HandlableException;
 import khs.common.exception.PageNotFoundException;
 import khs.common.file.FileDTO;
 import khs.common.file.FileUtil;
@@ -185,6 +188,9 @@ public class BoardController extends HttpServlet {
 		List<FileDTO> files = multiPart.getFilesInfo();
 		
 		if(request.getParameter("bd-section").equals("alert")) {
+			if(!member.getGrade().equals("AD01")) {
+				throw new HandlableException(ErrorCode.ADMIN_PAGE.setURL("/main"));
+			}
 			board.setBdSection("ALERT");
 			boardService.insertBoard(board, files);
 			request.setAttribute("msg","게시글 작성 완료");

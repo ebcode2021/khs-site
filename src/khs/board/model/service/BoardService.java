@@ -125,6 +125,7 @@ public class BoardService {
 	}
 	
 	
+
 	public Map<String, Integer> boardPaging(String pageNum, int itemsInPage, int pageBlockCnt,  String userId) {
 		Connection conn = template.getConnection();
 		Map<String, Integer> pageValues = new HashMap<String, Integer>();

@@ -236,6 +236,7 @@ html, body{
 	font-size: 0.8vw;
 }
 
+
 #history_comment_title{
 	font-size: 1.2rem;
 	font-family: 'han_sans_kr_Medium';
@@ -247,6 +248,9 @@ html, body{
 	text-align: center;
 	background-color: #FFF5EE;
 	font-size: 0.8vw;
+	border-collapse: separate; /*추가*/
+    border-spacing: 0px; /*추가*/
+    border-top: 1px solid #ccc; /*추가*/
 	
 }
 
@@ -300,6 +304,22 @@ html, body{
 	margin-bottom: 0.8vw;
 }
 
+
+#post_table_header {
+	background-color: #fecf92;
+	font-size: 15px;
+}
+
+
+#post_table_header> th{
+	font-size: 18px;
+	text-align: center;
+	vertical-align: middle
+}
+
+.page {
+	text-align: center;
+}
 
 
 
@@ -372,11 +392,11 @@ html, body{
 				 <table class="history_post_table">
 					<div id=history_table_title>작성한 게시글</div>
 					<tr id="post_table_header">
-						<th>선택</th>
-						<th>게시글번호</th>
-						<th>글제목</th>
-						<th>작성일자</th>
-						<th>게시판</th>
+						<th col width="5%">선택</th>
+						<th col width="10%">게시글번호</th>
+						<th col width="65%">글제목</th>
+						<th col width="10%">작성일자</th>
+						<th col width="10%">게시판</th>
 					</tr>
 					<c:if test="${not empty boardList}">
 						<c:forEach items="${boardList}" var="board" varStatus="i">
@@ -432,12 +452,12 @@ html, body{
 				 <table class="history_comment_table">
 					<div id=history_comment_title>작성한 댓글</div>
 					<tr id="post_table_header">
-						<th>선택</th>
-						<th>댓글번호</th>
-						<th>댓글 단 글 제목</th>
-						<th>댓글 내용</th>
-						<th>댓글 작성 날짜</th>
-						<th>작성 게시판</th>
+						<th col width="5%">선택</th>
+						<th col width="10%">댓글번호</th>
+						<th col width="25%">댓글 단 글 제목</th>
+						<th col width="40%">댓글 내용</th>
+						<th col width="10%">댓글 작성 날짜</th>
+						<th col width="10%">작성 게시판</th>
 					</tr>
 					<c:if test="${not empty commentList}">
 						<c:forEach items="${commentList}" var="board" varStatus="i">
@@ -515,19 +535,7 @@ html, body{
 	
 	<script type="text/javascript">
 	
-	(function hotplaceSlide() {
-		document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
-			document.querySelector(".hotplace").style.transitionDuration = '0.1s';
-			document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
-			document.querySelector(".hotplace").style.backgroundColor = "#FFAF7A";
-		})
-		document.querySelector("#wrap_hotplace").addEventListener('mouseleave',()=>{	
-			document.querySelector(".hotplace").style.transitionDuration = "0.1s";
-			document.querySelector(".hotplace").style.transform=`translateY(-100%)`;
-			document.querySelector(".hotplace").style.backgroundColor = "#fecf92";	
-		})
-
-	})();
+	
 	
 	
 	window.onload = ()=>{

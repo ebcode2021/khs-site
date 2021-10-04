@@ -376,18 +376,7 @@ html, body{
    
    <script type="text/javascript">
    
-   (function hotplaceSlide() {
-      document.querySelector("#wrap_hotplace").addEventListener('mouseover',()=>{
-         document.querySelector(".hotplace").style.transitionDuration = '0.1s';
-         document.querySelector(".hotplace").style.transform=`translate(99.7% , -100.2%)`;
-         document.querySelector(".hotplace").style.backgroundColor = "#FFAF7A";
-      })
-      document.querySelector("#wrap_hotplace").addEventListener('mouseleave',()=>{   
-         document.querySelector(".hotplace").style.transitionDuration = "0.1s";
-         document.querySelector(".hotplace").style.transform=`translateY(-100%)`;
-         document.querySelector(".hotplace").style.backgroundColor = "#fecf92";   
-      })
-   })();
+
    
    
 

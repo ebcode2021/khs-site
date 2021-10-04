@@ -128,6 +128,7 @@ public class BoardDao {
 	public int boardTotalCount(Connection conn, String boardSection) {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
+
 		String query = "select count(*) from board where bd_section = ? and bd_is_del=0 and bd_is_blind=0";
 		int totalCnt = 0;
 		
