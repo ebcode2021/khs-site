@@ -25,7 +25,7 @@
     </form>
 
     <div class="find">
-      <div><a href="${ContextPath}/join/find">아이디/비밀번호 찾기</a></div>
+      <div><a href="${ContextPath}/search/search-form">아이디/비밀번호 찾기</a></div>
       <form name="kakao">
       <div><a href="javascript:kakaoLogin()">카카오로 회원가입/로그인</a></div>
    	  </form>

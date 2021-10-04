@@ -91,7 +91,7 @@
       color:gray;
     }
     
- 	a:link, a:visited{
+    a:link, a:visited{
       color: white;
       font-size:20px;
     }
@@ -134,7 +134,7 @@
     }
     
     .cal>.countdown{
-    	font-size: 40px;
+       font-size: 40px;
     }
 
     .main_show{
@@ -163,19 +163,19 @@
     }
 
     hr{
-      background-color: lightyellow;
+      background-color: white;;
     }
 
     /* section_3부분 */
     .section_3{
       margin : 1%;
-      background-color : rgba(255, 157, 0, 0.3);
-    
+       background-color : rgba(255, 157, 0, 0.3); 
+    	
     }
 
-	.section_3>.game {
-	  
-	}
+   .section_3>.game {
+     
+   }
     .game_news{
      width : 100%;
      
@@ -233,8 +233,8 @@
       
     }
     .game>.game2{
-    	background-image : url("../resources/image/main/game2.png");
-    	background-size : cover;
+       background-image : url("../resources/image/main/game2.png");
+       background-size : cover;
     }
     .game>.game3{
       background-image : url("../resources/image/main/game3.JPG");
@@ -244,7 +244,7 @@
     }
     
     .news>.news1,.news2,.news3{
-    	cursor : pointer;
+       cursor : pointer;
     }
     
     .news>.news1{
@@ -295,13 +295,13 @@
     }
     
     .slide{
-    	cursor: pointer;
+       cursor: pointer;
     }
     
     .slide img{
-    	display : block;
-    	width : 50vw;
-    	height : 25vw;
+       display : block;
+       width : 50vw;
+       height : 25vw;
     }
     
     .qrcode{
@@ -310,32 +310,33 @@
       margin-top : 1vw;
       font-size : 1.5em;
     }
-	
-	.qrcode>div{
-	  text-align : center;
+   
+   .qrcode>div{
+     text-align : center;
       display : flex;
       flex-direction: column;
       align-items:center;
       overflow: hidden;
-	}
-	.qrcode>#literal{
-		background-color:rgba(255, 157, 0, 0.5); 
-	}
-	#kakaopay{
-		background-image : url('../resources/image/main/kakaopay.png');
-		background-repeat: no-repeat; 
-		background-size : contain;
-		height : 4vw;
-		margin-top : 2vw;
-		background-color: none;
-		cursor:pointer;
+   }
+   .qrcode>#literal{
+      background-color:rgba(255, 157, 0, 0.5); 
+   }
+   #kakaopay{
+      background-image : url('../resources/image/main/kakaopay.png');
+      background-repeat: no-repeat; 
+      background-size : contain;
+      height : 4vw;
+      margin-top : 2vw;
+      background-color: none;
+      cursor:pointer;
     
-	}
+   }
     .copyright{
       margin-top : 5%;
       padding-bottom : 15px;
       text-align: center;
     }
+    
     
     
     
@@ -378,18 +379,18 @@
       </div>
       <div class="main_show">
         <ol class="list">
-          <li> <span>공지사항</span></li>
+          <li> <span><a href="/board/alert-board-main">공지사항</a></span></li>
           <c:if test="${not empty alertList}">
           <c:forEach items="${alertList}" var="board" varStatus="i">
-          	<div><c:out value="${board.title}"/></div>
-          	<div>dd</div>
+             <div class="alertInDiv"><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">- <c:out value="${board.title}"/></a></div>
+             <hr>
           </c:forEach>
           </c:if>
-          <hr>
-          <li> <span>HOT 게시판</span></li>
+          <li> <span><a href="/board/hot-board-main">스터디 게시판</a></span></li>
            <c:if test="${not empty hotList}">
           <c:forEach items="${hotList}" var="board" varStatus="i">
-          	<div>${board.title}</div>
+             <div class="hotInDiv"><a href="/board/free-board-detail?bd_idx=${board.bdIdx}">- ${board.title}</a></div>
+             <hr>
           </c:forEach>
           </c:if>
         </ol>
@@ -432,7 +433,7 @@
       </div>
       <div class="qrcode">
         <div id="literal">개발자에게 <br> 돈 보내기 <br></div>
-        	<div id="kakaopay" onclick="kakaoPay()"></div>
+           <div id="kakaopay" onclick="kakaoPay()"></div>
       </div>
     </section>
     <div class="copyright"> Copyright © 2021 - KH Students All Right Reserved-</div>
@@ -458,84 +459,84 @@
     })
 
     let renderTime = () => {
-    	//수업 시작시간과 종료시간 추출
-    	let classStartTime = ${authentication.startTime};
-    	let classEndTime = ${authentication.endTime};
-    	
-    	//현재 시간를 추출
-    	let now = new Date();
-    	let nowHour = now.getHours();
-    	let nowMin = now.getMinutes();
-    	let nowSec = now.getSeconds();
-    	
-    	let nowTime = nowHour*60*60 + nowMin*60 + nowSec;
-    	
+       //수업 시작시간과 종료시간 추출
+       let classStartTime = ${authentication.startTime};
+       let classEndTime = ${authentication.endTime};
+       
+       //현재 시간를 추출
+       let now = new Date();
+       let nowHour = now.getHours();
+       let nowMin = now.getMinutes();
+       let nowSec = now.getSeconds();
+       
+       let nowTime = nowHour*60*60 + nowMin*60 + nowSec;
+       
  
-    	
-    	if(!(nowTime>classStartTime && nowTime<classEndTime)){
-    		document.querySelector('.countdown').innerHTML = "00 : 00 : 00";
-    	}else{
-    		let remainTime = classEndTime - nowTime;
-    		remainTime = secToClock(remainTime);
-    	
-    		document.querySelector('.countdown').innerHTML = remainTime;
-    	}
-    	
+       
+       if(!(nowTime>classStartTime && nowTime<classEndTime)){
+          document.querySelector('.countdown').innerHTML = "00 : 00 : 00";
+       }else{
+          let remainTime = classEndTime - nowTime;
+          remainTime = secToClock(remainTime);
+       
+          document.querySelector('.countdown').innerHTML = remainTime;
+       }
+       
     }
     
     (()=>{
-    	setInterval(renderTime,1000);
+       setInterval(renderTime,1000);
     })()
     
     function secToClock(sec){
-    	let hour = parseInt(sec/3600) <10? '0'+parseInt(sec/3600) : parseInt(sec/3600);
-    	let min = parseInt((sec%3600)/60) < 10 ? '0'+ parseInt((sec%3600)/60) : parseInt((sec%3600)/60);
-    	sec = sec%60 < 10? '0'+sec%60 : sec%60;
-    	
-    	return hour + ":" +min+ ":" + sec;
+       let hour = parseInt(sec/3600) <10? '0'+parseInt(sec/3600) : parseInt(sec/3600);
+       let min = parseInt((sec%3600)/60) < 10 ? '0'+ parseInt((sec%3600)/60) : parseInt((sec%3600)/60);
+       sec = sec%60 < 10? '0'+sec%60 : sec%60;
+       
+       return hour + ":" +min+ ":" + sec;
     }
     
     
-    	
+       
     
      jQuery(document).ready(function(){
-    	 jQuery('#slide_slick').slick({
-    		dots : false,
-    		arrows: false,
-    		infinite : true,
-    		autoplay : true,
-    		autoplaySpeed : 3500,
-    	
-    	});
+        jQuery('#slide_slick').slick({
+          dots : false,
+          arrows: false,
+          infinite : true,
+          autoplay : true,
+          autoplaySpeed : 3500,
+       
+       });
     }); 
 
      
 
     jQuery('#kakaopay').click(function(){
-    	var IMP = window.IMP;
-    	IMP.init('imp28553074');
-    	
-    	IMP.request_pay({
-    		pg : 'kakao',
-    		pay_method : 'card',
-    		merchant_uid : 'merchant_' + new Date().getTime(),
-    		name : 'KHS 개발자를 위해 까까 사주기',
-    		amount : '100',
-    		buyer_email :'',
-    		buyer_tell :'',
-    		buyer_addr : '',
-    		buyer_postcode :'123-456',
-    	},function(rsp){
-    		console.log(rsp);
-    		if(rsp.success){
-    			var msg = '결제가 성공적으로 완료되었습니다.';
-    			msg += '결제 금액 : ' + rsp.paid_amount;
-    		}else{
-    			var msg = '결제에 실패하였습니다.';
-    			msg += '에러내용 :' + rsp.error_msg;
-    		}
-    		alert(msg);
-    	});
+       var IMP = window.IMP;
+       IMP.init('imp28553074');
+       
+       IMP.request_pay({
+          pg : 'kakao',
+          pay_method : 'card',
+          merchant_uid : 'merchant_' + new Date().getTime(),
+          name : 'KHS 개발자를 위해 까까 사주기',
+          amount : '100',
+          buyer_email :'',
+          buyer_tell :'',
+          buyer_addr : '',
+          buyer_postcode :'123-456',
+       },function(rsp){
+          console.log(rsp);
+          if(rsp.success){
+             var msg = '결제가 성공적으로 완료되었습니다.';
+             msg += '결제 금액 : ' + rsp.paid_amount;
+          }else{
+             var msg = '결제에 실패하였습니다.';
+             msg += '에러내용 :' + rsp.error_msg;
+          }
+          alert(msg);
+       });
     });
     
     let cookiedata = document.cookie;

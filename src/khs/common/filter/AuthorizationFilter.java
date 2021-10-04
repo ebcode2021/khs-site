@@ -110,6 +110,11 @@ public class AuthorizationFilter implements Filter {
 		if(member.getGrade().equals("LV01")) {
 			throw new HandlableException(ErrorCode.NEED_TO_UP.setURL("/main"));
 		}
+		
+		//인증회원이 아닌경우(==LV01)
+		if(member.getGrade().equals("LV01")) {
+			throw new HandlableException(ErrorCode.NEED_TO_UP.setURL("/main"));
+		}
 	}
 	
 	private void mainAuthorize(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String[] uriArr) {
