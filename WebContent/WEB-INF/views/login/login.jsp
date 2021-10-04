@@ -10,7 +10,7 @@
 
 <body>
   <header>
-   <p>KHS<span> 수강생 커뮤니티</span></p>
+   <p>KHS<span> 수강생 커뮤니티</span></p> 
   </header>
 
   <main>
