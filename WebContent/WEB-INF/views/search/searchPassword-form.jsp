@@ -11,7 +11,7 @@
 </head>
 <body>
 <header class = 'header'>
-	<div class = 'headerName'>K H S</div>
+	<div class = 'headerName'>K H S</div> 
 </header>
 <div class = 'wrapper'>
 	<div class = 'test' id = 'wrapImg'>
