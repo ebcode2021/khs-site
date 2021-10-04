@@ -2,6 +2,7 @@ package khs.myPage.model.service;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -97,12 +98,12 @@ public class MyPageService {
 	
 	
 	
-	public List<Board> selectMyPost(String userId) {
+	public List<Board> selectMyPost(String userId,  Map<String, Integer> pageValues) {
 		Connection conn = template.getConnection();
 		List<Board> boardList = null;
 		
 		try {
-			boardList = boardDao.selectMyPost(conn, userId);
+			boardList = boardDao.selectMyPost(conn, userId, pageValues);
 		} finally {
 			template.close(conn);
 		}
@@ -130,12 +131,12 @@ public class MyPageService {
 	
 	
 	
-	public List<Board> selectMyComment(String userId) {
+	public List<Board> selectMyComment(String userId, Map<String, Integer> pageValues) {
 		Connection conn = template.getConnection();
 		List<Board> commentList = null;
 		
 		try {
-			commentList = boardDao.selectMyComment(conn, userId);
+			commentList = boardDao.selectMyComment(conn, userId, pageValues);
 		} finally {
 			template.close(conn);
 		}

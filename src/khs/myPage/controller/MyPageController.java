@@ -2,6 +2,7 @@ package khs.myPage.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import khs.board.model.dto.Board;
+import khs.board.model.service.BoardService;
 import khs.common.encrypt.Encrypter;
 import khs.common.exception.PageNotFoundException;
 import khs.common.file.FileDTO;
@@ -27,7 +29,8 @@ public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	private MyPageService myPageService = new MyPageService();
-    
+	private BoardService boardService = new BoardService();
+	
     public MyPageController() {
         super();
         
@@ -210,14 +213,40 @@ public class MyPageController extends HttpServlet {
 
 
 	private void myPageMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pageNumPost = "1";
+		if(request.getParameter("page-post") != null) {
+			pageNumPost = request.getParameter("page-post");
+		}
+		
+		String pageNumComment = "1";
+		if(request.getParameter("page-comment") != null) {
+			pageNumComment = request.getParameter("page-comment");
+		}
+		
+		System.out.println(pageNumPost);
+		System.out.println(pageNumComment);
+		
 		String userId = myPageService.getLoginMemberId(request);
 		MyPage myPage = myPageService.selectMyPage(userId);
-		List<Board> boardList = myPageService.selectMyPost(userId);
-		List<Board> commentList = myPageService.selectMyComment(userId);
+		
+		Map<String, Integer> pageValuesPost = boardService.boardPaging(pageNumPost, 8, 5, userId);
+		
+		
+		List<Board> boardList = myPageService.selectMyPost(userId, pageValuesPost);
+		
+		
+		
+		Map<String, Integer> pageValuesComment = boardService.boardPaging(pageNumComment, 8, userId, 5);
+		
+		
+		
+		List<Board> commentList = myPageService.selectMyComment(userId, pageValuesComment);
+		
 		ProfileImage profileImage = myPageService.profileImageDownload(userId);
 		
 		
-		
+		request.setAttribute("pageValuesPost", pageValuesPost);
+		request.setAttribute("pageValuesComment", pageValuesComment);
 		request.setAttribute("profileImage", profileImage);
 		request.setAttribute("authentication", myPage);
 		request.setAttribute("boardList", boardList);

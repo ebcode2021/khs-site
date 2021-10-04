@@ -407,6 +407,28 @@ html, body{
 				<button id="history_post_delete_button">체크한 게시글 삭제하기</button>
 				<span id="check-error-msg">${myPageFailed.invalidCheckBoxMsg1}</span>
  				</form>
+ 				
+ 				<div class="page">
+			   
+			   <c:if test="${pageValuesPost.prevFlg==1}">
+					    <a href="/myPage/myPageMain?page-post=${pageValuesPost.startPageNum-1}">이전</a>
+					</c:if>
+					<c:forEach begin="${pageValuesPost.startPageNum}" end="${pageValuesPost.endPageNum}" step="1" var="i">
+					    <c:choose>
+					        <c:when test="${pageValuesPost.currentPage==index}">
+					            ${i}
+					        </c:when>
+					        <c:otherwise>
+					            <a href="/myPage/myPageMain?page-post=${i}">${i}</a>
+					        </c:otherwise>
+					    </c:choose>
+					</c:forEach>
+					<c:if test="${pageValuesPost.nextFlg==1}">
+					    <a href="/myPage/myPageMain?page-post=${pageValuesPost.endPageNum+1}">다음</a>
+					</c:if>
+
+   			 	</div>
+ 				
  			</div>
  			
  			
@@ -447,6 +469,28 @@ html, body{
 				<button id="history_post_delete_button">체크한 댓글 삭제하기</button>
 				<span id="check-error-msg">${myPageFailed.invalidCheckBoxMsg2}</span>
  				</form>
+ 				
+ 				
+ 				<div class="page">
+			   
+			   <c:if test="${pageValuesComment.prevFlg==1}">
+					    <a href="/myPage/myPageMain?page-comment=${pageValuesComment.startPageNum-1}">이전</a>
+					</c:if>
+					<c:forEach begin="${pageValuesComment.startPageNum}" end="${pageValuesComment.endPageNum}" step="1" var="i">
+					    <c:choose>
+					        <c:when test="${pageValuesComment.currentPage==index}">
+					            ${i}
+					        </c:when>
+					        <c:otherwise>
+					            <a href="/myPage/myPageMain?page-comment=${i}">${i}</a>
+					        </c:otherwise>
+					    </c:choose>
+					</c:forEach>
+					<c:if test="${pageValuesComment.nextFlg==1}">
+					    <a href="/myPage/myPageMain?page-comment=${pageValuesComment.endPageNum+1}">다음</a>
+					</c:if>
+
+   			 	</div>
  			
  			</div>
  			

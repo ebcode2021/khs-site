@@ -230,6 +230,13 @@ html, body{
 
 
 
+.page {
+	width: 15vw;
+	display: flex;
+    justify-content: space-around;
+}
+
+
 
 
 .footer{

@@ -241,9 +241,9 @@ html, body{
 
 
 #post_input_page_link {
-   display: flex;
-   justify-content: flex-end;
-    margin-right: 5%;
+	margin-right: 5%;
+	text-align: right;
+	width: 100%;
 }
 
 

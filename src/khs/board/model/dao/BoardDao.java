@@ -23,15 +23,22 @@ public class BoardDao {
 	
 	
 	//hot게시판 목록 불러오기
-	public List<Board> hotBoard(Connection conn) {
+	public List<Board> hotBoard(Connection conn, Map<String, Integer> pageValues) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 AND bd_section='HOT' order by to_number(bd_idx) desc";
+		String query = "select rnum, B.* from("
+						+ "select rownum rnum, A.* from("
+						+ "select * from board inner join member using(user_id) "
+						+ "where bd_is_del=0 AND bd_is_blind=0 AND bd_section='HOT' "
+						+ "order by to_number(bd_idx) desc) A)B "
+						+ "where ? < rnum and rnum <= ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
+			pstm.setInt(1, pageValues.get("startRow"));
+			pstm.setInt(2, pageValues.get("endRow"));
 			rset = pstm.executeQuery();
 
 			while(rset.next()) {
@@ -50,15 +57,22 @@ public class BoardDao {
 	
 	
 	// 공지사항 목록 불러오기
-	public List<Board> alertBoard(Connection conn) {
+	public List<Board> alertBoard(Connection conn, Map<String, Integer> pageValues) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from board inner join member using(user_id) where bd_is_del=0 AND bd_is_blind=0 AND bd_section='ALERT' order by to_number(bd_idx) desc";
+		String query = "select rnum, B.* from ("  
+				+ "select rownum rnum, A.* from ("  
+				+ "select * from board inner join member using(user_id) "
+				+ "where bd_is_del=0 AND bd_is_blind=0 AND bd_section='ALERT' "
+				+ "order by to_number(bd_idx) desc) A)B "  
+				+ "where ? < rnum and rnum <= ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
+			pstm.setInt(1, pageValues.get("startRow"));
+			pstm.setInt(2, pageValues.get("endRow"));
 			rset = pstm.executeQuery();
 
 			while(rset.next()) {
@@ -114,7 +128,7 @@ public class BoardDao {
 	public int boardTotalCount(Connection conn, String boardSection) {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
-		String query = "select count(*) from board where bd_section = ? and bd_is_del=0";
+		String query = "select count(*) from board where bd_section = ? and bd_is_del=0 and bd_is_blind=0";
 		int totalCnt = 0;
 		
 		try {
@@ -132,6 +146,52 @@ public class BoardDao {
 		
 		return totalCnt;
 	}
+	
+	
+	public int myPostTotalCount(Connection conn, String userId) {
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		String query = "select count(*) from board where user_id = ? AND bd_is_del=0";
+		int totalCnt = 0;
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			rset = pstm.executeQuery();
+			if(rset.next()) {
+				totalCnt = rset.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return totalCnt;
+	}
+	
+	public int myCommentTotalCount(Connection conn, String userId) {
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		String query = "select count(*) from board_comment where user_id = ? AND cmt_is_del=0";
+		int totalCnt = 0;
+		
+		try {
+			pstm = conn.prepareStatement(query);
+			pstm.setString(1, userId);
+			rset = pstm.executeQuery();
+			if(rset.next()) {
+				totalCnt = rset.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset, pstm);
+		}
+		
+		return totalCnt;
+	}
+	
 	
 	
 	// 게시글 상세보기
@@ -158,6 +218,8 @@ public class BoardDao {
 		
 		return board;
 	}
+	
+	
 	
 	
 	
@@ -229,16 +291,22 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 	
 	
 
-	public List<Board> selectMyPost(Connection conn, String userId) {
+	public List<Board> selectMyPost(Connection conn, String userId,  Map<String, Integer> pageValues) {
 		List<Board> boardList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select * from board where user_id = ? AND bd_is_del=0 order by to_number(bd_idx) desc";
+		String query = 	"select rnum, B.* from ("
+						+ "select rownum rnum, A.* from ("
+						+ "select * from board where user_id = ? AND bd_is_del=0 "
+						+ "order by to_number(bd_idx) desc) A)B "
+						+ "where ? < rnum and rnum <= ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, userId);
+			pstm.setInt(2, pageValues.get("startRow"));
+			pstm.setInt(3, pageValues.get("endRow"));
 			rset = pstm.executeQuery();
 
 			while(rset.next()) {
@@ -282,21 +350,25 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 	
 	
 	
-	public List<Board> selectMyComment(Connection conn, String userId) {
+	public List<Board> selectMyComment(Connection conn, String userId, Map<String, Integer> pageValues) {
 		List<Board> commentList = new ArrayList<Board>();
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		Board board = null;
-		String query = "select cmt_idx, bd_idx, C.user_id, title, cmt_content, cmt_reg_date, bd_section, cmt_is_del"
-				+ " from board B inner join board_comment C using(bd_idx) where C.user_id = ?"
-				+ " AND cmt_is_del=0 order by to_number(cmt_idx) desc";
+		String query = 	"select rnum, B.* from ("
+						+ "select rownum rnum, A.* from ("
+						+ "select cmt_idx, bd_idx, C.user_id, title, cmt_content, cmt_reg_date, bd_section, cmt_is_del"
+						+ " from board B inner join board_comment C using(bd_idx) where C.user_id = ?"
+						+ " AND cmt_is_del=0 order by to_number(cmt_idx) desc) A) B"
+						+ " where ? < rnum and rnum <= ?";
 		
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, userId);
+			pstm.setInt(2, pageValues.get("startRow"));
+			pstm.setInt(3, pageValues.get("endRow"));
 			rset = pstm.executeQuery();
-			rset.toString();
-
+			
 			while(rset.next()) {
 				board = convertAllToComment(rset);
 				commentList.add(board);

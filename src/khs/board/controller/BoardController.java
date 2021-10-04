@@ -26,8 +26,8 @@ import khs.myPage.model.service.MyPageService;
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	BoardService boardService = new BoardService();
-	MyPageService myPageService = new MyPageService();
+	private BoardService boardService = new BoardService();
+	private MyPageService myPageService = new MyPageService();
 	
     public BoardController() {
         super();
@@ -78,17 +78,30 @@ public class BoardController extends HttpServlet {
 
 
     private void hotBoardMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	List<Board> boardList = boardService.hotBoard();
+    	String pageNum = "1";
+		if(request.getParameter("page") != null) {
+			pageNum = request.getParameter("page");
+		}
+		Map<String, Integer> pageValues = boardService.boardPaging(pageNum, "HOT", 15, 5);
+		
+    	List<Board> boardList = boardService.hotBoard(pageValues);
     	
 		request.setAttribute("boardList", boardList);
+		request.setAttribute("pageValues", pageValues);
 		request.getRequestDispatcher("/board/hot-board-main").forward(request, response);
 	}
 
 
 	private void alertBoardMain(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Board> boardList = boardService.alertBoard();
+		String pageNum = "1";
+		if(request.getParameter("page") != null) {
+			pageNum = request.getParameter("page");
+		}
+		Map<String, Integer> pageValues = boardService.boardPaging(pageNum, "ALERT", 15, 5);
 		
+		List<Board> boardList = boardService.alertBoard(pageValues);
 		request.setAttribute("boardList", boardList);
+		request.setAttribute("pageValues", pageValues);
 		request.getRequestDispatcher("/board/alert-board-main").forward(request, response);
 	}
 	
@@ -272,12 +285,12 @@ public class BoardController extends HttpServlet {
 		 */
 		
 		//페이지넘버, 게시판종류, 한페이지에 출력할 게시글 수를 넣으면 페이징에 필요한 값들을 받아오는 메서드
-		Map<String, Integer> pageValues = boardService.boardPaging(pageNum, "FREE", /*Integer.parseInt(pageItemsCnt)*/5, 5);
+		Map<String, Integer> pageValues = boardService.boardPaging(pageNum, "FREE", /*Integer.parseInt(pageItemsCnt)*/15, 5);
 		
 		List<Board> boardList = boardService.freeBoardMain(pageValues);
 		
 		request.setAttribute("boardList", boardList);
-		request.setAttribute("pageItemsCnt", /*pageItemsCnt*/5);
+		//request.setAttribute("pageItemsCnt", /*pageItemsCnt*/5);
 		request.setAttribute("pageValues", pageValues);
 		
 		request.getRequestDispatcher("/board/free-board-main").forward(request, response);

@@ -91,6 +91,7 @@ html, body{
    min-width: 600px;
    display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .sidemenu{
    position: absolute;
@@ -232,16 +233,19 @@ html, body{
 
 
 
-
-
 #post_input_page_link {
-   display: flex;
-   justify-content: flex-end;
-    margin-right: 5%;
+	margin-right: 5%;
+	text-align: right;
+	width: 100%;
 }
 
 
 
+.page {
+	width: 15vw;
+	display: flex;
+    justify-content: space-around;
+}
 
 
 
@@ -338,7 +342,26 @@ html, body{
 	          </form>  
           </div>
           
-          
+          <div class="page">
+			   
+			   <c:if test="${pageValues.prevFlg==1}">
+					    <a href="/board/alert-board-main?page=${pageValues.startPageNum-1}">이전</a>
+					</c:if>
+					<c:forEach begin="${pageValues.startPageNum}" end="${pageValues.endPageNum}" step="1" var="i">
+					    <c:choose>
+					        <c:when test="${pageValues.currentPage==index}">
+					            ${i}
+					        </c:when>
+					        <c:otherwise>
+					            <a href="/board/alert-board-main?page=${i}">${i}</a>
+					        </c:otherwise>
+					    </c:choose>
+					</c:forEach>
+					<c:if test="${pageValues.nextFlg==1}">
+					    <a href="/board/alert-board-main?page=${pageValues.endPageNum+1}">다음</a>
+					</c:if>
+
+   			 </div>
           
        </div>
     </div>
