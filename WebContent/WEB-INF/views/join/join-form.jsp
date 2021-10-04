@@ -773,7 +773,7 @@ Google과의 관계가 정의됩니다.
 			confirmNickname&
 			confirmBirth&
 			confirmImgFile& 
-			confirmAgree 
+			confirmAgree
 			){
 				// 모든 조건들이 올바르게 input 되었을 시 pointer-events 해제 
 				dom.style.setProperty('background-color', 'white');

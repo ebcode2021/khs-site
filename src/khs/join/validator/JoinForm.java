@@ -214,15 +214,18 @@ public class JoinForm {
 			request.getSession().removeAttribute("joinFailed");
 		}
 		
-		Date sqlDate = Date.valueOf(birth);
 		
 		Member member = new Member();
+		if(!birth.isEmpty()) {
+			Date sqlDate = Date.valueOf(birth);
+			member.setBirthDate(sqlDate);
+		}
+		
 		member.setUserId(userId);
 		member.setPassword(password);
 		member.setEmail(email);
 		member.setName(name);
 		member.setNickname(nickName);
-		member.setBirthDate(sqlDate);
 		member.setVariFile(variFile);
 		member.setKhCenter(selectKH);
 		
