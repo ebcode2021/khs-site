@@ -73,7 +73,7 @@ html, body{
 	background-color: #fecf92;
 	border-radius: 20px 20px 20px 20px;
 	z-index: 999;
-	font-family: 'SDSamliphopangche_Outline';
+	font-family: 'han_sans_kr_Medium';
 }
 #mypage{
 	border-radius: 20px 20px 0 0;
@@ -183,12 +183,7 @@ html, body{
  			
  			<div><a href="/studyPage/index">학습 자료실</a></div>
  			
-			<div id="wrap_hotplace"><a a href="/food/food">맛집 정보</a>
-	 			<div class="hotplace">
-	 				<a>강남지원</a>
-	 				<a>종로지원</a>
-	 				<a>당산지원</a>
-	 			</div>
+			<div><a a href="/food/food">맛집 정보</a>
  			</div>
  			
  			<div><a href="/board/free-board-main">게시판</a></div>
