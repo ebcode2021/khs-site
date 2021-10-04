@@ -299,16 +299,9 @@ html, body{
  	<div class="section">
  		<div class='sidemenu'>
  		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
- 			<div><a>학습 자료실</a></div>
- 			<div id="wrap_hotplace"><a>맛집 정보</a>
-	 			<div class="hotplace">
-	 				<a>강남지원</a>
-	 				<a>종로지원</a>
-	 				<a>당산지원</a>
-	 			</div>
- 			</div>
- 			<div><a>게시판</a></div>
- 			<div><a>문의하기</a></div>
+ 			<div><a href="/studyPage/index">학습 자료실</a></div>
+ 			<div id="wrap_hotplace"><a href="/food">맛집 정보</a></div>
+ 			<div><a href="/board/free-board-main">게시판</a></div>
  		</div>
  		<div class= 'main_banner'>
  			

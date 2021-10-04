@@ -21,18 +21,16 @@
 <body>
  	<div class="header">
  		<div class = "wrap_header">
- 			<div class='site_tit'>K H S</div>
+ 			<div class='site_tit'><a href="/main" style="color:#f29d2a;">K H S</div>
  			<div class='logout'><button><a>로그아웃</a></button></div>
  		</div>
  	</div>
  	<div class="section">
  		<div class='sidemenu'>
- 		 	<div id="mypage"><a>나의 현황</a></div>
- 			<div><a>학습 자료실</a></div>
- 			<div id="wrap_hotplace"><a>맛집 정보</a>
- 			</div>
- 			<div><a>게시판</a></div>
- 			<div><a>문의하기</a></div>
+ 		 	<div id="mypage"><a href="/myPage/myPageMain">나의 현황</a></div>
+ 			<div><a href="/studyPage/index">학습 자료실</a></div>
+ 			<div id="wrap_hotplace"><a href="/food">맛집 정보</a></div>
+ 			<div><a href="/board/free-board-main">게시판</a></div>
  		</div>
  		<div class= 'main_banner'>
  		<div class= 'mainDiv' id = 'mainDiv'>

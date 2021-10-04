@@ -14,6 +14,18 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+      src : url("/resources/css/NotoSansCJKkr-hinted/NotoSansCJKkr-Regular.otf"); 
+      font-family: "han_sans_kr_medium";
+}
+
+@font-face {
+      src : url("/resources/css/NotoSansCJKkr-hinted/NotoSansCJKkr-Light.otf"); 
+      font-family: "han_sans_kr_Light";
+}
+
+
 html, body{
 	width: 100%;
 	height: 100%;.
