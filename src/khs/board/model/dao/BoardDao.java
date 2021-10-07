@@ -252,7 +252,7 @@ public List<FileDTO> selectFileDTOs(Connection conn, String bdIdx) {
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
 		} finally {
-			template.close(conn);
+			template.close(rset, pstm);
 		}
 		
 		return files;
